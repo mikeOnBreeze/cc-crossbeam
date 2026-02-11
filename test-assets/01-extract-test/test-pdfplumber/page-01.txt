@@ -1,0 +1,195 @@
+=== PAGE 1 — pdfplumber extract_text() ===
+
+NEW DETACHED ADU
+MAIN HOME ADDRESS: 1232 N. JEFFERSON ST.
+PLACENTIA, CA. 92870
+*TEEHS
+REVOC*
+2452 Pacific Ave.
+Long Beach, Ca. 90806
+(562) 481-6269
+OSCAR@ADUWEST.COM
+CS
+.TS
+NOSREFFEJ
+.N
+2321
+:SSERDDA
+.H.M
+07829
+.AC
+,AITNECALP
+PAGE
+'A'
+TINU
+,.TS
+NOSREFFEJ
+.N
+2321
+:SSERDDA
+UDA
+SCOPE OF WORK 12
+SEPARATE PERMITS 13
+SHEET INDEX 1
+LEGAL
+2
+DESCRIPTION
+OWNER
+3
+INFORMATION
+NOTES 5
+PROJECT PROJECT
+GENERAL NOTES 12 VICINITY MAP 11 ABBREVIATIONS 9 8 NOTES 6 4
+N CONSULTANTS DATA
+UDA
+DEHCATED
+WEN
+ADU ADDRESS: 1232 N. JEFFERSON ST., UNIT 'A'
+l
+(6 Sq. Ft.)
+a
+t
+t
+i
+m
+b
+u
+S
+y
+t
+i
+C
+r
+o
+f
+d
+e
+p
+p
+e
+r
+P
+/
+n
+o
+i
+t
+c
+u
+r
+t
+s
+n
+o
+C
+r
+o
+F
+t
+o
+N
+-
+t
+e
+S
+y
+d
+u
+t
+S
+
+=== TABLES FOUND: 1 ===
+
+--- Table 1 ---
+-
+t
+e
+S | (6 Sq. Ft.) |  | NEW DETACHED ADU
+MAIN HOME ADDRESS: 1232 N. JEFFERSON ST.
+ADU ADDRESS: 1232 N. JEFFERSON ST., UNIT 'A'
+PLACENTIA, CA. 92870
+y
+t
+i
+C
+r
+o
+f
+d
+e
+p
+p
+e
+r
+P
+/
+n |  |  | a
+t
+t
+i
+m
+b
+u
+S
+SHEET INDEX 1 |  |  | 
+ |  |  |  |  |  |  | l
+2452 Pacific A
+Long Beach, Ca. 90
+(562) 481-62
+OSCAR@ADUWEST.C |  | 
+ |  |  |  |  |  |  | 'A'
+.TS
+TINU
+NOSREFFEJ
+UDA ,.TS
+07829
+NOSREFFEJ
+DEHCATED
+.AC
+.N
+2321 ,AITNECALP
+.N
+2321
+:SSERDDA
+WEN :SSERDDA
+.H.M
+UDA |  | 
+ | SCOPE OF WORK | 12 |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  | 
+ | SEPARATE PERMITS | 13 |  |  |  |  |  |  | 
+ | n
+o
+C
+r
+o
+F
+t
+o
+N |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  | 
+ |  |  | o
+i
+t
+c
+u
+r
+t
+s |  | NOTES 5 |  |  |  | 
+ |  |  |  |  |  | LEGAL
+2
+DESCRIPTION
+OWNER
+3
+INFORMATION |  |  | 
+y
+d
+u
+t
+S
+GENERAL NOTES 12 | VICINITY MAP 11
+N |  | ABBREVIATIONS 9 | PROJECT
+8
+CONSULTANTS | NOTES 6 | PROJECT
+4
+DATA | PAGE
+CS |  | 

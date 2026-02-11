@@ -1,0 +1,178 @@
+=== PAGE 13 — pdfplumber extract_text() ===
+
+110074
+XOB
+.O.P
+74009
+AC
+,SELEGNA
+SOL
+7289-559
+)323(
+MOC.LIAMG@419SNGISEDGRL:LIAME
+MOC.NGISEDYGRENEGRL
+:ETISBEW
+DATE
+7/1/2025
+SCALE
+SHEET
+T-1
+OF SHEETS
+UDA
+WEN
+:TCEJORP
+A
+TINU
+TEERTS
+NOSREFFEJ
+.N
+2321
+:SSERDDA
+ETIS
+07829
+AC
+,AITNECALP
+EL
+TEIK
+:RENWO
+REVISION / DATE
+l
+a
+t
+t
+i
+m
+b
+u
+S
+y
+t
+i
+C
+r
+o
+f
+d
+e
+p
+p
+e
+r
+P
+/
+n
+o
+i
+t
+c
+u
+r
+t
+s
+n
+o
+C
+r
+o
+F
+t
+o
+N
+-
+t
+e
+S
+y
+d
+u
+t
+S
+
+=== TABLES FOUND: 1 ===
+
+--- Table 1 ---
+t
+t
+i
+m
+b
+u
+S
+y
+t
+i
+C
+r
+o
+f
+d
+e
+p
+p
+e
+r
+P
+/
+n
+o
+i
+t
+c
+u
+r
+t
+s
+n
+o
+C
+r
+o
+F
+t
+o
+N
+-
+t
+e
+S
+y
+d
+u
+t
+S | REVISION / DATE
+ | l
+ | a
+ | 
+ | 
+ | 
+ | MOC.LIAMG@419SNGISEDGRL:LIAME
+74009
+AC
+110074
+,SELEGNA
+7289-559
+XOB
+)323(
+.O.P SOL
+ | A
+TINU
+TEERTS
+07829
+NOSREFFEJ
+AC
+,AITNECALP
+.N
+2321
+UDA
+EL
+WEN :SSERDDA
+TEIK
+:TCEJORP
+:RENWO
+ETIS
+ | DATE
+7/1/2025
+ | SCALE
+ | SHEET
+T-1
+OF SHEETS

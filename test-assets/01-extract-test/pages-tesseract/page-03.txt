@@ -1,0 +1,605 @@
+.\AIA CA LOGO. jpg
+
+2022 CALIFORNIA GREEN BUILDING STANDARDS CODE
+RESIDENTIAL MANDATORY MEASURES, SHEET 2 (July 2024 supplement)
+
+Y
+N/A
+RESPON. PARTY
+
+YES
+
+NOT APPLICABLE
+
+RESPONSIBLE PARTY (ie: ARCHITECT, ENGINEER,
+OWNER, CONTRACTOR, INSPECTOR ETC.)
+
+Y |N/A
+
+RESPON.
+PARTY
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+MAXIMUM INCREMENTAL REACTIVITY (MIR). The maximum change in weight of ozone formed by
+adding a compound to the "Base Reactive Organic Gas (ROG) Mixture” per weight of
+compound added, expressed to hundredths of a gram (g 0°/g ROC).
+
+Note: MIR values for individual compounds and hydrocarbon solvents are specified in CCR,
+Title 17, Sections 94700 and 94701.
+
+MOISTURE CONTENT. The weight of the water in wood expressed in percentage of the weight
+of the oven—dry wood.
+
+PRODUCT-WEIGHTED MIR (PWMIR). The sum of all weighted—MIR for all ingredients in a product
+subject to this article. The PWMIR is the total product reactivity expressed to hundredths
+of a gram of ozone formed per gram of product (excluding container and packaging).
+
+Note: PWMIR is calculated according to equations found in CCR, Title 17, Section 94521 (a).
+
+REACTIVE ORGANIC COMPOUND (ROC). Any compound that has the potential, once emitted, to
+contribute to ozone formation in the troposphere.
+
+voc. A volatile organic compound (VOC) broadly defined as a chemical compound based on
+carbon chains or rings with vapor pressures greater than 0.1 millimeters of mercury at
+room temperature. These compounds typically contain hydrogen and may contain oxygen,
+nitrogen and other elements. See CCR Title 17, Section 94508(a).
+
+4.503 FIREPLACES
+
+4.503.1 GENERAL. Any installed gas fireplace shall be a direct-vent sealed-combustion type. Any installed
+woodstove or pellet stove shall comply with U.S. EPA New Source Performance Standards (NSPS) emission limits as
+applicable, and shall have a permanent label indicating they are certified to meet the emission limits. Woodstoves,
+pellet stoves and fireplaces shall also comply with applicable local ordinances.
+
+4.504 POLLUTANT CONTROL
+
+4.504.1 COVERING OF DUCT OPENINGS & PROTECTION OF MECHANICAL EQUIPMENT DURING
+CONSTRUCTION. At the time of rough installation, during storage on the construction site and until final
+
+startup of the heating, cooling and ventilating equipment, all duct and other related air distribution component
+openings shall be covered with tape, plastic, sheet metal or other methods acceptable to the enforcing agency to
+reduce the amount of water, dust or debris which may enter the system.
+
+4.504.2 FINISH MATERIAL POLLUTANT CONTROL. Finish materials shall comply with this section.
+
+4.504.2.1 Adhesives, Sealants and Caulks. Adhesives, sealant and caulks used on the project shall meet the
+requirements of the following standards unless more stringent local or regional air pollution or air quality
+management district rules apply:
+
+1. Adhesives, adhesive bonding primers, adhesive primers, sealants, sealant primers and caulks
+shall comply with local or regional air pollution control or air quality management district rules where
+applicable or SCAQMD Rule 1168 VOC limits, as shown in Table 4.504.1 or 4.504.2, as applicable.
+Such products also shall comply with the Rule 1168 prohibition on the use of certain toxic
+compounds (chloroform, ethylene dichloride, methylene chloride, perchloroethylene and
+tricloroethylene), except for aerosol products, as specified in Subsection 2 below.
+
+2. Aerosol adhesives, and smaller unit sizes of adhesives, and sealant or caulking compounds (in
+units of product, less packaging, which do not weigh more than 1 pound and do not consist of more
+than 16 fluid ounces) shall comply with statewide VOC standards and other requirements, including
+prohibitions on use of certain toxic compounds, of California Code of Regulations, Title 17,
+commencing with section 94507.
+
+4.504.2.2 Paints and Coatings. Architectural paints and coatings shall comply with VOC limits in Table 1 of
+the ARB Architectural Suggested Control Measure, as shown in Table 4.504.3, unless more stringent local limits
+apply. The VOC content limit for coatings that do not meet the definitions for the specialty coatings categories
+listed in Table 4.504.3 shall be determined by classifying the coating as a Flat, Nonflat or Nonflat-High Gloss
+coating, based on its gloss, as defined in subsections 4.21, 4.36, and 4.37 of the 2007 California Air Resources
+Board, Suggested Control Measure, and the corresponding Flat, Nonflat or Nonflat-High Gloss VOC limit in
+Table 4.504.3 shall apply.
+
+4.504.2.3 Aerosol Paints and Coatings. Aerosol paints and coatings shall meet the Product-weighted MIR
+Limits for ROC in Section 94522(a)(2) and other requirements, including prohibitions on use of certain toxic
+compounds and ozone depleting substances, in Sections 94522(e)(1) and (f)(1) of California Code of
+Regulations, Title 17, commencing with Section 94520; and in areas under the jurisdiction of the Bay Area Air
+Quality Management District additionally comply with the percent VOC by weight of product limits of Regulation
+8, Rule 49.
+
+4.504.2.4 Verification. Verification of compliance with this section shall be provided at the request of the
+enforcing agency. Documentation may include, but is not limited to, the following:
+
+1. Manufacturer's product specification.
+2. Field verification of on-site product containers.
+
+TABLE 4.504.1 — ADHESIVE VOC LIMIT12
+
+(Less Water and Less Exempt Compounds in Grams per Liter)
+
+ARCHITECTURAL APPLICATIONS VOC LIMIT
+INDOOR CARPET ADHESIVES 50
+CARPET PAD ADHESIVES 50
+OUTDOOR CARPET ADHESIVES 150
+WOOD FLOORING ADHESIVES 100
+RUBBER FLOOR ADHESIVES 60
+SUBFLOOR ADHESIVES 50
+CERAMIC TILE ADHESIVES 65
+VCT & ASPHALT TILE ADHESIVES 50
+DRYWALL & PANEL ADHESIVES 50
+COVE BASE ADHESIVES 50
+MULTIPURPOSE CONSTRUCTION 70
+ADHESIVE
+
+STRUCTURAL GLAZING ADHESIVES 100
+SINGLE—PLY ROOF MEMBRANE 250
+ADHESIVES
+
+OTHER ADHESIVES NOT LISTED 50
+SPECIALTY APPLICATIONS
+
+PVC WELDING
+
+CPVC WELDING
+
+ABS WELDING
+
+PLASTIC CEMENT WELDING
+ADHESIVE PRIMER FOR PLASTIC
+CONTACT ADHESIVE
+
+BERGLASS 80
+
+1. IF AN ADHESIVE IS USED TO BOND DISSIMILAR SUBSTRATES
+TOGETHER, THE ADHESIVE WITH THE HIGHEST VOC CONTENT SHALL
+BE ALLOWED.
+
+2. FOR ADDITIONAL INFORMATION REGARDING METHODS TO
+MEASURE THE VOC CONTENT SPECIFIED IN THIS TABLE, SEE
+SOUTH COAST AIR QUALITY MANAGEMENT DISTRICT RULE 1168.
+
+Y N/A RESPON.
+PARTY
+
+Y |N/A
+
+RESPON.
+PARTY
+
+TABLE 4.504.2 — SEALANT VOC LIMIT
+
+(Less Water and Less Exempt Compounds in Grams per Liter)
+
+CONTRACTOR]
+
+SEALANTS VOC LIMIT
+ARCHITECTURAL 250
+MARINE DECK 760
+NONMEMBRANE ROOF 300
+ROADWAY 250
+SINGLE—PLY ROOF MEMBRANE 450
+OTHER 420
+SEALANT PRIMERS
+ARCHITECTURAL
+
+NON—POROUS 250
+
+POROUS 775
+MODIFIED BITUMINOUS 500
+MARINE DECK 760
+OTHER 750
+
+ARCHITECTURAL COATINGSa23
+
+TABLE 4.504.3 — VOC CONTENT LIMITS FOR
+
+CONTRACTOR]
+
+EXEMPT COMPOUNDS
+
+GRAMS OF VOC PER LITER OF COATING, LESS WATER & LESS
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+fr] Ta feeiraacro
+
+CONTRACTOR]
+
+SEE DETAIL #1
+JON SHEET A3
+
+ICONTRACTOR|
+
+COATING CATEGORY VOC LIMIT
+FLAT COATINGS 50
+NON-FLAT COATINGS 100
+NONFLAT—HIGH GLOSS COATINGS 150
+SPECIALTY COATINGS
+ALUMINUM ROOF COATINGS 400
+BASEMENT SPECIALTY COATINGS 400
+BITUMINOUS ROOF COATINGS 50
+BITUMINOUS ROOF PRIMERS 350
+BOND BREAKERS 350
+CONCRETE CURING COMPOUNDS 350
+CONCRETE /MASONRY SEALERS 100
+DRIVEWAY SEALERS 50
+DRY FOG COATINGS 150
+FAUX FINISHING COATINGS 350
+FIRE RESISTIVE COATINGS 350
+FLOOR COATINGS 100
+FORM-RELEASE COMPOUNDS 250
+GRAPHIC ARTS COATINGS (SIGN 500
+PAINTS)
+HIGH TEMPERATURE COATINGS 420
+INDUSTRIAL MAINTENANCE COATINGS 250
+LOW SOLIDS COATINGS:
+MAGNESITE CEMENT COATINGS
+MASTIC TEXTURE COATINGS
+METALLIC PIGMENTED COATINGS 500
+MULTICOLOR COATI 250
+PRETREATMENT WA\ 420
+PRIMERS, SEALERS, Ws UNDERGOATERS 100
+350
+250
+50
+250
+CLEAR 730
+OPAQUE 550
+SPECIALTY PRIMERS, SEALERS & 100
+UNDERCOATERS
+STAINS 250
+STONE CONSOLIDANTS 450
+SWIMMING POOL COATINGS 340
+TRAFFIC MARKING COATINGS 100
+TUB & TILE REFINISH COATINGS 420
+WATERPROOFING MEMBRANES 250
+WOOD COATINGS 275
+WOOD PRESERVATIVES 350
+ZINC—RICH PRIMERS 340
+
+1. GRAMS OF VOC PER LITER OF COATING, INCLUDING WATER
+
+& EXEMPT COMPOUNDS
+
+2. THE SPECIFIED LIMITS REMAIN IN EFFECT UNLESS REVISED
+LIMITS ARE LISTED IN SUBSEQUENT COLUMNS IN THE TABLE.
+
+3. VALUES IN THIS TABLE ARE DERIVED FROM THOSE
+SPECIFIED BY THE CALIFORNIA AIR RESOURCES BOARD,
+ARCHITECTURAL COATINGS SUGGESTED CONTROL MEASURE,
+
+FEB. 1, 2008.
+AIR RESOURCES BOARD.
+
+MORE INFORMATION IS AVAILABLE FROM THE
+
+TABLE 4.504.5 — FORMALDEHYDE LIMITS:
+MAXIMUM FORMALDEHYDE EMISSIONS IN PARTS PER MILLION
+PRODUCT CURRENT LIMIT
+HARDWOOD PLYWOOD VENEER CORE 0.05
+HARDWOOD PLYWOOD COMPOSITE CORE 0.05
+PARTICLE BOARD 0.09
+MEDIUM DENSITY FIBERBOARD 0.11
+
+THIN MEDIUM DENSITY FIBERBOARD2 0.13
+
+1. VALUES IN THIS TABLE ARE DERIVED FROM THOSE
+SPECIFIED BY THE CALIF. AIR RESOURCES BOARD, AIR
+TOXICS CONTROL MEASURE FOR COMPOSITE WOOD AS
+TESTED IN ACCORDANCE WITH ASTM E 1333. FOR
+ADDITIONAL INFORMATION, SEE CALIF. CODE OF
+REGULATIONS, TITLE 17, SECTIONS 93120 THROUGH
+93120.12.
+
+2. THIN MEDIUM DENSITY FIBERBOARD HAS A MAXIMUM
+THICKNESS OF 5/16” (8 MM).
+
+DIVISION 4.5 ENVIRONMENTAL QUALITY (continued)
+
+4.504.3 CARPET SYSTEMS. All carpet installed in the building interior shall meet the
+requirements of the California Department of Public Health, "Standard Method for the
+Testing and Evaluation of Volatile Organic Chemical Emissions from Indoor Sources Using
+Environmental Chambers,” Version 1.2, January 2017 (Emission testing method for California
+Specification 01350)
+
+See California Department of Public Health’s website for certification programs and testing
+labs.
+
+https: //www.cdph.ca.gov/Programs/CCDPHP /DEODC/EHLB/IAQ/Pages/VOC. aspx.
+4.504.3.1 Carpet cushion. All carpet cushion installed in the building interior shall meet
+
+the requirements of the California Department of Public Health, "Standard Method for the
+Testing and Evaluation of Volatile Organic Chemical Emissions from Indoor Sources Using
+
+Environmental Chambers,” Version 1.2, January 2017 (Emission testing method for@California
+Specification 01350)
+
+See California Department of Public Health's website for certification progr
+
+testing labs.
+
+https: //www.cdph.ca.gov/Programs/CCDPHP /DEODC/EHLB/IAQ/Pa
+
+4.504.3.2 Carpet adhesive. All carpet adhesive shall meet the able
+
+4.504.1.
+
+4,504.4 RESILIENT FLOORING SYSTEMS. Where resilient flo
+floor area receiving resilient flooring shall meet the
+Department of Public Health, "Standard Metho
+Organic Chemical Emissions from Indoor Sou
+
+1.2, January 2017 (Emission testing metiéd I
+
+, at least 80% of
+e California
+
+Evaluation of Volatile
+Chambers,” Version
+
+labs.
+
+hhtps: //www.cdph.
+
+» Hardwood plywood, particleboard and medium density
+ood products used on the interior or exterior of the buildings shall
+for formaldehyde as specified in ARBs Air Toxics Control Measure
+
+CCR 93120 et seq.), by or before the dates specified in those
+wn in Table 4.504.5
+
+Product certifications and specifications.
+
+Chain of custody certifications.
+
+Product labeled and invoiced as meeting the Composite Wood Products
+regulation (see CCR, Title 17, Section 93120, et seq.).
+
+Exterior grade products marked as meeting the PS—1 or PS—2 standards of
+the Engineered Wood Association, the Australian AS/NZS 2269, European
+636 3S standards, and Canadian CSA 0121, CSA 0151, CSA 0153 and CSA
+0325 standards.
+
+5 Other methods acceptable to the enforcing agency.
+
+4.505 INTERIOR MOISTURE CONTROL
+
+4.505.1 General. Buildings shall meet or exceed the provisions of the California Building Standards
+Code.
+
+- WN?
+
+4,505.2 CONCRETE SLAB FOUNDATIONS. Concrete slab foundations required to have a vapor
+retarder by California Building Code, Chapter 19, or concrete slab—on—ground floors required
+to have a vapor retarder by the California Residential Code, Chapter 5, shall also comply
+with this section.
+
+4.505.2.1 Capillary break. A capillary break shall be installed in compliance with at least
+one of the following:
+
+1. A 4-inch (101.6 mm) thick base of 1/2 inch (12.7mm) or larger clean
+aggregate shall be provided with a vapor barrier in direct contact with concrete
+and a concrete mix design, which will address bleeding, shrinkage, and curling,
+shall be used. For additional information, see American Concrete Institute, ACI
+302.2R—06.
+
+2. Other equivalent methods approved by the enforcing agency.
+
+3. A slab design specified by a licensed design professional.
+
+4.505.3 MOISTURE CONTENT OF BUILDING MATERIALS. Building materials with visible signs of
+water damage shall not be installed. Wall and floor framing shall not be enclosed when the
+framing members exceed 19 percent moisture content. Moisture content shall be verified in
+compliance with the following:
+
+1. Moisture content shall be determined with either a probe—type or contact—type
+moisture meter.Equivalent moisture verification methods may be approved by the
+enforcing agency and shall _ satisfy requirements found in Section 101.8 of this code.
+2. Moisture readings shall be taken at a point 2 feet (610 mm) to 4 feet (1219 mm)
+from the grade stamped end of each piece verified.
+
+3. At least three random moisture readings shall be performed on wall and floor
+framing with documentation acceptable to the enforcing agency provided at the time
+of approval to enclose the wall and floor framing.
+
+Insulation products which are visibly wet or have a high moisture content shall be replaced
+or allowed to dry prior to enclosure in wall or floor cavities. Wet—applied insulation products
+shall follow the manufacturers’ drying recommendations prior to enclosure.
+
+Y |N/A
+
+RESPON.
+PARTY
+
+SEE
+PLACEMENT
+ION AZ
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+CONTRACTOR]
+
+4.506 INDOOR AIR QUALITY AND EXHAUST
+4.506.1 Bathroom exhaust fans. Each bathroom shall be mechanically ventilated and shall comply
+with the following:
+
+1. Fans shall be ENERGY STAR compliant and be ducted to terminate outside th
+building.
+
+2. Unless functioning as a component of a whole house ventilation systeg,
+be controlled by a humidity control.
+
+a. Humidity controls shall be capable of adjustment between a
+range less than or equal to 50% to a maximum of 80% Ah
+utilize manual or automatic means of adjustment.
+
+b. A humidity control may be a separate component to
+not required to be integral (i.e., built-in)
+
+Notes:
+
+1. For the purposes of this section, a bathr I which contains a
+bathtub, shower or tub/show. in@tion.
+
+ans ll
+
+omply with the California
+Energy Code.
+
+4.507 ENVIRONMENTAL C
+4.507.2 HEATING AND AIR-CONDITI
+
+GN. Heating and air conditioning systems
+their equipment selected using the following methods:
+
+in is established according to ANSI/ACCA 2 Manual J —
+tion), ASHRAE handbooks or other equivalent design
+
+cording to ANSI/ACCA 1 Manual D — 2014 (Residential
+ASHRAE handbooks or other equivalent design software or methods.
+ng and cooling equipment according to ANSI/ACCA 3 Manual S — 2014
+quipment Selection), or other equivalent design software or methods.
+
+Exception: Use of alternate design temperatures necessary to ensure the system
+functions are acceptable.
+
+CHAPTER 7
+INSTALLER & SPECIAL INSPECTOR QUALIFICATIONS
+
+702 QUALIFICATIONS
+702.1 INSTALLER TRAINING. HVAC system installers shall be trained and certified in the proper
+
+installation of HVAC systems including ducts and equipment by a nationally or regionally recognized training or
+certification program. Uncertified persons may perform HVAC installations when under the direct supervision and
+responsibility of a person trained and certified to install HVAC systems or contractor licensed to install HVAC systems.
+Examples of acceptable HVAC training and certification programs include but are not limited to the following:
+
+State certified apprenticeship programs.
+
+Public utility training programs.
+
+Training programs sponsored by trade, labor or statewide energy consulting or verification organizations.
+Programs sponsored by manufacturing organizations.
+
+Other programs acceptable to the enforcing agency.
+
+702.2 SPECIAL INSPECTION [HCD]. When required by the enforcing agency, the owner or the
+responsible entity acting as the owner's agent shall employ one or more special inspectors to provide inspection or
+other duties necessary to substantiate compliance with this code. Special inspectors shall demonstrate competence
+to the satisfaction of the enforcing agency for the particular type of inspection or task to be performed. In addition to
+other certifications or qualifications acceptable to the enforcing agency, the following certifications or education may be
+considered by the enforcing agency when evaluating the qualifications of a special inspector:
+
+aARON>
+
+1. Certification by a national or regional green building program or standard publisher.
+
+2. Certification by a statewide energy consulting or verification organization, such as HERS raters, building
+performance contractors, and home energy auditors.
+
+3. Successful completion of a third party apprentice training program in the appropriate trade.
+
+4. Other programs acceptable to the enforcing agency.
+
+Notes:
+1. Special inspectors shall be independent entities with no financial interest in the materials or the
+project they are inspecting for compliance with this code.
+2. HERS raters are special inspectors certified by the California Energy Commission (CEC) to rate
+homes in California according to the Home Energy Rating System (HERS).
+
+[BSC] When required by the enforcing agency, the owner or the responsible entity acting as the owner's agent shall
+employ one or more special inspectors to provide inspection or other duties necessary to substantiate compliance with
+this code. Special inspectors shall demonstrate competence to the satisfaction of the enforcing agency for the
+particular type of inspection or task to be performed. In addition, the special inspector shall have a certification from a
+recognized state, national or international association, as determined by the local agency. The area of certification
+shall be closely related to the primary job function, as determined by the local agency.
+
+Note: Special inspectors shall be independent entities with no financial interest in the materials or the
+project they are inspecting for compliance with this code.
+
+703 VERIFICATIONS
+
+703.1 DOCUMENTATION. Documentation used to show compliance with this code shall include but is not
+limited to, construction documents, plans, specifications, builder or installer certification, inspection reports, or other
+methods acceptable to the enforcing agency which demonstrate substantial conformance. When specific
+documentation or special inspection is necessary to verify compliance, that method of compliance will be specified in
+the appropriate section or identified applicable checklist.
+
+WEESSE I CeO AS Se
+
+13001 SEAL BEACH BLVD.
+SEAL BEACH, CA. 90740
+
+2452 Pacific Ave.
+ong Beach, Ca. 90806
+
+(562) 481-6269
+
+OSCAR@ADUWEST.COM
+
+1232 N. JEFFERSON ST.
+1232 N. JEFFERSON ST., UNIT ‘A’
+
+NEW DETACHED ADU
+
+M.H. ADDRESS
+
+ADU ADDRESS
+
+PLACENTIA, CA. 92870
+*2022 CALGREEN AIA CHECKLIST*
+
+NU FF
+mo|2is
+oO|SS
+=z | |
+i oo
+Y2]122
+oe |=
+Sela=
+SBeLj/2he
+Ss oO
+S/S|/S|6
+= oS) => to
+oO <= oO Zz
+S}/ez/C}2Z
+ma)/e)2),8$
+a Ss ra ao
+)
+Lo
+Ee
+<x
+a
+Zz
+S
+-
+Qa
+oe
+oO
+~
+Lu
+a
+Zz
+io)
+n
+>
+Luo
+oO
+>
+11) <I|<I|<I)<I|<I| <I]
+DRAWN BY : C. SANCHEZ
+DATE : 06/18/2025
+REVIEWED BY :
+DATE :
+
+JOB NO.:25-1232N.JEFFSO
+
+DISCLAIMER:THIS DOCUMENT IS PROVIDED AND INTENDED TO BE USED AS A MEANS TO INDICATE AREAS OF COMPLIANCE WITH THE CALIFORNIA GREEN BUILDING STANDARDS (CALGREEN) CODE. DUE TO THE VARIABLES BETWEEN BUILDING DEPARTMENT JURISDICTIONS, THIS CHECKLIST IS TO BE USED ON AN INDIVIDUAL PROJECT BASIS AND MAY BE MODIFIED BY THE END USER TO MEET THOSE INDIVIDUAL NEEDS. THE END USER ASSUMES ALL RESPONSIBILITY ASSOCIATED WITH THE USE OF THIS DOCUMENT, INCLUDING VERIFICATION WITH THE FULL CODE.
+
+PAGE
+AlA.2
+

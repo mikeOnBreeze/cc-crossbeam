@@ -1,0 +1,316 @@
+2022 Single-Family Residential Mandatory Requirements Summary
+
+NOTE: Single-family residential buildings subject to the Energy Codes must comply with all applicable mandatory measures, regardless of the compliance approach
+
+2022 Single-Family Residential Mandatory Requirements Summary
+
+Pilot Lights. Continuously burning pilot lights are prohibited for natural gas: fan-type central furnaces; household cooking appliances
+
+used. Review the respective section for more information. § 110.5: (except appliances without an electrical supply voltage connection with pilot lights that consume less than 150 Btu per hour ); and pool and Space Conditioning System Airflow Rate and Fan Efficacy. Space conditioning systems that use ducts to supply cooling must have
+(04/2022) spa heaters. . a hole for the placement of a static pressure probe, or a permanently installed static pressure probe in the supply plenum. Airflow must
+Building Envelope: Building Cooling and Heating Loads. Heating and/or cooling loads are calculated in accordance with the ASHRAE Handbook, § 150.0(m)13: be 2 350 CFM per ton of nominal cooling capacity, and an air-handling unit fan efficacy = 0.45 watts per CFM for gas furnace air
+Air Leakage. Manufactured fenestration, exterior doors, and exterior pet doors must limit air leakage to 0.3 CFM per square foot or § 150.0(h)1: Equipment Volume, Applications Volume, and Fundamentals Volume; the SMACNA Residential Comfort System Installation handlers and = 0.58 watts per CFM for all others. Small duct high velocity systems must provide an airflow = 250 CFM per ton of nominal
+§ 110.6(a)1: less when tested per NFRC-400, ASTM E283, or AAMA/WDMAICSA 101/1.8.2/4440-2011. * Standards Manual: or the ACCA Manual J using design conditions specified in § 150.0(h)2. cooling capacity, and an air-handling unit fan efficacy < 0.62 watts per CFM. Field verification testing is required in accordance with
+§ 110.6(a)5: Labeling. Fenestration products and exterior doors must have a label meeting the requirements of § 10-111(a). § 150.0(h)3A: Clearances. Air conditioner and heat pump outdoor condensing units must have a clearance of at least five feet from the outlet of any Reference Residential Appendix RA3.3.
+Field fabricated exterior doors and fenestration products must use U-factors and solar heat gain coefficient (SHGC) values from dryer. - - - — - —— — - -
+§ 110.6(b): Tables 110.6-A, 110.6-B, or JA4.5 for exterior doors. They must be caulked and/or weather-stripped. ; Liquid Line Drier. Air conditioners and heat pump systems must be equipped with liquid line filter driers if required, as specified by the
+F 7 ; i rrr ; 7 § 150.0(h)3B: manufacturer's instructions. a : a $
+Air Leakage. All joints, penetrations, and other openings in the building envelope that are potential sources of air leakage must be — - — — - - - Ventilation and Indoor Air Quality:
+§ 110.7: caulked, gasketed, or weather stripped. Water Piping, Solar Water-heating System Piping, and Space Conditioning System Line Insulation. All domestic hot water = — - - = - -
+- — - § 150.0())1: iping must be insulated as specified in § 609.11 of the California Plumbing Code. * Requirements for Ventilation and Indoor Air Quality. All dwelling units must meet the requirements of ASHRAE Standard 62.2,
+110.8(a): Insulation Certification by Manufacturers. Insulation must be certified by the Department of Consumer Affairs, Bureau of Household <a pong p ; Serene § 150.0(0)1: Ventilation and Acceptable Indoor Air Quality in Residential Buildings subject to the amendments specified in § 150.0(0)1
+§ 110.8(a): Goods and Services (BHGS). Insulation Protection. Piping insulation must be protected from damage, including that due to sunlight, moisture, equipment’ Central Fan Integrated (CFl) Ventilation Systems. Continuous operation of CF! air handlers is not allowed to provide
+§ 110.8(g): Insulation Requirements for Heated Slab Floors. Heated slab floors must be insulated per the requirements of § 110.8(g). § 150.0())2: iru ane wind as required Py Sta a) Insation exposed weather must be we ee and protectes from UV ta (no § 150.0(0)18: welling unit ventration airflow required per a1 50.0(0)1C. A motorieed damper(s) must be installed on the ven P
+Roofing Products Solar Reflectance and Thermal Emittance. The thermal emittance and aged solar reflectance values of the aanesive apes), Insulation covering chilled water piping and re ngeran’ suction piping located oulsiae tie conationed space mus prevents all airflow through the space conditioning duct system when the damper(s) is closed
+110.8(i): , i ‘ F _ i i i j include, or be protected by, a Class | or Class II vapor retarder. Pipe insulation buried below grade must be installed in a waterproof and am , ag : :
+§ roofing material must meet the requirements of § 110.8(i) and be labeled per §10-113 when the installation of a cool roof is specified non-crushable casing or sleeve ventilation systems must have controls that track outdoor air ventilation run time, and either of
+on the CF1R. Z : - ‘
+. Radiant Barrier. Wh ired, radiant barri th it £0.05 or| d be certified to the Department of C Gas or Propane Water Heating Systems. Systems using gas or propane water heaters to serve individual dwelling units must compliance with §150.0(0)1C. - — - = - -
+§ 110.8(): Mf ant Barrier. When required, radiant barriers must Nave an emitance OF U.Us or less and be cerulled to ine Vepariment oF Vonsumer designate a space at least 2.5’ x 2.5’ x 7’ suitable for the future installation of a heat pump water heater, and meet electrical and ; Whole-Dwelling Unit Mechanical Ventilation for Single-Family Detached and townho' ed dwelling units,
+alts. - - : — : § 150.0(n)1: plumbing requirements, based on the distance between this designated space and the water heater location; and a condensate drain no § 150.0(0)1C: and attached dwelling units not sharing ceilings or floors with other dwelling units, occupiabl ages, or commercial
+Roof Deck, Ceiling and Rafter Roof Insulation. Roof decks in newly constructed attics in climate zones 4 and 8-16 area-weighted more than 2” higher than the base of the water heater spaces must have mechanical ventilation airflow specified in § 150.0,
+average U-factor not exceeding U-0.184. Ceiling and rafter roofs mmm R22 insulation n wood-frame ceiling; or area-weighted average Solar Water-heating Systems. Solar water-heating systems and collectors must be certified and rated by the Solar Rating and § 150.0(0)1G: _ Local Mechanical Exhaust. Kitchens and bathrooms must have sed kitchens must have demand-
+§ 150.0(a): U-factor must not exceed 0.043. Rafter roof alterations minimum R-19 or area-weighted average U-factor of 0.054 or less. Attic access . eae ¢ : gs a : . controlled exhaust system meeting requirements of §150.0(0)1Gii éms can use demand-controlled or
+doors must have permanently attached insulation using adhesive or mechanical fasteners. The attic access must be gasketed to § 150.0(n)3: Certification Corporation (SRCC), the International Association of Plumbing and Mechanical Officials, Research and Testing (IAPMO i ha he fi 150 Cl iy Air : 6 u
+prevent air leakage. Insulation must be installed in direct contact with a roof or ceiling which is sealed to limit infiltration and exfiltration R&T), or by a listing agency that is approved by the executive director. Continuous exnausi meeting §150.0(0)1Gii-iv. Airflow must be mea
+as specified in § 110.7, including but not limited to placing insulation either above or below the roof deck or on top of a drywall ceiling. Ducts and Fans: aoe wong 5 ngs of : al : 7
+§ 150.0(b): Loose-fill Insulation. Loose fill insulation must meet the manufacturer's required density for the labeled R-value. Ducts. Insulation installed on an existing space-conditioning duct must comply with § 604.0 of the California Mechanical Code (CMC). Ifa § 150.0(0) Hat: n Tow Measurement ane ound Ratings of Whole-Dielling Unit ystems. The airflow required per § 160.0(0)1C must
+7 — - —— , - , - : : : : re : : : : y using a flow hood, flow@rid, orather ai measuring device at the fan’s inlet or outlet terminals/grilles per Reference
+Wall Insulation. Minimum R-13 insulation in 2x4 inch wood framing wall or have a U-factor of 0.102 or less, or R-20 in 2x6 inch wood § 110.8(d)3: contractor installs the insulation, the contractor must certify to the customer, in writing, that the insulation meets this requirement. Residential Appendix RA3.7. Wh i
+: : : . ppendix J. systems must be rated for sound per ASHRAE 62.2 §7.2 at no less than the
+§ 150.0(c): framing or have a U-factor of 0.071 or less. Opaque non-framed assemblies must have an overall assembly U-factor not exceeding 0.102. CMC Compliance. All air-distribution system ducts and plenums must meet CMC §§ 601.0-605.0 and ANSI/SMACNA-006-2006 HVAC minimum airflow rate required b
+Masonry walls must meet Tables 150.1-A or B. Duct Construction Standards Metal and Flexible 3rd Edition. Portions of supply-air and return-air ducts and plenums must be insulated to Field Verification ai nit ventilation airflow, vented range hood airflow and sound rating,
+§ 150.0(d): Raised-floor Insulation. Minimum R-19 insulation in raised wood framed floor or 0.037 maximum U-factor. * reer higher: uc located entry noondicnes Spape as confi mun re i vertcation ane clagnostc test Reo ‘fl § 150.0(0)2: and HRV and ERV; with Reference Residential Appendix RA3.7. Vented range hoods
+Slab Edge Insulation. Slab edge insulation must meet all of the following: have a water absorption rate, for the insulation material alone seale d vith mastic “aoe orother duotclocure 5 "stem that Ineete the a vlicable UL re vuitemonts o norocol sealant thot ments UL 733 must be verified p 74.3 to confirm if it is rated by HVI or AHAM to comply with the airflow
+§ 150.0(f): without facings, no greater than 0.3 percent; have a water vapor permeance no greater than 2.0 perm per inch; be protected from § 150.0(m)1: 5 MASI, Tape, : y Pplicad 4 ye : . aye . rates and sound re
+f : tian. . : The combination of mastic and either mesh or tape must be used to seal openings greater than 14”, If mastic or tape is used. Building
+physical damage and UV light deterioration; and, when installed as part of a heated slab floor, meet the requirements of § 110.8(g). cavities, air handler support platforms, and plenums designed or constructed with materials other than sealed sheet metal, duct board or Pool and Spa Systems andequipment:
+§ 150.0(9)1: Vapor Retarder ir climate nts , whrough * the ean Moor of unvented crawl yan ie be covered wes | i Class M flexible duct must not be used to convey conditioned air. Building cavities and support platforms may contain ducts; ducts installed in Certification by Manufa - Any pool or spa heating system or equipment must be cerlified to have all of the following: compliance
+™~_ 150.014). Cr. UNIS requirement also applies (0 controled’ venilation craw! space for bulings complying with the exception 10 these spaces must not be compressed. * i Appliance Efficiency Regulations and listing in MAEDDS; an on-off switch mounted outside of the heater that allows shutting off
+Vapor Retarder. In climate zones 14 and 16, a Class | or Class II vapor retarder must be installed on the conditioned space side of Factory-Fabricated Duct Systems. Factory-fabricated duct systems must comply with applicable requirements for duct construction, pithout adj sting the thermostat setting; a permanent weatherproof plate or card with operating instructions; and must not
+§ 150.0(g)2: all insulation in all exterior walls, vented attics, and unvented attics with air-permeable insulation. § 150.0(m)2: connections, and closures; joints and seams of duct systems and their components must not be sealed with cloth back rubber adhesive Any Bool or spa healing gystam or equipment mustbe Installed with at least 36 Inches of pipe between the filer and the heater, or
+/ Fenestration Products. Fenestration, including skylights, separating conditioned space from unconditioned space or outdoors must have duct tapes unless such tape is used in combination with mastic and draw bands. _ : _ § ted suction and return lines, or built-in or built-up connections to allow for future solar heating. ,
+§ 150.0(q): a maximum U-factor of 0.45; or area-weighted average U-factor of all fenestration must not exceed 0.45. Field-Fabricated Duct Systems. Field-fabricated duct systems must comply with applicable requirements for: pressure-sensitive tapes,
+Fireplaces, Decorative Gas Appliances, and Gas Log: § 150.0(m)3: mastics, sealants, and other requirements specified for duct construction. § 110.4 Overs. Outdoor pools or spas that have a heat pump or gas heater must have a cover.
+p! 1s re Oa pp! ces g: § 150.0(m)7: Backdraft Damper. Fan systems that exchange air between the conditioned space and outdoors must have backdraft or automatic 11040 Directional Inlets and Time Switches for Pools. Pools must have directional inlets that adequately mix the pool water, and a time
+§ 110.5(e) Pilot Light. Continuously burning pilot lights are not allowed for indoor and outdoor fireplaces. , . dampers. § 110.4(b)3: switch that will allow all pumps to be set or programmed to run only during off-peak electric demand periods.
+§ 150.0(e)1: Closable Doors. Masonry or factory-built fireplaces must have a closable metal or glass door covering the entire opening of the firebox. Gravity Ventilation Dampers. Gravity ventilating systems serving conditioned space must have either automatic or readily a 110.5: Pilot Light. Natural gas pool and spa heaters must not have a continuously burning pilot light.
+Combustion Intake. Masonry or factory-built fireplaces must have a combustion outside air intake, which is at least six square inches in § 150.0(m)8: manually operated dampers in all openings to the outside, except combustion inlet and outlet air openings and elevator sha Pool Systems and Equipment Installation. Residential pool systems or equipment must meet the specified requirements for pump
+§ 150.0(e)2: area and is equipped with a readily accessible, operable, and tight-fitting damper or combustion-air control device. - Protection of Insulation. Insulation must be protected from damage due tosunlight, moisture, equipment maintenance, an § 150.0(p): sizing, flow rate, piping, filters, and valves.
+. . . . . * 150.0(m)9: Insulation exposed to weather must be suitable for outdoor service (e.g., protected by aluminum, sheet metal ‘ghtina:
+§ 150.0(e)3: Flue Damper. Masonry or factory-built fireplaces must have a flue damper with a readily accessible control. 8 ; : : b : Lighting:
+Space Conditioning, Water Heating, and Plumbing System: - cover). Cellular foam insulation must be protected as above or painted with a water retardant and solar radia Lighting Controls and Components. All lighting control devices and systems, ballasts, and luminaires must meet the applicable
+p g, Mater Treating, at wing system: : § 150.0(m)10: Porous Inner Core Flex Duct. Porous inner cores of flex ducts must have a non-porous layer or a § 110.9: requirements of § 110.9."
+Certification. Heating, ventilation, and air conditioning (HVAC) equipment, water heaters, showerheads, faucets, and all other outer vapor barrier. —
+§ 110.0-§ 110.3: regulated appliances must be certified by the manufacturer to the California Energy Commission. : Duct System Sealing and Leakage Test. When space conditioning systems use forced air dud § 150.0(k)1A: Luminaire Efficacy. All installed luminaires must meet the requirements in Table 150.0-A, except lighting integral to exhaust fans, kitchen
+§ 110.2(a): HVAC Efficiency. Equipment must meet the applicable efficiency requirements in Table 110.2-A through Table 110.2-N. § 150.0(m)11: occupiable space, the ducts must be sealed and duct leakage tested, as confirmed range hoods, bath vanity mirrors, and garage door openers; navigation lighting less than 5 watts; and lighting intemal to drawers, cabinets, and linen
+Controls for Heat Pumps with Supplementary Electric Resistance Heaters. Heat pumps with supplementary electric resistance accordance with Reference Residential Appendix RA3.1. Closets with an efficacy of at least 45 lumens per watt. -
+§ 110.2(b): heaters must have controls that prevent supplementary heater operation when the heating load can be met by the heat pump alone; Air Filtration. Space conditioning systems with ducts exceedingsd p systems must have MERV 13 § 150.0(k) 1B: Screw based luminaires. Screw based luminaires must contain lamps that comply with Reference Joint Appendix JA8.
+and in which the cut-on temperature for compression heating is higher than the cut-on temperature for supplementary heating, and § 150.0(m)12: or equivalent filters. Filters for space conditioning syste! sized per Equation 150.0-A. 400k: Recessed Downlight Luminaires in Ceilings. Luminaires recessed into ceilings must not contain screw based sockets, must be airtight,
+the cut-off temperature for compression heating is higher than the cut-off temperature for supplementary heating. Clean-filter pressure drop and labeling must meet the ust be accessible for regular service. Filter §150.0(K)1C: and must be sealed with a gasket or caulk. California Electrical Code § 410.116 must also be met.
+§ 110.2(c): Thermostats. All heating or cooling systems not controlled by a central energy management control system (EMCS) must have a racks or grilles must use gaskets, sealing, or other mea he inserted filters to and prevents air from bypassing the Light Sources in Enclosed or Recessed Luminaires. Lamps and other separable light sources that are not compliant with the JA8
+“ setback thermostat." filter. * § 150.0(k)1D: _ elevated temperature requirements, including marking requirements, must not be installed in enclosed or recessed luminaires.
+Insulation. Unfired service water heater storage tanks and solar water-heating backup tanks must have adequate insulation, or tank 150.0(k)1E: Blank Electrical Boxes. The number of electrical boxes that are more than five feet above the finished floor and do not contain a
+§ 110.3(c)3: surface heat loss rating. § 150.0(K)1E: luminaire or other device shall be no more than the number of bedrooms. These boxes must be served by a dimmer, vacancy sensor
+Isolation Valves. Instantaneous water heaters with an input rating greater than 6.8 kBtu per hour (2 kW) must have isolation valves with Control, low voltage wiring, or fan speed control. : _
+§ 110.3(c)6: hose bibbs or other fittings on both cold and hot water lines to allow for flushing the water heater when the valves are closed. _ Lighting Integral to Exhaust Fans. Lighting integral to exhayst fans (except when installed by the manufacturer in kitchen exhaust
+§ 150.0(k)1F: hoods) must meet the applicable requirements of § 150.0(k).
+5/6/22 5/6/22 5/6/22
+
+2022 Single-Family Residential Mandatory Requirements Summary
+
+Ow
+
+2022Single-Family Residential Mandatory Requirements Summary
+
+w based luminaires. Screw based luminaires must contain lamps that comply with Reference Joint Appendix JA8. .
+
+ght Sources in Enclosed or Recessed Luminaires. Lamps and other separable light sources that are not compliant with the JA8
+elevated temperature requirements, including marking requirements, must not be installed in enclosed or recessed luminaires.
+
+Light Sources in Drawers, Cabinets, and Linen Closets. Light sources internal to drawers, cabinetry or linen closets are not required
+to comply with Table 150.0-A or be controlled by vacancy sensors provided that they are rated to consume no more than 5 watts of
+power, emit no more than 150 lumens, and are equipped with controls that automatically turn the lighting off when the drawer, cabinet or
+linen closet is closed.
+
+§ 150.0(k)2A:
+
+Interior Switches and Controls. All forward phase cut dimmers used with LED light sources must comply with NEMA SSL 7A.
+
+§ 150.0(k)2B:
+
+Interior Switches and Controls. Exhaust fans must be controlled separately from lighting systems. ‘
+
+§ 150.0(K)2A:
+
+Accessible Controls. Lighting must have readily accessible wall-mounted controls that allow the lighting to be manually turned
+on and off. *
+
+§ 150.0(K)2B:
+
+Multiple Controls. Controls must not bypass a dimmer, occupant sensor, or vacancy sensor function if the dimmer or sensor is installed
+to comply with § 150.0(k).
+
+§ 150.0(k)2C:
+
+Mandatory Requirements. Lighting controls must comply with the applicable requirements of § 110.9.
+
+§ 150.0(k)2D:
+
+Energy Management Control Systems. An energy management control system (EMCS) may be used to comply with dimming,
+occupancy, and control requirements if it provides the functionality of the specified control per § 110.9 and the physical controls specified
+in § 150.0(k)2A.
+
+§ 150.0(k)2E:
+
+Automatic Shutoff Controls. In bathrooms, garages, laundry rooms, utility rooms and walk-in closets, at least one installed luminaire
+must be controlled by an occupancy or vacancy sensor providing automatic-off functionality. Lighting inside drawers and cabinets with
+opaque fronts or doors must have controls that turn the light off when the drawer or door is closed.
+
+§ 150.0(K)2F:
+
+Dimmers. Lighting in habitable spaces (e.g., living rooms, dining rooms, kitchens, and bedrooms) must have readily accessible wall-
+mounted dimming controls that allow the lighting to be manually adjusted up and down. Forward phase cut dimmers controlling LED light
+sources in these spaces must comply with NEMA SSL 7A.
+
+§ 150.0(k)2K:
+
+Independent controls. Integrated lighting of exhaust fans shall be controlled independently from the fans. Lighting under cabinets or
+shelves, lighting in display cabinets, and switched outlets must be controlled separately from ceiling-installed lighting.
+
+§ 150.0(K)3A:
+
+Residential Outdoor Lighting. For single-family residential buildings, outdoor lighting permanently mounted to a residential building, or to
+other buildings on the same lot, must have a manual on/off switch and either a photocell and motion sensor or automatic time switch
+control) or an astronomical time clock. An energy management control system that provides the specified control functionality and meets all
+applicable requirements may be used to meet these requirements.
+
+§ 150.0(k)4:
+
+Internally illuminated address signs. Internally illuminated address signs must either comply with § 140.8 or consume no more than 5
+watts of power.
+
+§ 150.0(K)5:
+
+Residential Garages for Eight or More Vehicles. Lighting for residential parking garages for eight or more vehicles must comply with the
+applicable requirements for nonresidential garages in §§ 110.9, 130.0, 130.1, 130.4, 140.6, and 141.0.
+
+Solar Readiness:
+
+§ 110.10(a)1:
+
+Single-family Residences. Single-family residences located in subdivisions with 10 or more single-family residences and where the
+application for a tentative subdivision map for the residences has been deemed complete and approved by the enforcement agency,
+which do not have a photovoltaic system installed, must comply with the requirements of § 110.10(b)-(e).
+
+§110.10(b)1A:
+
+Minimum Solar Zone Area. The solar zone must have a minimum total area as described below. The solar zone must comply with
+access, pathway, smoke ventilation, and spacing requirements as specified in Title 24, Part 9 or other parts of Title 24 or in any
+requirements adopted by a local jurisdiction. The solar zone total area must be comprised of areas that have no dimension less than 5
+feet and are no less than 80 square feet each for buildings with roof areas less than or equal to 10,000 square feet or no less than 160
+square feet each for buildings with roof areas greater than 10,000 square feet. For single-family residences, the solar zone must be
+
+located on the roof or overhang of the building and have a total area no less than 250 square feet. .
+
+§ 110.10(b)2:
+
+Azimuth. All sections of the solar zone located on steep-sloped roofs must have an azimuth between 90-300° of true north.
+
+§ 110.10(b)3A:
+
+Shading. The solar zone must not contain any obstructions, including but not limited to: vents, chimneys, architectural features, and roof
+mounted equipment.
+
+§ 110.10(b)3B:
+
+Shading. Any obstruction located on the roof or any other part of the building that projects above a solar zone must be located at least twice the
+horizontal distance of the height difference between the highest point of the obstruction and the horizontal projection of the nearest point of the
+solar zone, measured in the vertical plane. *
+
+§ 110.10(b)4:
+
+Structural Design Loads on Construction Documents. For areas of the roof designated as a solar zone, the structural design loads for
+roof dead load and roof live load must be clearly indicated on the construction documents.
+
+§ 110.10(c):
+
+Interconnection Pathways. The construction documents must indicate: a location reserved for inverters and metering equipment and a
+pathway reserved for routing of conduit from the solar zone to the point of interconnection with the electrical service; and for single-family
+residences and central water-heating systems, a pathway reserved for routing plumbing from the solar zone to the water-heating system.
+
+§ 110.10(d):
+
+Documentation. A copy of the construction documents or a comparable document indicating the information from § 110.10(b)-(c) must be
+provided to the occupant.
+
+§ 110.10(e)1:
+
+Main Electrical Service Panel. The main electrical service panel must have a minimum busbar rating of 200 amps.
+
+§ 110.10(e)2:
+
+Main Electrical Service Panel. The main electrical service panel must have a reserved space to allow for the installation of a double pole
+circuit breaker for a future solar electric installation. The reserved space must be permanently marked as “For Future Solar Electric.”
+
+Electric and Energy Storage Ready:
+
+5/6/22
+
+2022 Single-Family Residential Mandatory Requirements Summary
+
+REVISION / DATE
+
+>| >
+
+[>
+
+§ 150.0(s)
+
+Energy Storage System (ESS) Ready. All single-family residences must meet all of the following: Either ESS-ready interconnection
+equipment with backed up capacity of 60 amps or more and four or more ESS supplied branch circuits, or a dedicated raceway from the
+main service to a subpanel that supplies the branch circuits in § 150.0(s); at least four branch circuits must be identified and have their
+source collocated at a single panelboard suitable to be supplied by the ESS, with one circuit supplying the refrigerator, one lighting circuit
+near the primary exit, and one circuit supplying a sleeping room receptacle outlet; main panelboard must have a minimum busbar rating of
+225 amps; sufficient space must be reserved to allow future installation of a system isolation equipment/transfer switch within 3’ of the main
+panelboard, with raceways installed between the panelboard and the switch location to allow the connection of backup power source.
+
+§ 150.0(t)
+
+Heat Pump Space Heater Ready. Systems using gas or propane furnaces to serve individual dwelling units must include: A dedicated
+unobstructed 240V branch circuit wiring installed within 3’ of the furnace with circuit conductors rated at least 30 amps with the blank cover
+identified as “240V ready;” and a reserved main electrical service panel space to allow for the installation of a double pole circuit breaker
+permanently marked as “For Future 240V use.”
+
+§ 150.0(u)
+
+Electric Cooktop Ready. Systems using gas or propane cooktop to serve individual dwelling units must include: A dedicated unobstructed
+240V branch circuit wiring installed within 3’ of the cooktop with circuit conductors rated at least 50 amps with the blank cover identified as
+“240V ready;” and a reserved main electrical service panel space to allow for the installation of a double pole circuit breaker permanently
+marked as “For Future 240V use.”
+
+§ 150.0(v)
+
+Electric Clothes Dryer Ready. Clothes dryer locations with gas or propane plumbing to serve individual dwelling units must include: A
+dedicated unobstructed 240V branch circuit wiring installed within 3’ of the dryer location with circuit conductors rated at least 30 amps with
+the blank cover identified as “240V ready;” and a reserved main electrical service panel space to allow for the installation of a double pole
+circuit breaker permanently marked as “For Future 240V use.”
+
+“Exceptions may apply.
+
+5/6/22
+
+=
+9
+S
+a
+~@
+3
+5 ®
+ns &
+= Lom —
+§ §
+- VO SY)
+sank
+° nj Fae sy
+WS2ea
+ua)
+Oe Sax
+86QF
+ou Mw
+<
+E
+Zz
+D
+Wi
+Wi
+Y
+5°
+Tr
+z 8
+fy 7
+y <
+WO
+u 4
+a
+<9
+a 82 |
+Ke o =
+nt in
+.. Y VU
+EF «a “
+Oo Qa Y
+WwW < WwW
+S w z
+Y E cr
+@ W— 9
+
+DATE
+1/1/2025
+
+SCALE
+
+SHEET
+
+OF SHEETS
+
