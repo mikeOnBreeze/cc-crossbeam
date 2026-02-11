@@ -1,0 +1,538 @@
+{
+  "project": "california-adu-skill",
+  "version": "0.1.0",
+  "description": "Convert the HCD ADU Handbook (January 2025, 54 pages) into a structured Claude Code skill with ~30 reference files organized as a regulatory decision engine.",
+  "lastUpdated": null,
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Skeleton + Root Files",
+      "description": "Create the skill directory structure and the three root files: SKILL.md (decision tree router), AGENTS.md (reference catalog), and CLAUDE.md symlink.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify root files exist and contain correct structure",
+        "steps": [
+          "Confirm adu-skill-development/skill/california-adu/ directory exists",
+          "Confirm SKILL.md contains decision tree with 4 steps and quick-reference thresholds table",
+          "Confirm AGENTS.md lists all 27 planned reference files with descriptions",
+          "Confirm CLAUDE.md is a symlink pointing to AGENTS.md"
+        ]
+      },
+      "tasks": ["skeleton-001", "skeleton-002", "skeleton-003"]
+    },
+    {
+      "id": "phase-2",
+      "name": "Unit Types",
+      "description": "Create the 4 unit-type reference files. These are foundational — most other rules reference back to ADU type classification.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify unit type files exist with proper content",
+        "steps": [
+          "All 4 files exist in references/ with proper YAML frontmatter",
+          "unit-types-66323.md contains the ADU combinations table",
+          "unit-types-jadu.md contains 500 sqft limit and owner-occupancy rules",
+          "Cross-references between unit type files resolve correctly",
+          "Key code sections (Gov. Code §§ 65852.2, 65852.22, 66323) match raw source"
+        ]
+      },
+      "tasks": ["unit-001", "unit-002", "unit-003", "unit-004"]
+    },
+    {
+      "id": "phase-3",
+      "name": "Development Standards",
+      "description": "Create the 7 development standards reference files. These are the most frequently referenced rules in permit review.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify standards files and cross-check thresholds",
+        "steps": [
+          "All 7 files exist in references/ with proper YAML frontmatter",
+          "Threshold values in reference files match the SKILL.md thresholds table",
+          "Height limits correctly distinguish base/transit/multistory/attached scenarios",
+          "Parking exemption categories are all listed",
+          "Cross-references resolve correctly"
+        ]
+      },
+      "tasks": ["standards-001", "standards-002", "standards-003", "standards-004", "standards-005", "standards-006", "standards-007"]
+    },
+    {
+      "id": "phase-4",
+      "name": "Permitting + Fees",
+      "description": "Create the 3 permitting and fees reference files covering process timelines, fee calculations, and funding sources.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify permit process and fee files",
+        "steps": [
+          "All 3 files exist in references/ with proper YAML frontmatter",
+          "permit-process.md contains 30-day completeness and 60-day approval timelines",
+          "permit-fees.md contains <750 sqft fee exemption threshold",
+          "permit-funding.md covers CalHFA, FHA, Freddie Mac, Fannie Mae programs",
+          "Timeline and fee numbers match raw source"
+        ]
+      },
+      "tasks": ["permit-001", "permit-002", "permit-003"]
+    },
+    {
+      "id": "phase-5",
+      "name": "Zoning + Ownership",
+      "description": "Create the 6 zoning and ownership reference files covering jurisdiction rules, hazard zones, owner-occupancy, and HOA restrictions.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify zoning and ownership files",
+        "steps": [
+          "All 6 files exist in references/ with proper YAML frontmatter",
+          "zoning-hazards.md covers both fire hazard zones and coastal zone",
+          "ownership-hoa.md contains CC&R nullification rules",
+          "ownership-use.md contains 30-day minimum rental term",
+          "Preemption rules are clearly stated where applicable",
+          "Cross-references resolve correctly"
+        ]
+      },
+      "tasks": ["zoning-001", "zoning-002", "zoning-003", "ownership-001", "ownership-002", "ownership-003"]
+    },
+    {
+      "id": "phase-6",
+      "name": "Special + Compliance + Glossary + Legislative",
+      "description": "Create the remaining 8 reference files covering special housing types, compliance/enforcement, glossary of terms, and legislative history.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify remaining reference files",
+        "steps": [
+          "All 8 files exist in references/ with proper YAML frontmatter",
+          "glossary.md covers all defined terms from pages 8-12 of the handbook",
+          "legislative-changes.md includes bill summaries, SB 477 renumbering table, and statutory changes table",
+          "compliance-unpermitted.md contains pre-Jan 1 2020 amnesty cutoff",
+          "special-sb9.md covers four-unit cap and lot split interactions"
+        ]
+      },
+      "tasks": ["special-001", "special-002", "compliance-001", "compliance-002", "compliance-003", "compliance-004", "glossary-001", "legislative-001"]
+    },
+    {
+      "id": "phase-7",
+      "name": "Review + Cross-Reference Pass",
+      "description": "Final quality review: completeness check, cross-reference validation, citation verification, routing test, and size check.",
+      "status": "complete",
+      "verification": {
+        "description": "All quality checks pass",
+        "steps": [
+          "No significant content from raw markdown was dropped",
+          "Every 'See also:' cross-reference resolves to a real file",
+          "Spot-checked Gov. Code section numbers are accurate",
+          "3-4 example scenarios route correctly through SKILL.md decision tree",
+          "No reference file exceeds ~3K",
+          "AGENTS.md catalog matches actual file listing"
+        ]
+      },
+      "tasks": ["review-001", "review-002", "review-003", "review-004", "review-005"]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "skeleton-001",
+      "phase": "phase-1",
+      "description": "Create directory structure and CLAUDE.md symlink",
+      "steps": [
+        "Create directory: adu-skill-development/skill/california-adu/references/",
+        "Create symlink: CLAUDE.md → AGENTS.md in the skill root"
+      ],
+      "passes": true
+    },
+    {
+      "id": "skeleton-002",
+      "phase": "phase-1",
+      "description": "Create SKILL.md with decision tree, routing logic, and thresholds table",
+      "steps": [
+        "Read the plan file for the SKILL.md design specification (decision tree + thresholds table)",
+        "Read HCD-ADU-Handbook-2025-raw.md for overview content to include",
+        "Write SKILL.md with: title/description, 4-step decision tree router, quick-reference thresholds table, and usage instructions",
+        "Target ~200 lines, under 5000 words"
+      ],
+      "passes": true
+    },
+    {
+      "id": "skeleton-003",
+      "phase": "phase-1",
+      "description": "Create AGENTS.md with full catalog of all planned reference files",
+      "steps": [
+        "Read the plan file for the complete reference file listing",
+        "Write AGENTS.md listing all 27 reference files organized by prefix category",
+        "Each entry should have: filename, one-line description, key code sections",
+        "Target ~120 lines"
+      ],
+      "passes": true
+    },
+    {
+      "id": "unit-001",
+      "phase": "phase-2",
+      "description": "Create unit-types-66323.md — the four Gov. Code § 66323 ADU categories + combinations table",
+      "steps": [
+        "Read raw markdown pages 18-20 for 66323 content",
+        "Extract the four categories: (a) converted from existing, (b) attached/detached on single-family, (c) converted on multifamily, (d) detached on multifamily",
+        "Include the ADU combinations table showing what's allowed on each lot type",
+        "Add YAML frontmatter with title, category, relevance, key_code_sections",
+        "Add cross-references to related files"
+      ],
+      "passes": true
+    },
+    {
+      "id": "unit-002",
+      "phase": "phase-2",
+      "description": "Create unit-types-adu-general.md — ADU definition, attached/converted/detached types",
+      "steps": [
+        "Read raw markdown pages 21 and 41-42 for general ADU type content",
+        "Cover: ADU definition, three physical types (attached, detached, converted), when each applies",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "unit-003",
+      "phase": "phase-2",
+      "description": "Create unit-types-jadu.md — JADU-specific rules (500 sqft, owner-occupancy, etc.)",
+      "steps": [
+        "Read raw markdown pages 28-29 for JADU content",
+        "Cover: 500 sq ft limit, must be within existing/proposed single-family, owner-occupancy requirement, separate entrance, efficiency kitchen",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "unit-004",
+      "phase": "phase-2",
+      "description": "Create unit-types-multifamily.md — multifamily converted + detached ADU rules",
+      "steps": [
+        "Read raw markdown pages 32-33 for multifamily content",
+        "Cover: converted ADUs from non-livable space, detached ADUs (up to 8 or 25% of units), size limits",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-001",
+      "phase": "phase-3",
+      "description": "Create standards-height.md — height limits by ADU type and context (16/18/20/25 ft)",
+      "steps": [
+        "Read raw markdown pages 25-26 for height content",
+        "Cover: 16 ft base detached, 18 ft near transit or multistory, 20 ft in some contexts, 25 ft attached",
+        "Clearly distinguish which height applies in which scenario",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-002",
+      "phase": "phase-3",
+      "description": "Create standards-size.md — size requirements (850/1000/1200 sqft, FAR, efficiency units)",
+      "steps": [
+        "Read raw markdown pages 39-40 for size content",
+        "Cover: min 150 sq ft efficiency, 850 sq ft 1-BR, 1000 sq ft 2+BR, max 1200 sq ft detached, FAR/lot coverage rules",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-003",
+      "phase": "phase-3",
+      "description": "Create standards-setbacks.md — setback rules (4-ft side/rear, front setback limits)",
+      "steps": [
+        "Read raw markdown page 38 for setback content",
+        "Cover: 4 ft max for side and rear setbacks, front setback rules, no setback for conversions, existing garage setbacks",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-004",
+      "phase": "phase-3",
+      "description": "Create standards-parking.md — parking requirements + 6 exemption categories",
+      "steps": [
+        "Read raw markdown pages 34-35 for parking content",
+        "Cover: max 1 space per ADU, all 6 exemption categories (transit, historic, car share, etc.)",
+        "Note: no parking required for JADUs or ADUs created under 66323(a)",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-005",
+      "phase": "phase-3",
+      "description": "Create standards-fire.md — fire protection + sprinkler rules",
+      "steps": [
+        "Read raw markdown page 23 for fire/sprinkler content",
+        "Cover: when sprinklers are required, fire access, fire hazard zone implications",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-006",
+      "phase": "phase-3",
+      "description": "Create standards-solar.md — solar/energy code requirements",
+      "steps": [
+        "Read raw markdown page 40 for solar/energy content",
+        "Cover: CalGreen/Title 24 requirements, when solar is required for ADUs",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "standards-007",
+      "phase": "phase-3",
+      "description": "Create standards-design.md — objective vs subjective standards, bedrooms",
+      "steps": [
+        "Read raw markdown page 21 for design standards content",
+        "Cover: prohibition on subjective design standards, what counts as objective, bedroom requirements",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "permit-001",
+      "phase": "phase-4",
+      "description": "Create permit-process.md — ministerial review, 30/60 day timelines, deemed-approved",
+      "steps": [
+        "Read raw markdown pages 35-37 for permit process content",
+        "Cover: ministerial (non-discretionary) approval, 30-day completeness check, 60-day approval deadline, deemed-approved provision",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "permit-002",
+      "phase": "phase-4",
+      "description": "Create permit-fees.md — impact fees, proportionality, school fees, utility connections",
+      "steps": [
+        "Read raw markdown pages 22-23 for fee content",
+        "Cover: <750 sq ft fee exemption, proportionality requirement, school fee rules, connection fees, sewer/water",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "permit-003",
+      "phase": "phase-4",
+      "description": "Create permit-funding.md — CalHFA, FHA, Freddie Mac, Fannie Mae ADU financing",
+      "steps": [
+        "Read raw markdown pages 24-25 for funding/financing content",
+        "Cover: CalHFA ADU grant, FHA guidelines, Freddie Mac, Fannie Mae programs",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "zoning-001",
+      "phase": "phase-5",
+      "description": "Create zoning-general.md — jurisdiction-wide rules, density, density bonus (SDBL)",
+      "steps": [
+        "Read raw markdown pages 43-45 for general zoning content",
+        "Cover: ADUs don't count toward density, density bonus law interaction, SDBL, zoning override provisions",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "zoning-002",
+      "phase": "phase-5",
+      "description": "Create zoning-hazards.md — fire hazard zones, coastal zone, environmental constraints",
+      "steps": [
+        "Read raw markdown pages 21-22 (coastal) and 44 (fire) for hazard zone content",
+        "Cover: very high fire hazard severity zones, coastal zone rules, Coastal Commission role, environmental constraints",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "zoning-003",
+      "phase": "phase-5",
+      "description": "Create zoning-nonconforming.md — nonconforming zoning + building code violations",
+      "steps": [
+        "Read raw markdown page 33 for nonconforming content",
+        "Cover: nonconforming zoning (ADU can still be built), building code violations on existing structures, correction requirements",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "ownership-001",
+      "phase": "phase-5",
+      "description": "Create ownership-use.md — owner-occupancy, rental terms (30-day min), deed restrictions",
+      "steps": [
+        "Read raw markdown pages 34, 37 for ownership/use content",
+        "Cover: no owner-occupancy required for ADUs (only JADUs), 30-day minimum rental term, short-term rental prohibition, deed restrictions",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "ownership-002",
+      "phase": "phase-5",
+      "description": "Create ownership-sales.md — separate conveyance, condominiums, qualified nonprofits",
+      "steps": [
+        "Read raw markdown pages 22, 37 for sales/conveyance content",
+        "Cover: separate conveyance rules, condominium conversion (AB 1033), qualified nonprofit requirements",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "ownership-003",
+      "phase": "phase-5",
+      "description": "Create ownership-hoa.md — HOA restrictions, CC&R nullification, HOA review limits",
+      "steps": [
+        "Read raw markdown pages 26-27 for HOA content",
+        "Cover: CC&Rs cannot prohibit ADUs, HOA review timeline limits, reasonable restrictions, AB 1033 condo provisions",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "special-001",
+      "phase": "phase-6",
+      "description": "Create special-manufactured.md — manufactured homes + mobilehome parks",
+      "steps": [
+        "Read raw markdown pages 31-32 for manufactured housing content",
+        "Cover: manufactured homes as ADUs, HCD certification, mobilehome park rules",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "special-002",
+      "phase": "phase-6",
+      "description": "Create special-sb9.md — SB 9 interaction, four-unit cap, lot splits",
+      "steps": [
+        "Read raw markdown pages 37-38 for SB 9 content",
+        "Cover: SB 9 urban lot split, four-unit cap on single-family lots, interaction between ADU law and SB 9",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "compliance-001",
+      "phase": "phase-6",
+      "description": "Create compliance-unpermitted.md — pre-2020 amnesty, inspections, fee exemptions",
+      "steps": [
+        "Read raw markdown pages 42-43 for unpermitted ADU content",
+        "Cover: before Jan 1, 2020 amnesty provision, inspection process, fee exemptions/waivers, 5-year protection period",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "compliance-002",
+      "phase": "phase-6",
+      "description": "Create compliance-ordinances.md — local ordinances, HCD enforcement, bonus programs",
+      "steps": [
+        "Read raw markdown pages 30-31 for local ordinance content",
+        "Cover: local ADU ordinance requirements, HCD review/enforcement powers, bonus unit programs",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "compliance-003",
+      "phase": "phase-6",
+      "description": "Create compliance-housing.md — housing elements, RHNA, Prohousing Designation",
+      "steps": [
+        "Read raw markdown pages 27-28 for housing element content",
+        "Cover: housing element requirements, RHNA credit for ADUs, Prohousing Designation Program",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "compliance-004",
+      "phase": "phase-6",
+      "description": "Create compliance-utilities.md — utility connections, CPUC complaints",
+      "steps": [
+        "Read raw markdown page 43 for utilities content",
+        "Cover: separate utility connections, utility company requirements, CPUC complaint process",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "glossary-001",
+      "phase": "phase-6",
+      "description": "Create glossary.md — all defined terms with legal citations",
+      "steps": [
+        "Read raw markdown pages 8-12 for glossary content",
+        "Extract every defined term with its definition and legal citation",
+        "Format as an alphabetical reference with clear term/definition/citation structure",
+        "Add YAML frontmatter"
+      ],
+      "passes": true
+    },
+    {
+      "id": "legislative-001",
+      "phase": "phase-6",
+      "description": "Create legislative-changes.md — bill summaries + SB 477 renumbering table + statutory changes table",
+      "steps": [
+        "Read raw markdown pages 13-17 for recent legislative changes and pages 46-54 for statutory tables",
+        "Include: all bill summaries (2022-2024 legislation), SB 477 renumbering table, statutory changes table",
+        "This will likely be the largest reference file — ensure it stays under 3K if possible, split if needed",
+        "Add YAML frontmatter and cross-references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "review-001",
+      "phase": "phase-7",
+      "description": "Completeness check — compare raw markdown against all reference files",
+      "steps": [
+        "Read adu-skill-development/HCD-ADU-Handbook-2025-raw.md",
+        "Read all reference files in skill/california-adu/references/",
+        "Identify any significant content from the handbook that was not captured in any reference file",
+        "If gaps found, either add content to existing files or create new reference files",
+        "Update AGENTS.md if any new files were added"
+      ],
+      "passes": true
+    },
+    {
+      "id": "review-002",
+      "phase": "phase-7",
+      "description": "Cross-reference check — verify all 'See also:' links resolve to real files",
+      "steps": [
+        "Read all reference files and extract every 'See also:' cross-reference",
+        "Verify each referenced filename exists in the references/ directory",
+        "Fix any broken references"
+      ],
+      "passes": true
+    },
+    {
+      "id": "review-003",
+      "phase": "phase-7",
+      "description": "Citation check — spot-check Gov. Code section numbers against raw source",
+      "steps": [
+        "Select 10 Gov. Code section citations from across the reference files",
+        "Verify each one against the raw markdown source",
+        "Fix any incorrect citations"
+      ],
+      "passes": true
+    },
+    {
+      "id": "review-004",
+      "phase": "phase-7",
+      "description": "Routing check — walk example scenarios through SKILL.md decision tree",
+      "steps": [
+        "Scenario 1: 600 sq ft detached ADU on single-family lot in Placentia — verify correct references load",
+        "Scenario 2: JADU conversion in existing single-family home — verify JADU rules load",
+        "Scenario 3: Detached ADU near transit on multifamily lot — verify transit height bonus and multifamily rules load",
+        "Scenario 4: Unpermitted ADU built in 2018 seeking legalization — verify amnesty rules load",
+        "For each scenario, trace through the decision tree and confirm the right set of reference files would be loaded"
+      ],
+      "passes": true
+    },
+    {
+      "id": "review-005",
+      "phase": "phase-7",
+      "description": "Size check + final AGENTS.md sync",
+      "steps": [
+        "Check the file size of every reference file — flag any over ~3K",
+        "If any are too large, consider splitting into sub-topics",
+        "Verify AGENTS.md catalog matches the actual file listing in references/",
+        "Update AGENTS.md descriptions if any files were modified during review"
+      ],
+      "passes": true
+    }
+  ]
+}

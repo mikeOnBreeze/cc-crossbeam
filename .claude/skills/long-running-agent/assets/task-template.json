@@ -1,0 +1,34 @@
+{
+  "project": "{{PROJECT_NAME}}",
+  "version": "0.1.0",
+  "description": "{{PROJECT_DESCRIPTION}}",
+  "lastUpdated": null,
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "{{PHASE_NAME}}",
+      "description": "{{PHASE_DESCRIPTION}}",
+      "status": "pending",
+      "verification": {
+        "description": "{{VERIFICATION_DESCRIPTION}}",
+        "steps": [
+          "{{VERIFICATION_STEP_1}}",
+          "{{VERIFICATION_STEP_2}}"
+        ]
+      },
+      "tasks": ["{{TASK_ID_1}}", "{{TASK_ID_2}}"]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "{{TASK_ID}}",
+      "phase": "phase-1",
+      "description": "{{TASK_DESCRIPTION}}",
+      "steps": [
+        "{{STEP_1}}",
+        "{{STEP_2}}"
+      ],
+      "passes": false
+    }
+  ]
+}
