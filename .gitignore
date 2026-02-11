@@ -30,6 +30,9 @@ out/
 *.log
 firebase-debug.log
 
+# Generated images (PNGs from PDF extraction — PDFs are the source of truth)
+*.png
+
 # Misc
 *.swp
 *.swo
