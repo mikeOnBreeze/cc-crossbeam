@@ -1,14 +1,14 @@
 ---
 skill: california-adu
 version: "1.0"
-source: "HCD ADU Handbook, January 2025 (54 pages)"
+source: "HCD ADU Handbook, January 2025 (54 pages) + January 2026 Addendum (pages 55-58)"
 authority: "California Department of Housing and Community Development"
-law_as_of: "January 1, 2025"
+law_as_of: "January 1, 2026"
 ---
 
 # California ADU Regulatory Decision Engine
 
-This skill contains the California state-level ADU (Accessory Dwelling Unit) and JADU (Junior Accessory Dwelling Unit) rules extracted from the HCD ADU Handbook (January 2025). It covers Government Code §§ 65852.2, 65852.22, and 66323 as amended through January 1, 2025.
+This skill contains the California state-level ADU (Accessory Dwelling Unit) and JADU (Junior Accessory Dwelling Unit) rules extracted from the HCD ADU Handbook (January 2025) and the January 2026 Addendum. It covers Government Code §§ 66310-66342 (including new §§ 66311.5, 66333.5) as amended through January 1, 2026.
 
 **What this covers**: State law — the floor that cities cannot go below. Cities may be more permissive but cannot impose standards more restrictive than what is stated here.
 
@@ -90,19 +90,19 @@ These numbers come up in almost every ADU query. Check here first before loading
 
 | Threshold | Value | Reference File |
 |-----------|-------|----------------|
-| JADU maximum size | 500 sq ft | `unit-types-jadu.md` |
+| JADU maximum size | 500 sq ft of **interior livable space** | `unit-types-jadu.md` |
 | 66323(a) converted/detached max | 800 sq ft | `unit-types-66323.md` |
 | Minimum ADU size (efficiency unit) | 150 sq ft | `standards-size.md` |
-| Minimum ADU size (0-1 bedroom) | 850 sq ft | `standards-size.md` |
-| Minimum ADU size (2+ bedrooms) | 1,000 sq ft | `standards-size.md` |
-| Maximum detached ADU (no local ordinance) | 1,200 sq ft | `standards-size.md` |
-| Fee exemption threshold | < 750 sq ft | `permit-fees.md` |
+| Minimum ADU size (0-1 bedroom) | 850 sq ft of **interior living space** | `standards-size.md` |
+| Minimum ADU size (2+ bedrooms) | 1,000 sq ft of **interior living space** | `standards-size.md` |
+| Maximum detached ADU (no local ordinance) | 1,200 sq ft of **interior living space** | `standards-size.md` |
+| Fee exemption threshold | ≤ 750 sq ft of **interior livable space** (§ 66311.5) | `permit-fees.md` |
 | Maximum side/rear setback | 4 ft | `standards-setbacks.md` |
 | Detached height — base | 16 ft | `standards-height.md` |
 | Detached height — near transit or multistory primary | 18 ft | `standards-height.md` |
 | Detached height — transit + additional 2 ft for roof pitch | 18 ft (+2 ft) | `standards-height.md` |
 | Attached ADU height | 25 ft (or primary dwelling height) | `standards-height.md` |
-| Completeness check deadline | 30 days | `permit-process.md` |
+| Completeness check deadline | **15 business days** | `permit-process.md` |
 | Approval/denial deadline | 60 days | `permit-process.md` |
 | Minimum rental term | 30 days | `ownership-use.md` |
 | Unpermitted ADU amnesty cutoff | Before January 1, 2020 | `compliance-unpermitted.md` |
@@ -120,7 +120,7 @@ These numbers come up in almost every ADU query. Check here first before loading
 
 4. **Objective standards only**: Cities may only apply objective (measurable, verifiable) development standards to ADUs — not subjective design review. See `standards-design.md`.
 
-5. **Owner-occupancy**: Required for JADUs only, not for ADUs (except for separate conveyance under AB 1033). See `ownership-use.md`.
+5. **Owner-occupancy**: Required for JADUs **only if the JADU shares sanitation facilities** with the primary structure. Not required for ADUs (except for separate conveyance under AB 1033). See `ownership-use.md`.
 
 ---
 

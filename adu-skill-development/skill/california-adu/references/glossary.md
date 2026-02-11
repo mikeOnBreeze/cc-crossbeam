@@ -43,8 +43,11 @@ A corridor with fixed route bus service with service intervals no longer than 15
 ### Impact Fee
 Same meaning as "fee" in Gov. Code § 66000, subd. (b), including fees in § 66477. Does **not** include connection fees or capacity charges charged by a local agency, special district, or water corporation. **Source:** Gov. Code § 66324, subd. (c)(2).
 
+### Interior Livable Space
+A measurement basis used for ADU and JADU size thresholds. Size limitations, fee exemptions, and assessable space calculations are based on the square footage of interior livable space. (Changed by SB 543, effective January 1, 2026.) **Source:** Gov. Code §§ 66311.5, 66313(d), 66321(b). See also: **Livable Space**.
+
 ### Junior Accessory Dwelling Unit (JADU)
-A unit no more than 500 square feet in size, contained entirely within a single-family residence. May include separate sanitation facilities or share them with the existing structure. **Source:** Gov. Code § 66313, subd. (d).
+A unit no more than 500 square feet of **interior livable space** in size, contained entirely within a single-family residence. May include separate sanitation facilities or share them with the existing structure. (Changed by SB 543, effective January 1, 2026.) **Source:** Gov. Code § 66313, subd. (d).
 
 ### Livable Space
 A space in a dwelling intended for human habitation, including living, sleeping, eating, cooking, or sanitation. **Source:** Gov. Code § 66313, subd. (e).

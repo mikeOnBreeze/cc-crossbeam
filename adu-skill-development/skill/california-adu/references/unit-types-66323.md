@@ -44,7 +44,7 @@ HCD uses "66323 Units" to refer to ADUs and JADUs created under Government Code 
 
 ### Combinations Table
 
-Local agencies must allow 66323 categories to be combined as allowed by site and lot conditions. (Gov. Code, § 66323, subd. (a).)
+Local agencies must allow 66323 categories to be combined as allowed by site and lot conditions. SB 543 specifies the number of allowable ADUs described under § 66323 per lot. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66323, subd. (a).)
 
 | Code Section | Single-Family Primary Dwelling | Multifamily Primary Dwelling |
 |---|---|---|

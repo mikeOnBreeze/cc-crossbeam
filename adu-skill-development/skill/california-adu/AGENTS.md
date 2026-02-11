@@ -2,7 +2,7 @@
 skill: california-adu
 description: "Reference file catalog for the California ADU Regulatory Decision Engine"
 total_files: 28
-source: "HCD ADU Handbook, January 2025"
+source: "HCD ADU Handbook, January 2025 + January 2026 Addendum"
 ---
 
 # California ADU — Reference File Catalog
@@ -44,8 +44,8 @@ Process rules, fee calculations, and funding sources.
 
 | File | Description | Key Code Sections |
 |------|-------------|-------------------|
-| `permit-process.md` | Ministerial review: 30-day completeness, 60-day approval, deemed-approved, pre-approved plans (AB 1332) | Gov. Code §§ 65943(a), 66317(a), 66320(a), 65852.27 |
-| `permit-fees.md` | Impact fees: < 750 sq ft exemption, proportionality requirement, school fees, utility connection fees | Gov. Code §§ 66324, 66323; Ed. Code § 17620 |
+| `permit-process.md` | Ministerial review: 15 business day completeness, 60-day approval, deemed-approved, appeal process, pre-approved plans (AB 1332) | Gov. Code §§ 66317(a)(2), 66317(d)(1), 66320(a), 66328, 66329(a), 65852.27 |
+| `permit-fees.md` | Impact fees: ≤ 750 sq ft interior livable space exemption, proportionality to primary dwelling, school fees, assessable space, utility connection fees | Gov. Code §§ 66311.5, 66324, 66323; Ed. Code § 17620 |
 | `permit-funding.md` | ADU financing programs: CalHFA ADU Grant, FHA guidelines, Freddie Mac, Fannie Mae products | Various |
 
 ## Zoning
@@ -95,4 +95,4 @@ Glossary and legislative history.
 | File | Description | Key Code Sections |
 |------|-------------|-------------------|
 | `glossary.md` | All defined terms from the handbook with legal citations | Gov. Code § 66313; Various |
-| `legislative-changes.md` | Bill summaries (2019-2024), SB 477 renumbering table, statutory changes table | Gov. Code §§ 66310-66342 |
+| `legislative-changes.md` | Bill summaries (2019-2025), SB 477 renumbering table, statutory changes table | Gov. Code §§ 66310-66342, 66311.5, 66333.5 |

@@ -23,6 +23,8 @@ The presence of a High Fire Hazard Severity Zone is **not a conclusive rationale
 
 Yes. ADU laws apply to jurisdictions in the California Coastal Zone, but they **do not alter or lessen** the effect or application of Coastal Act resource protection policies. (Gov. Code, § 66329.)
 
+**60-Day Approval Deadline:** In the coastal zone, a local government or the California Coastal Commission must **approve or deny** a coastal development permit application for an ADU **within 60 days** of receiving a completed application. (Changed by AB 462, effective October 10, 2025.) (Gov. Code, § 66329, subd. (a).)
+
 Coastal localities should seek to **harmonize** the goals of protecting coastal resources and addressing housing needs. Where appropriate, localities should amend Local Coastal Programs for California Coastal Commission review to comply with both the California Coastal Act and State ADU Laws.
 
 **Additional setback requirements** may be required in the Coastal Zone if required by a Local Coastal Program. (Gov. Code, § 66329.)
@@ -43,7 +45,9 @@ Any restriction must be accompanied by **detailed findings of fact** and may not
 - See also: `standards-fire.md` — Fire sprinkler requirements for ADUs
 - See also: `standards-setbacks.md` — Additional setbacks in Coastal Zone
 - See also: `zoning-general.md` — General jurisdiction-wide restrictions and findings requirements
+- See also: `permit-process.md` — Coastal zone 60-day permit deadline (AB 462)
 
 ### Key Code Sections
 - Gov. Code § 66314, subd. (a) — Restrictions based on water, sewer, traffic, and public safety only; detailed findings required
 - Gov. Code § 66329 — ADU law applies in Coastal Zone but does not lessen Coastal Act protections
+- Gov. Code § 66329, subd. (a) — Coastal zone 60-day ADU permit deadline (AB 462)

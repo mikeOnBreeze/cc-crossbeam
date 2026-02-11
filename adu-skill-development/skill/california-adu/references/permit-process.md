@@ -22,12 +22,22 @@ ADUs must be considered, approved or denied, and permitted **ministerially** —
 
 | Step | Timeframe | Citation |
 |------|-----------|----------|
-| **Completeness review** | 30 calendar days from submission | Gov. Code § 65943(a) |
+| **Completeness review** | **15 business days** from submission | Gov. Code § 66317(a)(2)(A) |
 | **Approval or denial** | 60 days from receipt of complete application | Gov. Code §§ 66317(a), 66320(a) |
 | **Deemed approved** | Automatic if agency fails to act within 60 days | Gov. Code §§ 66317(a), 66320(a) |
 
-- If an application is **incomplete**, the agency must provide an **exhaustive list** of missing items, limited to items on the agency's submittal requirement checklist. (Gov. Code, § 65943, subd. (a).)
+(Changed by SB 543, effective January 1, 2026: completeness check changed from 30 calendar days to 15 business days.)
+
+- If an application is **incomplete**, the agency must provide **written notice** that includes a **list of incomplete items** and a **description of how the application can be made complete**. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66317, subd. (a)(2)(B).)
 - Applicants must pay all applicable processing and permitting fees at the time of application.
+
+### Incompleteness Appeal Process
+
+If a permit application is determined to be incomplete or is denied, the permitting agency must provide:
+1. A **process for an application to be deemed complete**
+2. A **process for applicants to appeal** an incompleteness determination or denial
+
+The permitting agency must provide a **final written determination** no later than **60 business days** after receipt of the written appeal. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66317, subd. (d)(1).)
 
 ### Applicant-Requested Delay
 
@@ -49,6 +59,14 @@ The 60-day countdown continues until the complete list is provided. Following a 
 ### Certificate of Occupancy
 
 Property owners must obtain a **Certificate of Occupancy** from the local agency prior to any residential occupancy of an ADU or JADU. (Gov. Code, § 66328; 2022 CBC, § 111.)
+
+#### Emergency Certificate of Occupancy
+
+A local agency must issue a certificate of occupancy for an ADU constructed in a county subject to a **proclamation of a state of emergency** made by the Governor on or after February 1, 2025, **even if the primary dwelling has not yet been issued a certificate of occupancy**, provided certain requirements are met — including that the primary dwelling was substantially damaged or destroyed by an event referenced in the state of emergency proclamation. (Changed by AB 462, effective October 10, 2025.) (Gov. Code, § 66328.)
+
+### Coastal Zone ADU Permits
+
+In the coastal zone, a local government or the California Coastal Commission must **approve or deny** a coastal development permit application for an ADU **within 60 days** of receiving a completed application. (Changed by AB 462, effective October 10, 2025.) (Gov. Code, § 66329, subd. (a).)
 
 ### CEQA Exemption
 
@@ -82,16 +100,20 @@ Questions and requests for technical assistance about ADU application denials sh
 - See also: `permit-fees.md` — Impact fees and connection charges
 - See also: `compliance-unpermitted.md` — Detailed unpermitted ADU amnesty rules
 - See also: `compliance-ordinances.md` — Local ADU ordinance requirements and HCD enforcement
+- See also: `zoning-hazards.md` — Coastal zone rules and 60-day permit deadline (AB 462)
 
 ### Key Code Sections
-- Gov. Code § 65943, subd. (a) — 30-day completeness review; exhaustive list of deficiencies
 - Gov. Code § 66313, subd. (i) — Definition of objective standards
 - Gov. Code § 66313, subd. (k) — Definition of permitting agency
 - Gov. Code § 66314, subd. (b)(1) — Objective standards required for ministerial review
 - Gov. Code §§ 66316, 66317, 66320 — Ministerial review process and checklist-based approval
 - Gov. Code § 66317, subd. (a) — 60-day approval deadline; deemed-approved provision; applicant delay
+- Gov. Code § 66317, subd. (a)(2)(A) — 15 business day completeness review (SB 543, changed from 30 days)
+- Gov. Code § 66317, subd. (a)(2)(B) — Written notice with list of incomplete items (SB 543)
+- Gov. Code § 66317, subd. (d)(1) — Incompleteness appeal process; 60 business day response (SB 543)
 - Gov. Code § 66320, subd. (a) — 60-day approval or denial requirement
-- Gov. Code § 66328 — Certificate of Occupancy required
+- Gov. Code § 66328 — Certificate of Occupancy required; emergency COO for disaster areas (AB 462)
+- Gov. Code § 66329, subd. (a) — Coastal zone 60-day permit deadline (AB 462)
 - Gov. Code § 66332, subds. (a)–(c) — Unpermitted ADUs built before 2020
 - Gov. Code § 66335, subd. (c) — Resubmission fee for denied applications
 - Gov. Code § 65852.27 — Pre-approved ADU plans program (AB 1332)

@@ -13,7 +13,13 @@ key_code_sections: "Gov. Code §§ 66315, 66323(e), 66333(c)"
 
 No. A local agency **cannot impose an owner-occupancy requirement** on any ADU. (Gov. Code, § 66315.)
 
-**JADUs are different:** Owner-occupancy is required for JADUs. The owner must reside in either the single-family residence or the JADU. (Gov. Code, § 66333, subd. (b).)
+**JADUs are different:** Owner-occupancy for JADUs depends on whether the JADU shares sanitation facilities with the primary structure. (Changed by AB 1154, effective January 1, 2026.)
+
+- **Shared sanitation**: Owner must reside in either the single-family residence or the JADU.
+- **Separate sanitation**: Owner-occupancy is **not required**.
+- Owner-occupancy is also not required when the owner is a governmental agency, land trust, or housing organization.
+
+(Gov. Code, § 66333, subd. (b).)
 
 ### Rental Terms
 
@@ -22,6 +28,8 @@ No. A local agency **cannot impose an owner-occupancy requirement** on any ADU. 
 Yes. Local agencies may require that ADUs be used for rentals of terms **longer than 30 days**. (Gov. Code, § 66315.)
 
 For **66323 Units**, rentals **must** be for terms longer than 30 days. (Gov. Code, § 66323, subd. (e).)
+
+**JADUs:** JADUs are explicitly prohibited from short-term rental use. If a JADU is rented, the term must be **longer than 30 days**. (Changed by AB 1154, effective January 1, 2026.) (Gov. Code, § 66333, subd. (g).)
 
 **State preemption note:** Short-term rentals (fewer than 30 days) of ADUs can be prohibited by local agencies. This is a restriction cities **may** impose, and 66323 Units are subject to a mandatory 30-day minimum by state law.
 
@@ -47,6 +55,7 @@ No. A local agency cannot impose a deed restriction on an ADU. Government Code s
 ### Key Code Sections
 - Gov. Code § 66315 — No owner-occupancy for ADUs; no additional standards beyond § 66314; rental terms > 30 days
 - Gov. Code § 66323, subd. (e) — 66323 Units must be rented for terms > 30 days
-- Gov. Code § 66333, subd. (b) — JADU owner-occupancy requirement
+- Gov. Code § 66333, subd. (b) — JADU owner-occupancy: depends on shared sanitation (AB 1154)
+- Gov. Code § 66333, subd. (g) — JADU short-term rental prohibition (AB 1154)
 - Gov. Code § 66333, subds. (c)(1), (c)(2) — JADU deed restriction requirements
 - Gov. Code § 66314, subd. (b)(1) — Design and development standards (deed restrictions are not such standards)

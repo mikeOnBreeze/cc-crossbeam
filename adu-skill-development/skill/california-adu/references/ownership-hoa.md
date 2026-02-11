@@ -23,6 +23,7 @@ HOAs may impose **limited objective standards**, such as:
 However, these standards may **not** be more stringent than State ADU Law and may not:
 - Unreasonably increase the cost to construct
 - Effectively prohibit or extinguish the ability to create or serve an ADU or JADU
+- **Include any fees or other financial requirements** (Changed by AB 130, effective June 30, 2025.)
 
 (Civ. Code, § 714.3, subd. (b).)
 

@@ -58,6 +58,10 @@ A leasing office on a lot with an existing multifamily dwelling may also be conv
 
 An ADU can also be created from an accessory space (including a leasing office) that is attached to or located within the multifamily structure or accessory structure, or detached from the primary dwelling on the same lot, subject to applicable standards. (Gov. Code, § 66314, subd. (d)(3).)
 
+### Objective Standards on Multifamily ADUs
+
+Local agencies **may not** impose objective standards on ADUs in multifamily dwelling structures beyond what is specified in § 66323. The previous provision (Gov. Code, § 66323, subd. (g)) that allowed imposition of objective standards if a local agency had adopted an ADU ordinance by July 1, 2018, has been **removed**. (Changed by AB 130, effective June 30, 2025.)
+
 ### Accessibility Standards
 
 For ADUs converted from existing space in multifamily dwellings, ADA standards may apply depending on the specific dwelling. Contact the Division of Codes and Standards at HCDBuildingStandards@hcd.ca.gov for guidance.

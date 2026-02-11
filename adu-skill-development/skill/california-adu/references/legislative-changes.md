@@ -9,9 +9,36 @@ key_code_sections: "Gov. Code §§ 66310-66342; various prior sections"
 
 ### Overview
 
-State ADU Law has been revised multiple times to reduce barriers to ADU and JADU development. Major changes effective January 1, 2023, 2024, and 2025 further streamlined the process.
+State ADU Law has been revised multiple times to reduce barriers to ADU and JADU development. Major changes effective January 1, 2023, 2024, 2025, and 2026 further streamlined the process.
 
 ---
+
+### 2025 Legislation (Effective June 30, 2025, October 10, 2025, and January 1, 2026)
+
+**AB 1154** (Chapter 507, Statutes of 2025) — JADU owner-occupancy now depends on shared sanitation: required only if JADU shares sanitation facilities with primary structure; not required if JADU has its own sanitation. JADUs prohibited from short-term rental use; if rented, must be for longer than 30 days. (Gov. Code, § 66333, subds. (b), (g).)
+
+**SB 9** (Chapter 510, Statutes of 2025) — If a local agency fails to submit an adopted ADU ordinance to HCD within the 60-day timeline or fails to respond to HCD's findings within 30 days, the ordinance is **null and void** and the agency must apply State ADU Law only. (Gov. Code, § 66326, subd. (d).)
+
+**SB 543** (Chapter 520, Statutes of 2025) — Major omnibus ADU bill:
+- Revised JADU definition to 500 sq ft of **interior livable space** (Gov. Code, § 66313, subd. (d)).
+- Expanded HCD authority to additionally cover JADUs (Gov. Code, § 66311).
+- Created new **§ 66311.5**: impact fees prohibited for ADUs with 750 sq ft of interior livable space or less, or JADUs with 500 sq ft of interior livable space or less. ADUs over 750 sq ft charged proportionately relative to primary dwelling (Gov. Code, § 66311.5, subds. (a)-(d)).
+- Changed completeness check deadline from 30 days to **15 business days** (Gov. Code, § 66317, subd. (a)(2)(A)).
+- Required written notice of incomplete items with description of how to complete (Gov. Code, § 66317, subd. (a)(2)(B)).
+- Added incompleteness **appeal process** with 60 business day response deadline (Gov. Code, § 66317, subd. (d)(1)).
+- ADU or JADU under 500 sq ft of interior livable space does not increase **assessable space** for school fees (Gov. Code, § 66311, subd. (d)).
+- Size limitations revised to be based on **interior living space** (Gov. Code, § 66321, subds. (b)(2)(A), (b)(2)(B), (b)(3)).
+- Specified allowable number of § 66323 ADUs per lot (Gov. Code, § 66323, subd. (a)).
+- Fire sprinklers **not required for JADUs** if primary residence lacks them; adding a JADU cannot trigger fire sprinkler requirement (Gov. Code, § 66323, subd. (d)).
+- Added **§ 66333.5**: JADU ordinance null and void if not submitted to HCD within 60-day timeline or agency fails to respond to findings within 30 days.
+
+**AB 462** (Chapter 491, Statutes of 2025) — Urgency bill effective October 10, 2025:
+- Local agency must issue **certificate of occupancy** for ADU in county under state of emergency (Governor proclamation on or after Feb 1, 2025) even if primary dwelling lacks certificate of occupancy, if primary was substantially damaged or destroyed (Gov. Code, § 66328).
+- Coastal zone ADU permits: local government or Coastal Commission must **approve or deny within 60 days** of receiving completed application (Gov. Code, § 66329, subd. (a)).
+
+**AB 130** (Chapter 22, Statutes of 2025) — Effective June 30, 2025:
+- HOA reasonable restrictions on ADUs **shall not include any fees** or other financial requirements (Civ. Code, § 714.3, subd. (b)).
+- Removed Gov. Code § 66323, subd. (g), which allowed imposition of objective standards on ADUs in multifamily structures if the local agency had adopted an ADU ordinance by July 1, 2018.
 
 ### 2024 Legislation (Effective March 27, 2024 and January 1, 2025)
 
@@ -123,6 +150,12 @@ State ADU Law has been revised multiple times to reduce barriers to ADU and JADU
 | SB 1211 (2024) | Gov. Code | 66313, 66314, 66323 | 2025 |
 | AB 3057 (2024) | PRC | 21080.17 | 2025 |
 | SB 1077 (2024) | PRC | 30500.5 | 2026 |
+| AB 1154 (2025) | Gov. Code | 66333 | 2026 |
+| SB 9 (2025) | Gov. Code | 66326 | 2026 |
+| SB 543 (2025) | Gov. Code | 66311, 66313, 66317, 66320, 66321, 66323, 66324, 66325, 66327, 66332 | 2026 |
+| SB 543 (2025) | Gov. Code | 66311.5, 66333.5, 66335.5, 66339.5 (new) | 2026 |
+| AB 462 (2025) | Gov. Code | 66328, 66329 | 2025 |
+| AB 130 (2025) | Civ. Code / Gov. Code | 714.3; 66323 | 2025 |
 
 ### Cross-References
 - See also: `compliance-ordinances.md` — Local ordinance requirements and HCD enforcement
@@ -133,6 +166,8 @@ State ADU Law has been revised multiple times to reduce barriers to ADU and JADU
 
 ### Key Code Sections
 - Gov. Code §§ 66310-66342 — Current ADU/JADU statutory framework (post-SB 477)
+- Gov. Code § 66311.5 — Impact fee proportionality (SB 543, effective Jan 1, 2026)
+- Gov. Code § 66333.5 — JADU ordinance submission to HCD (SB 543, effective Jan 1, 2026)
 - Gov. Code §§ 65852.2, 65852.22, 65852.23, 65852.26 — Previous section numbers (pre-SB 477)
 - Gov. Code § 65852.27 — Pre-approved ADU plans (AB 1332)
 - Gov. Code § 65585, subd. (j) — HCD enforcement authority list (AB 434)

@@ -9,7 +9,7 @@ key_code_sections: "Gov. Code §§ 66333–66339"
 
 ### What Is a JADU?
 
-A JADU is a unit that is **no more than 500 square feet** in size and **contained entirely within a single-family residence**. A JADU may include separate sanitation facilities or may share sanitation facilities with the existing structure. (Gov. Code, § 66333.)
+A JADU is a unit that is **no more than 500 square feet of interior livable space** in size and **contained entirely within a single-family residence**. (Changed by SB 543, effective January 1, 2026.) A JADU may include separate sanitation facilities or may share sanitation facilities with the existing structure. (Gov. Code, §§ 66313, subd. (d); 66333.)
 
 ### Key Rules
 
@@ -33,7 +33,17 @@ JADUs may **not expand beyond the existing dimensions** of the single-family dwe
 
 ### Owner-Occupancy
 
-The owner must reside in either the remaining portion of the primary residence or in the newly created JADU. Owner-occupancy is **not required** when the owner is another governmental agency, land trust, or housing organization. (Gov. Code, § 66333, subd. (b).)
+Owner-occupancy depends on whether the JADU shares sanitation facilities with the primary structure. (Changed by AB 1154, effective January 1, 2026.)
+
+- **Shared sanitation**: If the JADU shares sanitation facilities with the primary structure, the owner must reside in either the remaining portion of the primary residence or in the newly created JADU.
+- **Separate sanitation**: If the JADU has its own separate sanitation facilities, owner-occupancy is **not required**.
+- Owner-occupancy is also **not required** when the owner is another governmental agency, land trust, or housing organization.
+
+(Gov. Code, § 66333, subd. (b).)
+
+### Short-Term Rental Prohibition
+
+JADUs **cannot be used as short-term rentals**. If a JADU is rented, it must be rented for a term **longer than 30 days**. (Changed by AB 1154, effective January 1, 2026.) (Gov. Code, § 66333, subd. (g).)
 
 ### Efficiency Kitchen
 
@@ -58,6 +68,14 @@ A local agency that adopts a JADU ordinance **must require recordation of a deed
 
 (Gov. Code, § 66333, subds. (c)(1), (c)(2).)
 
+### Fire Sprinklers
+
+Fire sprinklers are **not required for a JADU** if the primary residence does not have fire sprinklers. The addition of a JADU **cannot trigger** the requirement for fire sprinklers. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66323, subd. (d).)
+
+### JADU Ordinance Submission to HCD
+
+If a local agency fails to submit an adopted JADU ordinance to HCD within the 60-day timeline or fails to respond to HCD's findings within 30 days, the ordinance is **null and void** and the agency must apply State ADU Law only when processing JADU applications. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66333.5.)
+
 ### Combination with ADUs
 
 A JADU can be combined with a 66323 ADU on a single-family lot. Under § 66323(a)(1), a single-family lot may have one converted ADU + one JADU + one detached new-construction ADU — all three together.
@@ -67,14 +85,19 @@ A JADU can be combined with a 66323 ADU on a single-family lot. Under § 66323(a
 - See also: `unit-types-adu-general.md` — General ADU definition and construction types
 - See also: `ownership-use.md` — Owner-occupancy requirements and rental restrictions
 - See also: `standards-parking.md` — Parking rules (JADUs are always exempt)
+- See also: `standards-fire.md` — Fire sprinkler exemption for JADUs (SB 543)
+- See also: `compliance-ordinances.md` — JADU ordinance submission to HCD (§ 66333.5)
 
 ### Key Code Sections
+- Gov. Code § 66313, subd. (d) — JADU definition: 500 sq ft of interior livable space (SB 543)
 - Gov. Code § 66333 — JADU creation, size, location, owner-occupancy, efficiency kitchen
 - Gov. Code § 66333, subd. (a) — One JADU per lot, single-family only
-- Gov. Code § 66333, subd. (b) — Owner-occupancy requirement and exceptions
+- Gov. Code § 66333, subd. (b) — Owner-occupancy: depends on shared sanitation (AB 1154)
 - Gov. Code § 66333, subds. (c)(1), (c)(2) — Deed restriction requirements
 - Gov. Code § 66333, subd. (d) — Must be within single-family residence (including attached garages)
 - Gov. Code § 66333, subds. (e)(2) — Interior entrance requirement when no separate bathroom
 - Gov. Code § 66333, subds. (f)(1), (f)(2) — Efficiency kitchen definition
+- Gov. Code § 66333, subd. (g) — Short-term rental prohibition for JADUs (AB 1154)
+- Gov. Code § 66333.5 — JADU ordinance null and void if not submitted to HCD (SB 543)
 - Gov. Code § 66334, subd. (a) — No parking required
 - Gov. Code §§ 66333–66339 — Full JADU Law

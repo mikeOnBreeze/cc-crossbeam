@@ -33,7 +33,11 @@ If HCD finds a local ADU ordinance does not comply with State ADU Law:
 
 (Gov. Code, § 66326, subds. (b), (c)(1).)
 
-HCD may also review, adopt, amend, or repeal **guidelines** to implement uniform standards or criteria that supplement or clarify State ADU Law. (Gov. Code, § 66327.)
+**Null and Void Consequence:** If a local agency fails to submit an adopted ADU ordinance to HCD within the 60-day timeline or fails to respond to HCD's findings within the 30-day timeline, the ordinance is **null and void** and the agency must apply State ADU Law only when permitting ADUs. (Changed by SB 9 (2025), effective January 1, 2026.) (Gov. Code, § 66326, subd. (d).)
+
+**JADU Ordinances:** The same null-and-void rule applies to JADU ordinances. If a local agency fails to submit an adopted JADU ordinance to HCD within 60 days or fails to respond to HCD's findings within 30 days, the JADU ordinance is null and void and the agency must apply State ADU Law only when processing JADU applications. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, § 66333.5.)
+
+HCD may also review, adopt, amend, or repeal **guidelines** to implement uniform standards or criteria that supplement or clarify State ADU Law. HCD's authority now explicitly extends to **JADUs** as well as ADUs. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, §§ 66311; 66327.)
 
 ### ADU Bonus Programs
 
@@ -59,10 +63,13 @@ TRPA was formed through a bistate compact between California and Nevada, which e
 
 ### Key Code Sections
 - Gov. Code § 66310 — Legislative findings; ADUs as essential housing component
+- Gov. Code § 66311 — HCD authority now covers JADUs (SB 543)
 - Gov. Code § 66314 — Objective development and design standards
 - Gov. Code § 66315 — State standards when no local ordinance exists
 - Gov. Code § 66316 — State standards apply while ordinance is non-compliant
 - Gov. Code § 66325, subd. (b) — Local agencies may exceed statutory minimum
 - Gov. Code § 66326 — HCD review, enforcement authority, 60-day ordinance submission, Attorney General notification
+- Gov. Code § 66326, subd. (d) — ADU ordinance null and void if not submitted/responded on time (SB 9 2025)
 - Gov. Code § 66327 — HCD guidelines authority
+- Gov. Code § 66333.5 — JADU ordinance null and void if not submitted/responded on time (SB 543)
 - Gov. Code §§ 66312; 66313, subd. (g) — Definition of local agency (includes charter cities)

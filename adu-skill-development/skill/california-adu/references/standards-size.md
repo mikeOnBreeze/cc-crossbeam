@@ -13,12 +13,14 @@ A local agency may establish minimum and maximum unit size requirements by ordin
 
 | ADU Type | Minimum Local Max Must Allow | Code Section |
 |---|---|---|
-| Any ADU (1 bedroom or fewer) | At least **850 sq ft** | § 66321(b)(2) |
-| Any ADU (2+ bedrooms) | At least **1,000 sq ft** | § 66321(b)(2) |
-| Detached new-construction (no local ordinance) | Up to **1,200 sq ft** | § 66314(d)(4) |
+| Any ADU (1 bedroom or fewer) | At least **850 sq ft of interior living space** | § 66321(b)(2)(A) |
+| Any ADU (2+ bedrooms) | At least **1,000 sq ft of interior living space** | § 66321(b)(2)(B) |
+| Detached new-construction (no local ordinance) | Up to **1,200 sq ft of interior living space** | § 66314(d)(4) |
 | Attached ADU (no local ordinance) | Up to **50% of existing primary dwelling** floor area (at least 800 sq ft) | §§ 66314(d)(5); 66321(a)(3) |
 | 66323(a)(2) detached (state-mandated) | **800 sq ft** max | § 66323(a)(2) |
 | Efficiency unit (minimum) | As small as **150 sq ft** | HSC § 17958.1 |
+
+(Changed by SB 543, effective January 1, 2026: size limitations for ADUs are now based on **interior living space**.)
 
 A local agency **must not** establish a minimum that prohibits an efficiency unit (150 sq ft). (Health & Safety Code, § 17958.1.)
 
@@ -40,7 +42,7 @@ The California Building Code defines "Floor Area, Gross" as the floor area withi
 
 ### Lot Coverage and Floor Area Ratio (FAR)
 
-Lot coverage and FAR requirements **cannot preclude** an ADU of at least **800 sq ft** with 4-foot rear and side setbacks. While FAR and lot coverage can apply to other ADUs, they must not unreasonably restrict ADU creation. (Gov. Code, §§ 66321, subd. (b)(3); 66311.)
+Lot coverage and FAR requirements **cannot preclude** an ADU of at least **800 sq ft of interior living space** with 4-foot rear and side setbacks. While FAR and lot coverage can apply to other ADUs, they must not unreasonably restrict ADU creation. (Changed by SB 543, effective January 1, 2026.) (Gov. Code, §§ 66321, subd. (b)(3); 66311.)
 
 66323 Units are **not subject** to local FAR or lot coverage requirements. (Gov. Code, § 66323, subds. (a), (b).)
 
