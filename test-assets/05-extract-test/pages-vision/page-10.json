@@ -1,0 +1,44 @@
+{
+  "page_number": 10,
+  "sheet_id": "S1.1",
+  "sheet_title": "Structural Notes",
+  "category": "structural",
+  "subcategory": "structural_notes",
+  "prepared_by": "Ramirez Structural Inc — Jose Ramirez, PE",
+  "description": "Continuation of structural notes containing structural observation designation form (City of Long Beach), special inspection requirements table, special inspection required section, structural steel specifications, comprehensive structural abbreviations table, and declaration/design assumptions statement. Includes APPROVED stamp.",
+  "key_content": [
+    "Structural Observation Designation form (City of Long Beach, per CBC 1704.6)",
+    "Special Inspection requirements table (concrete, reinforcing steel, wood framing, soil/foundation, bolts/anchors)",
+    "Special Inspection Required section with conditions triggering special inspection",
+    "Structural Steel specifications (ASTM standards, welding, connections)",
+    "Structural Abbreviations table (~60+ entries: DFL, HDU, LVL, TJI, GWB, O.C., PSI, PSF, STR, etc.)",
+    "Declaration and Design Assumptions Statement with engineer signature",
+    "City of Long Beach Development Services regulatory compliance forms",
+    "APPROVED by Anthony Montez - Building Plan Check",
+    "Structural engineer: Jose Ramirez, PE — Project No. 61-097"
+  ],
+  "topics": [
+    "structural notes",
+    "special inspection",
+    "structural observation",
+    "structural steel",
+    "structural abbreviations",
+    "CBC 1704.6",
+    "design assumptions",
+    "declaration",
+    "City of Long Beach",
+    "approved stamp"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Structural Observation Designation form (City of Long Beach letterhead)"},
+    {"zone": "top-center", "content": "Special Inspection requirements table"},
+    {"zone": "center", "content": "Special Inspection Required section"},
+    {"zone": "center-right", "content": "Structural Steel specifications"},
+    {"zone": "right-column", "content": "Structural Abbreviations table (~60+ abbreviations)"},
+    {"zone": "bottom-left", "content": "Declaration and Design Assumptions Statement"},
+    {"zone": "bottom-center", "content": "APPROVED stamp (red) and Development Services forms"},
+    {"zone": "bottom-right", "content": "Title block: S1.1 Structural Notes, Ramirez Structural Inc"}
+  ],
+  "title_block_address": "326 Flint Ave., Long Beach, CA 93814",
+  "vision_extracted": true
+}

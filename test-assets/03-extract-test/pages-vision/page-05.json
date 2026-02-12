@@ -1,0 +1,39 @@
+{
+  "page_number": 5,
+  "sheet_id": "A1.1",
+  "sheet_title": "(E) Single-Fam. Res. Roof Plan w/ Demo",
+  "category": "architectural",
+  "subcategory": "demolition",
+  "prepared_by": "ADU West / Ideal Designs (Oscar Sanchez)",
+  "description": "Existing single-family residence roof plan showing demolition scope. Two trellis structures (378.0 SQ.FT. total) at rear of property marked for demolition. Includes demolition notes and demo legend.",
+  "key_content": [
+    "(E) One-Story Single-Family Residence: 1,854.0 SQ.FT.",
+    "2 - (E) Trellis to be Demo: 378.0 SQ.FT.",
+    "Demolition notes: relocate reusable materials, protect existing structure, brace/shore as required",
+    "Demo legend: building outline, roof outline, existing trellis to be demo",
+    "Scale: 1/4\" = 1'-0\"",
+    "North arrow shown",
+    "Designer: Oscar Sanchez, DBA / ADU West, C-8633",
+    "Drawn By: C. Sanchez, Date: 06/18/2025",
+    "Job No.: 25-1232N.JEFFSON",
+    "NOT SHOWN: roof pitch",
+    "NOT SHOWN: roof material specification"
+  ],
+  "topics": [
+    "demolition",
+    "roof plan",
+    "trellis demo",
+    "existing conditions",
+    "demo notes",
+    "SFR roof"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Demolition Notes (paragraph) and Demo Legend (3 line types)"},
+    {"zone": "top-right", "content": "2 - (E) Trellis to be Demo (378.0 SQ.FT.) label"},
+    {"zone": "center", "content": "(E) S.F.R. Roof Plan w/ Demolition drawing — existing roof form with demolition markings"},
+    {"zone": "bottom-left", "content": "Drawing title, scale (1/4\" = 1'-0\"), and north arrow"},
+    {"zone": "right-edge", "content": "Title block (vertical): project info, firm logos, designer info"},
+    {"zone": "bottom-right", "content": "Page designation: A1.1, revision block, job number"}
+  ],
+  "vision_extracted": true
+}

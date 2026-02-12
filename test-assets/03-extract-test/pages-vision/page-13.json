@@ -1,0 +1,53 @@
+{
+  "page_number": 13,
+  "sheet_id": "T-1",
+  "sheet_title": "Title 24 Energy Compliance (CF-1R Reports)",
+  "category": "energy",
+  "subcategory": "cf1r_compliance",
+  "prepared_by": "URo Designs",
+  "description": "Title 24 CF-1R compliance report forms composited on a single sheet (approximately pages 4-10 of a 10-page CF1R-PLB-01-E set). Includes building envelope fenestration summary, compliance results/EDR margins, HVAC system data, water heating specs, and mandatory measures. Performance compliance method, Climate Zone 8.",
+  "key_content": [
+    "Compliance method: Performance",
+    "Climate Zone: 8",
+    "CF-1R form identifier: CF1R-PLB-01-E",
+    "Fenestration U-Factor: 0.30 (all orientations)",
+    "Fenestration SHGC: 0.23 (all orientations)",
+    "Compliance result: PASS (overall)",
+    "VALUE NOT LEGIBLE: individual EDR compliance margins (heating, cooling, water heating)",
+    "VALUE NOT LEGIBLE: HVAC system type and efficiency ratings (SEER2, HSPF2, AFUE)",
+    "VALUE NOT LEGIBLE: water heater type and UEF rating",
+    "VALUE NOT LEGIBLE: opaque envelope U-factors (ceiling, wall, floor)",
+    "VALUE NOT LEGIBLE: insulation R-values (wall, ceiling, floor)",
+    "VALUE NOT LEGIBLE: duct insulation R-value and sealing method",
+    "VALUE NOT LEGIBLE: compliance software name and version",
+    "NOT SHOWN: PV solar system specs (required for new detached ADU per Title 24 — may be on separate form or not included)"
+  ],
+  "topics": [
+    "Title 24",
+    "CF1R",
+    "energy compliance",
+    "performance compliance",
+    "fenestration",
+    "U-factor",
+    "SHGC",
+    "building envelope",
+    "EDR",
+    "Energy Design Rating",
+    "HVAC",
+    "water heating",
+    "Climate Zone 8",
+    "HERS",
+    "mandatory measures",
+    "duct sealing",
+    "insulation R-values"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "CF-1R building envelope fenestration summary table (U-Factor 0.30, SHGC 0.23 all orientations)"},
+    {"zone": "top-right", "content": "CF-1R compliance results summary with EDR margins table"},
+    {"zone": "middle-left", "content": "CF-1R mandatory measures / HVAC system specifications"},
+    {"zone": "middle-right", "content": "CF-1R water heating equipment specifications"},
+    {"zone": "bottom-left", "content": "Additional compliance verification tables (heating/cooling/duct testing)"},
+    {"zone": "bottom-right", "content": "Additional CF-1R compliance data and registration information"}
+  ],
+  "vision_extracted": true
+}

@@ -73,3 +73,32 @@ This turned into its own full skill/workflow, and for good reason. Construction 
 1. **Next hour** — finish the PDF extraction skill, nail the manifest generation
 2. **Afternoon** — city-level web search tool. This is the most interesting and hardest piece. CA has 480+ cities, each publishes their own ADU regulations (required by law), but every city's website is different. Need a dynamic search skill using web search + browser tools that can find and document city-specific ADU quirks. State-level is baked into our skill; city-level has to be discovered on the fly.
 3. If time, start wiring the composite skill together
+
+---
+
+## Wednesday, February 11 — 4:15 PM PST
+
+**Pivot on PDF extraction. Accuracy vs. speed tradeoff hit hard.**
+
+Spent the afternoon iterating on the PDF extraction skill, trying to push accuracy from ~85% to ~95%. Got there — but at a brutal cost:
+
+- **85% accuracy:** 10–15 minutes for a 26-page binder. Workable.
+- **95% accuracy:** 35 minutes for the same binder. Not workable.
+
+These construction plan PDFs are dense as hell — CAD drawings, stamps, watermarks, tiny text — and getting near-perfect vision extraction means the subagents are grinding on every page. 35 minutes just to extract text before the agent even starts *doing* anything with it? That's a dead end for a real product.
+
+**The pivot:**
+
+Instead of perfecting text extraction upfront, flip the flow. Keep the extraction simple and fast (programmatic: PDF→PNG + basic text extraction via Tesseract/pdfplumber — yes it's shitty on these docs, but it's *fast*). Then let the **search agent be smart** about what matters:
+
+1. Read the corrections letter (that's clean text, easy to parse — the 2nd review corrections letter has 14 specific items)
+2. Use the California ADU handbook skill to understand the state-level code sections
+3. Web search the city (e.g., Placentia) to find city-specific codes and requirements
+4. Cross-reference corrections against state + city codes
+5. Only *then* go into the construction plans to find the specific pages/sheets that need changes — using the PNGs + rough text + original PDF as reference, guided by knowing what it's looking for
+
+This is smarter anyway. Don't extract everything perfectly and then figure out what matters. Figure out what matters first, then go look for it.
+
+**Also running in parallel:** the web search skill is working — it reads the corrections letter, looks up relevant state code sections, searches for city-level requirements, and produces a summary of what the contractor needs to fix. That flow is looking promising.
+
+**About to do:** Major simplification of the extraction skill. Stripping out the multi-pass vision extraction. Going back to simple programmatic PNG + text extraction. Checkpoint push first.

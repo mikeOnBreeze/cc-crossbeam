@@ -1,0 +1,119 @@
+{
+  "page_number": 19,
+  "sheet_id": "S4.0",
+  "sheet_title": "Foundation Details",
+  "category": "structural",
+  "subcategory": "foundation_details",
+  "prepared_by": "Ramirez Structural Inc — Jose Ramirez, PE",
+  "description": "Foundation details sheet with 12 numbered details covering new-to-existing concrete connections, epoxy anchor specifications, strongwall footings, LVL stringer connections, holdown post anchoring, retrofit bolt details, column-to-footing connections, and post base details. All epoxy connections reference Simpson SET-3G with special inspection required. APPROVED stamp by Anthony Montez - Building Plan Check, City of Long Beach, dated 10/29/25.",
+  "key_content": [
+    "Detail 4: Strongwall connection — strongwall per plan, third rod A.B. per sheet 1/WSWH1, A.B. dia. + 1/2\" hole, reinf. to match cont. ftg. (min. lap = 2'-0\")",
+    "Detail 3: Column to footing / grade beam — column per plan, base plate per detail RSI, CL grade beam/ftg./column, ties per section per schedule, R/D hook typ.",
+    "Detail 2: Stirrup/reinforcement at existing slab — drill & epoxy w/ Simpson SET-3G (ICC-ES #4051) 6\" min. embed, special inspection required, #3 rebar @ 32\"",
+    "Detail 1: LVL stringer connection — 1-3/4\" x 14\" LVL stringer @ 12\" O.C., 1/2\" plywood, P.L. & A.B. @ 24\" O.C., #3 rebar @ 36\"",
+    "Detail 8: Existing stud wall at existing concrete — new-to-existing connection, dowels to match footing reinf. (2'-0\" min. lap), drill & epoxy w/ Simpson SET-3G (ESR #4057) 6\" min. embed, special inspection required, clean contact surfaces with wire brush, align bottom of footings",
+    "Detail 7: Epoxy dowel at existing footing — #8 dowels T.&B. lap 2'-0\" min., column per plan tube or W.F., (E) footing for col. placement",
+    "Detail 6: Existing footing connection / thickened footing — thicken footing to provide 8\" cover below soil, base P.L. & A.B. per 2/S3.4, drill & epoxy w/ Simpson SET-3G (LARR #25091) 6\" min. embed, special inspection required, steel column per plan detail 2/S3.4",
+    "Detail 5: Sheathing / retrofit bolts at existing foundation — (E) 2x sill plate w/ 1/2\" dia. Simpson retrofit bolts (RFB #840) w/ Simpson SET-3G epoxy (ICC#4057), spacing per shearwall schedule, 9\" embedment, special inspection required",
+    "Detail 12: Post base / pedestal — enclosure per arch, pedestal size per arch on hardscape or paving",
+    "Detail 11: CB post base — #3 ties @ 8\" max., 4-#4 vert. w/ std. hooks, optional const. jt. at CL ftg. & wall",
+    "Detail 10: Holdown post at existing slab — threaded rod (size per holdown), drill & epoxy Simpson SET-3G (ICC#4057), 10\" embed for 5/8\" dia. A.B.S., special inspection required",
+    "Detail 9: Sheathing at existing foundation — (E) 2x sill plate w/ 1/2\" dia. Simpson retrofit bolts (RFB #840) w/ Simpson SET-3G epoxy (ICC#4057), spacing per shearwall schedule, 9\" embedment, special inspection required",
+    "Simpson SET-3G epoxy: referenced in Details 2, 5, 6, 8, 9, 10 with ICC-ES #4051, ESR #4057, LARR #25091, ICC#4057",
+    "Simpson RFB #840 retrofit bolts: 1/2\" dia., referenced in Details 5 and 9",
+    "Embedment depths: 6\" min. (epoxy anchors in Details 2, 6, 8), 9\" (retrofit bolts in Details 5, 9), 10\" (5/8\" dia. holdown rod in Detail 10)",
+    "Special inspection required for all epoxy anchor connections",
+    "APPROVED stamp: Anthony Montez — Building Plan Check, City of Long Beach, BLD032612R, dated 10/29/25",
+    "NOT SHOWN: footing dimensions (width x depth) — referenced as 'per plan'",
+    "NOT SHOWN: slab thickness and rebar schedule — referenced as 'per plan'",
+    "NOT SHOWN: foundation bolt max spacing and distance to ends",
+    "NOT SHOWN: concrete PSI and cement type",
+    "NOT SHOWN: vapor barrier notation"
+  ],
+  "topics": [
+    "foundation details",
+    "epoxy anchor",
+    "Simpson SET-3G",
+    "drill and epoxy",
+    "special inspection",
+    "retrofit bolts",
+    "Simpson RFB 840",
+    "holdown post",
+    "strongwall",
+    "LVL stringer",
+    "column to footing",
+    "grade beam",
+    "existing foundation",
+    "new to existing connection",
+    "dowels",
+    "embedment depth",
+    "thickened footing",
+    "post base",
+    "CB post base",
+    "sheathing",
+    "sill plate",
+    "footing reinforcement",
+    "ICC-ES 4051",
+    "ESR 4057",
+    "rebar",
+    "concrete connection",
+    "anchor bolts",
+    "WSWH1"
+  ],
+  "drawing_zones": [
+    {
+      "zone": "detail-4 (top-left)",
+      "content": "Strongwall connection at new-to-existing footing — third rod A.B. per sheet WSWH1, reinf. to match cont. ftg., 2'-0\" min. lap"
+    },
+    {
+      "zone": "detail-3 (top-center-left)",
+      "content": "Column to footing / grade beam — base plate, ties per schedule, R/D hook typ., CL grade beam"
+    },
+    {
+      "zone": "detail-2 (top-center)",
+      "content": "Stirrup/reinforcement at existing slab — Simpson SET-3G (ICC-ES #4051) 6\" min. embed, #3 rebar @ 32\""
+    },
+    {
+      "zone": "detail-1 (top-right)",
+      "content": "LVL stringer connection — 1-3/4\" x 14\" LVL @ 12\" O.C., 1/2\" plywood, P.L. & A.B. @ 24\" O.C., #3 @ 36\""
+    },
+    {
+      "zone": "detail-8 (middle-left)",
+      "content": "Existing stud wall at existing concrete — new-to-existing, dowels to match footing reinf., Simpson SET-3G (ESR #4057) 6\" min. embed"
+    },
+    {
+      "zone": "detail-7 (center, with APPROVED stamp)",
+      "content": "Epoxy dowel at existing footing — #8 dowels T.&B. lap 2'-0\" min., column per plan tube or W.F., APPROVED stamp overlay (BLD032612R, 10/29/25)"
+    },
+    {
+      "zone": "detail-6 (center)",
+      "content": "Existing footing connection / thickened footing — 8\" cover below soil, Simpson SET-3G (LARR #25091), steel column per plan detail 2/S3.4"
+    },
+    {
+      "zone": "detail-5 (center-right)",
+      "content": "Sheathing / retrofit bolts — Simpson RFB #840, 1/2\" dia., SET-3G epoxy, 9\" embedment, spacing per shearwall schedule"
+    },
+    {
+      "zone": "detail-12 (bottom-left)",
+      "content": "Post base / pedestal at arch — pedestal size per arch on hardscape or paving"
+    },
+    {
+      "zone": "detail-11 (bottom-center-left)",
+      "content": "CB post base — #3 ties @ 8\" max., 4-#4 vert. w/ std. hooks"
+    },
+    {
+      "zone": "detail-10 (bottom-center)",
+      "content": "Holdown post at existing slab — threaded rod, Simpson SET-3G (ICC#4057), 10\" embed for 5/8\" dia."
+    },
+    {
+      "zone": "detail-9 (bottom-right)",
+      "content": "Sheathing at existing foundation — Simpson RFB #840, SET-3G epoxy, 9\" embedment, spacing per shearwall schedule"
+    },
+    {
+      "zone": "right-column",
+      "content": "Title block — Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project 25-357, Sheet S4.0, Date 9/19/25"
+    }
+  ],
+  "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+  "vision_extracted": true
+}

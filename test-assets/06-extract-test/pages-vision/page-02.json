@@ -1,0 +1,56 @@
+{
+  "page_number": 2,
+  "sheet_id": "CCS.1",
+  "sheet_title": "Erosion Control & Construction Activity Best Management Practices",
+  "category": "code_compliance",
+  "subcategory": "erosion_control_bmps",
+  "prepared_by": "City of Long Beach — Building and Safety Bureau (Information Bulletins BU-039 & BU-038)",
+  "description": "City of Long Beach standard erosion control and construction activity best management practices (BMPs). Contains Information Bulletin BU-039 (erosion control: scheduling, preservation of vegetation, stabilized construction entrance, silt fence, sand bag barrier) and BU-038 (construction activity: water conservation, material delivery/storage, material use, spill prevention, solid/hazardous/concrete waste management, vehicle/equipment cleaning and fueling). Standard city-issued reference sheet, not project-specific engineering.",
+  "key_content": [
+    "BU-039 Erosion Control BMPs: BM01 Scheduling, BM02 Preservation of Existing Vegetation, BM03A Stabilized Construction Entrance (20 ft min width, 50 ft min length), BM03C Silt Fence (85% soil retention), BM03E Sand Bag Barrier",
+    "BU-038 Construction Activity BMPs: CA02 Water Conservation, CA10 Material Delivery and Storage, CA11 Material Use, CA52 Spill Prevention and Control, CA53 Solid Waste Management, CA54 Hazardous Waste Management, CA55 Vehicle and Equipment Cleaning, CA56/CA59 Vehicle and Equipment Fueling, CA57 Concrete Waste Management",
+    "Standard City of Long Beach information bulletins — not project-specific calculations",
+    "APPROVED stamp present on sheet"
+  ],
+  "topics": [
+    "erosion control",
+    "best management practices",
+    "BMPs",
+    "stormwater pollution prevention",
+    "construction activity",
+    "spill prevention",
+    "waste management",
+    "silt fence",
+    "sand bag barrier",
+    "water conservation",
+    "hazardous waste",
+    "concrete waste",
+    "vehicle fueling",
+    "CalGreen",
+    "code compliance"
+  ],
+  "drawing_zones": [
+    {
+      "zone": "top-left",
+      "content": "BU-039 Erosion Control BMPs — scheduling, vegetation preservation, stabilized construction entrance"
+    },
+    {
+      "zone": "top-right",
+      "content": "BU-039 continued — silt fence, sand bag barrier details"
+    },
+    {
+      "zone": "bottom-left",
+      "content": "BU-038 Construction Activity BMPs — water conservation, material delivery/storage"
+    },
+    {
+      "zone": "bottom-right",
+      "content": "BU-038 continued — material use, spill prevention, solid/hazardous/concrete waste management, vehicle cleaning/fueling"
+    },
+    {
+      "zone": "right-edge",
+      "content": "Title block (vertical) — Ideal Design Group, project info, APPROVED stamp, reviewer Anthony Montez"
+    }
+  ],
+  "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+  "vision_extracted": true
+}

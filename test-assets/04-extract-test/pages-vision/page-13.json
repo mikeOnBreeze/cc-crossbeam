@@ -1,0 +1,47 @@
+{
+  "page_number": 13,
+  "sheet_id": "T-1",
+  "sheet_title": "Title 24 CF-1R Energy Compliance Reports (Building Envelope & Fenestration)",
+  "category": "energy",
+  "subcategory": "cf1r_envelope_fenestration",
+  "prepared_by": "URo Designs",
+  "description": "Six tiled CF-1R (Certificate of Compliance - Residential Performance Compliance Method) report pages covering building envelope performance, fenestration schedules (window U-factors and SHGC), insulation specifications, and compliance margin summaries. Climate Zone 8, performance compliance method using CBECC-Res.",
+  "key_content": [
+    "Compliance method: Performance (CBECC-Res)",
+    "Climate Zone: 8",
+    "Building envelope summary table with component areas and U-factors",
+    "Fenestration schedule with window orientations, areas, U-factors, and SHGC values",
+    "Insulation specifications table",
+    "Compliance margin calculations (heating, cooling, water heating)",
+    "VALUE NOT LEGIBLE: specific U-factor and SHGC numeric values (composited at small scale with watermark)",
+    "VALUE NOT LEGIBLE: insulation R-values (present but not readable at composited scale)",
+    "VALUE NOT LEGIBLE: EDR (Energy Design Rating) values",
+    "VALUE NOT LEGIBLE: compliance margin percentages"
+  ],
+  "topics": [
+    "Title 24",
+    "CF-1R",
+    "energy compliance",
+    "building envelope",
+    "fenestration",
+    "U-factor",
+    "SHGC",
+    "insulation R-values",
+    "performance compliance",
+    "CBECC-Res",
+    "climate zone 8",
+    "EDR",
+    "compliance margins"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "CF-1R Form: Building envelope summary table (component areas and U-factors)"},
+    {"zone": "top-center", "content": "CF-1R Form: Fenestration detail schedule (windows by orientation, area, U-factor, SHGC)"},
+    {"zone": "top-right", "content": "CF-1R Form: Fenestration continued / whole building summary with compliance checkboxes"},
+    {"zone": "middle-left", "content": "CF-1R Form: Building envelope compliance with insulation specifications"},
+    {"zone": "middle-center", "content": "CF-1R Form: HVAC system summary and compliance margins"},
+    {"zone": "middle-right", "content": "CF-1R Form: Final compliance results with EDR values and pass/fail"},
+    {"zone": "right-column", "content": "Title block: URo Designs, project info, sheet T-1, revision/date column"}
+  ],
+  "title_block_address": "1232 N. Jefferson Street Unit A, Placentia, CA 92870",
+  "vision_extracted": true
+}

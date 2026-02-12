@@ -1,0 +1,50 @@
+{
+  "page_number": 13,
+  "sheet_id": "S2.2",
+  "sheet_title": "Roof Plan",
+  "category": "structural",
+  "subcategory": "roof_framing_plan",
+  "prepared_by": "Ramirez Structural Inc — Jose Ramirez, PE",
+  "description": "Structural roof framing plan showing rafter layout (2x6 @ 16\" O.C.), ceiling joists (2x10 @ 16\" O.C.), ridge board (2x6), PSL beam (3-1/2x9-1/2), roof sheathing specs, top plate splice schedule references, and framing legend. Scale 1/4\" = 1'-0\".",
+  "key_content": [
+    "Roof sheathing: 1/2\" APA RATED EXP-1 (32/16), E.N. = 8d @ 6\", F.N. = 8d @ 12\", no blocking required at seams",
+    "Rafters: 2x6 @ 16\" O.C.",
+    "Ceiling joists: 2x10 C.J. @ 16\" O.C.",
+    "Ridge board: 2x6",
+    "PSL beam: 3-1/2x9-1/2 PSL (Parallam)",
+    "4x4 posts at bearing points",
+    "MST37 strap at lower-left wall connection",
+    "Sheath cripple wall above beam with Type 6 sheathing — see Detail 7/S5.0",
+    "Top plate splice schedule references to 2/S3.2, Type 6 splice minimum",
+    "10 structural plan notes referencing S1.0 notes and S3.0-S3.3 typical details",
+    "Legend includes beam bearing, hung beam (12/S3.2), header (5/S3.2), ceiling joist (6/S3.2)",
+    "All wood exposed to weather: treated wood, redwood, or naturally resistant species; galvanized G185 coating for hardware",
+    "NOT SHOWN: hurricane tie / roof-to-wall connection hardware schedule on this sheet (may be on detail sheets)",
+    "NOT SHOWN: rafter span dimensions (refer to architectural)"
+  ],
+  "topics": [
+    "roof framing",
+    "roof plan",
+    "rafters",
+    "ceiling joists",
+    "ridge board",
+    "PSL beam",
+    "roof sheathing",
+    "nailing schedule",
+    "top plate splice",
+    "cripple wall",
+    "MST37 strap",
+    "framing legend"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Plan Notes (10 numbered structural notes)"},
+    {"zone": "left-column (lower)", "content": "Legend — framing symbols (beam bearing, hung beam, header, splice, rafter, ceiling joist)"},
+    {"zone": "center", "content": "Roof framing plan drawing with rafters, ridge, joists, beams, posts, splice markers"},
+    {"zone": "top-right (within plan)", "content": "Roof sheathing callout: 1/2\" APA RATED EXP-1 (32/16), edge/field nailing"},
+    {"zone": "bottom-center", "content": "Scale notation: ROOF FRAMING PLAN, 1/4\" = 1'-0\""},
+    {"zone": "top-center", "content": "APPROVED stamp — City of Long Beach, Anthony Montez, dated 10/29/25"},
+    {"zone": "right-column", "content": "Title block: Ramirez Structural Inc, Project No. 25-357, Sheet S2.2 ROOF PLAN"}
+  ],
+  "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+  "vision_extracted": true
+}

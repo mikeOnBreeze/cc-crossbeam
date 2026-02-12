@@ -1,0 +1,1107 @@
+{
+  "project": {
+    "address": "1222 N. Jefferson St., Placentia, CA 92870",
+    "type": "New Detached ADU",
+    "adu_address": "1222 N. Jefferson St., Unit 'A', Placentia, CA 92870",
+    "main_home_address": "1222 N. Jefferson St., Placentia, CA 92870",
+    "designer": "Ideal ADU Design",
+    "structural_engineer": "GSE - Gonzalez Structural Engineering",
+    "energy_consultant": "URo Designs",
+    "owner": null,
+    "adu_size_sqft": 600,
+    "existing_home_sqft": 1854,
+    "lot_size_sqft": null
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "sheet_id": "CS",
+      "sheet_title": "Cover Sheet",
+      "category": "general",
+      "subcategory": "cover_sheet",
+      "prepared_by": "Ideal ADU Design",
+      "description": "Cover sheet for a new detached 600 sq ft ADU at 1222 N. Jefferson St., Placentia, CA 92870. Includes governing codes (2022 CBC/CRC/CMC/CPC/CEC/CalGreen/CFC), scope of work, separate permits list, 20 general notes, vicinity map, sheet index, project consultants, abbreviations, and project data.",
+      "key_content": [
+        "Project type: New Detached ADU, 600 sq ft, 1 bedroom, 1 bathroom",
+        "Address: 1222 N. Jefferson St., Placentia, CA 92870",
+        "ADU address: 1222 N. Jefferson St., Unit 'A'",
+        "Governing codes: 2022 CBC, 2022 CRC, 2022 CMC, 2022 CPC, 2022 CEC, 2022 CalGreen, 2022 CFC, 2022 California Electrical Code, City of Placentia Municipal Code",
+        "PV solar: 22 panels at back of existing main home (265 Watts each)",
+        "Scope of work: new detached ADU at rear of property, wood frame construction",
+        "Separate permits required for: retaining walls, grading, swimming pool, separate structure, garage, driveway, water/gas, trash enclosure, pool/yard lighting, flagpole, concrete work, electrical/plumbing",
+        "General notes: 20 numbered items covering permits, worker's comp, OASYS/DITS, smoke/CO detectors, low-consumption fixtures, dust control, pre-construction meeting, storm drain discharge prohibition",
+        "Vicinity map showing N. Jefferson St. location in Placentia",
+        "NOT SHOWN: designer license number",
+        "NOT SHOWN: structural engineer name",
+        "NOT SHOWN: energy consultant name",
+        "NOT SHOWN: existing home square footage",
+        "NOT SHOWN: lot size (sq ft)",
+        "NOT SHOWN: bedroom/bathroom count in project data section (stated in scope as 1BR/1BA)"
+      ],
+      "topics": [
+        "cover sheet",
+        "project info",
+        "scope of work",
+        "governing codes",
+        "general notes",
+        "separate permits",
+        "vicinity map",
+        "sheet index",
+        "abbreviations",
+        "PV solar",
+        "ADU placement"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-center",
+          "content": "Project header: New Detached ADU address and city"
+        },
+        {
+          "zone": "top-left",
+          "content": "Governing codes list (2022 editions)"
+        },
+        {
+          "zone": "left-column",
+          "content": "General notes (items 3-20), scope of work, separate permits list"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Vicinity map with property location marker"
+        },
+        {
+          "zone": "center-column",
+          "content": "Scope of work (item 12), separate permits (item 13), abbreviations (item 9)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Sheet index, legal description, owner information, project data, notes"
+        },
+        {
+          "zone": "top-right",
+          "content": "Ideal ADU Design logo and firm info"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block: project data, sheet CS designation"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 2,
+      "sheet_id": "A1A.1",
+      "sheet_title": "CalGreen A/A Checklist \u2014 Residential Mandatory Measures, Sheet 1",
+      "category": "code_compliance",
+      "subcategory": "calgreen_checklist",
+      "prepared_by": "Ideal ADU Design",
+      "description": "First sheet of the 2022 California Green Building Standards Code (CalGreen) Residential Mandatory Measures checklist with July 2024 Supplement. Covers Chapter 3 general scope, Chapter 4 divisions 4.1 (Planning and Design), 4.2 (Energy Efficiency), 4.3 (Water Efficiency), 4.4 (Material Conservation), and 4.5 (Environmental Quality). Includes EV charging, water fixture flow rates, waste diversion, and indoor air quality provisions.",
+      "key_content": [
+        "CalGreen mandatory measures: 2022 edition with July 2024 Supplement",
+        "Division 4.1: Planning and Design \u2014 site development, stormwater management, EV charging provisions (4.106.4)",
+        "Division 4.2: Energy Efficiency \u2014 mandatory energy efficiency references",
+        "Division 4.3: Water Efficiency \u2014 kitchen faucets, lavatory faucets, showerheads (GPM limits), water closets max 1.28 GPF, urinals max 0.5 GPF",
+        "Division 4.4: Material Conservation \u2014 construction waste diversion 65% minimum (4.406.1)",
+        "Division 4.5: Environmental Quality \u2014 fireplaces (direct vent/sealed combustion), pollutant control, indoor air quality",
+        "EV charging: EVSE required for new single family and townhome construction (4.106.4.1)",
+        "Stormwater: SWPPP or erosion control plan required for construction (4.106.1)",
+        "Grading and paving: stormwater management plan required (4.106.3)",
+        "Outdoor water: landscape irrigation per MWELO (4.304.1)",
+        "Building maintenance and operation provisions (Section 4.10)",
+        "VALUE NOT LEGIBLE: specific GPM flow rates for kitchen faucets, lavatory faucets, and showerheads",
+        "VALUE NOT LEGIBLE: specific EV charging amperage and voltage requirements",
+        "NOT SHOWN: checkbox completion status not determinable from image quality"
+      ],
+      "topics": [
+        "CalGreen",
+        "green building",
+        "mandatory measures",
+        "water efficiency",
+        "EV charging",
+        "EV-ready",
+        "waste diversion",
+        "construction waste management",
+        "stormwater",
+        "SWPPP",
+        "indoor air quality",
+        "pollutant control",
+        "MWELO",
+        "GPF",
+        "GPM",
+        "fireplaces",
+        "energy efficiency",
+        "material conservation"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Chapter 3 General scope and Section 302 Mixed Occupancy Buildings"
+        },
+        {
+          "zone": "left-column",
+          "content": "Division 4.1 Planning and Design, EV charging (4.106.4), stormwater (4.106.1), grading (4.106.3), definitions and abbreviations table"
+        },
+        {
+          "zone": "center-column",
+          "content": "Division 4.2 Energy Efficiency, Division 4.3 Water Efficiency and Conservation (4.303 indoor water use, 4.304 outdoor water use)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Division 4.4 Material Conservation and Resource Efficiency, Division 4.5 Environmental Quality, Section 4.10 Building Maintenance and Operation"
+        },
+        {
+          "zone": "top-right",
+          "content": "Ideal ADU Design logo and title block"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block with sheet A1A.1 designation"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 3,
+      "sheet_id": "A1A.2",
+      "sheet_title": "CalGreen A/A Checklist \u2014 Residential Mandatory Measures, Sheet 2",
+      "category": "code_compliance",
+      "subcategory": "calgreen_checklist",
+      "prepared_by": "Ideal ADU Design",
+      "description": "Second sheet of the 2022 CalGreen Residential Mandatory Measures checklist (July 2024 Supplement). Covers pollutant control with full VOC limit tables for adhesives (Table 4.504.1), sealants (Table 4.504.2), paints (Table 4.504.4), and formaldehyde limits (Table 4.504.5). Also covers indoor air quality and exhaust (4.505), environmental comfort (4.506), resilient plumbing (4.507), interior moisture control, installer qualifications, and verification/documentation requirements (Section 703).",
+      "key_content": [
+        "Adhesive VOC limits (Table 4.504.1): Indoor carpet 50 g/L, wood flooring 100 g/L, drywall/panel 50 g/L, multipurpose construction 70 g/L, contact adhesive 80 g/L, structural wood 140 g/L, PVC welding 510 g/L, ABS welding 325 g/L",
+        "Sealant VOC limits (Table 4.504.2): Architectural 250 g/L, non-membrane roof 300 g/L, single-ply roof membrane 450 g/L",
+        "Sealant primer VOC limits: Architectural non-porous 250 g/L, architectural porous 775 g/L",
+        "Paint VOC limits (Table 4.504.4): Flat coatings 50 g/L, non-flat 100 g/L, non-flat high gloss 150 g/L",
+        "Formaldehyde limits (Table 4.504.5): Hardwood plywood veneer core 0.05 ppm, hardwood plywood composite core 0.05 ppm, particleboard 0.09 ppm, MDF 0.11 ppm, thin MDF 0.13 ppm",
+        "Indoor air quality: bathroom exhaust fans ENERGY STAR rated, ducted to exterior (4.505)",
+        "Interior moisture control: moisture barrier beneath concrete slabs (4.507.1)",
+        "Installer qualifications: HVAC installers shall be trained and qualified (700.1)",
+        "Verification and documentation requirements (Section 703)",
+        "HVAC duct protection during construction required (4.504.1)",
+        "SCAQMD Rule 1168 referenced for adhesive/sealant VOC compliance",
+        "NOT SHOWN: checkbox completion status not determinable from image quality",
+        "VALUE NOT LEGIBLE: specific exhaust fan CFM requirements",
+        "VALUE NOT LEGIBLE: specific moisture content percentage limits for building materials"
+      ],
+      "topics": [
+        "CalGreen",
+        "VOC limits",
+        "adhesives",
+        "sealants",
+        "paints",
+        "formaldehyde",
+        "SCAQMD",
+        "pollutant control",
+        "indoor air quality",
+        "exhaust fans",
+        "moisture control",
+        "concrete slab",
+        "vapor barrier",
+        "plumbing",
+        "installer qualifications",
+        "verification",
+        "documentation",
+        "ENERGY STAR",
+        "green building",
+        "mandatory measures"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Pollutant control continuation: moisture content, ROC definitions, HVAC duct protection (4.504.1-4.504.3)"
+        },
+        {
+          "zone": "left-column",
+          "content": "Adhesives/sealants/caulks VOC requirements (4.504.5), Adhesive VOC Limits Table 4.504.1"
+        },
+        {
+          "zone": "center-left",
+          "content": "Sealant VOC Limits Table 4.504.2, Paint VOC Limits Table 4.504.4"
+        },
+        {
+          "zone": "center-top",
+          "content": "Formaldehyde Limits Table 4.504.5"
+        },
+        {
+          "zone": "center-right",
+          "content": "Division 4.5 Environmental Quality continued: indoor air quality (4.505), environmental comfort (4.506), resilient plumbing (4.507), reference URLs"
+        },
+        {
+          "zone": "right-column",
+          "content": "Interior moisture control (4.507), installer and special inspector qualifications (700.1), verifications (703), documentation (703.1)"
+        },
+        {
+          "zone": "top-right",
+          "content": "Ideal ADU Design logo and title block"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block with sheet A1A.2 designation"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 4,
+      "sheet_id": "A1",
+      "sheet_title": "(E) & (N) Site Plans",
+      "category": "architectural",
+      "subcategory": "site_plan",
+      "prepared_by": "ADU West / Ideal Designs (Oscar Sanchez)",
+      "description": "Side-by-side existing and proposed site plans showing lot layout, building footprints, setback dimensions, ADU placement at rear of lot, and utility/equipment locations. Includes site plan legend and notes.",
+      "key_content": [
+        "Project address: 1232 N. Jefferson St., Placentia, CA 92870",
+        "ADU address: 1232A N. Jefferson St., Unit A",
+        "ADU setback from front property line: 54'-6\"",
+        "Side/rear setback dimension: K = 11'",
+        "Rear setback: ~4'",
+        "(E) One-Story SFR: 1,854.0 SQ.FT.",
+        "(D) Two-Car Garage: 384.5 SQ.FT.",
+        "(N) One-Story ADU at rear of lot (replacing demolished structure)",
+        "Electric Heat Pump / Tankless Hot Water Heater location shown",
+        "Ductless Split Heat Pump (HVAC) condenser location shown",
+        "A/C Cond. pad location shown",
+        "Scale: 1/8\" = 1'-0\"",
+        "72' frontage along N. Jefferson St.",
+        "Site plan notes: grading away from foundation min 6\" in 10', drought-tolerant landscaping, storm drain pollution prevention",
+        "NOT SHOWN: lot coverage percentage",
+        "NOT SHOWN: FAR (floor area ratio)",
+        "NOT SHOWN: parking layout with dimensions and count",
+        "NOT SHOWN: drainage direction arrows",
+        "NOT SHOWN: property line dimensions (all sides)"
+      ],
+      "topics": [
+        "site plan",
+        "setbacks",
+        "ADU placement",
+        "property lines",
+        "utility locations",
+        "equipment pads",
+        "HVAC condenser",
+        "heat pump water heater",
+        "grading",
+        "landscaping"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-half",
+          "content": "(E) Existing Site Plan showing current lot with SFR, garage, shed to be demolished"
+        },
+        {
+          "zone": "right-half",
+          "content": "(N) Proposed Site Plan showing new ADU at rear, updated landscaping, equipment locations"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Site Plan Legend and Site Plan Notes (3 notes)"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (vertical): project info, address, firm logos (ADU West, Ideal Designs)"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Page designation: A1"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 5,
+      "sheet_id": "A1.1",
+      "sheet_title": "(E) Single-Fam. Res. Roof Plan w/ Demo",
+      "category": "architectural",
+      "subcategory": "demolition",
+      "prepared_by": "ADU West / Ideal Designs (Oscar Sanchez)",
+      "description": "Existing single-family residence roof plan showing demolition scope. Two trellis structures (378.0 SQ.FT. total) at rear of property marked for demolition. Includes demolition notes and demo legend.",
+      "key_content": [
+        "(E) One-Story Single-Family Residence: 1,854.0 SQ.FT.",
+        "2 - (E) Trellis to be Demo: 378.0 SQ.FT.",
+        "Demolition notes: relocate reusable materials, protect existing structure, brace/shore as required",
+        "Demo legend: building outline, roof outline, existing trellis to be demo",
+        "Scale: 1/4\" = 1'-0\"",
+        "North arrow shown",
+        "Designer: Oscar Sanchez, DBA / ADU West, C-8633",
+        "Drawn By: C. Sanchez, Date: 06/18/2025",
+        "Job No.: 25-1232N.JEFFSON",
+        "NOT SHOWN: roof pitch",
+        "NOT SHOWN: roof material specification"
+      ],
+      "topics": [
+        "demolition",
+        "roof plan",
+        "trellis demo",
+        "existing conditions",
+        "demo notes",
+        "SFR roof"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Demolition Notes (paragraph) and Demo Legend (3 line types)"
+        },
+        {
+          "zone": "top-right",
+          "content": "2 - (E) Trellis to be Demo (378.0 SQ.FT.) label"
+        },
+        {
+          "zone": "center",
+          "content": "(E) S.F.R. Roof Plan w/ Demolition drawing \u2014 existing roof form with demolition markings"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Drawing title, scale (1/4\" = 1'-0\"), and north arrow"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (vertical): project info, firm logos, designer info"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Page designation: A1.1, revision block, job number"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 6,
+      "sheet_id": "A2",
+      "sheet_title": "(N) ADU Floor Plan w/ Schedules & Elect.",
+      "category": "architectural",
+      "subcategory": "floor_plan",
+      "prepared_by": "ADU West / Ideal Designs (Oscar Sanchez)",
+      "description": "New ADU floor plan with electrical layout, window schedule, door schedule, electrical symbols legend, fire-rated wall detail, egress standards, smoke/CO alarm notes, kitchen electrical notes, and plumbing fixture notes. Extremely dense sheet combining floor plan, schedules, and code compliance notes.",
+      "key_content": [
+        "Window schedule: 4+ windows, vinyl frames, tempered glass, slider type (contractor to verify all openings)",
+        "Door schedule: 5 doors, wood material, includes security locks, privacy locks, French door",
+        "1 HR. Fire Rated Exterior Wall assembly detail (per detail #1-1.3)",
+        "Minimum bedroom egress: 5.7 sq ft net clear opening, 24\" min height, 20\" min width, 44\" max sill height",
+        "Smoke & carbon monoxide alarms: hardwired with battery backup, interconnected, per R314 and R315",
+        "Plumbing fixture notes: kitchen faucet 1.8 GPM, lavatory 1.2 GPM, showerhead 1.8 GPM, toilet 1.28 GPF (HET)",
+        "Kitchen electrical: all outlets GFCI protected, outlets within 48\" of counter locations",
+        "Exhaust fan: Energy Star rated, ceiling mounted",
+        "Electrical sub-panel location shown on plan",
+        "16\" OC stud spacing, 2x stud typical",
+        "Floor plan scale: 1/4\" = 1'-0\"",
+        "Clothes dryer exhaust ducting terminated to exterior",
+        "NOT SHOWN: window U-factor and SHGC values in window schedule",
+        "NOT SHOWN: specific room dimensions (obscured by watermark)",
+        "NOT SHOWN: ADU interior livable area (sq ft) on this sheet",
+        "NOT SHOWN: ceiling height",
+        "NOT SHOWN: range hood CFM specification",
+        "NOT SHOWN: electrical panel amperage/location detail",
+        "NOT SHOWN: wall insulation R-value"
+      ],
+      "topics": [
+        "floor plan",
+        "electrical layout",
+        "window schedule",
+        "door schedule",
+        "fire-rated wall",
+        "egress",
+        "smoke alarms",
+        "carbon monoxide alarms",
+        "plumbing fixtures",
+        "GPM",
+        "GPF",
+        "GFCI",
+        "kitchen electrical",
+        "wall assembly",
+        "Type X gypsum",
+        "exhaust fan",
+        "dryer exhaust"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "center",
+          "content": "(N) Floor Plan w/ Electrical \u2014 room layout with electrical symbols overlay"
+        },
+        {
+          "zone": "top-left",
+          "content": "Window Schedule (4+ entries: size, glazing, material, type, remarks)"
+        },
+        {
+          "zone": "middle-left",
+          "content": "Door Schedule (5 entries: size, frame, material, type, remarks)"
+        },
+        {
+          "zone": "upper-center",
+          "content": "Electrical Symbols Legend (15+ symbols defined)"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Walls Legend, Shower/Bath Notes, Minimum Bedroom Egress Standards"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "1 HR. Fire Rated Exterior Wall section detail (16\" OC, insulation, 2x stud)"
+        },
+        {
+          "zone": "top-right",
+          "content": "Typical Kitchen Electrical Notes (8+ numbered items)"
+        },
+        {
+          "zone": "middle-right",
+          "content": "Typical Smoke & Carbon Monoxide Alarms notes"
+        },
+        {
+          "zone": "lower-right",
+          "content": "Means of Egress, Wall Covering, Clothes Dryer Exhaust Ducting, Plumbing Fixture Notes"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (vertical): project info, firm logos"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Page designation: A2"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 7,
+      "sheet_id": "A3",
+      "sheet_title": "Elevations, Roof Plan & Sections",
+      "category": "architectural",
+      "subcategory": "elevations_sections",
+      "prepared_by": "Ideal Designs",
+      "description": "Architectural elevations (West, South, North, East), new roof plan with solar panel array, capillary break detail, wall section detail, and two building cross-sections (Section A and Section B). Includes net free area ventilation calculations and roofing material notes.",
+      "key_content": [
+        "West Elevation: 30'-6\" ADU width, 8'1\" fin. floor to plate height",
+        "South Elevation: entry door, solar panels on south-facing roof, ridge vent, NFPA 13D sprinkler in attic",
+        "North Elevation: (N) electric meter, (N) water heater, (N) A/C unit/condenser locations",
+        "East Elevation: (N) electrical panel enclosure",
+        "Roof plan: composition shingle, solar panel array on south slope, ridge vent, downspouts, gutters",
+        "Net free area ventilation calculation: dormer vents 12\"x24\", attic area / 150 ratio",
+        "R-15 wall insulation called out in sections and elevations",
+        "Capillary break detail: asphalt emulsion between P.T. mudsill and foundation",
+        "Wall assembly: 7/8\" cement plaster (3/8\" scratch + 3/8\" brown + 1/8\" finish) or 5/8\" Type X gypsum board",
+        "Roofing: max 6 lbs/sq ft, 30 lb felt over 15/32\" CDX plywood sheathing",
+        "Section A and Section B cross-sections showing roof-to-foundation assembly",
+        "Address numbers: minimum 4\" high, 0.5\" stroke width, visible from street",
+        "NOT SHOWN: building height dimension (grade to peak \u2014 exact value not clearly called out)",
+        "NOT SHOWN: roof pitch (rise:run ratio not explicitly dimensioned)",
+        "NOT SHOWN: eave/overhang projection dimension"
+      ],
+      "topics": [
+        "elevations",
+        "roof plan",
+        "sections",
+        "solar panels",
+        "ventilation",
+        "net free area",
+        "capillary break",
+        "wall assembly",
+        "R-value",
+        "insulation",
+        "building envelope",
+        "roofing material",
+        "composition shingle",
+        "Type X gypsum",
+        "building height",
+        "NFPA 13D"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "West Elevation (Scale: 1/4\" = 1'-0\")"
+        },
+        {
+          "zone": "top-center",
+          "content": "South Elevation (Scale: 1/4\" = 1'-0\")"
+        },
+        {
+          "zone": "top-right",
+          "content": "Roof Plan Legend and (N) Roof Plan with solar array"
+        },
+        {
+          "zone": "middle-left",
+          "content": "Roofing Material (Typical) notes and Net Free Area Ventilation table"
+        },
+        {
+          "zone": "middle-center",
+          "content": "Address note and detail references"
+        },
+        {
+          "zone": "middle-left-lower",
+          "content": "North Elevation (Scale: 1/4\" = 1'-0\")"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "East Elevation (Scale: 1/4\" = 1'-0\")"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Capillary Break Detail (1) and Section View (2) wall assembly"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Section 'B' cross-section (Scale: 1/4\" = 1'-0\")"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Section 'A' cross-section (Scale: 1/4\" = 1'-0\")"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 8,
+      "sheet_id": "SN1",
+      "sheet_title": "Structural Notes",
+      "category": "structural",
+      "subcategory": "structural_notes",
+      "prepared_by": "GSE - Gonzalez Structural Engineering",
+      "description": "Structural general notes page covering statement of special inspection, design criteria (seismic and wind), concrete specifications, reinforcement requirements with rebar cover table, and general construction notes. Dense text-based reference sheet.",
+      "key_content": [
+        "Seismic design: Ss = 1.618, S1 = 0.618, SDS = 1.405, Seismic Design Category D, Site Class D",
+        "Seismic importance factor: p = 1.3, Occupancy II",
+        "Equivalent lateral force procedure, R = 6.5",
+        "Basic wind speed: 95 MPH",
+        "Floor live load: 40 PSF, Roof live load: 20 PSF",
+        "Concrete: 2,500 PSI, W/C ratio 0.65, normal weight, Type V Portland Cement (ASTM C-150)",
+        "Non-shrink grout: 7,000 PSI minimum compressive strength at 28 days",
+        "Rebar: ASTM A-615 Grade 60, smooth dowels ASTM A-36 (36 KSI)",
+        "Rebar cover: footings against earth 3\", exposed to weather #6+ = 2\", #5 and smaller = 1-1/2\", other = 3/4\"",
+        "Lap splices: Class B unless noted otherwise",
+        "Special inspection required: reinforced concrete (CBC 1705.3), wood shearwall (CBC 1705.12), epoxy dowels (CBC 1705.13), soil condition (CBC 1705)",
+        "2022 California Building Code governs",
+        "All footings: min 12\" top of current adjacent grade, min 12\" native soil",
+        "Backfill compaction: 90% relative compaction minimum",
+        "NOT SHOWN: lumber species and grade specification (deferred to SN2)",
+        "NOT SHOWN: nailing schedule (deferred to SN2)"
+      ],
+      "topics": [
+        "structural notes",
+        "seismic design",
+        "wind speed",
+        "concrete specs",
+        "reinforcement",
+        "rebar",
+        "rebar cover",
+        "special inspection",
+        "design criteria",
+        "lateral force",
+        "base shear",
+        "Class B splice",
+        "Type V cement",
+        "compaction"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-column",
+          "content": "Statement of Special Inspection (table + notes) and Design Criteria (seismic + wind)"
+        },
+        {
+          "zone": "center-column",
+          "content": "Concrete specifications (strength table, cement type, aggregates) and Reinforcement requirements (rebar grade, cover table, splices)"
+        },
+        {
+          "zone": "right-column",
+          "content": "General construction notes (15 items covering code compliance, excavation, backfill, utilities)"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 9,
+      "sheet_id": "SN2",
+      "sheet_title": "Structural Notes (Continued)",
+      "category": "structural",
+      "subcategory": "structural_notes",
+      "prepared_by": "GSE - Gonzalez Structural Engineering",
+      "description": "Continuation of structural notes with full nailing schedule table (30+ connection types), mechanical and adhesive anchor specifications (Hilti HIT-HY 200), and structural wood requirements including lumber grades, pressure treatment, galvanization, and engineered wood product specs (Parallam PSL, Microllam LVL).",
+      "key_content": [
+        "Nailing schedule: 30+ connections specified (e.g., joist to sill 3-8d, top plate to stud 2-16d end nail, double top plates 16d @ 16\" O.C.)",
+        "Top or sole plate to stud: 2-16d end nail",
+        "Stud to sole plate: 4-8d toe nail or 2-16d end nail",
+        "Double top plates face nail: 16d @ 16\" O.C.",
+        "Rim joist to top plate: 8d @ 6\" O.C.",
+        "Built-up corner studs: 16d @ 24\" O.C.",
+        "Rafter to joist face nail: 3-16d",
+        "Adhesive anchors: Hilti HIT-HY 200, ASTM A-32 threaded rods, ASTM A-563 Grade A nuts",
+        "Adhesive dowels: ASTM A-615 Grade 60",
+        "Anchor proof testing: 10% of all anchors, no sooner than 24 hours after installation",
+        "Adhesive anchors: minimum 7-day concrete cure before installation",
+        "Lumber: Douglas Fir-Larch (DFL), No. 2 grade (2x6 & under), No. 1 all others",
+        "Beams and stringers: Select Structural grade",
+        "Posts and timbers: Select Structural (4x4 and larger)",
+        "Studs: 2x4 minimum at 16\" O.C. max",
+        "Pressure-treated: all wood in contact with concrete/masonry, within 6\" of earth, sill plates \u2014 KDAT per AWPA",
+        "Hardware galvanization: minimum G-185 or stainless steel for PT lumber contact (ASTM A153)",
+        "Engineered wood: Parallam PSL (Weyerhaeuser, ICC-ESR 1387, LARR 25202)",
+        "Engineered wood: Microllam LVL (Weyerhaeuser, Grade 1.55E, ESR 1387, LARR 25202)",
+        "Wood moisture content at installation: max 19%",
+        "NOT SHOWN: specific sheathing nailing schedule for shearwalls (see shearwall schedule on detail sheet)"
+      ],
+      "topics": [
+        "nailing schedule",
+        "structural wood",
+        "lumber grade",
+        "DFL",
+        "Douglas Fir-Larch",
+        "Select Structural",
+        "pressure-treated",
+        "KDAT",
+        "adhesive anchors",
+        "Hilti",
+        "epoxy dowel",
+        "proof test",
+        "hot-dipped galvanized",
+        "Parallam PSL",
+        "Microllam LVL",
+        "engineered wood",
+        "Weyerhaeuser",
+        "ICC-ES report",
+        "toe nail",
+        "fastening"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-column",
+          "content": "Nailing Schedule table (30+ connection types with nail sizes and patterns) and Toe Nail Installation detail"
+        },
+        {
+          "zone": "center-column",
+          "content": "Mechanical and Adhesive Anchors specifications (12 items: Hilti HIT-HY 200, testing, installation requirements)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Structural Wood specifications (lumber grades, pressure treatment, galvanization, engineered wood products, substitution requirements)"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 10,
+      "sheet_id": "S1",
+      "sheet_title": "Partial Foundation and Framing Plans",
+      "category": "structural",
+      "subcategory": "foundation_framing_plan",
+      "prepared_by": "GSE - Gonzalez Structural Engineering",
+      "description": "Structural sheet showing partial foundation plan (left) and partial floor framing plan (right) at 1/2\" = 1'-0\" scale, with foundation notes (101-107) and framing notes (201-204). Includes symbols legend for shearwall and holdown locations.",
+      "key_content": [
+        "Foundation: 4\" slab on grade with #4 rebar at 16\" O.C. each way",
+        "Continuous footing: 15\" wide x 18\" deep with 2-#4 bars",
+        "Foundation bolts: 5/8\" diameter, 7\" embedment, 48\" max spacing, 12\" max to ends",
+        "Concrete: 2500 PSI, Type V cement, W/C ratio not to exceed 0.45, no special inspection required",
+        "Foundation sill plate: preservative-treated wood",
+        "Epoxy dowels to existing concrete: Simpson SET SC (ESR#4057), 8\" minimum embedment",
+        "Floor framing: 2x6 @ 16\" O.C. and 2x8 @ 16\" O.C.",
+        "Headers: 4x6 HDR with trimmer stud U.N.O.",
+        "Wall sheathing at shear walls: 3/4\" CD APA rated plywood or OSB, 32/16 span rating, 8d common at 4\" O.C. edge / 12\" O.C. field",
+        "Floor sheathing: 15/32\" CD APA rated plywood or OSB, 32/16 span rating, 10d common at 6\" O.C. edge / 12\" O.C. field",
+        "Stud wall framing per detail 8/S3",
+        "Fasteners in contact with PT wood: hot dipped zinc-coated, galvanized, stainless steel, silicon, bronze, or copper",
+        "NOT SHOWN: vapor barrier notation",
+        "NOT SHOWN: shearwall mark numbers on plan (marks referenced to schedule on S2)",
+        "NOT SHOWN: holdown mark numbers on plan (holdowns referenced to detail on S2)"
+      ],
+      "topics": [
+        "foundation plan",
+        "floor framing",
+        "slab on grade",
+        "continuous footing",
+        "foundation bolts",
+        "concrete specs",
+        "rebar",
+        "sheathing nailing schedule",
+        "headers",
+        "epoxy dowels",
+        "preservative-treated wood",
+        "Simpson SET SC"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-center",
+          "content": "Symbols legend \u2014 shearwall and holdown symbols with references to S2"
+        },
+        {
+          "zone": "left-half",
+          "content": "Partial Foundation Plan at 1/2\" = 1'-0\" with footing dimensions and slab callouts"
+        },
+        {
+          "zone": "right-half",
+          "content": "Partial Floor Framing Plan at 1/2\" = 1'-0\" with joist layout, headers, and blocking"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Foundation plan notes (101-107): bolts, concrete, PT wood, epoxy dowels"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Framing plan notes (201-204): sheathing, headers, stud wall framing references"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 11,
+      "sheet_id": "S2",
+      "sheet_title": "Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "GSE - Gonzalez Structural Engineering",
+      "description": "Structural detail sheet with 8 numbered details including shearwall schedule, holdown/column schedule, slab edge detail, footing sections at holdowns, stud wall/shear wall sections, and anchor bolt connection details.",
+      "key_content": [
+        "Shearwall schedule: Mark 1 = 15/32 STR CD, 8d nails, 6\" edge / 12\" field, 340 PLF",
+        "Shearwall schedule: Mark 2 = 15/32 STR CD, 8d nails, 4\" edge / 12\" field, 510 PLF",
+        "Special inspection required for nailing at 4\" O.C. or less",
+        "Holdown schedule: Mark 1 = HD12, 6-SD25212 anchor, 4x4 post, 3,075 lbs uplift",
+        "Slab edge detail (Detail 1)",
+        "Footing sections at holdowns (Details 6 and 7) with anchor bolt embedment",
+        "Stud wall / shear wall cross-section (Detail 2) showing exterior wall assembly",
+        "Holdown anchor in concrete detail (Detail 5)",
+        "Anchor bolt / sill bolt connection detail (Detail 3)",
+        "Holdown notes: minimum 4x4 posts, fully blocked at panel connections, minimum 3x blocking",
+        "Galvanized sheathing nails for exterior, common wire nails for interior",
+        "NOT SHOWN: roof-to-wall connection details (may be on S3)",
+        "NOT SHOWN: uplift values for marks beyond Mark 1 in holdown schedule (partially obscured)"
+      ],
+      "topics": [
+        "shearwall schedule",
+        "holdowns",
+        "holdown schedule",
+        "PLF ratings",
+        "slab edge",
+        "footing sections",
+        "anchor bolts",
+        "connection details",
+        "special inspection",
+        "Simpson HD12",
+        "stud wall section",
+        "sill bolt"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-7 (top-left)",
+          "content": "Footing sections \u2014 DC footing and 2E footing with anchor bolts"
+        },
+        {
+          "zone": "detail-4 (top-center)",
+          "content": "Shearwall Schedule table with Marks 1-2 and shearwall notes"
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Slab edge detail section"
+        },
+        {
+          "zone": "detail-8 (middle-left)",
+          "content": "Holdown/Column Schedule table and holdown notes 1-7"
+        },
+        {
+          "zone": "detail-5 (middle-center)",
+          "content": "Holdown anchor in concrete footing cross-section"
+        },
+        {
+          "zone": "detail-2 (middle-right)",
+          "content": "Stud wall / shear wall section with exterior assembly"
+        },
+        {
+          "zone": "detail-6 (bottom-left)",
+          "content": "Typical section of footing at holdown \u2014 full detail"
+        },
+        {
+          "zone": "detail-3 (bottom-center)",
+          "content": "Anchor bolt / sill bolt connection detail"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 12,
+      "sheet_id": "S3",
+      "sheet_title": "Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "GSE - Gonzalez Structural Engineering",
+      "description": "Structural detail sheet with 9 numbered details covering stud wall framing, header sizing at openings, roof-to-wall connections (hurricane ties), DTC clip layout and max spacing, sheathing pier plan, and floor blocking details (perpendicular and parallel to joists).",
+      "key_content": [
+        "Header sizing: 8'-0\" max opening = (1) trimmer, 12'-0\" max opening = (2) trimmers",
+        "DTC clips: Simpson DTC clip (LSRC20 / LTA20 type), 4-8d nails minimum per clip",
+        "Stud wall framing section: P.T. sill plate, studs at 16\" O.C., double top plate, wall sheathing, interior GWB",
+        "Roof-to-wall connection: hurricane tie hardware at rafter/truss to top plate (Detail 4)",
+        "Roof plan with DTC clip layout showing spacing pattern (Detail 1)",
+        "Sheathing pier plan with panel orientation and nailing zones (Detail 5)",
+        "Blocking perpendicular to joist: 2x blocking, 3-16d nails at each end (Detail 9/Section A)",
+        "Blocking parallel to joist: blocks at 4'-0\" O.C. max, 2-16d or 3-8d nails (Detail 6/Section B)",
+        "DTC clips can be omitted at interior walls (Note 2 under Detail 7)",
+        "DTC clip max spacing table (Detail 2): values partially obscured by watermark",
+        "NOT SHOWN: specific hurricane tie model number (partially obscured, appears to be H2.5 or similar)"
+      ],
+      "topics": [
+        "DTC clips",
+        "hurricane ties",
+        "roof-to-wall connection",
+        "stud wall framing",
+        "headers",
+        "trimmers",
+        "blocking",
+        "sheathing",
+        "nailing schedule",
+        "connection details",
+        "roof framing",
+        "Simpson DTC",
+        "LSRC20",
+        "LTA20"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-7 (top-left)",
+          "content": "Shear wall framing elevation with header sizing rules (1 trimmer for 8' max, 2 trimmers for 12' max)"
+        },
+        {
+          "zone": "detail-4 (top-center)",
+          "content": "Roof framing connection / hurricane tie detail at rafter-to-top-plate"
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Roof plan showing DTC clip layout with spacing and DTC clip max spacing table"
+        },
+        {
+          "zone": "detail-8 (middle-left)",
+          "content": "Full stud wall framing section \u2014 foundation to roof plate"
+        },
+        {
+          "zone": "detail-5 (middle-center)",
+          "content": "Sheathing pier plan view with nailing zones"
+        },
+        {
+          "zone": "detail-2 (middle-right)",
+          "content": "DTC clip max spacing detail with installation specs"
+        },
+        {
+          "zone": "detail-9 (bottom-left)",
+          "content": "Blocking perpendicular to joist (Section A) \u2014 2x blocking with 3-16d nails"
+        },
+        {
+          "zone": "detail-6 (bottom-center)",
+          "content": "Blocking parallel to joist (Section B) \u2014 blocks at 4'-0\" O.C. max"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 13,
+      "sheet_id": "T-1",
+      "sheet_title": "Title 24 Energy Compliance (CF-1R Reports)",
+      "category": "energy",
+      "subcategory": "cf1r_compliance",
+      "prepared_by": "URo Designs",
+      "description": "Title 24 CF-1R compliance report forms composited on a single sheet (approximately pages 4-10 of a 10-page CF1R-PLB-01-E set). Includes building envelope fenestration summary, compliance results/EDR margins, HVAC system data, water heating specs, and mandatory measures. Performance compliance method, Climate Zone 8.",
+      "key_content": [
+        "Compliance method: Performance",
+        "Climate Zone: 8",
+        "CF-1R form identifier: CF1R-PLB-01-E",
+        "Fenestration U-Factor: 0.30 (all orientations)",
+        "Fenestration SHGC: 0.23 (all orientations)",
+        "Compliance result: PASS (overall)",
+        "VALUE NOT LEGIBLE: individual EDR compliance margins (heating, cooling, water heating)",
+        "VALUE NOT LEGIBLE: HVAC system type and efficiency ratings (SEER2, HSPF2, AFUE)",
+        "VALUE NOT LEGIBLE: water heater type and UEF rating",
+        "VALUE NOT LEGIBLE: opaque envelope U-factors (ceiling, wall, floor)",
+        "VALUE NOT LEGIBLE: insulation R-values (wall, ceiling, floor)",
+        "VALUE NOT LEGIBLE: duct insulation R-value and sealing method",
+        "VALUE NOT LEGIBLE: compliance software name and version",
+        "NOT SHOWN: PV solar system specs (required for new detached ADU per Title 24 \u2014 may be on separate form or not included)"
+      ],
+      "topics": [
+        "Title 24",
+        "CF1R",
+        "energy compliance",
+        "performance compliance",
+        "fenestration",
+        "U-factor",
+        "SHGC",
+        "building envelope",
+        "EDR",
+        "Energy Design Rating",
+        "HVAC",
+        "water heating",
+        "Climate Zone 8",
+        "HERS",
+        "mandatory measures",
+        "duct sealing",
+        "insulation R-values"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "CF-1R building envelope fenestration summary table (U-Factor 0.30, SHGC 0.23 all orientations)"
+        },
+        {
+          "zone": "top-right",
+          "content": "CF-1R compliance results summary with EDR margins table"
+        },
+        {
+          "zone": "middle-left",
+          "content": "CF-1R mandatory measures / HVAC system specifications"
+        },
+        {
+          "zone": "middle-right",
+          "content": "CF-1R water heating equipment specifications"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Additional compliance verification tables (heating/cooling/duct testing)"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Additional CF-1R compliance data and registration information"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 14,
+      "sheet_id": "T-2",
+      "sheet_title": "Title 24 Energy Compliance (CF-1R Reports, Continued)",
+      "category": "energy",
+      "subcategory": "cf1r_compliance",
+      "prepared_by": "URo Designs",
+      "description": "Continuation of Title 24 CF-1R compliance report forms. Includes mechanical/HVAC sub-forms (CF1R-MCH-01-E), HERS verification checklist, lighting compliance data, and compliance registration information. Performance compliance method.",
+      "key_content": [
+        "CF-1R mechanical sub-form: CF1R-MCH-01-E",
+        "HERS verification items checklist present (duct leakage, refrigerant charge, airflow, fan efficacy)",
+        "Lighting compliance sub-form present",
+        "Compliance registration information present",
+        "VALUE NOT LEGIBLE: HVAC system type and efficiency ratings (SEER2, HSPF2, AFUE)",
+        "VALUE NOT LEGIBLE: IAQ ventilation type and CFM rate",
+        "VALUE NOT LEGIBLE: duct leakage testing threshold (CFM25)",
+        "VALUE NOT LEGIBLE: refrigerant charge verification details",
+        "VALUE NOT LEGIBLE: lighting high-efficacy specifications",
+        "VALUE NOT LEGIBLE: compliance registration number",
+        "NOT SHOWN: PV solar system specifications (may be on T-1 or separate document)"
+      ],
+      "topics": [
+        "Title 24",
+        "CF1R",
+        "energy compliance",
+        "HVAC",
+        "mechanical",
+        "HERS verification",
+        "duct leakage",
+        "refrigerant charge",
+        "airflow verification",
+        "fan efficacy",
+        "lighting",
+        "high-efficacy lighting",
+        "IAQ ventilation",
+        "performance compliance"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "CF-1R mechanical/HVAC sub-form (CF1R-MCH-01-E) with equipment summary"
+        },
+        {
+          "zone": "top-right",
+          "content": "CF-1R HERS verification items checklist"
+        },
+        {
+          "zone": "middle-left",
+          "content": "CF-1R lighting/electrical compliance sub-form"
+        },
+        {
+          "zone": "middle-right",
+          "content": "Additional CF-1R compliance forms and registration data"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Compliance registration and certification information"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Preparer information and document signatures"
+        }
+      ],
+      "vision_extracted": true
+    },
+    {
+      "page_number": 15,
+      "sheet_id": "T-3",
+      "sheet_title": "Title 24 Mandatory Requirements Summary (2022)",
+      "category": "energy",
+      "subcategory": "mandatory_requirements",
+      "prepared_by": "URo Designs",
+      "description": "2022 Single Family Residential Mandatory Requirements Summary organized as 6 dense text panels (3 columns x 2 rows). Covers building envelope (air leakage, insulation, fenestration, cool roof), mechanical/HVAC (duct insulation/sealing, ventilation, equipment efficiency), water heating, lighting (high-efficacy), solar ready provisions, HERS verification requirements, EV charging readiness, and energy storage readiness.",
+      "key_content": [
+        "2022 Title 24 Mandatory Requirements Summary \u2014 comprehensive reference",
+        "Building envelope: air leakage sealing, ceiling/attic insulation, wall insulation, raised floor insulation, slab edge insulation, fenestration certification",
+        "Roof deck / cool roof / radiant barrier requirements",
+        "Fireplace damper and combustion air requirements",
+        "Pipe insulation: hot water pipe insulation per pipe diameter",
+        "Duct insulation: minimum R-value for supply and return ducts",
+        "Duct sealing: mastic or listed duct tape per SMACNA standards",
+        "Mechanical ventilation: ASHRAE 62.2 whole-house and local exhaust requirements",
+        "Space conditioning efficiency requirements (HVAC minimum efficiency standards)",
+        "Water heater efficiency requirements and pipe insulation",
+        "High-efficacy lighting: all permanently installed luminaires",
+        "Solar ready zone requirements for new construction",
+        "Combustion appliances: sealed combustion / direct-vent requirements",
+        "HERS verification items: duct leakage, refrigerant charge, airflow, fan watt draw, QII",
+        "PV photovoltaic system sizing requirements for new construction",
+        "Battery energy storage readiness provisions",
+        "EV charging readiness: dedicated circuit provisions",
+        "Demand response capable thermostat requirements",
+        "Quality Insulation Installation (QII) verification requirements",
+        "Moisture control and vapor barrier requirements"
+      ],
+      "topics": [
+        "Title 24",
+        "mandatory requirements",
+        "building envelope",
+        "insulation R-values",
+        "air leakage",
+        "fenestration",
+        "cool roof",
+        "duct insulation",
+        "duct sealing",
+        "ASHRAE 62.2",
+        "ventilation",
+        "HVAC efficiency",
+        "water heating",
+        "high-efficacy lighting",
+        "solar ready",
+        "PV solar",
+        "battery storage",
+        "EV charging",
+        "HERS verification",
+        "QII",
+        "demand response",
+        "combustion appliances",
+        "pipe insulation",
+        "moisture control",
+        "vapor barrier"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Mandatory requirements: building envelope (air leakage, ceiling/attic, insulation certification, walls, raised floor, slab edge, fenestration, roof deck, below-grade walls, fireplaces)"
+        },
+        {
+          "zone": "top-center",
+          "content": "Mandatory requirements: mechanical/HVAC (pipe insulation, space heating/cooling, duct insulation/sealing, ventilation ASHRAE 62.2, refrigerant piping)"
+        },
+        {
+          "zone": "top-right",
+          "content": "Mandatory requirements: equipment efficiency, water heating, pool/spa, lighting/electrical, appliances"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Mandatory requirements: comfort provisions, air conditioning, solar ready, combustion appliances, dwelling ventilation, cooling ventilation, comfort zone/thermostat"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Mandatory requirements: HERS verification, installation certificates, QII, fenestration verification, duct testing, electrical distribution, demand response"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Mandatory requirements: energy storage readiness, PV photovoltaic requirements, battery storage, EV charging, plumbing, moisture control"
+        }
+      ],
+      "vision_extracted": true
+    }
+  ]
+}

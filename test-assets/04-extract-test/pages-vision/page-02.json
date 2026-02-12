@@ -1,0 +1,50 @@
+{
+  "page_number": 2,
+  "sheet_id": "AIA.1",
+  "sheet_title": "CalGreen AIA Checklist, Sheet 1",
+  "category": "code_compliance",
+  "subcategory": "calgreen_checklist",
+  "prepared_by": "Ideal Design / ADU",
+  "description": "First sheet of the 2022 California Green Building Standards Code (CalGreen) Residential Mandatory Measures checklist (July 2024 Supplement). Covers Divisions 4.1 through 4.5: Planning and Design, Energy Efficiency, Water Efficiency and Conservation, Material Conservation and Resource Efficiency, and Environmental Quality.",
+  "key_content": [
+    "2022 CalGreen Residential Mandatory Measures, Sheet 1 (July 2024 Supplement)",
+    "Division 4.1: Planning and Design — site development, storm water, grading, EV charging",
+    "Division 4.2: Energy Efficiency — references California Energy Code",
+    "Division 4.3: Water Efficiency — kitchen faucets, lavatory faucets, showerheads, outdoor water (MWELO)",
+    "Division 4.4: Material Conservation — enhanced durability, construction waste 65% diversion",
+    "Division 4.5: Environmental Quality — pollutant control, definitions",
+    "EV charging provisions referenced (4.106.4.1, 4.106.4.1.1)",
+    "Storm water drainage and retention during construction (4.106.2)",
+    "Building maintenance and operation (4.410)",
+    "VALUE NOT LEGIBLE: specific GPM/GPF flow rates for fixtures (text too small)",
+    "VALUE NOT LEGIBLE: checkbox completion status for most items (obscured by watermark)",
+    "NOT SHOWN: specific fixture flow rates (GPM for faucets, GPF for toilets) — values present but not legible",
+    "NOT SHOWN: exhaust fan specs (may be on Sheet 2)"
+  ],
+  "topics": [
+    "CalGreen",
+    "green building",
+    "water efficiency",
+    "EV charging",
+    "construction waste",
+    "pollutant control",
+    "mandatory measures",
+    "storm water",
+    "MWELO",
+    "site development",
+    "energy efficiency",
+    "material conservation",
+    "environmental quality"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Chapter 3 Sections 301-302: Scope, applicability, mixed occupancy"},
+    {"zone": "left-column", "content": "Division 4.1 Planning and Design: definitions, site development (4.106), EV charging (4.106.4.1)"},
+    {"zone": "center-top", "content": "Division 4.2 Energy Efficiency (4.201)"},
+    {"zone": "center", "content": "Division 4.3 Water Efficiency and Conservation: indoor water use (4.303), outdoor water (4.304)"},
+    {"zone": "right-column", "content": "Division 4.4 Material Conservation (4.405-4.408): waste diversion 65%, Division 4.5 Environmental Quality (4.501-4.504)"},
+    {"zone": "bottom-right", "content": "Building Maintenance and Operation (4.410)"},
+    {"zone": "right-edge", "content": "Vertical title block: New Detached ADU, address, CalGreen AIA Checklist, AIA.1"}
+  ],
+  "title_block_address": "1232 N. Jefferson St., Unit 'A', Placentia, CA 92870",
+  "vision_extracted": true
+}

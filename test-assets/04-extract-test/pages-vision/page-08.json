@@ -1,0 +1,50 @@
+{
+  "page_number": 8,
+  "sheet_id": "SN1",
+  "sheet_title": "Structural Notes",
+  "category": "structural",
+  "subcategory": "structural_notes",
+  "prepared_by": "GSE - Gonzalez Structural Engineering",
+  "description": "Structural notes page containing statement of special inspection, seismic and wind design criteria, concrete specifications with strength and mix requirements, reinforcement standards with rebar cover table, and general structural construction notes referencing 2022 CBC.",
+  "key_content": [
+    "Seismic Design Category: D, Site Class: D",
+    "Ss = 1.618, SDS = 1.405, S1 ~ 0.618",
+    "Seismic Importance Factor p = 1.3, Risk Category II",
+    "Basic Wind Speed = 95 MPH, Exposure Category B, Iw = 1.00",
+    "Diaphragm R = 6.5, Equivalent Lateral Force Procedure",
+    "Floor live load: 40 PSF, Roof live load: 20 PSF",
+    "Concrete: 2,500 PSI (W/C 0.65 normal) or 3,000 PSI (W/C 0.45 moderate)",
+    "Type V Portland Cement conforming to ASTM C150",
+    "Rebar: ASTM A-615, Grade 60; smooth dowels ASTM A36",
+    "Rebar cover: 3\" against earth, 2\" exposed weather (#4+), 1-1/2\" exposed weather (#4-), 3/4\" interior slabs/walls",
+    "Class B lap splices unless noted otherwise",
+    "Non-shrink grout: 7,000 PSI minimum at 28 days",
+    "Special inspection required: wood shear walls, diaphragms, concrete, reinforcing steel, epoxy dowels",
+    "Governs: 2022 California Building Code",
+    "NOT SHOWN: lumber grade specification (covered on SN2)",
+    "NOT SHOWN: nailing schedule (covered on SN2)",
+    "NOT SHOWN: engineered wood product specs (covered on SN2)"
+  ],
+  "topics": [
+    "structural notes",
+    "seismic design",
+    "wind speed",
+    "concrete specs",
+    "rebar",
+    "reinforcement",
+    "special inspection",
+    "design criteria",
+    "lateral force",
+    "Seismic Design Category D",
+    "ASTM A-615",
+    "Type V cement",
+    "rebar cover"
+  ],
+  "drawing_zones": [
+    {"zone": "left-column", "content": "Statement of Special Inspection (5 items) and Design Criteria (seismic, wind, vertical loads)"},
+    {"zone": "center-column", "content": "Concrete specifications (10 items) and Reinforcement notes (6 items) with rebar cover table"},
+    {"zone": "right-column", "content": "General structural construction notes (13 items)"}
+  ],
+  "title_block_address": "1232 N. Jefferson St., Placentia, CA 92870",
+  "vision_extracted": true
+}

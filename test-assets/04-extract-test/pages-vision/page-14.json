@@ -1,0 +1,53 @@
+{
+  "page_number": 14,
+  "sheet_id": "T-2",
+  "sheet_title": "Title 24 CF-1R Energy Compliance Reports (HVAC, Water Heating, IAQ)",
+  "category": "energy",
+  "subcategory": "cf1r_hvac_water_heating",
+  "prepared_by": "URo Designs",
+  "description": "Four tiled CF-1R (Certificate of Compliance - Residential Performance Compliance Method) report pages covering HVAC systems, water heating, indoor air quality / lighting provisions, and the overall compliance summary with TDV margins. Continues from sheet T-1. Climate Zone 8, performance compliance method using CBECC-Res.",
+  "key_content": [
+    "Compliance method: Performance (CBECC-Res)",
+    "Climate Zone: 8",
+    "HVAC system specifications (type, efficiency ratings SEER2/HSPF2/AFUE)",
+    "Duct specifications (R-value, sealing method, location)",
+    "Water heater type and efficiency (EF/UEF)",
+    "Lighting specifications and high-efficacy percentage",
+    "Indoor air quality / mechanical ventilation provisions",
+    "Compliance summary table with TDV margins (heating, cooling, water heating, total)",
+    "VALUE NOT LEGIBLE: HVAC efficiency numeric values (composited at small scale)",
+    "VALUE NOT LEGIBLE: water heater UEF/EF values",
+    "VALUE NOT LEGIBLE: duct R-value specifics",
+    "VALUE NOT LEGIBLE: TDV compliance margin values",
+    "NOT SHOWN: PV solar system specifications (required for new detached ADU per Title 24 — may be on another sheet or absent)"
+  ],
+  "topics": [
+    "Title 24",
+    "CF-1R",
+    "energy compliance",
+    "HVAC",
+    "SEER2",
+    "HSPF2",
+    "AFUE",
+    "water heating",
+    "UEF",
+    "duct insulation",
+    "duct sealing",
+    "indoor air quality",
+    "ventilation",
+    "lighting",
+    "TDV",
+    "compliance margins",
+    "CBECC-Res",
+    "climate zone 8"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "CF-1R Form: HVAC system specifications (type, efficiency, duct specs)"},
+    {"zone": "top-right", "content": "CF-1R Form: Water heating system specifications (type, efficiency, distribution)"},
+    {"zone": "bottom-left", "content": "CF-1R Form: Lighting / IAQ / ventilation provisions"},
+    {"zone": "bottom-right", "content": "CF-1R Form: Overall compliance summary with TDV margins table"},
+    {"zone": "right-column", "content": "Title block: URo Designs, project info, sheet T-2, revision/date column"}
+  ],
+  "title_block_address": "1232 N. Jefferson Street Unit A, Placentia, CA 92870",
+  "vision_extracted": true
+}

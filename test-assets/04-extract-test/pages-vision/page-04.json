@@ -1,0 +1,50 @@
+{
+  "page_number": 4,
+  "sheet_id": "A1",
+  "sheet_title": "(E) & (N) Site Plans",
+  "category": "architectural",
+  "subcategory": "site_plan",
+  "prepared_by": "ADU West / Ideal Designs",
+  "description": "Side-by-side existing (E) and new (N) site plans showing the lot at 1232 N. Jefferson St. The existing plan shows the single-family residence, garage, and trellis to be demolished. The new plan shows the proposed detached ADU at rear with 5'-4\" rear setback, electric heat pump water heater, and ductless split AC.",
+  "key_content": [
+    "ADU rear setback: 5'-4\"",
+    "ADU width: 30'-4\" one-story",
+    "Existing residence: 72' one-story single-family, (E) garage 20' wide",
+    "Trellis 11'-6\" to be demolished for ADU",
+    "(N) Electric Heat Pump Water Heater at ADU",
+    "(N) Ductless Split AC at ADU",
+    "A/C condenser pad shown (existing, retained)",
+    "Property frontage on N. Jefferson St.: 86'",
+    "Side setback at garage: K = 11'",
+    "Site Plan Notes: grading 6\" fall in first 10 ft from foundation, storm drain pollutant controls",
+    "Water meter location: front-left near street",
+    "Electrical service location: left (west) side of property",
+    "NOT SHOWN: lot coverage percentage",
+    "NOT SHOWN: FAR (floor area ratio)",
+    "NOT SHOWN: parking space dimensions or count",
+    "NOT SHOWN: north arrow",
+    "NOT SHOWN: drainage direction arrows",
+    "NOT SHOWN: total lot area (sq ft)"
+  ],
+  "topics": [
+    "site plan",
+    "setbacks",
+    "ADU placement",
+    "property lines",
+    "demolition",
+    "utility locations",
+    "electric heat pump",
+    "equipment pads",
+    "grading",
+    "trellis demo"
+  ],
+  "drawing_zones": [
+    {"zone": "left-half", "content": "(E) Existing Site Plan at 1/8\" = 1'-0\" showing current lot with SFR, garage, trellis to be demo'd, utilities"},
+    {"zone": "right-half", "content": "(N) New Site Plan at 1/8\" = 1'-0\" showing proposed ADU at rear, heat pump, ductless AC, modified landscaping"},
+    {"zone": "bottom-center", "content": "Site Plan Legend and Site Plan Notes (3 notes: codes, pollutant discharge, grading)"},
+    {"zone": "top-right", "content": "ADU West and Ideal Designs logos"},
+    {"zone": "bottom-right", "content": "Title block: PAGE A1, project info vertical along right edge"}
+  ],
+  "title_block_address": "1232 N. Jefferson St., Placentia, CA 92870",
+  "vision_extracted": true
+}

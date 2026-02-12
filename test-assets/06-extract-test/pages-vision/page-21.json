@@ -1,0 +1,93 @@
+{
+  "page_number": 21,
+  "sheet_id": "S6.0",
+  "sheet_title": "Roof Framing Details",
+  "category": "structural",
+  "subcategory": "structural_details",
+  "prepared_by": "Ramirez Structural Inc — Jose Ramirez, PE",
+  "description": "Structural detail sheet with 12 numbered detail bubbles showing roof framing connections. Includes roof-to-wall connections at exterior/interior walls, ridge board details, ceiling joist-to-beam connections with hangers, bracing specifications, and a typical beam-to-steel-column connection detail.",
+  "key_content": [
+    "Hurricane tie: H2.5 ea. rafter (Detail 2)",
+    "MST/A21 strap @ 48\" O.C. (Detail 7)",
+    "2x4 brace @ 48\" O.C. w/ 3-10d nails ea. end (Details 3, 5, 7)",
+    "Blocking nailing: 16d @ 6\" O.C. continuous (Details 3, 5, 7)",
+    "2x blocking @ 16\" O.C. (Details 3, 5, 7)",
+    "U hanger for ceiling joist to beam (Detail 7)",
+    "No C.J. splice allowed over partitions/walls (Detail 7)",
+    "CC and ECC column caps — may substitute for CCQ and ECCQ (Detail 8)",
+    "Type 6 sheathing at column (Detail 8)",
+    "Shear clips per shearwall schedule at cont. blocking (Details 1, 2, 3, 7)",
+    "2x cont. shaped blocking w/ shear clip per shearwall schedule (Details 1, 2)",
+    "2x cont. rim board w/ shear clip per shearwall schedule (Details 3, 7)",
+    "Cont. dbl. top plate (splice per plan) — all wall details",
+    "Cripple studs to match wall below (Details 3, 4, 5, 6)",
+    "Fascia/overhang by others (Details 2, 4, 8)",
+    "6-10d lap nails, typ. (Detail 1)",
+    "NOT SHOWN: roof-to-wall tie-down values (lbs)",
+    "NOT SHOWN: rafter size or spacing specifications"
+  ],
+  "topics": [
+    "roof framing",
+    "roof-to-wall connection",
+    "hurricane ties",
+    "H2.5",
+    "MST/A21 strap",
+    "blocking",
+    "bracing",
+    "ceiling joist",
+    "U hanger",
+    "beam to column",
+    "column cap",
+    "shear clip",
+    "shearwall schedule",
+    "ridge board",
+    "rafter connection",
+    "nailing schedule",
+    "framing details",
+    "DTC clips"
+  ],
+  "drawing_zones": [
+    {
+      "zone": "detail-1 (top-right)",
+      "content": "Roof-to-wall connection at exterior wall with parallel rafters, shear clips per shearwall schedule, 6-10d lap nails typ."
+    },
+    {
+      "zone": "detail-2 (top-center-right)",
+      "content": "Roof-to-wall connection at ridge condition with H2.5 hurricane ties each rafter, shaped blocking with shear clips"
+    },
+    {
+      "zone": "detail-3 (top-center-left)",
+      "content": "Roof-to-wall connection at ridge/hip with 2x cont. rim board, 2x4 brace @ 48\" O.C., 2x blkg. @ 16\" O.C., 16d @ 6\" O.C. nailing"
+    },
+    {
+      "zone": "detail-4 (top-left)",
+      "content": "Roof-to-wall connection at shearwall with continuous blocking, double top plate, cripple studs"
+    },
+    {
+      "zone": "detail-5 (middle-right)",
+      "content": "Interior bearing wall to ceiling/roof with 2x4 brace @ 48\" O.C., 2x blkg. @ 16\" O.C., 16d @ 6\" O.C."
+    },
+    {
+      "zone": "detail-6 (middle-center-right)",
+      "content": "Ridge board connection — 2x ridge board one size larger than rafter depth, ceiling joist and wall framing below"
+    },
+    {
+      "zone": "detail-7 (middle-center-left)",
+      "content": "Ceiling joist to beam with MST/A21 strap @ 48\" O.C., U hanger, 2x4 brace, no C.J. splice over partitions"
+    },
+    {
+      "zone": "detail-8 (middle-left)",
+      "content": "Typical beam to steel column connection with CC/ECC column caps, Type 6 sheathing, 3/8\" base plate detail"
+    },
+    {
+      "zone": "detail-11 (bottom-center)",
+      "content": "City of Long Beach APPROVED stamp — Anthony Montez, Building Plan Check, PADO# 26126, Date 10/02/25"
+    },
+    {
+      "zone": "right-edge",
+      "content": "Title block — Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project No. 25-357, Sheet S6.0"
+    }
+  ],
+  "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+  "vision_extracted": true
+}

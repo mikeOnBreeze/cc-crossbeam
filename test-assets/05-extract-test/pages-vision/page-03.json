@@ -1,0 +1,53 @@
+{
+  "page_number": 3,
+  "sheet_id": "A1A.1",
+  "sheet_title": "2022 CalGreen AIA Checklist — Residential Mandatory Measures, Sheet 1",
+  "category": "code_compliance",
+  "subcategory": "calgreen_checklist",
+  "prepared_by": "Ideal Designs",
+  "description": "2022 California Green Building Standards Code residential mandatory measures checklist (July 2024 Supplement). Covers Chapter 3 (General scope), Chapter 4 Divisions 4.1 through 4.5: Planning and Design (storm water, EV charging), Energy Efficiency, Water Efficiency and Conservation (fixture flow rates, MWELO), Material Conservation and Resource Efficiency (construction waste, moisture), and Environmental Quality (VOC limits, indoor air quality, pollutant control).",
+  "key_content": [
+    "2022 CalGreen Residential Mandatory Measures (July 2024 Supplement)",
+    "Section 4.106.4: EV charging requirements for new construction — EVCS provisions, Level 2 EV charging, NEMA 14-50 receptacle",
+    "Section 4.106.2: Storm water pollution prevention — onsite retention of 85th percentile 24-hour storm event for projects adding/replacing more than 2,500 sqft impervious surface",
+    "Section 4.303.1: Kitchen faucets max 1.8 GPM at 60 PSI",
+    "Section 4.304.1: Outdoor potable water use references MWELO",
+    "Section 4.405.1: Construction waste reduction, disposal, and recycling provisions",
+    "Section 4.504.2: Adhesives, sealants, and caulks VOC limits per SCAQMD rules",
+    "Section 4.504.3: Paints and coatings — flat coatings 50 g/L VOC, non-flat coatings 100 g/L VOC, SCAQMD Rule 1113",
+    "Section 4.505: Bathroom exhaust fans ENERGY STAR rated required",
+    "Section 4.506: HVAC minimum filtration requirements (MERV rating)",
+    "APPROVED by Anthony Montes - Building Plan Check",
+    "NOT SHOWN: checkbox completion status (individual checkboxes not legible at extraction resolution)",
+    "NOT SHOWN: specific lavatory faucet flow rate values (table text too small)",
+    "NOT SHOWN: specific formaldehyde ppm limits (text too small)",
+    "NOT SHOWN: construction waste diversion percentage (specific % not legible)"
+  ],
+  "topics": [
+    "CalGreen",
+    "green building",
+    "residential mandatory measures",
+    "EV charging",
+    "water efficiency",
+    "VOC limits",
+    "SCAQMD",
+    "pollutant control",
+    "indoor air quality",
+    "construction waste",
+    "MWELO",
+    "energy efficiency",
+    "storm water",
+    "code compliance"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Chapter 3: Green Building scope, Section 301-303 general provisions"},
+    {"zone": "left-column", "content": "Chapter 4: Residential Mandatory Measures, Division 4.1 Planning and Design, Section 4.106 Site Development, EV Charging (4.106.4)"},
+    {"zone": "center-column", "content": "Section 4.106.4.2.1 EV charging for one-family/two-family dwellings"},
+    {"zone": "top-right", "content": "Division 4.2 Energy Efficiency, Division 4.3 Water Efficiency and Conservation (fixture flow rates)"},
+    {"zone": "right-column", "content": "Division 4.4 Material Conservation and Resource Efficiency, Division 4.5 Environmental Quality (VOC, IAQ, pollutant control, fireplaces)"},
+    {"zone": "bottom-center", "content": "APPROVED stamp — Anthony Montes - Building Plan Check"},
+    {"zone": "bottom-right", "content": "Title block: Sheet A1A.1, Ideal Designs, 2022 CalGreen AIA Checklist"}
+  ],
+  "title_block_address": "326 Flint Ave., Long Beach, CA 90814",
+  "vision_extracted": true
+}

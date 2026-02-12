@@ -46,6 +46,7 @@ One entry per PDF page.
 | `key_content` | string[] | yes | Specific items on this page, detailed enough to match correction letter items |
 | `topics` | string[] | yes | Keyword tags for routing queries to this page |
 | `drawing_zones` | object[] | yes | Spatial map of content locations |
+| `title_block_address` | string | no | Project address as read from this page's title block (for cross-page consistency checking) |
 | `vision_extracted` | boolean | yes | Whether structured markdown has been generated via vision for this page |
 
 ## Drawing Zone Object
@@ -124,6 +125,7 @@ references, abbreviations
     {"zone": "detail-8 (mid-left)", "content": "Shearwall Schedule table"},
     {"zone": "detail-2 (mid-right)", "content": "Stud wall and shear wall sections"}
   ],
+  "title_block_address": "1232 N. Jefferson St., Placentia, CA 92870",
   "vision_extracted": true
 }
 ```

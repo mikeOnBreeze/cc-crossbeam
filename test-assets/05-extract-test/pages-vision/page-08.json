@@ -1,0 +1,51 @@
+{
+  "page_number": 8,
+  "sheet_id": "A5.1",
+  "sheet_title": "Sections & Details",
+  "category": "architectural",
+  "subcategory": "elevations_sections",
+  "prepared_by": "Ideal Designs",
+  "description": "Architectural sections and detail sheet showing two building cross-sections (A and B), stairway guard railing specifications, 1-HR fire rated exterior wall detail, fire rated ceiling/floor assembly detail, sound transmission requirements, and wall-mounted shower detail.",
+  "key_content": [
+    "Section A: Cross-section through ADU above garage, roof/wall/floor assemblies",
+    "Section B: Cross-section through stairway area and garage",
+    "Stairway guard railings: 4\" sphere test, code-compliant height and spacing",
+    "Stairway handrails: 34\" to 38\" height from stair nosing, continuous full length, circular diameter 1-1/4\" min to 2\" max",
+    "1-HR fire rated exterior wall detail (plan view)",
+    "1-HR fire rated ceiling/floor assembly detail (section view) between ADU and existing garage",
+    "Sound transmission at floor-ceiling assemblies: STC and IIC requirements per CBC",
+    "Wall mounted shower/bathroom fixture detail",
+    "APPROVED by Anthony Montes - Building Plan Check",
+    "NOT SHOWN: specific wall assembly R-values (not clearly legible in sections)",
+    "NOT SHOWN: specific GWB type and thickness callouts for fire-rated assemblies (partially obscured)"
+  ],
+  "topics": [
+    "building sections",
+    "fire-rated wall",
+    "1-HR fire rating",
+    "fire-rated ceiling/floor assembly",
+    "stairway guard railing",
+    "handrail specifications",
+    "sound transmission",
+    "STC",
+    "IIC",
+    "Type X gypsum",
+    "wall assembly",
+    "floor-ceiling assembly",
+    "shower detail"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Section A — cross-section through ADU above garage"},
+    {"zone": "top-center", "content": "Section B — cross-section through stairway/garage area"},
+    {"zone": "top-right", "content": "Section view (N.T.S.) — wall assembly elevation detail"},
+    {"zone": "middle-left", "content": "Stairway guard railing notes and code requirements"},
+    {"zone": "bottom-left", "content": "Detail 1: Staircase guard/hand railing detail with elevation view"},
+    {"zone": "center", "content": "1-HR fire rated exterior wall (plan view) and APPROVED stamp"},
+    {"zone": "bottom-center", "content": "1-HR fire rated ceiling/floor assembly detail (section view)"},
+    {"zone": "center-right", "content": "Plan view of fire rated wall and elevation views"},
+    {"zone": "bottom", "content": "Sound transmission at floor-ceiling assemblies requirements"},
+    {"zone": "bottom-right", "content": "Wall mounted shower detail (elevation view) and title block"}
+  ],
+  "title_block_address": "326 Flint Ave., Unit 'A', Long Beach, CA 90814",
+  "vision_extracted": true
+}

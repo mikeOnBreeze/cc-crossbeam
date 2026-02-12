@@ -1,0 +1,42 @@
+{
+  "page_number": 2,
+  "sheet_id": "CS.1",
+  "sheet_title": "City of Long Beach Forms and Notes — Best Management Practices",
+  "category": "code_compliance",
+  "subcategory": "best_management_practices",
+  "prepared_by": "Ideal Designs",
+  "description": "Compilation of City of Long Beach information bulletins: BU-038 Erosion Control Best Management Practices, BU-038 Construction Activity Best Management Practices, and IS-056 Residential Bathroom Remodel reference. Contains erosion control BMPs, hazardous waste management, spill prevention, solid waste management, vehicle/equipment cleaning, and paving operations guidelines.",
+  "key_content": [
+    "City of Long Beach Information Bulletin BU-038: Erosion Control Best Management Practices (effective 04-01-2011, revised 06-30-2017)",
+    "BMP categories: Scheduling, Preservation of Existing Vegetation, Material Delivery and Storage, Hazardous Waste Management",
+    "ESCO categories: Scheduling, Silt Fence, Sand Bag Barrier, Sediment Basin, Stabilized Construction Entrance",
+    "CASE categories: Spill Prevention and Control, Solid Waste Management, Hazardous Waste Management, Paving and Grinding Operations, Vehicle and Equipment Cleaning/Fueling/Maintenance",
+    "City of Long Beach Information Bulletin IS-056: Residential Bathroom Remodel (reference handout)",
+    "APPROVED by Anthony Montes - Building Plan Check",
+    "NOT SHOWN: CalGreen checklist (separate from BMPs)",
+    "NOT SHOWN: construction waste diversion percentage",
+    "NOT SHOWN: EV charging provision"
+  ],
+  "topics": [
+    "best management practices",
+    "erosion control",
+    "BMP",
+    "construction waste",
+    "hazardous waste",
+    "spill prevention",
+    "Long Beach",
+    "BU-038",
+    "IS-056",
+    "code compliance"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "BU-038 Erosion Control Best Management Practices bulletin"},
+    {"zone": "bottom-left", "content": "BU-038 Construction Activity Best Management Practices bulletin"},
+    {"zone": "center", "content": "Additional BMP details: Spill Prevention, Solid Waste, Hazardous Waste"},
+    {"zone": "center-right", "content": "BMP continuation: Paving/Grinding, Vehicle/Equipment Cleaning, Fueling, Maintenance"},
+    {"zone": "right-column", "content": "IS-056 Residential Bathroom Remodel information bulletin with APPROVED stamp"},
+    {"zone": "bottom-right", "content": "Title block: Sheet CS.1, Ideal Designs"}
+  ],
+  "title_block_address": "326 Flint Ave., Long Beach, CA 90814",
+  "vision_extracted": true
+}

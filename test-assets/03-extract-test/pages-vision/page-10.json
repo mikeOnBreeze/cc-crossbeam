@@ -1,0 +1,48 @@
+{
+  "page_number": 10,
+  "sheet_id": "S1",
+  "sheet_title": "Partial Foundation and Framing Plans",
+  "category": "structural",
+  "subcategory": "foundation_framing_plan",
+  "prepared_by": "GSE - Gonzalez Structural Engineering",
+  "description": "Structural sheet showing partial foundation plan (left) and partial floor framing plan (right) at 1/2\" = 1'-0\" scale, with foundation notes (101-107) and framing notes (201-204). Includes symbols legend for shearwall and holdown locations.",
+  "key_content": [
+    "Foundation: 4\" slab on grade with #4 rebar at 16\" O.C. each way",
+    "Continuous footing: 15\" wide x 18\" deep with 2-#4 bars",
+    "Foundation bolts: 5/8\" diameter, 7\" embedment, 48\" max spacing, 12\" max to ends",
+    "Concrete: 2500 PSI, Type V cement, W/C ratio not to exceed 0.45, no special inspection required",
+    "Foundation sill plate: preservative-treated wood",
+    "Epoxy dowels to existing concrete: Simpson SET SC (ESR#4057), 8\" minimum embedment",
+    "Floor framing: 2x6 @ 16\" O.C. and 2x8 @ 16\" O.C.",
+    "Headers: 4x6 HDR with trimmer stud U.N.O.",
+    "Wall sheathing at shear walls: 3/4\" CD APA rated plywood or OSB, 32/16 span rating, 8d common at 4\" O.C. edge / 12\" O.C. field",
+    "Floor sheathing: 15/32\" CD APA rated plywood or OSB, 32/16 span rating, 10d common at 6\" O.C. edge / 12\" O.C. field",
+    "Stud wall framing per detail 8/S3",
+    "Fasteners in contact with PT wood: hot dipped zinc-coated, galvanized, stainless steel, silicon, bronze, or copper",
+    "NOT SHOWN: vapor barrier notation",
+    "NOT SHOWN: shearwall mark numbers on plan (marks referenced to schedule on S2)",
+    "NOT SHOWN: holdown mark numbers on plan (holdowns referenced to detail on S2)"
+  ],
+  "topics": [
+    "foundation plan",
+    "floor framing",
+    "slab on grade",
+    "continuous footing",
+    "foundation bolts",
+    "concrete specs",
+    "rebar",
+    "sheathing nailing schedule",
+    "headers",
+    "epoxy dowels",
+    "preservative-treated wood",
+    "Simpson SET SC"
+  ],
+  "drawing_zones": [
+    {"zone": "top-center", "content": "Symbols legend — shearwall and holdown symbols with references to S2"},
+    {"zone": "left-half", "content": "Partial Foundation Plan at 1/2\" = 1'-0\" with footing dimensions and slab callouts"},
+    {"zone": "right-half", "content": "Partial Floor Framing Plan at 1/2\" = 1'-0\" with joist layout, headers, and blocking"},
+    {"zone": "bottom-left", "content": "Foundation plan notes (101-107): bolts, concrete, PT wood, epoxy dowels"},
+    {"zone": "bottom-right", "content": "Framing plan notes (201-204): sheathing, headers, stud wall framing references"}
+  ],
+  "vision_extracted": true
+}

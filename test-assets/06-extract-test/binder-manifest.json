@@ -1,0 +1,2769 @@
+{
+  "project": {
+    "address": "326 Flint Ave, Long Beach, CA 90814",
+    "type": "New ADU Above Existing Garage (2nd Floor Addition)",
+    "adu_address": "326 Flint Ave, Unit 'A', Long Beach, CA 90814",
+    "main_home_address": "325 Flint Ave, Long Beach, CA 90814",
+    "designer": "Ideal Designs, Long Beach, CA 90806",
+    "structural_engineer": "Ramirez Structural Inc, Jose Ramirez, PE",
+    "energy_consultant": "LRG Designs (Lawrence Gordon), URO Designs LLC, Los Angeles, CA 90041",
+    "owner": "Brandan King",
+    "adu_size_sqft": 540,
+    "existing_home_sqft": null,
+    "lot_size_sqft": null,
+    "_orchestrator_notes": "Address fixed via majority vote (11/26 pages read '326 Flint Ave, Long Beach, CA 90814'). Cover sheet was missing zip code. 3 pages read '325 Flint Ave' which is the main home address — ADU is at 326 Unit A. Structural engineer and energy consultant populated from structural sheets (S1.0-S6.0) and energy sheets (T-1 through T-3). Owner from T-3 title block."
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "sheet_id": "CS",
+      "sheet_title": "Cover Sheet",
+      "category": "general",
+      "subcategory": "cover_sheet",
+      "prepared_by": "Ideal Designs, Long Beach, CA 90806",
+      "description": "Cover sheet for new ADU above existing garage at 326 Flint Ave., Long Beach. Includes governing codes (2022 CBC, CalGreen, Title 24), scope of work (~540 sq.ft. ADU, 2-bed/1-bath above garage), general notes, separate permits list, sheet index, vicinity map, abbreviations, designer's statement, and project data. Red 'APPROVED' stamp present.",
+      "key_content": [
+        "Project type: New 2nd floor ADU above existing garage (2-bed, 1-bath, ~540 sq.ft.)",
+        "ADU address: 326 FLINT AVE., UNIT 'A'",
+        "Main home address: 326 FLINT AVE.",
+        "Governing codes: 2022 CBC, 2022 CRC, 2022 CalGreen, 2022 Title 24, City of Long Beach Municipal Code",
+        "Scope: New staircase with top landing (73.5 sq.ft.), new covered patio, new electric ductless heat pump mini-split (single-zone system)",
+        "Gas hook-up for range & dryer",
+        "(E) gas water heater flush mounted in frame/stucco enclosure",
+        "Pre-Construction Inspection Meeting Required: APPROVED",
+        "General notes: 21 items covering construction requirements, dust control, dig alert, waste management, public works coordination",
+        "Separate permits required for: retaining walls/block fence walls, swimming pools, spas, patio covers, sheds, fences over 6 ft, fire sprinklers, fireplace, water meter box, water heater, MEP plans",
+        "Anthony Mirtney \u2014 Building Plan Check (consultant)",
+        "NOT SHOWN: ADU bedroom/bathroom count in project data (stated in scope as 2-bed/1-bath)",
+        "NOT SHOWN: structural engineer name (not legible on this sheet)",
+        "NOT SHOWN: energy consultant name",
+        "NOT SHOWN: existing home square footage",
+        "NOT SHOWN: lot size (sq.ft.)",
+        "NOT SHOWN: designer license number"
+      ],
+      "topics": [
+        "cover sheet",
+        "project info",
+        "scope of work",
+        "governing codes",
+        "general notes",
+        "separate permits",
+        "sheet index",
+        "vicinity map",
+        "abbreviations",
+        "ADU above garage",
+        "Long Beach",
+        "heat pump mini-split",
+        "gas hook-up",
+        "pre-construction inspection"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-center",
+          "content": "Project header: NEW ADU ABOVE GARAGE, main home and ADU addresses"
+        },
+        {
+          "zone": "top-right",
+          "content": "ADU logo and Ideal Designs firm logo"
+        },
+        {
+          "zone": "top-left",
+          "content": "Governing codes list and separate permits required"
+        },
+        {
+          "zone": "left-column",
+          "content": "General Notes (21 numbered items) \u2014 construction requirements, dust control, waste, public works"
+        },
+        {
+          "zone": "center-left",
+          "content": "Scope of Work (section 12) \u2014 ADU description, staircase, patio, HVAC, water heater"
+        },
+        {
+          "zone": "center",
+          "content": "Designer's Statement and Pre-Construction Inspection APPROVED stamp"
+        },
+        {
+          "zone": "center-left-below",
+          "content": "Separate Permits (section 13)"
+        },
+        {
+          "zone": "right-column-top",
+          "content": "Sheet Index with APPROVED stamp overlay"
+        },
+        {
+          "zone": "right-column-upper",
+          "content": "Legal Description (section 2)"
+        },
+        {
+          "zone": "right-column-middle",
+          "content": "Owner Information (section 3)"
+        },
+        {
+          "zone": "right-column-lower",
+          "content": "Project Data (section 4)"
+        },
+        {
+          "zone": "right-column-mid",
+          "content": "Notes (sections 5-6)"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Vicinity Map (section 11) with north arrow"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Abbreviations list (section 9)"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Project Consultants (section 8) \u2014 Anthony Mirtney, Building Plan Check"
+        },
+        {
+          "zone": "bottom-edge",
+          "content": "Tab bar: General Notes 12 | Vicinity Map 11 | Abbreviations 9 | Project Consultants 8 | Notes 6 | Project Data 4 | PAGE CS"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE., LONG BEACH, CA",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 2,
+      "sheet_id": "CCS.1",
+      "sheet_title": "Erosion Control & Construction Activity Best Management Practices",
+      "category": "code_compliance",
+      "subcategory": "erosion_control_bmps",
+      "prepared_by": "City of Long Beach \u2014 Building and Safety Bureau (Information Bulletins BU-039 & BU-038)",
+      "description": "City of Long Beach standard erosion control and construction activity best management practices (BMPs). Contains Information Bulletin BU-039 (erosion control: scheduling, preservation of vegetation, stabilized construction entrance, silt fence, sand bag barrier) and BU-038 (construction activity: water conservation, material delivery/storage, material use, spill prevention, solid/hazardous/concrete waste management, vehicle/equipment cleaning and fueling). Standard city-issued reference sheet, not project-specific engineering.",
+      "key_content": [
+        "BU-039 Erosion Control BMPs: BM01 Scheduling, BM02 Preservation of Existing Vegetation, BM03A Stabilized Construction Entrance (20 ft min width, 50 ft min length), BM03C Silt Fence (85% soil retention), BM03E Sand Bag Barrier",
+        "BU-038 Construction Activity BMPs: CA02 Water Conservation, CA10 Material Delivery and Storage, CA11 Material Use, CA52 Spill Prevention and Control, CA53 Solid Waste Management, CA54 Hazardous Waste Management, CA55 Vehicle and Equipment Cleaning, CA56/CA59 Vehicle and Equipment Fueling, CA57 Concrete Waste Management",
+        "Standard City of Long Beach information bulletins \u2014 not project-specific calculations",
+        "APPROVED stamp present on sheet"
+      ],
+      "topics": [
+        "erosion control",
+        "best management practices",
+        "BMPs",
+        "stormwater pollution prevention",
+        "construction activity",
+        "spill prevention",
+        "waste management",
+        "silt fence",
+        "sand bag barrier",
+        "water conservation",
+        "hazardous waste",
+        "concrete waste",
+        "vehicle fueling",
+        "CalGreen",
+        "code compliance"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "BU-039 Erosion Control BMPs \u2014 scheduling, vegetation preservation, stabilized construction entrance"
+        },
+        {
+          "zone": "top-right",
+          "content": "BU-039 continued \u2014 silt fence, sand bag barrier details"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "BU-038 Construction Activity BMPs \u2014 water conservation, material delivery/storage"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "BU-038 continued \u2014 material use, spill prevention, solid/hazardous/concrete waste management, vehicle cleaning/fueling"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (vertical) \u2014 Ideal Design Group, project info, APPROVED stamp, reviewer Anthony Montez"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 3,
+      "sheet_id": "AIA.1",
+      "sheet_title": "2022 CalGreen AIA Checklist \u2014 Residential Mandatory Measures, Sheet 1",
+      "category": "code_compliance",
+      "subcategory": "calgreen_checklist",
+      "prepared_by": "Ideal Designs",
+      "description": "2022 California Green Building Standards Code residential mandatory measures checklist (July 2024 Supplement). Covers Chapter 3 (General scope), Chapter 4 Divisions 4.1 through 4.5: Planning and Design (storm water, EV charging), Energy Efficiency, Water Efficiency and Conservation (fixture flow rates, MWELO), Material Conservation and Resource Efficiency (construction waste, moisture), and Environmental Quality (VOC limits, indoor air quality, pollutant control, fireplaces).",
+      "key_content": [
+        "2022 CalGreen Residential Mandatory Measures (July 2024 Supplement)",
+        "Section 4.106.4: EV charging requirements for new construction \u2014 EVCS provisions, Level 2 EV charging, NEMA 14-50 receptacle",
+        "Section 4.106.2: Storm water pollution prevention \u2014 onsite retention of 85th percentile 24-hour storm event for projects adding/replacing more than 2,500 sqft impervious surface",
+        "Section 4.303.1: Kitchen faucets max 1.8 GPM at 60 PSI",
+        "Section 4.304.1: Outdoor potable water use references MWELO",
+        "Section 4.405.1: Construction waste reduction, disposal, and recycling provisions",
+        "Section 4.504.2: Adhesives, sealants, and caulks VOC limits per SCAQMD rules",
+        "Section 4.504.3: Paints and coatings \u2014 flat coatings 50 g/L VOC, non-flat coatings 100 g/L VOC, SCAQMD Rule 1113",
+        "Section 4.505: Bathroom exhaust fans ENERGY STAR rated required",
+        "Section 4.506: HVAC minimum filtration requirements (MERV rating)",
+        "Section 4.507: Fireplace requirements for residential buildings",
+        "APPROVED by Anthony Montes - Building Plan Check",
+        "NOT SHOWN: checkbox completion status (individual checkboxes not legible at extraction resolution)",
+        "NOT SHOWN: specific lavatory faucet flow rate values (table text too small)",
+        "NOT SHOWN: specific formaldehyde ppm limits (text too small)",
+        "NOT SHOWN: construction waste diversion percentage (specific % not legible)",
+        "NOT SHOWN: specific MERV rating values (text too small)"
+      ],
+      "topics": [
+        "CalGreen",
+        "green building",
+        "residential mandatory measures",
+        "EV charging",
+        "water efficiency",
+        "VOC limits",
+        "SCAQMD",
+        "pollutant control",
+        "indoor air quality",
+        "construction waste",
+        "MWELO",
+        "energy efficiency",
+        "storm water",
+        "code compliance",
+        "fireplaces",
+        "moisture control"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Page header: 2022 California Green Building Standards Code, Residential Mandatory Measures Sheet 1 (July 2024 Supplement), California state seal"
+        },
+        {
+          "zone": "left-column",
+          "content": "Chapter 3: Green Building scope (Sections 301-303), Chapter 4: Division 4.1 Planning and Design, Section 4.106 Site Development (storm water, grading, EV charging 4.106.4)"
+        },
+        {
+          "zone": "center-column",
+          "content": "Section 4.106.4.2.1 EV charging for one-family/two-family dwellings, Division 4.3 Water Efficiency and Conservation (fixture flow rates, indoor/outdoor water use)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Division 4.2 Energy Efficiency, Division 4.4 Material Conservation and Resource Efficiency (construction waste, moisture, durability), Division 4.5 Environmental Quality (VOC limits, IAQ, pollutant control, fireplaces)"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "APPROVED stamp \u2014 Anthony Montes - Building Plan Check"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block: Sheet AIA.1, Ideal Designs, 2022 CalGreen AIA Checklist, project addresses"
+        }
+      ],
+      "title_block_address": "325 Flint Ave., Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 4,
+      "sheet_id": "AIA.2",
+      "sheet_title": "2022 CalGreen AIA Checklist \u2014 Residential Mandatory Measures, Sheet 2",
+      "category": "code_compliance",
+      "subcategory": "calgreen_checklist",
+      "prepared_by": "Ideal Designs",
+      "description": "Second sheet of the 2022 California Green Building Standards Code residential mandatory measures checklist (July 2024 Supplement). Continues from Sheet 1, covering pollutant control VOC tables (adhesives, sealants, formaldehyde), resilient flooring, composite wood products, interior moisture control (vapor retarder, capillary break), indoor air quality and exhaust, environmental comfort (MERV filtration), and Chapter 7 installer/special inspector qualifications and verifications.",
+      "key_content": [
+        "2022 CalGreen Residential Mandatory Measures Sheet 2 (July 2024 Supplement)",
+        "TABLE 4.504.2-1: Adhesive VOC limits \u2014 indoor carpet 50 g/L, wood flooring 100 g/L, PVC welding 510 g/L, contact adhesive 80 g/L, multipurpose construction 70 g/L",
+        "TABLE 4.504.2: Sealant VOC limits \u2014 sealants 250 g/L, sealant primers architectural 250 g/L, sealant primers porous 775 g/L",
+        "TABLE 4.504.3: Formaldehyde limits for composite wood products \u2014 CARB ATCM and EPA TSCA Title VI compliance",
+        "Section 4.504.4: Composite wood products \u2014 no added formaldehyde or ULEF resins",
+        "Section 4.504.5: Resilient flooring \u2014 at least 80% of floor area must comply with VOC emission limits",
+        "Section 4.505.2: Concrete slab foundations require 15-mil vapor retarder",
+        "Section 4.505.3: Capillary break \u2014 4 inches of 1/2 inch or larger clean aggregate under vapor retarder",
+        "Section 4.506: Indoor air quality and exhaust \u2014 bathroom exhaust fans ENERGY STAR rated",
+        "Section 4.507: Environmental comfort \u2014 HVAC air filtration MERV rating requirements",
+        "Chapter 7 Section 702: Installer and special inspector qualifications \u2014 insulation, weatherization, building envelope",
+        "Section 702.2: Special inspection (HCDI) \u2014 manufacturing quality assurance, window/door installation inspection",
+        "Section 703: Verifications \u2014 code compliance verification methods, final inspection and documentation",
+        "APPROVED by Anthony Montes - Building Plan Check",
+        "NOT SHOWN: checkbox completion status (individual checkboxes not legible at extraction resolution)",
+        "NOT SHOWN: specific formaldehyde ppm limits per product type (table text too small)",
+        "NOT SHOWN: specific MERV rating value (text too small)",
+        "NOT SHOWN: specialty coating VOC limit values (text too small)"
+      ],
+      "topics": [
+        "CalGreen",
+        "green building",
+        "residential mandatory measures",
+        "VOC limits",
+        "adhesive VOC",
+        "sealant VOC",
+        "formaldehyde",
+        "composite wood products",
+        "SCAQMD",
+        "pollutant control",
+        "indoor air quality",
+        "moisture control",
+        "vapor retarder",
+        "capillary break",
+        "ENERGY STAR exhaust fans",
+        "MERV filtration",
+        "special inspection",
+        "installer qualifications",
+        "code compliance",
+        "resilient flooring"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Page header: 2022 California Green Building Standards Code, Residential Mandatory Measures Sheet 2 (July 2024 Supplement), California state seal"
+        },
+        {
+          "zone": "left-column",
+          "content": "Section 4.504 Pollutant Control continued: reduced formaldehyde, adhesive/sealant VOC requirements, TABLE 4.504.2-1 Adhesive VOC Limits (full table with g/L values per adhesive type), Section 4.504.2.2 Verification"
+        },
+        {
+          "zone": "center-column",
+          "content": "TABLE 4.504.2 Sealant VOC Limits, TABLE 4.504.3 Formaldehyde VOC Limits, Section 4.504.5 Resilient Flooring Systems, Section 4.504.4 Composite Wood Products, Division 4.5 Environmental Quality (continued), Section 4.505 Interior Moisture Control (vapor retarder, capillary break)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Section 4.506 Indoor Air Quality and Exhaust, Section 4.507 Environmental Comfort (HVAC filtration), Chapter 7 Installer and Special Inspector Qualifications (702.1 Installer Training, 702.2 Special Inspection), Section 703 Verifications"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "APPROVED stamp \u2014 Anthony Montes - Building Plan Check"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block: Sheet AIA.2, Ideal Designs, 2022 CalGreen AIA Checklist, project addresses"
+        }
+      ],
+      "title_block_address": "325 Flint Ave., Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 5,
+      "sheet_id": "A1",
+      "sheet_title": "(E) & (N) Site Plan and (E) Garage 1st Fl.",
+      "category": "architectural",
+      "subcategory": "site_plan",
+      "prepared_by": "ADU West Coast / Ideal Designs (C. Sanchez)",
+      "description": "Existing and proposed site plans plus existing garage first floor plan for new 2nd-floor ADU above existing garage at 326 Flint Ave., Long Beach. Shows lot dimensions (25' x 130'), setbacks, utility locations, new ADU footprint (475.0 sq.ft.) over existing garage (380.0 sq.ft.), new staircase (71.0 sq.ft.), new covered patio (65.0 sq.ft.), HVAC condenser on garage roof, and new electric heat pump water heater enclosure. Red APPROVED stamp (BADD326126, 10/29/25).",
+      "key_content": [
+        "Lot dimensions: 25' wide x 130' deep property line",
+        "(E) Two-Car Garage: 380.0 SQ.FT.",
+        "(N) ADU: 475.0 SQ.FT. above (E) Garage",
+        "(E) Two-Story Single-Family Residence: 1,444.0 SQ.FT.",
+        "(E) Trellis Covering Patio: 219.0 SQ.FT.",
+        "(N) Covered Patio: 65.0 SQ.FT.",
+        "(N) Staircase w/ Covered Top Landing: 71.0 SQ.FT.",
+        "(N) Elect. Heat Pump W/H within framed stucco enclosure: 5.0 SQ.FT.",
+        "(E) Covered Area by Cantilever: 38.0 SQ.FT.",
+        "ADU rear setback: 4' from alley-side property line",
+        "Garage rear setback: 3'",
+        "Side setbacks: 3' S.B. (both sides)",
+        "ADU side setback: 4' ADU S.B.",
+        "Overhang setback: 3'-6\" O.H. S.B. (30' MIN.)",
+        "Overhang side setback: 2'-6\" O.H. S.B.",
+        "9' cantilever of 2nd floor ADU beyond garage footprint",
+        "(E) 6\" sewer lateral in alley",
+        "(E) Single water meter serves both Main Home & ADU",
+        "(E) Single gas meter serves both M.H. & ADU",
+        "(E) 200 AMP electrical meter for Main Home",
+        "(N) 100 AMP electrical meter for ADU",
+        "(N) Water line to ADU (new)",
+        "(N) Gas line to ADU (new)",
+        "(N) Electric heat pump mini-split condenser on garage roof (single-zone system w/ vinyl screen)",
+        "1 HR fire rated under-eaves per detail #4 on A3.1 (within 5-ft from any P.L.)",
+        "1HR fire rated ceiling/floor assembly per detail #2 on A3.1",
+        "(E) CMU wall 6' tall on both side boundaries",
+        "(E) Garage width: 19'",
+        "Front setback (1st fl.): 26' (E), Front setback (2nd fl.): 24' (E)",
+        "Curb face to property line: 12' CFPL",
+        "30' from property line to street centerline",
+        "Alley: 10' wide, 5' setback from property line",
+        "Site note: all mechanical units require min 3-ft setback to property lines",
+        "Site note: no discharge of pollutants to storm drainage",
+        "Note: no existing street tree in public right of way",
+        "Approved: BADD326126, 10/29/25, Anthony Montez - Building Plan Check",
+        "NOT SHOWN: lot coverage percentage",
+        "NOT SHOWN: FAR (floor area ratio)",
+        "NOT SHOWN: parking count or layout",
+        "NOT SHOWN: drainage direction",
+        "NOT SHOWN: easements",
+        "NOT SHOWN: grading elevations"
+      ],
+      "topics": [
+        "site plan",
+        "existing site plan",
+        "proposed site plan",
+        "garage plan",
+        "setbacks",
+        "property lines",
+        "lot dimensions",
+        "ADU placement",
+        "ADU above garage",
+        "utility locations",
+        "water meter",
+        "gas meter",
+        "electrical meter",
+        "sewer lateral",
+        "heat pump mini-split",
+        "water heater",
+        "staircase",
+        "covered patio",
+        "fire rated under-eaves",
+        "fire rated ceiling floor assembly",
+        "CMU wall",
+        "cantilever",
+        "alley",
+        "driveway",
+        "landscape",
+        "hardscape"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-third",
+          "content": "(E) SITE PLAN \u2014 existing conditions at 1/8\" = 1'-0\". Shows lot outline, existing two-car garage (380.0 sq.ft.), driveway, two-story SFR (1,444.0 sq.ft.), trellis patio (219.0 sq.ft.), landscape, hardscape, CMU walls, planter, sidewalk, parkway, water meter. Dimension strings on right edge."
+        },
+        {
+          "zone": "center-third",
+          "content": "(N) SITE PLAN \u2014 proposed conditions at 1/8\" = 1'-0\". Shows new ADU (475.0 sq.ft.) above garage, new staircase (71.0 sq.ft.), covered patio (65.0 sq.ft.), HVAC condenser on roof, heat pump water heater enclosure (5.0 sq.ft.), new utility lines (water, gas), new 100 AMP electrical meter, setback dimensions, detail references to A3.1."
+        },
+        {
+          "zone": "top-center",
+          "content": "SITE PLAN LEGEND \u2014 pattern keys for ADU outline, hardscape, patio cover, landscape, roof line, floor outlines, property line. Plus fire rated under-eaves note referencing detail #4 on A3.1."
+        },
+        {
+          "zone": "top-right",
+          "content": "SITE NOTES \u2014 3 numbered notes: house number visibility, pollutant discharge prohibition, mechanical unit 3-ft setback requirement."
+        },
+        {
+          "zone": "right-upper",
+          "content": "(E) GARAGE 1ST. FL. plan at 1/4\" = 1'-0\". Shows existing two-car garage footprint, new ADU dashed outline above, staircase with UP arrow, electric heat pump water heater in stucco enclosure, detail bubbles B/A3.1 and A/A3.1."
+        },
+        {
+          "zone": "right-middle",
+          "content": "1ST FLOOR PLAN LEGEND \u2014 symbols for 2nd floor ADU outline, 1HR fire rated ceiling/floor assembly (detail #2 on A3.1), new wall, existing wall to remain."
+        },
+        {
+          "zone": "center-middle",
+          "content": "APPROVED stamp \u2014 BADD326126, dated 10/29/25, City of Long Beach Electronic Plan Check, Anthony Montez - Building Plan Check."
+        },
+        {
+          "zone": "far-right (vertical)",
+          "content": "Title block \u2014 NEW ADU ABOVE (E) GARAGE, Main Home Address: 326 FLINT AVE., ADU Address: 326 FLINT AVE., UNIT 'A', Long Beach, CA. 90814. ADU West Coast and Ideal Designs logos. Job 25-326FLINT, drawn by C. Sanchez 07/22/2025, updated 10/08/2025."
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Scale labels: (E) SITE PLAN 1/8\" = 1'-0\" (left) and (N) SITE PLAN 1/8\" = 1'-0\" (center), Flint Ave. street labels, north arrows."
+        },
+        {
+          "zone": "bottom-right",
+          "content": "PAGE A1 designation, revision block, job number 25-326FLINT."
+        }
+      ],
+      "title_block_address": "326 FLINT AVE., LONG BEACH, CA. 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 6,
+      "sheet_id": "A2",
+      "sheet_title": "New 2nd Fl. ADU Plan w/ Schedules",
+      "category": "architectural",
+      "subcategory": "floor_plan",
+      "prepared_by": "Ideal Designs, Long Beach, CA",
+      "description": "2nd floor ADU floor plan with window schedule, door schedule, bedroom egress standards, glazing notes, means of egress, drainage notes, wall covering notes, attic access requirements, smoke alarm notes, CO alarm notes, shower/bath notes, plumbing fixture notes, clothes dryer exhaust ducting notes, floor plan legend, and electrical symbols legend. Red 'APPROVED' stamp present.",
+      "key_content": [
+        "Floor plan: 2nd floor ADU above existing garage \u2014 bedroom, bathroom, kitchen/living open studio, closet, staircase entry",
+        "Window schedule: 5 entries \u2014 vinyl windows, tempered glass at sliding and select locations, sizes include 3'x4'",
+        "Door schedule: 3 entries \u2014 (A) front door w/ security lock wood, (B) interior panel door w/ privacy lock wood, (C) sliding closet door",
+        "Min. bedroom egress: 5.7 sq.ft. net clear opening, 24\" min height, 20\" min width, 44\" max sill height",
+        "Glazing: safety glazing required at human impact locations, within 18\" of floor, shower/tub enclosures",
+        "Smoke alarms: required in each sleeping room, outside each sleeping area, on each story \u2014 interconnected with battery backup",
+        "CO alarms: required outside each sleeping area, on every level \u2014 hardwired with battery backup",
+        "Combination smoke and CO alarm: hardwired w/ battery back-up",
+        "Plumbing fixtures: water closets max 1.28 GPF, lavatory faucets per code flow rates",
+        "Shower/bath: cement, glass, plastic or non-absorbent finish, tub walls to 70\", backflow prevention required",
+        "Clothes dryer exhaust: independent duct system, per manufacturer installation instructions",
+        "Attic access: required for areas exceeding 30 sq.ft. with 30\" clear height, min opening 22\" x 30\"",
+        "Wall covering: weather-resistant exterior envelope, interior finishes per R805",
+        "Drainage: lots graded to drain surface water away from foundation walls",
+        "Electrical symbols legend: GFCI outlets, smoke detectors, CO detectors, combination smoke/CO, range outlet, dryer outlet, LED can lights, exhaust fans, panel",
+        "NOT SHOWN: specific room dimensions (dimension strings too small to read precisely)",
+        "NOT SHOWN: window U-factor and SHGC values",
+        "NOT SHOWN: plumbing fixture GPM flow rates for faucets/showerheads",
+        "NOT SHOWN: fire-rated wall callouts (1-HR assembly)",
+        "NOT SHOWN: electrical panel location on floor plan",
+        "NOT SHOWN: kitchen ventilation range hood CFM",
+        "NOT SHOWN: ceiling height"
+      ],
+      "topics": [
+        "floor plan",
+        "2nd floor ADU",
+        "window schedule",
+        "door schedule",
+        "bedroom egress",
+        "egress standards",
+        "glazing",
+        "safety glazing",
+        "tempered glass",
+        "means of egress",
+        "smoke alarms",
+        "CO alarms",
+        "carbon monoxide",
+        "plumbing fixtures",
+        "GPF",
+        "shower bath notes",
+        "clothes dryer exhaust",
+        "attic access",
+        "wall covering",
+        "drainage",
+        "electrical symbols",
+        "GFCI",
+        "floor plan legend",
+        "vinyl windows"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-half",
+          "content": "(N) 2nd Floor Plan ADU \u2014 bedroom, bathroom, kitchen/living open studio, closet, staircase entry, with dimension strings and fixture locations"
+        },
+        {
+          "zone": "top-center",
+          "content": "Window Schedule table (5 entries) \u2014 SYM, SIZE, THK, GLAZING, MATERIAL, TYPE, REMARKS columns"
+        },
+        {
+          "zone": "center",
+          "content": "Door Schedule table (3 entries) and Min. Bedroom Egress Standards (5.7 sq.ft., 24\" H, 20\" W, 44\" sill)"
+        },
+        {
+          "zone": "center-left",
+          "content": "Floor Plan Legend, Clothes Dryer Exhaust Ducting notes"
+        },
+        {
+          "zone": "center-below-left",
+          "content": "Smoke Alarm Notes (4 items, interconnected) and Carbon Monoxide Alarm Notes"
+        },
+        {
+          "zone": "center-below",
+          "content": "Shower / Bath Notes (5 items including backflow prevention, non-absorbent materials)"
+        },
+        {
+          "zone": "top-right",
+          "content": "Glazing notes, Means of Egress, Miscellaneous, Drainage, Wall Covering, Attic Access notes"
+        },
+        {
+          "zone": "right-center",
+          "content": "Plumbing Fixture Notes (1.28 GPF water closets, drain/sewer connections, future water use)"
+        },
+        {
+          "zone": "right-lower",
+          "content": "Electrical Symbols Legend \u2014 wall lights, recessed lights, outlets, GFCI, switches, smoke/CO detectors, range/dryer outlets, exhaust fans, panel"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Red APPROVED stamp \u2014 Anthony Mirtney, Building Plan Check"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE UNIT A, LONG BEACH CA 90814, PAGE A2, Ideal Designs"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "(N) 2ND FLOOR PLAN ADU label repeated"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE., UNIT 'A', LONG BEACH, CA. 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 7,
+      "sheet_id": "A3",
+      "sheet_title": "Elevations & Proposed Roof Plan",
+      "category": "architectural",
+      "subcategory": "elevations_sections",
+      "prepared_by": "Ideal Designs",
+      "description": "Architectural elevation sheet showing all four exterior elevations (West, North, South, East) of the new ADU above existing garage, a proposed roof plan with ventilation calculations, roofing material specifications, roof elevation legends, and a metal guardrailing detail. Building height is 20'-11\" from top of curb to midpoint of highest ridge. Attic ventilation calculations for 780 SF attic area included.",
+      "key_content": [
+        "West Elevation: 17' NEW ADU ABOVE GARAGE, heat pump mini-split outdoor unit on wall, (N) electric heat pump water heater within framed stucco enclosure",
+        "North Elevation: 29'-8\" at peak, 20'-11\" from top of curb to midpoint of highest ridge, HVAC condenser visible, metal guardrail at deck",
+        "South Elevation: 20'-3\" NEW ADU ABOVE GARAGE, (E) existing drive gate w/ garage 16' deep (in-out), 18' of garage",
+        "East Elevation: 17' NEW ADU ABOVE GARAGE, 20'-11\" from top of curb to midpoint of highest ridge, external stairway",
+        "Building height: 20'-11\" from top of curb to midpoint of highest ridge",
+        "Roofing material: Class A fire-rated 3-tab composition shingles over 30 lb felt underlayment, 7/16\" OSB or 15/32\" CDX plywood sheathing",
+        "Attic ventilation: NEW ATTIC AREA = 780 SF, ventilation @ 1/150 = 5.20 SF required",
+        "Proposed vents: dormer vents 24\"x14\" = 400.00 S.I., cable/soffit vents = 140.00 S.I., total net free ventilation = 540.00 S.I.",
+        "Roof plan net free ventilation: 476.00 S.I. (shown on plan drawing)",
+        "(N) Roof plan with ridge line, cricket/saddle locations, vent placements",
+        "Roof elevation legends: shingle icon, ridge sheer-cakes, cricket/saddle, roof line, facia guide symbols",
+        "Detail 1: Metal guardrailing detail \u2014 4x6 post, bolted connection, 4\" max sphere spacing between pickets",
+        "Elevation scales: 1/4\" = 1'-0\"",
+        "NOT SHOWN: roof pitch (rise:run) not explicitly dimensioned on elevations",
+        "NOT SHOWN: exterior wall assembly layers / R-values not shown on this sheet",
+        "NOT SHOWN: solar panel array location (required for new detached ADU per Title 24)",
+        "NOT SHOWN: ventilation net free area calculation reconciliation (540 S.I. vs 476 S.I. discrepancy)",
+        "NOT SHOWN: eave/overhang projection dimension",
+        "NOT SHOWN: address number visibility note"
+      ],
+      "topics": [
+        "elevations",
+        "building height",
+        "roof plan",
+        "roofing material",
+        "Class A fire-rated",
+        "composition shingles",
+        "attic ventilation",
+        "net free area",
+        "ventilation calculation",
+        "dormer vents",
+        "metal guardrail",
+        "guardrailing detail",
+        "heat pump water heater",
+        "HVAC condenser",
+        "mini-split",
+        "curb to ridge height",
+        "ADU above garage",
+        "exterior stairway",
+        "roof elevation legends"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "West Elevation (1/4\" = 1'-0\"): two-story ADU above garage, heat pump equipment, stairway railing"
+        },
+        {
+          "zone": "top-center",
+          "content": "North Elevation (1/4\" = 1'-0\"): front view with 29'-8\" peak height, 20'-11\" curb-to-ridge, HVAC condenser, metal guardrail at deck"
+        },
+        {
+          "zone": "top-center-right",
+          "content": "New Attic Area Ventilation Calculation: 780 SF attic, proposed vents table (dormer 400 S.I., cable 140 S.I., total 540 S.I.)"
+        },
+        {
+          "zone": "top-right",
+          "content": "ADU Designs logo, Ideal Designs firm info"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "South Elevation (1/4\" = 1'-0\"): rear view, existing drive gate, 20'-3\" height, 18' garage depth"
+        },
+        {
+          "zone": "bottom-center-left",
+          "content": "East Elevation (1/4\" = 1'-0\"): side view, 17' ADU height, 20'-11\" curb-to-ridge, stairway"
+        },
+        {
+          "zone": "center",
+          "content": "Roofing Material specification (Class A fire-rated, 3-tab comp shingles, 30 lb felt, OSB/plywood sheathing)"
+        },
+        {
+          "zone": "center-left",
+          "content": "Roof Elevation Legends: symbol key for shingles, ridge, cricket/saddle, roof line, facia"
+        },
+        {
+          "zone": "center-right",
+          "content": "(N) Roof Plan: plan view of proposed roof with ridge line, vent locations, 476.00 S.I. net free ventilation"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Detail 1: Metal Guardrailing Detail \u2014 cross-section with 4x6 post, picket spacing, base plate connection"
+        },
+        {
+          "zone": "bottom-left-corner",
+          "content": "APPROVED stamp \u2014 City of Long Beach, Anthony Montes - Building Plan Check"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Title block: Sheet A3, Ideal Designs, Job No. 25-326FLNT, project addresses"
+        }
+      ],
+      "title_block_address": "325 Flint Ave., Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 8,
+      "sheet_id": "A3.1",
+      "sheet_title": "Section Cuts & Details",
+      "category": "architectural",
+      "subcategory": "elevations_sections",
+      "prepared_by": "Ideal Designs, Long Beach, CA",
+      "description": "Architectural detail sheet with stairway cross-sections (Section A and B), stairway guard railing and handrail notes, fire-rated ceiling/floor assembly detail, 1-hour fire-rated exterior wall detail, fire-rated eave assembly section, wall assembly penetration detail (U.L. System 604), sound transmission notes, and accessibility grab bar details for water closet and shower. 7 numbered detail zones plus 2 building sections. Red 'APPROVED' stamp present.",
+      "key_content": [
+        "Section A: stairway cross-section showing existing garage below, new ADU above \u2014 R-30 insulation at roof/ceiling, R-19 insulation at walls",
+        "Section B: perpendicular stairway cross-section showing living room above, stairway, R-19 wall insulation",
+        "Roofing: Class 3 composition shingles, drip edge extends 4\" into roof, shadow board, galvanized drip edge with kick-out flashing",
+        "Building paper: 30# self-sealing",
+        "Stairway guard railing: 34\" min height at stairs, 36\"-38\" at porches/balconies/raised floors (CBC 1015)",
+        "Guard baluster spacing: shall not permit 4-3/8\" sphere to pass through (CBC 1015.5)",
+        "Stairway handrail height: 34\" min to 38\" max (CBC 1012.4)",
+        "Handrail extension: 12\" horizontally beyond top riser, continues to slope one tread depth beyond bottom riser (CBC 1012.6)",
+        "Handrail clearance: 1-1/2\" min clear space between handrail and wall (CBC 1012.6)",
+        "1 HR fire-rated exterior wall assembly: 7/8\" cement plaster (or 1/2\" gypsum sheathing min), building paper, 2x4 studs @ 16\" O.C., (1) layer 5/8\" Type X GWB min on interior",
+        "Fire caulking required at penetrations in fire-rated wall",
+        "Fire-rated ceiling/floor assembly detail: carpet/pad, floor sheathing, floor joists, resilient channel, GWB ceiling",
+        "Fire-rated eave assembly: rafter, sheathing, 30# building paper, composition shingles, drip edge, shadow board",
+        "Wall assembly penetration detail: U.L. System No. 604 \u2014 firestop with approved listed materials per ASTM E814",
+        "Electrical outlet boxes on opposite sides of fire-rated walls: separated by min 24\" horizontal distance",
+        "Sound transmission at floor-ceiling assemblies: STC rating per CBC 1207, min STC 50 (IIC 45/50)",
+        "Wall-mounted foldable grab bar for water closet (accessibility detail)",
+        "Wall-mounted shower grab bars (accessibility detail)",
+        "NOT SHOWN: R-value for exterior wall insulation (R-19 shown at stairway sections only, not explicitly in wall detail)",
+        "NOT SHOWN: specific fire rating duration for ceiling/floor assembly (implied 1-HR but not labeled)",
+        "NOT SHOWN: STC/IIC test report reference number",
+        "NOT SHOWN: grab bar mounting heights (dimensions too small to read)"
+      ],
+      "topics": [
+        "section cuts",
+        "stairway sections",
+        "guard railings",
+        "handrails",
+        "baluster spacing",
+        "fire-rated wall",
+        "1-hour fire rating",
+        "Type X gypsum",
+        "5/8 Type X GWB",
+        "fire-rated ceiling floor assembly",
+        "fire-rated eave",
+        "wall penetration detail",
+        "U.L. System 604",
+        "firestop",
+        "ASTM E814",
+        "sound transmission",
+        "STC rating",
+        "IIC rating",
+        "grab bars",
+        "accessibility",
+        "water closet grab bar",
+        "shower grab bar",
+        "R-30 insulation",
+        "R-19 insulation",
+        "composition shingles",
+        "building paper",
+        "cement plaster",
+        "kick-out flashing",
+        "drip edge",
+        "CBC 1015",
+        "CBC 1012",
+        "CBC 1207"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Section 'A' \u2014 stairway cross-section through building (existing garage below, new ADU above), showing R-30 ceiling insulation, R-19 wall insulation, Class 3 composition shingles, kitchen/living room/bedroom labels"
+        },
+        {
+          "zone": "top-center",
+          "content": "Section 'B' \u2014 perpendicular stairway cross-section showing living room above, stairway, R-19 wall insulation, roof framing"
+        },
+        {
+          "zone": "top-right",
+          "content": "Detail 4 \u2014 Fire-rated L-eave assembly section: rafter, sheathing, 30# building paper, composition shingles, drip edge, shadow board, galvanized kick-out flashing"
+        },
+        {
+          "zone": "left-column",
+          "content": "Stairway Guard Railings notes (5 items, CBC 1015 references) \u2014 34\" min at stairs, 36\"-38\" at balconies, 4-3/8\" sphere test"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Detail 1 \u2014 Staircase Guard/Hand Railing Detail elevation view (N.T.S.) with 36\" guard height, baluster spacing dimensions; Stairway Handrails notes (10 items, CBC 1012 references)"
+        },
+        {
+          "zone": "center",
+          "content": "Detail 2 \u2014 Fire Rated Ceiling/Floor Assembly Detail (section view N.T.S.) and APPROVED stamp (Anthony Mirtney, Building Plan Check)"
+        },
+        {
+          "zone": "center-right",
+          "content": "Detail 3 \u2014 1 HR Fire Rated Exterior Wall: plan view and section view (N.T.S.) \u2014 7/8\" cement plaster, building paper, 2x4 @ 16\" O.C., 5/8\" Type X GWB, fire caulking"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Sound Transmission at Floor-Ceiling Assemblies notes (STC/IIC requirements per CBC 1207) and Detail 7 \u2014 Wall Assembly Penetration Detail (U.L. System No. 604, firestop per ASTM E814)"
+        },
+        {
+          "zone": "middle-right",
+          "content": "Detail 5 \u2014 Wall Mounted Foldable Grab Bar for Water Closet (elevation view N.T.S.)"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Detail 6 \u2014 Wall Mounted Shower Grab Bars (elevation view N.T.S.)"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE UNIT 'A', LONG BEACH CA 90814, PAGE A3.1, SECTION CUTS & DETAILS, Ideal Designs"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE., UNIT 'A', LONG BEACH, CA. 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 9,
+      "sheet_id": "S1.0",
+      "sheet_title": "Structural Notes",
+      "category": "structural",
+      "subcategory": "structural_notes",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE (C 91046)",
+      "description": "Comprehensive structural notes sheet containing the 2022 CBC fastening schedule (Table 2304.10.2), concrete specifications, foundation notes, general structural notes, structural wood specifications with lumber grade table, rebar specifications with cover table, and seismic/wind design criteria. This is the primary structural reference sheet for the project.",
+      "key_content": [
+        "2022 CBC Table 2304.10.2 Fastening Schedule \u2014 full nailing schedule for all framing connections (29+ line items)",
+        "Concrete: 2,500 PSI min at 28 days (flatwork), 3,000 PSI for walls, grade beams, and caissons; ASTM C150 Type II cement; ASTM C33 aggregates; 4\" max slump for flatwork",
+        "Foundation: bearing pressure = 1500 PSF; footing depth at least 24 inches below lowest adjacent finished grade into competent soil",
+        "Structural wood: Douglas Fir-Larch, PS20-25; Joists & Planks No. 2; Beams & Stringers No. 1; Post and Timbers No. 1",
+        "Parallam (PSL): 2.0E WS (2900 Fb) and 2.2E WS (2900 Fb); Microllam (LVL): 2.0E WS (2900 Fb)",
+        "2x4 studs 8'-0\" long: No. 1; 2x4 studs 8'-1\" to 14'-0\": No. 1; 2x6 studs: No. 2",
+        "Sill plates: pressure treated Douglas Fir (P.T.D.F.) with hot-dipped zinc galvanized or stainless steel fasteners (ASTM A153)",
+        "Plywood: APA Structural 1 rated sheathing with exterior glue, per DOC PS1 or PS2",
+        "Hardware: Simpson Company or engineer approved equal",
+        "Machine bolts: ASTM A307 Grade A; Anchor bolts: ASTM F1554 Grade 36; Nuts: ASTM A563 Hex Grade A; Threaded rods: ASTM A36; Washers: ASTM F436",
+        "Rebar: ASTM A615 Grade 60; non-welded ASTM A706 Grade 60; E80XX electrodes for welding per AWS D1.4-92",
+        "Rebar lap splices: #3-#6 = 48 bar diameters, #7-#11 = 56 bar diameters",
+        "Rebar cover: walls below grade (dirt side poured against) <3\", walls below grade (formed) <2\", slabs on earth <3\", columns to main steel <2\"",
+        "Seismic Design Category: D; Risk Category: II; Ss = 1.549, S1 = 0.560, SDS = 1.239, SD1 = 1.800; Site Class: D-Default",
+        "Seismic: V = 0.173 W (ASD) (includes Rho = 1.3); Cs = 0.191; R = 6.5 (plywood shearwalls), R = 2.5 (steel columns)",
+        "Analysis procedure: Equivalent Lateral Force Procedure",
+        "Wind: basic wind speed 110 MPH, Site Exposure B, Importance Factor 1.0",
+        "Dead loads: roof 15 PSF, floor 15 PSF; Live loads: roof 20 PSF, floor 40 PSF, deck 60 PSF (1.5 L)",
+        "Moisture content of wood at time of placing shall not exceed 19 percent",
+        "General notes: all materials per 2022 CBC; contractor to verify all dimensions; engineer approval required for material alternatives",
+        "NOT SHOWN: special inspection requirements list",
+        "NOT SHOWN: adhesive anchor specifications",
+        "NOT SHOWN: glulam combination grade specifications",
+        "NOT SHOWN: pressure-treated wood chemical retention requirements"
+      ],
+      "topics": [
+        "structural notes",
+        "fastening schedule",
+        "nailing schedule",
+        "2022 CBC Table 2304.10.2",
+        "concrete specs",
+        "concrete PSI",
+        "cement type",
+        "foundation",
+        "bearing pressure",
+        "footing depth",
+        "structural wood",
+        "lumber grade",
+        "Douglas Fir-Larch",
+        "Parallam PSL",
+        "Microllam LVL",
+        "engineered wood",
+        "pressure treated",
+        "P.T.D.F.",
+        "Simpson hardware",
+        "rebar",
+        "reinforcing steel",
+        "ASTM A615",
+        "Grade 60",
+        "rebar cover",
+        "rebar splice",
+        "anchor bolts",
+        "ASTM F1554",
+        "machine bolts",
+        "seismic design",
+        "Seismic Design Category D",
+        "Ss",
+        "S1",
+        "SDS",
+        "SD1",
+        "wind speed",
+        "Exposure B",
+        "dead loads",
+        "live loads",
+        "design criteria",
+        "general notes",
+        "plywood sheathing",
+        "APA Structural 1"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-column (top)",
+          "content": "2022 CBC Table 2304.10.2 Fastening Schedule \u2014 items 1-14 (blocking, ceiling joists, collar ties, rafters, studs, headers, top plates, bottom plates)"
+        },
+        {
+          "zone": "left-column (bottom)",
+          "content": "2022 CBC Table 2304.10.2 Fastening Schedule \u2014 items 15-29 (stud to plate, top plates, braces, sheathing, joists, subfloor, planks, girders, ledgers, bridging)"
+        },
+        {
+          "zone": "center-top-left",
+          "content": "2022 CBC Table 2304.10.2 Fastening Schedule Continuation \u2014 sheathing/panel fastening specs"
+        },
+        {
+          "zone": "center-top",
+          "content": "CONCRETE notes (8 items): cement ASTM C150 Type II, 2500 PSI min, 3000 PSI walls/beams/caissons, admixtures, conduit rules, control joints"
+        },
+        {
+          "zone": "center-middle",
+          "content": "FOUNDATION notes (7 items): bearing pressure 1500 PSF, footing 24\" min depth, excavation requirements, sleeves, engineer responsibility"
+        },
+        {
+          "zone": "center-bottom",
+          "content": "STRUCTURAL WOOD notes (15 items): lumber grade table (DFL, PSL, LVL specs), sill plate treatment, nailing, bolt specs, plywood, Simpson hardware, moisture content, ASTM bolt standards"
+        },
+        {
+          "zone": "center-right-bottom",
+          "content": "REBAR notes (12 items): ASTM A615 Grade 60, lap splices (#3-#6=48 dia, #7-#11=56 dia), cover table, welded wire fabric, doweling requirements"
+        },
+        {
+          "zone": "top-right",
+          "content": "GENERAL NOTES (9 items): precedence of notes, contractor verification, conflict resolution, utility location, 2022 CBC compliance, engineer responsibility"
+        },
+        {
+          "zone": "center-right",
+          "content": "DESIGN CRITERIA: dead loads (roof 15 PSF, floor 15 PSF), live loads (roof 20 PSF, floor 40 PSF, deck 60 PSF), seismic data (SDC D, Ss=1.549, S1=0.560, SDS=1.239), wind (110 MPH, Exp B)"
+        },
+        {
+          "zone": "right-edge (top)",
+          "content": "Ramirez Structural Inc firm block \u2014 Jose Ramirez PE, C 91046, contact info"
+        },
+        {
+          "zone": "right-edge (middle)",
+          "content": "Project info: 326 Flint Ave, New ADU Above (E) Garage, Long Beach CA 90814, Project No. 25-357, Date 9/19/25"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Sheet S1.0 STRUCTURAL NOTES; APPROVED stamp (BAD0326126, 10/29/25, Anthony Montez - Building Plan Check)"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 10,
+      "sheet_id": "S1.1",
+      "sheet_title": "Structural Notes",
+      "category": "structural",
+      "subcategory": "structural_notes",
+      "prepared_by": "Ramirez Structural Inc. \u2014 Jose Ramirez, PE",
+      "description": "First structural notes sheet containing City of Long Beach Form G01 (Structural Observation Designation), special inspection requirements, special inspection required items (anchors, wood shear walls, nailing), structural steel specifications (ASTM A992, A36, A325), structural abbreviations table, and declaration/acknowledgment statement. Red 'APPROVED' stamp present (Anthony Montez, Building Plan Check).",
+      "key_content": [
+        "Form G01: Structural Observation Designation per CBC Section 1704.6 \u2014 City of Long Beach",
+        "Structural observation required for lateral force-resisting system per CBC 1704.6 and LBMC 18.04",
+        "Special inspection per 2022 CBC Section 1705",
+        "Special inspection required: anchor bolts, epoxied dowels in concrete at (P)olding/(E)xisting footings/(C)oncrete slabs",
+        "Special inspection required: inside and sleeve anchors (where noted)",
+        "Special inspection required: wood shear walls, shear panels, diaphragms \u2014 nailing, framing, boundary elements, holdowns, drag struts",
+        "Special inspection by deputy inspector required where fastener spacing is 4\" O.C. or less (nailing permit required)",
+        "Structural steel: wide flange per ASTM A992, other shapes and bars per ASTM A36",
+        "Structural bolts: ASTM A325 bearing type connections",
+        "High strength connectors: ASTM A325, nuts per ASTM A563",
+        "Bolt holes: 1/16\" larger than bolt unless noted otherwise",
+        "Non-shrink grout: minimum 5,000 PSI compressive strength at 28 days (Quikrete 1585 or equivalent)",
+        "All steel exposed to weather: hot-dip galvanized per ASTM A153/A123",
+        "All structural steel: shop primed with approved rust inhibitive primer",
+        "Full penetration groove welds for moment frame members: special inspection required",
+        "Fabrication in approved shop only; shop drawings submitted to engineer before fabrication",
+        "Structural abbreviations table provided (DFL, O.C., PSI, PSF, GWB, CMU, STR, PT, GALV, etc.)",
+        "Declaration date: 10/29/2025",
+        "Project No.: 26-357",
+        "NOT SHOWN: seismic design values (Ss, S1, SDS, SD1, Seismic Design Category) \u2014 may be on subsequent structural notes page",
+        "NOT SHOWN: wind speed and exposure category",
+        "NOT SHOWN: concrete specs (PSI, cement type, W/C ratio)",
+        "NOT SHOWN: rebar specs (ASTM grade, cover dimensions)",
+        "NOT SHOWN: nailing schedule",
+        "NOT SHOWN: lumber species and grade specification",
+        "NOT SHOWN: special inspection list for concrete or soil",
+        "NOT SHOWN: adhesive anchor specs (ASTM standards, cure time)",
+        "NOT SHOWN: pressure-treated wood requirements",
+        "NOT SHOWN: engineered wood product specs (manufacturer, ICC-ES report numbers)"
+      ],
+      "topics": [
+        "structural notes",
+        "special inspection",
+        "structural observation",
+        "CBC 1704.6",
+        "CBC 1705",
+        "Form G01",
+        "Long Beach",
+        "anchor bolts",
+        "epoxied dowels",
+        "wood shear walls",
+        "shear panels",
+        "diaphragms",
+        "holdowns",
+        "drag struts",
+        "nailing permit",
+        "4 inch O.C. nailing",
+        "structural steel",
+        "ASTM A992",
+        "ASTM A36",
+        "ASTM A325",
+        "ASTM A563",
+        "ASTM A153",
+        "ASTM A123",
+        "hot-dip galvanized",
+        "non-shrink grout",
+        "5000 PSI grout",
+        "Quikrete 1585",
+        "bolt holes",
+        "shop primed",
+        "rust inhibitive primer",
+        "moment frame",
+        "groove welds",
+        "shop drawings",
+        "fabrication",
+        "structural abbreviations",
+        "lateral force-resisting system"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-column (upper)",
+          "content": "Form G01 \u2014 Structural Observation Designation: City of Long Beach Community Development Department form per CBC 1704.6, structural observation requirements for lateral force-resisting system, code references (CBC 2022, LBMC)"
+        },
+        {
+          "zone": "left-column (lower)",
+          "content": "Declaration and Acknowledgment Statement: owner declaration, registered design professional declaration, date signed 10/29/2025, address 326 Flint Ave Long Beach CA 90814"
+        },
+        {
+          "zone": "center-top",
+          "content": "Special Inspection: 8 numbered requirements per 2022 CBC Section 1705 \u2014 inspector qualifications, reporting requirements, on-site presence, certification by building department"
+        },
+        {
+          "zone": "center-middle",
+          "content": "Special Inspection Required: 5 items \u2014 anchor bolts and dowels, epoxied dowels at existing/new footings/slabs, inside and sleeve anchors, wood shear walls/panels/diaphragms/holdowns/drag struts, deputy inspector for 4\" O.C. fastener spacing (nailing permit required)"
+        },
+        {
+          "zone": "center-bottom",
+          "content": "Structural Steel: 14 numbered notes \u2014 ASTM A992 (wide flange), A36 (shapes/bars), A325 (bolts), A563 (nuts), bolt holes 1/16\" oversize, non-shrink grout 5,000 PSI at 28 days, hot-dip galvanized per A153/A123, shop primed, groove welds inspection, approved fabricator"
+        },
+        {
+          "zone": "right-column (upper)",
+          "content": "Structural Abbreviations table: comprehensive list of abbreviations used on structural drawings (DFL, O.C., PSI, PSF, GWB, CMU, STR, PT, GALV, FTG, FDN, HDR, etc.)"
+        },
+        {
+          "zone": "center-left",
+          "content": "Red APPROVED stamp \u2014 Anthony Montez, Building Plan Check"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): RAMIREZ STRUCTURAL INC., Jose Ramirez PE, (562) 519-8045, NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE, LONG BEACH CA 90814, Project No. 26-357, Date 10/29/25, Sheet S1.1 STRUCTURAL NOTES"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE., LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 11,
+      "sheet_id": "S2.0",
+      "sheet_title": "Foundation Plan",
+      "category": "structural",
+      "subcategory": "foundation_plan",
+      "prepared_by": "Ramirez Structural Inc. \u2014 Jose Ramirez, PE",
+      "description": "Foundation plan drawing for new ADU above existing garage, showing existing concrete slab, new grade beam (GB1), HSS 4x4x1/4 steel columns full height to roof, pad footings, continuous footings, WSWH 24x9 Simpson Strong-Walls, holdown (HDU2) locations, shearwall schedule, pad footing schedule, grade beam schedule, plan notes, and legend. Scale 1/4\" = 1'-0\". Red 'APPROVED' stamp present (Anthony Montez, Building Plan Check, 10/29/25).",
+      "key_content": [
+        "Foundation plan for new ADU above existing garage at 1/4\" = 1'-0\" scale",
+        "Grade beam GB1: 12\" wide x 24\" deep, 3-#4 at top & 3-#4 at bottom, #3 stirrups @ 12\" min.",
+        "Concrete minimum f'c = 3,000 PSI",
+        "Typical continuous footing: 1'-0\" wide x 24\" min. bearing depth into competent soil w/ continuous 2-#4 T&B",
+        "Shearwall Mark 1: STRUC 1, O.S., 10d nails, 6\" edge / 12\" field, SDS\"x6\" @ 16\", A35 @ 16\", 312 PLF",
+        "Pad footing schedule: Type 1.5 (1'-6\" sq, 2-#4, 3.04 kips), Type 2.0 (2'-0\" sq, 3-#4, 5.40 kips), Type 2.5 (2'-6\" sq, 4-#4, 8.44 kips), Type 3.0 (3'-0\" sq, 3-#5, 12.15 kips), Type 3.5 (3'-6\" sq, 3-#5, 16.50 kips), Type 4.0 (4'-0\" sq, 4-#5, 21.60 kips) \u2014 all 12\" thick",
+        "Allowable bearing pressure: 1,500 PSF",
+        "Pad footing min. bearing depth: 18\" interior, 24\" exterior",
+        "HSS 4x4x1/4 steel columns full height foundation to roof (detail S4.0) at multiple locations",
+        "WSWH 24x9 Simpson Wood Strong-Wall at two locations, 6'-0\" apart",
+        "#5 @ 12\" O.C. each way T&B rebar at strong wall footing area",
+        "Holdown hardware: HDU2 (Simpson) at corners and shearwall ends",
+        "3x side nailer per detail 10/S3.3 \u2014 edge nail shear wall to column in lieu of holdown",
+        "LPT5 at 16\" O.C. staggered on each face of strong wall to nailer per detail 10/S5.0, TYP.",
+        "Anchor bolts: 7\" min. embedment into concrete, 48\" max. spacing, plate washer 0.299\"x3\"x3\"",
+        "All wood framed structural walls: 2x4 studs @ 16\" O.C. (2x6 @ 16\" O.C. at plumbing walls)",
+        "Foundation sills: naturally durable or preservative-treated wood; fasteners silicon bronze/copper, stainless steel, or hot-dipped zinc coated",
+        "Existing 1'-0\" wide continuous footing to be field verified (typical)",
+        "Existing 2x4 wall stud to be field verified",
+        "Existing concrete slab within garage footprint",
+        "GB1 grade beam with 2'-3\" cantilever at each end",
+        "1.75x14 LVL stringers @ 12\" O.C. at stair area",
+        "Shearwall detail references: 5/S3.1 & 7/S3.1 for wall type assemblies",
+        "Column detail reference: S4.0",
+        "Use common wire nails for all STRUC 1 sheathing",
+        "Use min. 8d common nails for LTP4 installed over sheathing",
+        "Use A35 @ 6\" O.C. on Simpson Strong Wall",
+        "APPROVED: BAD0326126, City of Long Beach, 10/29/25, Anthony Montez \u2014 Building Plan Check",
+        "NOT SHOWN: vapor barrier notation",
+        "NOT SHOWN: slab rebar schedule (existing slab \u2014 not new construction)",
+        "NOT SHOWN: epoxy dowel specs for connection to existing foundation"
+      ],
+      "topics": [
+        "foundation plan",
+        "grade beam",
+        "GB1",
+        "continuous footing",
+        "pad footing schedule",
+        "shearwall schedule",
+        "holdowns",
+        "HDU2",
+        "HSS column",
+        "HSS 4x4x1/4",
+        "steel columns",
+        "WSWH 24x9",
+        "Simpson Strong-Wall",
+        "Simpson Wood Strong-Wall",
+        "anchor bolts",
+        "bearing pressure",
+        "1500 PSF",
+        "3000 PSI concrete",
+        "rebar",
+        "footings",
+        "existing garage",
+        "existing slab",
+        "existing footing",
+        "field verified",
+        "LVL stringers",
+        "stair framing",
+        "2x4 studs",
+        "16 inch O.C.",
+        "PLF",
+        "312 PLF",
+        "10d nails",
+        "6 inch edge nailing",
+        "foundation sills",
+        "preservative-treated wood",
+        "side nailer",
+        "LPT5",
+        "A35 clips",
+        "SDS screws",
+        "pad footing",
+        "spread footing",
+        "structural",
+        "foundation",
+        "detail S4.0",
+        "detail S3.1",
+        "detail S3.3",
+        "detail S5.0"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Plan Notes: 12 numbered structural notes covering coordination, dimensions, structural vs partition walls, foundation sills (PT wood), wall framing (2x4 @ 16\" O.C.), anchor bolt specs (7\" embedment, 48\" spacing, plate washer), holdown anchors, shear wall sheathing, adverse soils, post-tensioned slab care"
+        },
+        {
+          "zone": "left-middle",
+          "content": "Legend: symbols for spread footings, wood post size marks, shear wall post/hardware (HDU2), wood shearwall (with schedule reference), new concrete footing (dashed lines + solid hatch), (E) concrete footing (dashed lines)"
+        },
+        {
+          "zone": "left-lower",
+          "content": "Shearwall Schedule: Mark 1 \u2014 STRUC 1 O.S., 10d nails, 6\" edge / 12\" field, SDS\"x6\" @ 16\", A.B. @32\"/48\", A35 @ 16\", 312 PLF. Notes on shearwall types (I-IV), wire nails, 8d common for LTP4, A35 @ 6\" O.C. on Simpson Strong Wall"
+        },
+        {
+          "zone": "bottom-left (upper)",
+          "content": "Pad Footing Schedule: 6 types (1.5 through 4.0), sizes from 1'-6\" to 4'-0\" square, all 12\" thick, rebar #4 or #5, capacities 3.04 to 21.60 kips. Notes: min bearing 18\" interior / 24\" exterior, 1,500 PSF allowable bearing, holdown anchor pad governs if co-located"
+        },
+        {
+          "zone": "bottom-left (lower)",
+          "content": "Conc. Grade Beam Schedule: GB1 \u2014 12\" wide x 24\" deep, 3-#4 at top & 3-#4 at bottom, #3 stirrups @ 12\" min. Notes: concrete min f'c = 3,000 PSI, min bearing depth into competent soil"
+        },
+        {
+          "zone": "center (main drawing)",
+          "content": "Foundation Plan drawing at 1/4\" = 1'-0\": existing garage slab outline, new grade beam GB1 across top with 2'-3\" cantilever each end, HSS 4x4x1/4 columns at perimeter and midpoints (full height to roof, detail S4.0), 4x4 wood posts, HDU2 holdowns at corners and shearwall ends, two WSWH 24x9 Simpson Strong-Walls at 6'-0\" spacing, #5 @ 12\" O.C. E.W. T&B at strong wall footings, existing 1'-0\" cont. footing to be field verified, existing 2x4 wall stud to be field verified"
+        },
+        {
+          "zone": "bottom-center (stair area)",
+          "content": "Stair framing: 1.75x14 LVL stringers @ 12\" O.C., hatched stair pattern, HSS 4x4x1/4 column at base (full ht. foundation to roof)"
+        },
+        {
+          "zone": "bottom-center (callout box)",
+          "content": "TYP. CONTINUOUS FOOTING: 1'-0\" wide x 24\" min. bearing depth into competent soil w/ continuous 2-#4 T&B"
+        },
+        {
+          "zone": "right-side (callout notes)",
+          "content": "Callout notes: USE 3x SIDE NAILER per detail 10/S3.3, edge nail shear wall to column in lieu of holdown; TYP. WALL STUD FRAMING 2x4 studs @16\" O.C.; USE LPT5 AT 16\" O.C. staggered on ea. face of strong wall to nailer per detail 10/S5.0 TYP.; EXISTING 2x4 WALL STUD TO BE FIELD VERIFIED"
+        },
+        {
+          "zone": "upper-center",
+          "content": "Red APPROVED stamp \u2014 BAD0326126, City of Long Beach Electronic Plan Check, date 10/29/25, Anthony Montez - Building Plan Check"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Drawing title: FOUNDATION PLAN, SCALE: 1/4\" = 1'-0\", with north arrow"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): RAMIREZ STRUCTURAL INC., Jose Ramirez PE, C 91046, (562) 519-6045, jose@ramirezstructural.com, @rsi.plans, www.ramirezstructural.com, 326 FLINT AVE NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE LONG BEACH CA 90814, Project No. 25-357, Date 9/19/25, Revision A 09-19-25, Sheet S2.0 FOUNDATION PLAN"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 12,
+      "sheet_id": "S2.1",
+      "sheet_title": "Floor Framing Plan",
+      "category": "structural",
+      "subcategory": "floor_framing_plan",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Floor framing plan for second-story ADU above existing garage. Shows joist layout (2x12 and 2x14 at 16\" O.C.), rafter framing (2x6 at 16\" and 24\" O.C.), floor and roof sheathing specs, shearwall post/strap locations, and a 7-row strap schedule with holdown sizes. Scale 1/4\" = 1'-0\".",
+      "key_content": [
+        "Typ. wall stud framing: 2x4 studs @ 16\" O.C.",
+        "Typ. floor sheathing: 3/4\" APA Rated Struc-1, T&G, 24/0 \u2014 E.N. = 10d @ 6\", F.N. = 10d @ 12\" (no blocking required at seams)",
+        "Typ. roof sheathing: 12\" APA Rated Exp-1, 32/16 \u2014 E.N. = 8d @ 6\", F.N. = 8d @ 12\" (no blocking required at seams)",
+        "Floor joists: 2x12 @ 16\" O.C. and 2x14 @ 16\" O.C. in multiple bays",
+        "Roof rafters: 2x6 @ 24\" O.C. and 2x6 @ 16\" O.C.",
+        "Engineered beam: 30x14 MSR (min. depth 13.25\")",
+        "Strap schedule \u2014 STRAP1: CS18, 9\", 16-10d, 1.31 kips (1.03 city), HDU1",
+        "Strap schedule \u2014 STRAP2: CS16, 11\", 20-10d, 1.70 kips (1.28 city), HDU2",
+        "Strap schedule \u2014 STRAP3: 2-CS18, 9\", 32-10d, 2.74 kips (2.06 city), HDU4",
+        "Strap schedule \u2014 STRAP4: 2-CS18, 11\", 40-10d, 3.41 kips (2.56 city), HDU4",
+        "Strap schedule \u2014 STRAP5: CMSTC16, 20\", 50-16d sinker, 4.49 kips (3.52 city), HDU5",
+        "Strap schedule \u2014 STRAP6: CMST14, 26\", 56-16d, 6.47 kips (4.80 city), HDU8",
+        "Strap schedule \u2014 STRAP7: CMST12, 33\", 74-16d, 9.22 kips (6.92 city), HDU11",
+        "Strap notes: strap connection to framing below per detail 5/S3.1; continue post to foundation; install strap over sheathing with sheathing nailing in addition",
+        "Multiple 4x4 posts with STRAP1, STRAP3, STRAP5 callouts at shearwall locations",
+        "Top plate splice type B minimum unless otherwise noted (see 2/S3.2)",
+        "Hung framing member detail reference: 12/S3.2",
+        "Header installation detail reference: 5/S3.2",
+        "Shearwall schedule reference: S2.0",
+        "Plan notes reference structural notes on S1.0 and details on S3.0-S3.1",
+        "11 plan notes covering coordination, structural wall definitions, treated wood requirements, G185 galvanized coating",
+        "APPROVED stamp \u2014 City of Long Beach, JACO20126, Date 10/09/25, Anthony Montez - Building Plan Check",
+        "NOT SHOWN: Joist hanger schedule (specific model numbers)",
+        "NOT SHOWN: Blocking layout at shearwall locations (referenced but not dimensioned)",
+        "NOT SHOWN: Simpson hardware model numbers for joist-to-beam connections"
+      ],
+      "topics": [
+        "floor framing",
+        "framing plan",
+        "joists",
+        "rafters",
+        "floor sheathing",
+        "roof sheathing",
+        "strap schedule",
+        "holdowns",
+        "shearwall posts",
+        "HDU1",
+        "HDU2",
+        "HDU4",
+        "HDU5",
+        "HDU8",
+        "HDU11",
+        "CS18",
+        "CMSTC16",
+        "CMST14",
+        "CMST12",
+        "nailing schedule",
+        "top plate splice",
+        "2x12 joist",
+        "2x14 joist",
+        "2x6 rafter",
+        "APA sheathing",
+        "edge nailing",
+        "field nailing",
+        "structural wood",
+        "framing members"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Plan Notes (11 numbered structural notes)"
+        },
+        {
+          "zone": "left-column (below notes)",
+          "content": "Legend \u2014 symbols for bearing beams, hung beams, headers, posts, shearwall posts/straps, sheathing, top plate splices, joists, rafters, ceiling joists"
+        },
+        {
+          "zone": "center",
+          "content": "Floor framing plan drawing \u2014 joist layout (2x12 and 2x14 @ 16\" O.C.), rafter layout (2x6 @ 16\" and 24\" O.C.), 4x4 posts with strap callouts, shearwall locations, sheathing notes, MSR beam"
+        },
+        {
+          "zone": "top-center",
+          "content": "City of Long Beach APPROVED stamp (JACO20126, 10/09/25)"
+        },
+        {
+          "zone": "center-right",
+          "content": "Typ. floor sheathing note (3/4\" APA Struc-1 T&G 24/0) and Typ. roof sheathing note (12\" APA Exp-1 32/16)"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Strap Schedule table (7 rows: STRAP1-STRAP7) with strap model, end length, nails, capacity, and holdown size; plus 3 notes"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Sheet title: FLOOR FRAMING PLAN, Scale: 1/4\" = 1'-0\""
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block \u2014 Ramirez Structural Inc, Jose Ramirez PE, 326 Flint Ave, New ADU Above (E) Garage, Long Beach CA 90814, Project No. 25-357, Date 9/19/25, Sheet S2.1"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 13,
+      "sheet_id": "S2.2",
+      "sheet_title": "Roof Plan",
+      "category": "structural",
+      "subcategory": "roof_framing_plan",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Roof framing plan for second-story ADU above existing garage. Shows rafter layout (2x6 @ 16\" O.C.), ridge board (2x6), ceiling joists (2x10 C.J. @ 16\" O.C.), PSL beam (3-1/2x9-1/4), roof sheathing specs (1/2\" APA Rated EXP-1 32/16), cripple wall sheathing note, and 10 plan notes. Scale 1/4\" = 1'-0\".",
+      "key_content": [
+        "Typ. roof sheathing: 1/2\" APA Rated EXP-1, Sheathing (32/16) \u2014 E.N. = 8d @ 6\", F.N. = 8d @ 12\" (no blocking required at seams)",
+        "Roof rafters: 2x6 @ 16\" O.C. in multiple bays",
+        "Ridge board: 2x6 ridge board running east-west",
+        "Ceiling joists: 2x10 C.J. @ 16\" O.C.",
+        "Engineered beam: 3-1/2x9-1/4 PSL (Parallel Strand Lumber)",
+        "4x4 posts at multiple corner and intermediate support locations",
+        "4x6 members at corner/intersection points",
+        "Sheath cripple wall above beam with Type 6 sheathing \u2014 see detail 7/S5.0",
+        "Top plate splice type 6 minimum unless otherwise noted (see 2/S3.2)",
+        "Detail references: 1/S6.0, 2/S6.0, 3/S6.0, 4/S6.0, 5/S6.0, 6/S3.2, 7/S5.0, 8/S3.2, 1/S3.2",
+        "Hung framing member detail reference: 12/S3.2",
+        "Header installation detail reference: 5/S3.2",
+        "Plan notes reference structural notes on S1.0 and details on S3.0-S3.3",
+        "10 plan notes covering coordination, structural wall definitions, treated wood requirements, G185 galvanized coating",
+        "APPROVED stamp \u2014 City of Long Beach, BAD032612B, Date 10/09/25, Anthony Montez - Building Plan Check",
+        "NOT SHOWN: Rafter span tables or allowable span calculations",
+        "NOT SHOWN: Hurricane tie / roof-to-wall connection schedule",
+        "NOT SHOWN: Ridge board connection details (referenced to S3.2)",
+        "NOT SHOWN: Ventilation calculations (net free area for roof ventilation)",
+        "NOT SHOWN: Roof load path diagram"
+      ],
+      "topics": [
+        "roof framing",
+        "roof plan",
+        "rafters",
+        "ridge board",
+        "ceiling joists",
+        "roof sheathing",
+        "APA sheathing",
+        "edge nailing",
+        "field nailing",
+        "PSL beam",
+        "cripple wall",
+        "top plate splice",
+        "2x6 rafter",
+        "2x10 ceiling joist",
+        "4x4 post",
+        "structural wood",
+        "framing members",
+        "nailing schedule",
+        "Type 6 sheathing",
+        "detail references"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Plan Notes (10 numbered structural notes)"
+        },
+        {
+          "zone": "left-column (below notes)",
+          "content": "Legend \u2014 symbols for bearing beams, hung beams, headers, top plate splices, rafters, ceiling joists"
+        },
+        {
+          "zone": "center",
+          "content": "Roof framing plan drawing \u2014 2x6 rafters @ 16\" O.C. radiating from 2x6 ridge board, 2x10 C.J. @ 16\" O.C. ceiling joists, 3-1/2x9-1/4 PSL beam, 4x4 posts, cripple wall sheathing note, multiple detail callout bubbles"
+        },
+        {
+          "zone": "top-center",
+          "content": "City of Long Beach APPROVED stamp (BAD032612B, 10/09/25)"
+        },
+        {
+          "zone": "center-right (above title block)",
+          "content": "Typ. roof sheathing note (1/2\" APA Rated EXP-1 32/16, E.N. = 8d @ 6\", F.N. = 8d @ 12\")"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Cripple wall sheathing note \u2014 sheath cripple wall above beam with Type 6 sheathing, see detail 7/S5.0"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Sheet title: ROOF FRAMING PLAN, Scale: 1/4\" = 1'-0\""
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block \u2014 Ramirez Structural Inc, Jose Ramirez PE, 326 Flint Ave, New ADU Above (E) Garage, Long Beach CA 90814, Project No. 25-357, Date 9/19/25, Revision 09-19-25, Sheet S2.2"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 14,
+      "sheet_id": "S3.0",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Structural typical details sheet with 12 numbered details covering partition wall anchorage, slab-on-grade construction, stepping continuous footing, reinforcement/tie/stirrup details, footing at pipe/conduit penetrations, footing intersections, and plate splice fix detail. Includes APPROVED stamp by Anthony Montes - Building Plan Check.",
+      "key_content": [
+        "Detail 3: Partition top connection \u2014 Simpson TC @ 48\" O.C., 2x4 blocking @ 48\" O.C.",
+        "Detail 3: Shift pins \u2014 P.T.D.F. sill plate with power driven pins @ 32\" O.C.",
+        "Detail 3: Partition wall framing anchor bolt at curb \u2014 2-#3 @ 48\" O.C.",
+        "Detail 1: Slab on grade \u2014 weakened plane joint, vapor barrier, sand per plan, clean gravel per plan",
+        "Detail 7: Stepping continuous footing \u2014 reinf. same size & spacing as footing reinf., top bars where occurs",
+        "Detail 5: Reinforcement \u2014 beam stirrups dia. 1-#3, seismic hooks (ductile), typical column tie",
+        "Detail 9: Ties & stirrups \u2014 hooks at 135 degrees, first at ties 1x min",
+        "Detail 12: Footing at pipe/conduit \u2014 sleeve 4\" min larger than O.D. of pipe, recompact to 95%",
+        "Detail 11: Footing intersections \u2014 all corners & intersections shall have 2 #5 vertical U.C.N., provide outside corner lap bars, std 90\u00b0 hook at inside bars",
+        "Detail 10: Plate splice fix detail \u2014 required when offset >6\", counterbore over bolt head 1/8\" min, stud @ 16\" O.C., install 2x filler pieces to bridge bolt head",
+        "APPROVED stamp: Anthony Montes - Building Plan Check",
+        "NOT SHOWN: shearwall schedule",
+        "NOT SHOWN: holdown schedule with uplift values",
+        "NOT SHOWN: roof-to-wall connection details (hurricane ties / DTC clips)",
+        "NOT SHOWN: anchor bolt embedment depth specification"
+      ],
+      "topics": [
+        "typical details",
+        "partition wall anchorage",
+        "slab on grade",
+        "stepping footing",
+        "continuous footing",
+        "reinforcement",
+        "ties and stirrups",
+        "seismic hooks",
+        "footing penetrations",
+        "footing intersections",
+        "plate splice",
+        "Simpson TC",
+        "power driven pins",
+        "vapor barrier",
+        "anchor bolt at curb",
+        "column tie",
+        "beam stirrups",
+        "corner lap bars",
+        "pipe sleeve"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-3 (top-left)",
+          "content": "Partition top connection & partition wall anchorage \u2014 parallel/perpendicular to joists, shift pins, anchor bolt at curb"
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Slab on grade \u2014 cross-section at interior, step in slab, at garage/exterior"
+        },
+        {
+          "zone": "detail-7 (middle-left)",
+          "content": "Stepping continuous footing \u2014 step up and step down transitions"
+        },
+        {
+          "zone": "detail-5 (middle-right)",
+          "content": "Reinforcement \u2014 alternate positions, ductile seismic hooks, typical column tie, beam stirrups"
+        },
+        {
+          "zone": "detail-9 (middle-right, below detail-5)",
+          "content": "Ties & stirrups \u2014 hook configurations at 135 degrees"
+        },
+        {
+          "zone": "detail-12 (bottom-left)",
+          "content": "Footing at pipe/conduit \u2014 sleeve requirements, recompaction notes"
+        },
+        {
+          "zone": "detail-11 (bottom-center-left)",
+          "content": "Footing intersections \u2014 corner, intersection, end, and splice sub-details with #5 vertical U.C.N."
+        },
+        {
+          "zone": "detail-10 (bottom-center)",
+          "content": "Plate splice fix detail \u2014 counterbore over bolt head, filler pieces"
+        },
+        {
+          "zone": "bottom-center (red box)",
+          "content": "APPROVED stamp \u2014 Anthony Montes, Building Plan Check"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block \u2014 Ramirez Structural Inc, project info, sheet S3.0"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 15,
+      "sheet_id": "S3.1",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Structural typical detail sheet continuing from S3.0. Contains plate bolting and anchor bolt schedule, shearwall intersection details, shearwall assembly details for both-side and one-side sheathing configurations, holdown and SSTB anchor schedule table, and slab/raised floor anchor sub-details. APPROVED stamp present.",
+      "key_content": [
+        "Plate bolting schedule: 1/2\" bolt = Pl. 2x2x3/16 washer, 5/8\" = Pl. 2-1/2x2-1/2x1/4, 3/4\" = Pl. 2-3/4x2-3/4x1/4, 7/8\" = Pl. 3x3x3/8, 1\" = Pl. 3-1/2x3-1/2",
+        "Anchor bolt: 1\" DIA. A.B. @ 6\" typical, other spacing at shearwalls",
+        "Shearwall intersections: 4x min. at holdown, 1x6 @ E.N. spacing",
+        "Shearwall assembly (both sides): shear clip detail, edge nailing to HD, blocking @ all panels, LTF4 & A35 spacing",
+        "Shearwall assembly (one side): top plate splice per plan, edge nailing, blocking @ all panels",
+        "Holdown/SSTB schedule: HDUE = 1,675 lbs (2,220), HD6 = 3,075 lbs (3,075), HD8 = 3,075 lbs (3,075), HD10 = 4,565 lbs (4,565), 2-HD10/1 = 7,815 lbs",
+        "Holdown posts: 4x or 6x4 minimum, 5/8\" STD anchor",
+        "Slab detail, slab front, raised detail, raised front, miniwall sub-details shown",
+        "Notes: concrete end distances per graphics, min bolt center-to-center spacing 1.1, min 3x4 washer at each bolt, rebar required at top of stem wall foundations",
+        "APPROVED stamp: Anthony Montes - Building Plan Check"
+      ],
+      "topics": [
+        "anchor bolts",
+        "plate bolting",
+        "shearwall intersections",
+        "shearwall assembly",
+        "sheathing",
+        "holdowns",
+        "holdown schedule",
+        "SSTB anchor",
+        "edge nailing",
+        "connection details",
+        "slab detail",
+        "raised floor",
+        "miniwall",
+        "washer plate",
+        "structural details",
+        "uplift",
+        "Simpson hardware"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Typ. plate bolting & anchor bolts \u2014 bolt size / plate washer schedule table and notes"
+        },
+        {
+          "zone": "top-center (detail 3)",
+          "content": "Plate bolting cross-sections \u2014 A/B bolts, headed bolts, stagger spacing at shearwalls"
+        },
+        {
+          "zone": "top-right (detail 1)",
+          "content": "Shearwall intersections \u2014 plan views showing 4x min at holdown, E.N. spacing configurations"
+        },
+        {
+          "zone": "middle-left",
+          "content": "Shearwall assembly w/ sheathing on both sides \u2014 shear clip detail, assembly notes, type table"
+        },
+        {
+          "zone": "middle-right (detail 5)",
+          "content": "Shearwall assembly w/ sheathing on one side \u2014 assembly description, staggered nailing table"
+        },
+        {
+          "zone": "bottom-center (detail 9)",
+          "content": "Holdown and SSTB anchor schedule \u2014 full-width table with HD marks, Simpson hardware, allowable tension values, post requirements"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Slab detail, slab front, raised detail, raised front, miniwall \u2014 small cross-section sub-details"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "General structural notes (8 items) \u2014 concrete end distances, bolt spacing, washer requirements, rebar at stem walls"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 16,
+      "sheet_id": "S3.2",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Third typical structural details sheet with 9+ numbered details covering opening at roof/floor framing, roof/floor diaphragm assembly, top plate splice with nailing table, boring and notching limits, beam-to-post connections, beam perpendicular to wall, ceiling/joist detail, header detail with bearing and header schedule, and beam-to-beam hanger connections. APPROVED stamp by Anthony Montes - Building Plan Check.",
+      "key_content": [
+        "Detail 4: Opening at roof/floor \u2014 double joists on each side of openings, Simpson U hanger each end typical, solid blocking between webs at 4' O.C.",
+        "Detail 3: Roof/floor diaphragm assembly \u2014 sheathing thickness/span/grade/nailing per plan, edge nailing at diaphragm edges, blocking at panel edges where required, 4'-0\" min panel, stagger 1/8\" min panel joints",
+        "Detail 2: Top plate splice \u2014 stagger joints min. 4'-0\", 4'-0\" min lap length at splice, nailing schedule table for plate thickness/width/design load",
+        "Detail 1: Boring and notching \u2014 notching not allowed within 1/3 span in middle, bored hole limitations per member depth",
+        "Detail 8: 4x or 6x beam to post \u2014 beam per plan, post per plan, strap per plan, A/E post cap each side, splice where occurs",
+        "Detail 12: Beam to beam hanger connection \u2014 PSL or GLB beam, Simpson GLT hanger (GLB), Simpson TW!",
+        "Detail 7: Beam perp. to wall \u2014 Simpson joist clip, top plates, post per plan, 2-2x min U.C.N., cont. dbl. top plates per plan, optional must M.U.C.N.",
+        "Detail 6: Ceiling/joist detail \u2014 2x full ht. stud, 10d @ 8\" O.C. each full height stud, post per plan, ceiling joist per plan",
+        "Detail 5: Header detail \u2014 bearing and header schedule table (opening width to header size), 4x4 at top & bottom king studs, height studs in exterior walls, 10d @ 8\" O.C. each full height stud at exterior walls only",
+        "Over 2x blocking: 16d @ 8\" O.C. max at accessible ceiling only",
+        "With ledger: 16d @ 8\" O.C. max, 2-0#6 min on each side, see table for number of 16d toenails",
+        "Nailing: 10d @ 8\" O.C. each stud recurring specification for full height stud connections",
+        "2-16d for each 2\" in header depth, 3-16d for each 3\" in header depth",
+        "Simpson hardware: U hanger, GLT hanger, TW!, joist clip, H/U hanger",
+        "APPROVED stamp: Anthony Montes \u2014 Building Plan Check",
+        "NOT SHOWN: shearwall schedule",
+        "NOT SHOWN: holdown schedule with uplift values",
+        "NOT SHOWN: roof-to-wall connection details (hurricane ties / DTC clips)",
+        "NOT SHOWN: anchor bolt embedment depth specification"
+      ],
+      "topics": [
+        "typical details",
+        "opening at roof floor",
+        "diaphragm assembly",
+        "top plate splice",
+        "boring and notching",
+        "beam to post",
+        "beam perpendicular to wall",
+        "ceiling joist detail",
+        "header detail",
+        "header schedule",
+        "bearing schedule",
+        "beam to beam hanger",
+        "Simpson U hanger",
+        "Simpson GLT hanger",
+        "Simpson TW",
+        "Simpson joist clip",
+        "edge nailing",
+        "blocking",
+        "king studs",
+        "full height studs",
+        "PSL",
+        "GLB",
+        "nailing schedule",
+        "10d nails",
+        "16d nails",
+        "framing connections"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-4 (top-left)",
+          "content": "Opening at roof/floor \u2014 double joists, Simpson U hanger, blocking at 4' O.C."
+        },
+        {
+          "zone": "detail-3 (top-center-left)",
+          "content": "Roof/floor diaphragm assembly \u2014 sheathing, edge nailing, blocking at panel edges"
+        },
+        {
+          "zone": "detail-2 (top-center)",
+          "content": "Top plate splice \u2014 stagger 4' min, nailing schedule table, 4'-0\" lap length"
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Boring and notching \u2014 notching limits within 1/3 span, bored hole limits"
+        },
+        {
+          "zone": "detail-8 (middle-left)",
+          "content": "4x or 6x beam to post \u2014 post cap, strap, splice, beam per plan"
+        },
+        {
+          "zone": "detail-12 (bottom-left)",
+          "content": "Beam to beam hanger connection \u2014 Simpson GLT hanger, Simpson TW!, PSL/GLB beams, 4x or 6x connection"
+        },
+        {
+          "zone": "detail-7 (center)",
+          "content": "Beam perp. to wall \u2014 joist clip, top plates, over 2x blocking (16d @ 8\" O.C.), with ledger, C-beam below top plates"
+        },
+        {
+          "zone": "detail-6 (center, with APPROVED stamp)",
+          "content": "Ceiling/joist detail \u2014 2x full ht. stud, 10d @ 8\" O.C., post per plan"
+        },
+        {
+          "zone": "detail-5 (center-right)",
+          "content": "Header detail \u2014 bearing and header schedule table, king studs, full height studs at exterior walls, opening stud requirements"
+        },
+        {
+          "zone": "center (red stamp overlay)",
+          "content": "APPROVED stamp \u2014 Anthony Montes, Building Plan Check"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block \u2014 Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project 25-357, Sheet S3.2"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 17,
+      "sheet_id": "S3.3",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Fourth typical structural details sheet with 11 numbered details covering partition bottom connection to floor, ledger splice, engineered beam-to-post with Simpson CC/ECC post caps, strap holdown configurations (4 sub-details: to header, to drope beam, to flush beam, and standard), steel base plate to foundation with bolt patterns, maximum steel base plate/bolt detail, and post over wood beam with Simpson BC post cap. APPROVED stamp by Anthony Montes - Building Plan Check.",
+      "key_content": [
+        "Detail 4: Partition bot. conn. to floor \u2014 2x4 studs @ 16\" O.C., 2x4 plate w/o 16d nails @ 16\" O.C. to floor, joist perpendicular and joist parallel configurations",
+        "Detail 3: Ledger splice \u2014 CL of splice stud & strap, MxTxD strap, double strap splice variant, elevation and perspective views",
+        "Detail 1: Engineered beam to post \u2014 Simpson CC post cap and ECC post cap, beam per plan, post per plan, strap per plan where occurs, splice where occurs",
+        "Detail 5 (D): Typical strap holdown to header \u2014 HD strap & nailing per mfr., holdown post per plan (min 4x4), strap around/over header, if end length L > header depth attach strap above and below, see S3.2",
+        "Detail 5 (C): Typical strap holdown to drope beam \u2014 holdown post min 4x4, if end length L > beam depth strap above bottom of beam and nail accordingly",
+        "Detail 5 (B): Typical strap holdown to flush beam \u2014 holdown post min 4x4, if end length L > beam depth strap around bottom of beam and nail accordingly",
+        "Detail 5 (A): Typical strap holdown \u2014 standard configuration, holdown post per plan (min 4x4), HD strap & nailing per mfr.",
+        "Detail 11: Steel base plate to foundation \u2014 4x cont. nailer (P.T.), 3/4\" DIA stud bolts, 1/2 bolts @ 36\" (stagger), threaded stud (welded), alternate machine bolts, 4\" from end of wood nailer to center of bolt typical",
+        "Detail 10: Maximum steel base plate / bolts \u2014 3/4 DIA threaded stud @ 7-1/4\" at 5\" x 1/4\" PLT, non-shrink grout, 3 trimmers required, 1/2\" DIA stud bolts, plan view bolt pattern, 4\" from end of wood nailer to CL of stud bolt typical",
+        "Detail 9: Post over wood beam \u2014 Simpson BC post cap, beam per plan, post per plan",
+        "All strap holdowns: minimum 4x4 holdown post, HD strap & nailing per manufacturer",
+        "Base plate bolt specs: 1/2\" DIA and 3/4\" DIA bolts, 36\" stagger spacing",
+        "Simpson hardware: CC post cap, ECC post cap, BC post cap",
+        "APPROVED stamp: Anthony Montes \u2014 Building Plan Check",
+        "NOT SHOWN: shearwall schedule",
+        "NOT SHOWN: holdown schedule with uplift values (lbs)",
+        "NOT SHOWN: roof-to-wall connection details (hurricane ties / DTC clips)",
+        "NOT SHOWN: anchor bolt embedment depth specification"
+      ],
+      "topics": [
+        "typical details",
+        "strap holdowns",
+        "holdown to header",
+        "holdown to drope beam",
+        "holdown to flush beam",
+        "engineered beam to post",
+        "partition bottom connection",
+        "ledger splice",
+        "steel base plate",
+        "base plate bolts",
+        "post over wood beam",
+        "Simpson CC post cap",
+        "Simpson ECC post cap",
+        "Simpson BC post cap",
+        "threaded stud",
+        "machine bolts",
+        "non-shrink grout",
+        "nailer P.T.",
+        "bolt stagger",
+        "4x4 holdown post",
+        "framing connections",
+        "foundation anchoring"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-4 (top-left)",
+          "content": "Partition bot. conn. to floor \u2014 2x4 studs @ 16\" O.C., 16d nails @ 16\" O.C., joist perpendicular and parallel configs"
+        },
+        {
+          "zone": "detail-3 (top-center)",
+          "content": "Ledger splice \u2014 strap splice and double strap splice, elevation and perspective views"
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Engineered beam to post \u2014 Simpson CC and ECC post caps, beam/post/strap per plan, elevation views"
+        },
+        {
+          "zone": "detail-5 (middle-row, full width)",
+          "content": "Strap holdowns \u2014 4 sub-details (D: to header, C: to drope beam, B: to flush beam, A: standard), all min 4x4 holdown post, HD strap per mfr."
+        },
+        {
+          "zone": "detail-5D (middle-left)",
+          "content": "Typical strap holdown to header \u2014 strap around header, if L > header depth attach above and below"
+        },
+        {
+          "zone": "detail-5C (middle-center-left)",
+          "content": "Typical strap holdown to drope beam \u2014 strap above bottom of beam if L > beam depth"
+        },
+        {
+          "zone": "detail-5B (middle-center-right)",
+          "content": "Typical strap holdown to flush beam \u2014 strap around bottom of beam if L > beam depth"
+        },
+        {
+          "zone": "detail-5A (middle-right)",
+          "content": "Typical strap holdown \u2014 standard configuration, holdown post min 4x4"
+        },
+        {
+          "zone": "detail-11 (bottom-left)",
+          "content": "Steel base plate to foundation \u2014 3/4\" DIA stud bolts, 1/2 bolts @ 36\" stagger, P.T. nailer, threaded stud welded, machine bolt alternate"
+        },
+        {
+          "zone": "detail-10 (bottom-center)",
+          "content": "Maximum steel base plate / bolts \u2014 3/4 DIA threaded stud @ 7-1/4\", 5\" x 1/4\" PLT, non-shrink grout, plan view bolt pattern, APPROVED stamp overlaid"
+        },
+        {
+          "zone": "detail-9 (bottom-right)",
+          "content": "Post over wood beam \u2014 Simpson BC post cap, beam per plan, post per plan"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block \u2014 Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project 25-357, Sheet S3.3"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 18,
+      "sheet_id": "S3.4",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Steel column-to-beam connection typical details. Shows base plate plans (A, B, C) with anchor bolt specs, fillet weld size table, beam seat detail, stiffener plate detail, and optional Hilti expansion anchor note. Upper half has details; lower half is blank.",
+      "key_content": [
+        "Base plate Plan A: 1/2\" thick on 1-1/2\" min non-shrink grout, 4-1/2\" DIA A.B.'s with DBL nuts",
+        "Base plate Plan B: 1/2\" x (steel column + 3/4\"), 2-1/2\" DIA A.B.'s with DBL nuts",
+        "Plan B note: USE 18\" LONG A.B.'s AT 6\" CONC. CURBS AND WHERE SHEAR PANELS OCCUR",
+        "Fillet weld min sizes: to 1/4\" = 1/8\", over 1/4\" to 1/2\" = 3/16\", over 1/2\" to 3/4\" = 1/4\", over 3/4\" = 5/16\"",
+        "Optional: 1/2\" DIA Hilti Kwik Bolts TZ expansion anchors, 5\" embedment (ESR-1917, LARR #25701) with special inspection in lieu of cast-in-place",
+        "Beam seat: L 3) x5x5x(D+3/2\") angle",
+        "Stiffener PL 3/8\" each side at beam end",
+        "Cap PL flange (6P MIN) x BM flange width w/ 4-3/4\" DIA M.B.'s",
+        "Column cap plate PL 3/4\", side plates 3/4\" x 3\" ea. side w/ 2-3/4\" DIA M.B.S",
+        "Non-shrink grout: 1-1/2\" min at all column bases",
+        "APPROVED: City of Long Beach, BADD326126, 10/29/25, Anthony Montez",
+        "NOT SHOWN: Shearwall schedule",
+        "NOT SHOWN: Holdown schedule",
+        "NOT SHOWN: Nailing schedule",
+        "NOT SHOWN: Foundation bolt spacing specs",
+        "NOT SHOWN: Slab edge detail"
+      ],
+      "topics": [
+        "steel column",
+        "beam connection",
+        "base plate",
+        "anchor bolts",
+        "fillet weld",
+        "non-shrink grout",
+        "stiffener plate",
+        "beam seat",
+        "Hilti expansion anchors",
+        "special inspection",
+        "column cap plate",
+        "typical details",
+        "structural steel"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left (grid 4-3)",
+          "content": "Column-to-beam elevation detail: cap plate, side plates, beam seat angle, column continuation"
+        },
+        {
+          "zone": "top-center (grid 3-2)",
+          "content": "Base plate Plans A, B, C with anchor bolt specs, column per plan elevation, fillet weld table, Hilti expansion anchor optional note"
+        },
+        {
+          "zone": "top-right (grid 2-1)",
+          "content": "Beam end/stiffener detail with PL 3/8\" stiffeners, cap plate flange detail, column per plan view"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block: Ramirez Structural Inc, project info, sheet S3.4"
+        },
+        {
+          "zone": "center",
+          "content": "City of Long Beach APPROVED stamp \u2014 BADD326126, 10/29/25"
+        },
+        {
+          "zone": "bottom-half (grid 8-12)",
+          "content": "Blank / no details drawn"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 19,
+      "sheet_id": "S4.0",
+      "sheet_title": "Foundation Details",
+      "category": "structural",
+      "subcategory": "foundation_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Foundation details sheet with 12 numbered details covering new-to-existing concrete connections, epoxy anchor specifications, strongwall footings, LVL stringer connections, holdown post anchoring, retrofit bolt details, column-to-footing connections, and post base details. All epoxy connections reference Simpson SET-3G with special inspection required. APPROVED stamp by Anthony Montez - Building Plan Check, City of Long Beach, dated 10/29/25.",
+      "key_content": [
+        "Detail 4: Strongwall connection \u2014 strongwall per plan, third rod A.B. per sheet 1/WSWH1, A.B. dia. + 1/2\" hole, reinf. to match cont. ftg. (min. lap = 2'-0\")",
+        "Detail 3: Column to footing / grade beam \u2014 column per plan, base plate per detail RSI, CL grade beam/ftg./column, ties per section per schedule, R/D hook typ.",
+        "Detail 2: Stirrup/reinforcement at existing slab \u2014 drill & epoxy w/ Simpson SET-3G (ICC-ES #4051) 6\" min. embed, special inspection required, #3 rebar @ 32\"",
+        "Detail 1: LVL stringer connection \u2014 1-3/4\" x 14\" LVL stringer @ 12\" O.C., 1/2\" plywood, P.L. & A.B. @ 24\" O.C., #3 rebar @ 36\"",
+        "Detail 8: Existing stud wall at existing concrete \u2014 new-to-existing connection, dowels to match footing reinf. (2'-0\" min. lap), drill & epoxy w/ Simpson SET-3G (ESR #4057) 6\" min. embed, special inspection required, clean contact surfaces with wire brush, align bottom of footings",
+        "Detail 7: Epoxy dowel at existing footing \u2014 #8 dowels T.&B. lap 2'-0\" min., column per plan tube or W.F., (E) footing for col. placement",
+        "Detail 6: Existing footing connection / thickened footing \u2014 thicken footing to provide 8\" cover below soil, base P.L. & A.B. per 2/S3.4, drill & epoxy w/ Simpson SET-3G (LARR #25091) 6\" min. embed, special inspection required, steel column per plan detail 2/S3.4",
+        "Detail 5: Sheathing / retrofit bolts at existing foundation \u2014 (E) 2x sill plate w/ 1/2\" dia. Simpson retrofit bolts (RFB #840) w/ Simpson SET-3G epoxy (ICC#4057), spacing per shearwall schedule, 9\" embedment, special inspection required",
+        "Detail 12: Post base / pedestal \u2014 enclosure per arch, pedestal size per arch on hardscape or paving",
+        "Detail 11: CB post base \u2014 #3 ties @ 8\" max., 4-#4 vert. w/ std. hooks, optional const. jt. at CL ftg. & wall",
+        "Detail 10: Holdown post at existing slab \u2014 threaded rod (size per holdown), drill & epoxy Simpson SET-3G (ICC#4057), 10\" embed for 5/8\" dia. A.B.S., special inspection required",
+        "Detail 9: Sheathing at existing foundation \u2014 (E) 2x sill plate w/ 1/2\" dia. Simpson retrofit bolts (RFB #840) w/ Simpson SET-3G epoxy (ICC#4057), spacing per shearwall schedule, 9\" embedment, special inspection required",
+        "Simpson SET-3G epoxy: referenced in Details 2, 5, 6, 8, 9, 10 with ICC-ES #4051, ESR #4057, LARR #25091, ICC#4057",
+        "Simpson RFB #840 retrofit bolts: 1/2\" dia., referenced in Details 5 and 9",
+        "Embedment depths: 6\" min. (epoxy anchors in Details 2, 6, 8), 9\" (retrofit bolts in Details 5, 9), 10\" (5/8\" dia. holdown rod in Detail 10)",
+        "Special inspection required for all epoxy anchor connections",
+        "APPROVED stamp: Anthony Montez \u2014 Building Plan Check, City of Long Beach, BLD032612R, dated 10/29/25",
+        "NOT SHOWN: footing dimensions (width x depth) \u2014 referenced as 'per plan'",
+        "NOT SHOWN: slab thickness and rebar schedule \u2014 referenced as 'per plan'",
+        "NOT SHOWN: foundation bolt max spacing and distance to ends",
+        "NOT SHOWN: concrete PSI and cement type",
+        "NOT SHOWN: vapor barrier notation"
+      ],
+      "topics": [
+        "foundation details",
+        "epoxy anchor",
+        "Simpson SET-3G",
+        "drill and epoxy",
+        "special inspection",
+        "retrofit bolts",
+        "Simpson RFB 840",
+        "holdown post",
+        "strongwall",
+        "LVL stringer",
+        "column to footing",
+        "grade beam",
+        "existing foundation",
+        "new to existing connection",
+        "dowels",
+        "embedment depth",
+        "thickened footing",
+        "post base",
+        "CB post base",
+        "sheathing",
+        "sill plate",
+        "footing reinforcement",
+        "ICC-ES 4051",
+        "ESR 4057",
+        "rebar",
+        "concrete connection",
+        "anchor bolts",
+        "WSWH1"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-4 (top-left)",
+          "content": "Strongwall connection at new-to-existing footing \u2014 third rod A.B. per sheet WSWH1, reinf. to match cont. ftg., 2'-0\" min. lap"
+        },
+        {
+          "zone": "detail-3 (top-center-left)",
+          "content": "Column to footing / grade beam \u2014 base plate, ties per schedule, R/D hook typ., CL grade beam"
+        },
+        {
+          "zone": "detail-2 (top-center)",
+          "content": "Stirrup/reinforcement at existing slab \u2014 Simpson SET-3G (ICC-ES #4051) 6\" min. embed, #3 rebar @ 32\""
+        },
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "LVL stringer connection \u2014 1-3/4\" x 14\" LVL @ 12\" O.C., 1/2\" plywood, P.L. & A.B. @ 24\" O.C., #3 @ 36\""
+        },
+        {
+          "zone": "detail-8 (middle-left)",
+          "content": "Existing stud wall at existing concrete \u2014 new-to-existing, dowels to match footing reinf., Simpson SET-3G (ESR #4057) 6\" min. embed"
+        },
+        {
+          "zone": "detail-7 (center, with APPROVED stamp)",
+          "content": "Epoxy dowel at existing footing \u2014 #8 dowels T.&B. lap 2'-0\" min., column per plan tube or W.F., APPROVED stamp overlay (BLD032612R, 10/29/25)"
+        },
+        {
+          "zone": "detail-6 (center)",
+          "content": "Existing footing connection / thickened footing \u2014 8\" cover below soil, Simpson SET-3G (LARR #25091), steel column per plan detail 2/S3.4"
+        },
+        {
+          "zone": "detail-5 (center-right)",
+          "content": "Sheathing / retrofit bolts \u2014 Simpson RFB #840, 1/2\" dia., SET-3G epoxy, 9\" embedment, spacing per shearwall schedule"
+        },
+        {
+          "zone": "detail-12 (bottom-left)",
+          "content": "Post base / pedestal at arch \u2014 pedestal size per arch on hardscape or paving"
+        },
+        {
+          "zone": "detail-11 (bottom-center-left)",
+          "content": "CB post base \u2014 #3 ties @ 8\" max., 4-#4 vert. w/ std. hooks"
+        },
+        {
+          "zone": "detail-10 (bottom-center)",
+          "content": "Holdown post at existing slab \u2014 threaded rod, Simpson SET-3G (ICC#4057), 10\" embed for 5/8\" dia."
+        },
+        {
+          "zone": "detail-9 (bottom-right)",
+          "content": "Sheathing at existing foundation \u2014 Simpson RFB #840, SET-3G epoxy, 9\" embedment, spacing per shearwall schedule"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block \u2014 Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project 25-357, Sheet S4.0, Date 9/19/25"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 20,
+      "sheet_id": "S5.0",
+      "sheet_title": "Floor Framing Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Structural detail sheet with 12 numbered detail drawings showing floor framing connections, sill plate and shearwall connections, beam-to-column connections, stair stringer framing, and a typical metal guardrail detail. Includes steel beam connections with ECCO post caps and Hilti anchor specs.",
+      "key_content": [
+        "Sill plate connection: MIN 2x w/ SDS 1/4\"x6\" @ 16\" per shearwall schedule",
+        "Sill plate connection (alternate): SDS 1/4\"x4\" long per shearwall schedule",
+        "LVL stair stringer: 1-1/2\"x14\" LVL @ 12\" O.C. with 1/2\" plywood",
+        "2x blocking at 16\" O.C. at floor framing",
+        "2x cont. blocking w/ shear clip per shearwall schedule",
+        "ECCO post cap at steel beam to wood beam connection",
+        "Column connection per Detail 1/S3.4",
+        "3x top nailer per Detail 11/S3.3",
+        "3x nailer per 10/S3.3",
+        "Beam-to-beam connection: 1/2\" bent U plate w/ 2-1/2\" M.B.",
+        "ECCO column cap welded to column manuf. plate at steel column",
+        "L-ties at 16\" O.C. staggered each face of strong wall",
+        "Hilti KB-TZ bolts: 7\" dia., 4\" embed into concrete, ICC#1917",
+        "Lag screws: 4 - 3\" dia. x 6\" lag screws at column base",
+        "Guardrail: HSS 1-1/2\"x1-1/2\" top & bottom horiz. rails",
+        "Guardrail posts: HSS 1-1/2\"x1-1/2\" vert. @ 4'-0\" O.C. max.",
+        "Guardrail intermediate rails: 3\" sq bars",
+        "Guardrail sphere test: 4\" dia. cannot pass thru",
+        "4x joist depth blocking w/ nailer at each end for guardrail",
+        "Existing framing shown shaded in Details 5 and 12",
+        "U hangers at joist-to-beam connections",
+        "1/4\" stiffener plate at steel beam connection",
+        "NOT SHOWN: shearwall schedule (referenced, on separate sheet)",
+        "NOT SHOWN: holdown schedule (not on this sheet)",
+        "NOT SHOWN: specific sheathing type/thickness (says 'per plan')"
+      ],
+      "topics": [
+        "floor framing details",
+        "sill plate connection",
+        "shearwall connection",
+        "beam connection",
+        "steel beam",
+        "ECCO post cap",
+        "column connection",
+        "guardrail",
+        "HSS railing",
+        "LVL stringer",
+        "stair framing",
+        "U hanger",
+        "Hilti KB-TZ",
+        "lag screws",
+        "L-ties",
+        "strong wall",
+        "blocking",
+        "nailer",
+        "edge nailing",
+        "existing framing"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Detail 4 \u2014 Floor framing at exterior wall / shearwall with steel beam and nailer"
+        },
+        {
+          "zone": "top-center-left",
+          "content": "Detail 3 \u2014 Wood beam to end of steel beam with ECCO post cap and 1/4\" stiffener; APPROVED stamp overlay"
+        },
+        {
+          "zone": "top-center-right",
+          "content": "Detail 2 \u2014 Floor framing at wall/post with guardrail and 2x blocks at 16\""
+        },
+        {
+          "zone": "top-right",
+          "content": "Detail 1 \u2014 Sill plate & shearwall connection (MIN 2x w/ SDS 1/4\"x6\" @ 16\")"
+        },
+        {
+          "zone": "middle-left",
+          "content": "Detail 8 \u2014 LVL stair stringer (1-1/2\"x14\" @ 12\" O.C.) with 1/2\" plywood and slope"
+        },
+        {
+          "zone": "middle-center-left",
+          "content": "Detail 7 \u2014 Sill plate & connection at sloped floor framing with 2x cont. blkg."
+        },
+        {
+          "zone": "middle-center-right",
+          "content": "Detail 6 \u2014 Guardrail connection at floor framing with 3x top nailer"
+        },
+        {
+          "zone": "middle-right",
+          "content": "Detail 5 \u2014 Sill plate & shearwall connection at existing framing (shown shaded)"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Detail 12 \u2014 Sill plate & shearwall at sloped floor with existing framing and shear clip"
+        },
+        {
+          "zone": "bottom-center-left",
+          "content": "Detail 11 \u2014 Beam-to-beam connection with 1/2\" bent U plate w/ 2-1/2\" M.B."
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Detail 10 \u2014 Steel column / ECCO column cap / strong wall connection with Hilti KB-TZ bolts (4\" embed, ICC#1917)"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Detail 9 \u2014 Typical metal guardrail (HSS 1-1/2\"x1-1/2\" posts @ 4'-0\" O.C., 4\" sphere test)"
+        },
+        {
+          "zone": "right-column",
+          "content": "Title block \u2014 Ramirez Structural Inc, Sheet S5.0, 326 Flint Ave, Long Beach CA 90814"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 21,
+      "sheet_id": "S6.0",
+      "sheet_title": "Roof Framing Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc \u2014 Jose Ramirez, PE",
+      "description": "Structural detail sheet with 12 numbered detail bubbles showing roof framing connections. Includes roof-to-wall connections at exterior/interior walls, ridge board details, ceiling joist-to-beam connections with hangers, bracing specifications, and a typical beam-to-steel-column connection detail.",
+      "key_content": [
+        "Hurricane tie: H2.5 ea. rafter (Detail 2)",
+        "MST/A21 strap @ 48\" O.C. (Detail 7)",
+        "2x4 brace @ 48\" O.C. w/ 3-10d nails ea. end (Details 3, 5, 7)",
+        "Blocking nailing: 16d @ 6\" O.C. continuous (Details 3, 5, 7)",
+        "2x blocking @ 16\" O.C. (Details 3, 5, 7)",
+        "U hanger for ceiling joist to beam (Detail 7)",
+        "No C.J. splice allowed over partitions/walls (Detail 7)",
+        "CC and ECC column caps \u2014 may substitute for CCQ and ECCQ (Detail 8)",
+        "Type 6 sheathing at column (Detail 8)",
+        "Shear clips per shearwall schedule at cont. blocking (Details 1, 2, 3, 7)",
+        "2x cont. shaped blocking w/ shear clip per shearwall schedule (Details 1, 2)",
+        "2x cont. rim board w/ shear clip per shearwall schedule (Details 3, 7)",
+        "Cont. dbl. top plate (splice per plan) \u2014 all wall details",
+        "Cripple studs to match wall below (Details 3, 4, 5, 6)",
+        "Fascia/overhang by others (Details 2, 4, 8)",
+        "6-10d lap nails, typ. (Detail 1)",
+        "NOT SHOWN: roof-to-wall tie-down values (lbs)",
+        "NOT SHOWN: rafter size or spacing specifications"
+      ],
+      "topics": [
+        "roof framing",
+        "roof-to-wall connection",
+        "hurricane ties",
+        "H2.5",
+        "MST/A21 strap",
+        "blocking",
+        "bracing",
+        "ceiling joist",
+        "U hanger",
+        "beam to column",
+        "column cap",
+        "shear clip",
+        "shearwall schedule",
+        "ridge board",
+        "rafter connection",
+        "nailing schedule",
+        "framing details",
+        "DTC clips"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "detail-1 (top-right)",
+          "content": "Roof-to-wall connection at exterior wall with parallel rafters, shear clips per shearwall schedule, 6-10d lap nails typ."
+        },
+        {
+          "zone": "detail-2 (top-center-right)",
+          "content": "Roof-to-wall connection at ridge condition with H2.5 hurricane ties each rafter, shaped blocking with shear clips"
+        },
+        {
+          "zone": "detail-3 (top-center-left)",
+          "content": "Roof-to-wall connection at ridge/hip with 2x cont. rim board, 2x4 brace @ 48\" O.C., 2x blkg. @ 16\" O.C., 16d @ 6\" O.C. nailing"
+        },
+        {
+          "zone": "detail-4 (top-left)",
+          "content": "Roof-to-wall connection at shearwall with continuous blocking, double top plate, cripple studs"
+        },
+        {
+          "zone": "detail-5 (middle-right)",
+          "content": "Interior bearing wall to ceiling/roof with 2x4 brace @ 48\" O.C., 2x blkg. @ 16\" O.C., 16d @ 6\" O.C."
+        },
+        {
+          "zone": "detail-6 (middle-center-right)",
+          "content": "Ridge board connection \u2014 2x ridge board one size larger than rafter depth, ceiling joist and wall framing below"
+        },
+        {
+          "zone": "detail-7 (middle-center-left)",
+          "content": "Ceiling joist to beam with MST/A21 strap @ 48\" O.C., U hanger, 2x4 brace, no C.J. splice over partitions"
+        },
+        {
+          "zone": "detail-8 (middle-left)",
+          "content": "Typical beam to steel column connection with CC/ECC column caps, Type 6 sheathing, 3/8\" base plate detail"
+        },
+        {
+          "zone": "detail-11 (bottom-center)",
+          "content": "City of Long Beach APPROVED stamp \u2014 Anthony Montez, Building Plan Check, PADO# 26126, Date 10/02/25"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block \u2014 Ramirez Structural Inc, 326 Flint Ave, Long Beach CA 90814, Project No. 25-357, Sheet S6.0"
+        }
+      ],
+      "title_block_address": "326 Flint Ave, Long Beach, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 22,
+      "sheet_id": "WSWH1",
+      "sheet_title": "Typical Details",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc. \u2014 Jose Ramirez, PE (Simpson Strong-Tie manufacturer detail sheet)",
+      "description": "Simpson Strong-Tie manufacturer detail sheet for Strong-Wall WSWH (Wood Shearwall High-strength) system. Contains anchorage typical sections (slab on grade, curb/stemwall, brick ledge), anchor bolt details, bolt extension details, bolt template details, foundation plan view, reinforcement details, tension anchorage schedule for 2,500/3,000/4,500 PSI concrete, and shear anchorage schedule with details. ACI 318-11/14/19 compliant. Red 'APPROVED' stamp present (Anthony Montez, Building Plan Check).",
+      "key_content": [
+        "Simpson Strong-Wall WSWH manufacturer detail sheet \u2014 wood shearwall high-strength anchorage system",
+        "Detail 1: WSWH Anchorage Typical Sections \u2014 slab on grade, curb or stemwall, brick ledge foundation configurations",
+        "Installation types: WSWH-RT exterior, WSWH-RT interior, WSWH-HSR (high strength rod), WSWH-HSR_XT (extended), WSWH-AB (anchor bolt)",
+        "Detail 3: WSWH Anchor Bolts \u2014 heavy hex bolt, plate washer, high strength threaded rod configurations",
+        "Detail 4: WSWH Anchor Bolt Extension (WSWH-ABE) \u2014 12\" thread rod extension coupling",
+        "Detail 6: WSWH Anchor Bolt Templates \u2014 WSWH-RT/PF panel form, WSWH-RT/WTH brick ledge, anchor bolt stabilizers",
+        "Concrete PSI values: 2,500, 3,000, and 4,500 PSI",
+        "ACI 318 compliance: ACI 318-11 Appendix D, ACI 318-14 Chapter 17, ACI 318-19 Chapter 17",
+        "Seismic anchorage design per ACI 318-11 Section D.3.3.4.3 \u2014 not requiring anchorage solutions above Seismic Design Category C",
+        "Normal weight concrete minimum 150 pcf required",
+        "Tension Anchorage Schedule: WSWH model configurations for 2,500, 3,000, and 4,500 PSI concrete with footing sizes and embedment depths",
+        "Shear Anchorage Schedule: WSWH shear connection configurations with installation types and footing requirements",
+        "Foundation plan view showing WSWH anchorage solutions for 2800 PSI concrete",
+        "Reinforcement details: slab/curb, grade beam, shear reinforcement, and Section A cross-section",
+        "APPROVED: City of Long Beach, Anthony Montez \u2014 Building Plan Check",
+        "VALUE NOT LEGIBLE: individual cell values in tension anchorage schedule (small text)",
+        "VALUE NOT LEGIBLE: individual cell values in shear anchorage schedule (small text)",
+        "VALUE NOT LEGIBLE: specific anchor bolt diameters in Detail 3",
+        "NOT SHOWN: project-specific WSWH model selection (see foundation plan S2.0 for WSWH 24x9 selections)"
+      ],
+      "topics": [
+        "Strong-Wall",
+        "WSWH",
+        "Simpson Strong-Tie",
+        "wood shearwall",
+        "high strength shearwall",
+        "anchorage",
+        "tension anchorage",
+        "shear anchorage",
+        "anchor bolts",
+        "WSWH-AB",
+        "WSWH-RT",
+        "WSWH-HSR",
+        "WSWH-HSR_XT",
+        "WSWH-ABE",
+        "bolt extension",
+        "bolt templates",
+        "slab on grade",
+        "curb foundation",
+        "stemwall foundation",
+        "brick ledge",
+        "2500 PSI concrete",
+        "3000 PSI concrete",
+        "4500 PSI concrete",
+        "ACI 318",
+        "seismic anchorage",
+        "Seismic Design Category C",
+        "plate washer",
+        "heavy hex bolt",
+        "high strength rod",
+        "reinforcement",
+        "footing",
+        "embedment depth",
+        "manufacturer details",
+        "Simpson hardware",
+        "structural",
+        "structural details",
+        "typical details",
+        "foundation anchorage",
+        "panel form installation",
+        "150 pcf concrete"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Detail 1: STRONG-WALL WSWH ANCHORAGE - TYPICAL SECTIONS \u2014 slab on grade foundation, curb or stemwall foundation, brick ledge foundation cross-sections with WSWH-AB anchor bolt placement, shear reinforcement, and plate washer details"
+        },
+        {
+          "zone": "top-center",
+          "content": "Detail 3: WSWH ANCHOR BOLTS \u2014 heavy hex bolt configurations, plate washer, high strength threaded rod with heavy hex nut, bolt diameter callouts"
+        },
+        {
+          "zone": "top-center-right",
+          "content": "Detail 4: WSWH ANCHOR BOLT EXTENSION \u2014 WSWH-ABE extension with 12\" thread rod and coupling details; Detail 6: WSWH ANCHOR BOLT TEMPLATES \u2014 WSWH-RT/PF panel form, WSWH-RT/WTH brick ledge, anchor bolt stabilizer configurations"
+        },
+        {
+          "zone": "top-right",
+          "content": "Installation type diagrams: WSWH-RT Exterior Installation, WSWH-RT Interior Installation showing wall-to-foundation connection orientations"
+        },
+        {
+          "zone": "middle-band (notes)",
+          "content": "General notes: ACI 318-11/14/19 compliance, normal weight concrete min. 150 pcf, seismic anchorage per ACI 318-11 Section D.3.3.4.3, designer may specify alternate embedment/footing/anchor bolt configurations"
+        },
+        {
+          "zone": "middle-left",
+          "content": "Foundation Plan View: WSWH anchorage solutions for 2800 PSI concrete \u2014 plan view showing strong-wall placement relative to slab or curb and stemwall foundation"
+        },
+        {
+          "zone": "middle-center",
+          "content": "Reinforcement details: slab or curb reinforcement, grade beam reinforcement, shear reinforcement at grade or retaining wall, Section A cross-section through foundation"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "Table 1: STRONG-WALL HIGH STRENGTH WOOD SHEARWALL TENSION ANCHORAGE SCHEDULE \u2014 2,500, 3,000, and 4,500 PSI concrete configurations with WSWH model designations, anchor bolt types, footing sizes, embedment depths (individual cell values not legible at this resolution)"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Table 2: STRONG-WALL WSWH SHEAR ANCHORAGE SCHEDULE AND DETAILS \u2014 shear connection configurations by installation type and footing type, hardware specs, shear capacity values (individual cell values not legible at this resolution)"
+        },
+        {
+          "zone": "lower-center (stamp)",
+          "content": "Red APPROVED stamp \u2014 City of Long Beach Electronic Plan Check, Anthony Montez - Building Plan Check"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): RAMIREZ STRUCTURAL INC., Jose Ramirez PE, (562) 519-6045, jose@ramirezstructural.com, @rsi.plans, www.ramirezstructural.com, 326 FLINT AVE NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE LONG BEACH CA 90814, Project No. 25-357, Date 9/19/25, Sheet WSWH1 TYPICAL DETAILS"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 23,
+      "sheet_id": "WSWH2",
+      "sheet_title": "Typical Details (Simpson Strong-Wall WSWH)",
+      "category": "structural",
+      "subcategory": "structural_details",
+      "prepared_by": "Ramirez Structural Inc. \u2014 Jose Ramirez, PE (Simpson Strong-Tie manufacturer sheet included in structural set)",
+      "description": "Simpson Strong-Wall WSWH (High Strength Wood Shearwall) manufacturer typical details sheet. Contains 10 numbered detail sections: WSWH model table, single story on concrete base connection, alternate garage front options (2 wall options), standard installation base connection, wood floor system base connection, top connection (6x and 2x framing sections), back-to-back top connection, rake wall configuration, top of wall height adjustments (shim blocks 4\"-12\" and 1\"-4\"), and trim zone / allowable holes diagrams. Includes installation notes. Red 'APPROVED' stamp present (Anthony Montez, Building Plan Check).",
+      "key_content": [
+        "Simpson Strong-Wall WSWH High Strength Wood Shearwall typical details \u2014 manufacturer reference sheet",
+        "WSWH model table with panel widths, heights, and allowable load references",
+        "All WSWH panels are 3/4\" thick",
+        "If wall heights not listed, order next tallest panel and trim to fit",
+        "Do not cut structural sheathing to reduce panel height",
+        "Detail 1: WSWH model selection table \u2014 shows panel nos., widths (W), heights (H)",
+        "Detail 2: Single story WSWH on concrete \u2014 anchor rod in concrete, min embedment requirements",
+        "Detail 3: Alternate WSWH garage front options \u2014 two garage wall options with header framing, SDS screw spacing plan view, 2x6 cripple framing section view",
+        "Detail 4: Standard installation base connection \u2014 anchor bolt plate to sill plate, adhesive at base plate, impact wrench 1/2\" for 1\" nut / 3/4\" for 1-1/4\" nut",
+        "Detail 5: Wood floor system base connection \u2014 Strong-Wall through floor sheathing and rim joist to foundation",
+        "Detail 6: Top connection \u2014 1/8\" min clearance between Strong-Wall top and plate, sections for 6x framing and 2x framing",
+        "Detail 7: Back-to-back top connection \u2014 dual panel configuration, SDS screw spacing",
+        "Detail 8: Rake wall \u2014 Strong-Wall in sloped/rake wall condition, trimmed to fit angle, 2x6 cripple framing section",
+        "Detail 9: Top of wall height adjustments \u2014 cripple wall, 4\" to 12\" shim block, 1\" to 4\" shim block between Strong-Wall top and plate",
+        "Detail 10: Trim zone and allowable holes \u2014 allowable small holes (face and edge drill), allowable large holes (in addition to small), trim zone locations on panel",
+        "Installation notes: verify all dimensions/conditions/elevations at project, comply with manufacturer instructions, reference Simpson Strong-Tie technical literature for complete load tables",
+        "Garage header rough opening height table with model-specific framing requirements",
+        "APPROVED: Anthony Montez \u2014 Building Plan Check",
+        "NOT SHOWN: site-specific shearwall schedule (see sheet S2.0 for project-specific marks)",
+        "NOT SHOWN: specific uplift/allowable shear values (refer to Simpson Strong-Tie SNO load tables)",
+        "NOT SHOWN: holdown schedule (project-specific \u2014 see S2.0 and S3.1)"
+      ],
+      "topics": [
+        "Simpson Strong-Wall",
+        "WSWH",
+        "wood shearwall",
+        "high strength shearwall",
+        "Strong-Wall models",
+        "Strong-Wall installation",
+        "base connection",
+        "top connection",
+        "back-to-back connection",
+        "wood floor system connection",
+        "concrete base connection",
+        "garage front options",
+        "garage wall options",
+        "garage header",
+        "rake wall",
+        "wall height adjustment",
+        "shim block",
+        "cripple wall",
+        "trim zone",
+        "allowable holes",
+        "SDS screw spacing",
+        "anchor rod",
+        "sill plate connection",
+        "impact wrench",
+        "manufacturer details",
+        "Simpson Strong-Tie",
+        "structural details",
+        "panel thickness 3/4 inch",
+        "2x framing connection",
+        "6x framing connection",
+        "2x6 cripple framing",
+        "LVL",
+        "detail WSWH2"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "Detail 1: STRONG-WALL WSWH MODELS \u2014 table of model numbers with width (W) and height (H) dimensions, panel diagram showing top plate, rim joist zone, king stud, fire block, heavy hex nut and washer on anchor rod. Notes: all panels 3/4\" thick, do not cut structural sheathing, order next tallest panel if height not listed"
+        },
+        {
+          "zone": "top-left (notes above table)",
+          "content": "General notes about model selection: if wall heights not listed order next tallest and trim, embed tempered steel studs panels to highest hex nut location, all panels 3/4\" thick"
+        },
+        {
+          "zone": "bottom-left (upper)",
+          "content": "Detail 2: SINGLE STORY WSWH ON CONCRETE \u2014 cross-section of Strong-Wall panel on concrete foundation with anchor rod, min concrete embedment depth requirements"
+        },
+        {
+          "zone": "bottom-left (lower)",
+          "content": "Detail 3: ALTERNATE WSWH GARAGE FRONT OPTIONS \u2014 Garage Wall Option 1 and Garage Wall Option 2 with post/connection details, garage header rough opening height table with model/framing specs"
+        },
+        {
+          "zone": "bottom-center-left",
+          "content": "Plan View: SDS Screw Spacing \u2014 fastener pattern for garage wall options; Section View: 2x6 Cripple Framing detail"
+        },
+        {
+          "zone": "top-center-left",
+          "content": "Detail 4: STANDARD INSTALLATION BASE CONNECTION \u2014 anchor bolt plate to sill plate, adhesive application, impact wrench sizes (1/2\" for 1\" nut, 3/4\" for 1-1/4\" nut), anchor/sill plate holdown connection"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "Detail 5: WOOD FLOOR SYSTEM BASE CONNECTION \u2014 Strong-Wall through floor sheathing/rim joist to foundation, foundation details by others"
+        },
+        {
+          "zone": "top-center-right",
+          "content": "Detail 6: TOP CONNECTION \u2014 minimum 1/8\" clearance at top, Section: 6x Framing and Section: 2x Framing showing top plate attachment methods"
+        },
+        {
+          "zone": "bottom-center-right",
+          "content": "Detail 7: BACK-TO-BACK TOP CONNECTION \u2014 dual Strong-Wall panels, SDS screw spacing, top plate connection for double-panel configuration"
+        },
+        {
+          "zone": "top-right",
+          "content": "Detail 9: TOP OF WALL HEIGHT ADJUSTMENTS \u2014 cripple wall diagram, 4\" to 12\" shim block and 1\" to 4\" shim block options between Strong-Wall top and framing"
+        },
+        {
+          "zone": "middle-right",
+          "content": "Detail 10: TRIM ZONE AND ALLOWABLE HOLES \u2014 diagrams of allowable small holes (face and edge drill), allowable large holes (in addition to small holes), and designated trim zones on panel"
+        },
+        {
+          "zone": "bottom-right (strip)",
+          "content": "Detail 8: RAKE WALL \u2014 Strong-Wall in sloped/rake wall condition, panel trimmed to angle, 2x6 cripple framing section view"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "Notes section: installation and compliance notes \u2014 verify dimensions/conditions at project, comply with manufacturer instructions, reference Simpson technical literature for load tables, terms and conditions"
+        },
+        {
+          "zone": "lower-center",
+          "content": "Red APPROVED stamp \u2014 Anthony Montez - Building Plan Check"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block (rotated vertical): RAMIREZ STRUCTURAL INC., Jose Ramirez PE, (562) 519-6045, jose@ramirezstructural.com, @rsi.plans, www.ramirezstructural.com, 326 FLINT AVE NEW ADU ABOVE (E) GARAGE, 326 FLINT AVE LONG BEACH CA 90814, Project No. 25-357, Date 9/19/25, Sheet WSWH2 TYPICAL DETAILS"
+        }
+      ],
+      "title_block_address": "326 FLINT AVE, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 24,
+      "sheet_id": "T-1",
+      "sheet_title": "Title 24 Energy Compliance (CF-1R Performance Method, Pages 1-6 of 11)",
+      "category": "energy",
+      "subcategory": "title_24_cf1r",
+      "prepared_by": "URO DESIGNS \u2014 P.O. Box 470011, Los Angeles, CA 90047",
+      "description": "Composited CF-1R Certificate of Compliance (Residential Performance Compliance Method) containing pages 1 through 6 of 11. Includes energy use intensity summary, general project information, opaque surfaces, fenestration/glazing schedules, attic, compliance remarks, opaque doors, surface constructions, and energy use summary. Generated by CBECC-Res 2022.3.2 SP1 via CHEERS.",
+      "key_content": [
+        "CF-1R Performance Compliance Method \u2014 pages 1-6 of 11",
+        "Climate Zone: 6",
+        "Compliance software: CBECC-Res 2022.3.2 SP1",
+        "HERS Provider: CHEERS",
+        "Building Type: Single Family, Newly Constructed Addition",
+        "ADU Conditioned Floor Area: 475 ft\u00b2",
+        "ADU Bedrooms: 1",
+        "Fuel Type: Natural gas",
+        "Gross EUI: Standard 25.69 kBtu/ft\u00b2-yr, Proposed 25.22 kBtu/ft\u00b2-yr, Margin 0.47",
+        "Net EUI: Standard 25.69 kBtu/ft\u00b2-yr, Proposed 25.22 kBtu/ft\u00b2-yr, Margin 0.47",
+        "Margin Percentage: 1.83%",
+        "Fenestration Average U-factor: 0.3",
+        "SHGC: 0.23 (NFRC source, Bug Screen exterior shading)",
+        "Glazing Percentage: 25.26%",
+        "Wall construction: R-15 Wall Stucco, Wood Framed Wall, 2x4 @ 16 in. O.C.",
+        "Ceiling insulation: R-30 (below ventilated attic)",
+        "Exterior Floor insulation: R-13",
+        "Interior Floor insulation: R-19",
+        "Roof: R-0 Asphalt Shingle, Ventilated, 4:12 pitch",
+        "Opaque surfaces: Rear Wall (265 ft\u00b2, azimuth 180), Right Wall (153 ft\u00b2, azimuth 270), Left Wall (114 ft\u00b2, azimuth 90), Front Wall (204 ft\u00b2, azimuth 0)",
+        "Fenestration: Window E(1) Back 10 ft\u00b2 U-0.4, Window A(1) Left 6 ft\u00b2 U-0.3, Window B(1) Left 9 ft\u00b2 U-0.3, Window B(1) Right 15 ft\u00b2 U-0.3, Door 2 Right 80 ft\u00b2 U-0.3",
+        "Opaque Door: Door 1 on Front Exterior Wall 1, 24 ft\u00b2",
+        "Efficiency Compliance Total TDV: Standard 70.82, Proposed 72.84",
+        "Total Compliance TDV: Standard 212.83, Proposed 208.07",
+        "Space Heating TDV: Standard 1.43, Proposed 2.82",
+        "Space Cooling TDV: Standard 33.6, Proposed 34.56",
+        "Water Heating TDV: Standard 35.68, Proposed 30.31",
+        "Required Special Feature: NEEA rated heat pump water heater (demand-response compatible)",
+        "HERS verification required: indoor air quality ventilation, kitchen range hood, heat pump rated heating capacity",
+        "Compliance Remark: Building Complies with Computer Performance",
+        "Radiant Barrier: Yes",
+        "Cool Roof: No",
+        "NOT SHOWN: PV solar system specs (pages 7-11 not on this sheet)",
+        "NOT SHOWN: HVAC system type and efficiency ratings (SEER2, HSPF2)",
+        "NOT SHOWN: Duct insulation R-value and sealing method",
+        "NOT SHOWN: Mandatory requirements checklist"
+      ],
+      "topics": [
+        "Title 24",
+        "CF1R",
+        "energy compliance",
+        "performance compliance",
+        "building envelope",
+        "U-factor",
+        "SHGC",
+        "insulation R-values",
+        "fenestration",
+        "HERS",
+        "CHEERS",
+        "energy use intensity",
+        "EUI",
+        "climate zone 6",
+        "CBECC-Res",
+        "heat pump water heater",
+        "wall insulation",
+        "ceiling insulation",
+        "opaque surfaces",
+        "glazing percentage",
+        "water heating",
+        "space heating",
+        "space cooling",
+        "TDV energy",
+        "compliance margin",
+        "radiant barrier",
+        "demand response"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "CF-1R Page 1 of 11 \u2014 Energy Use Intensity summary table, Required Special Features, HERS Feature Summary, Zone Information"
+        },
+        {
+          "zone": "top-right",
+          "content": "CF-1R Page 4 of 11 \u2014 General Information table (project name, climate zone 6, building type, floor area 475 ft\u00b2, bedrooms, fuel type), Margin Percentage, Addition Alone parameters, ADU parameters"
+        },
+        {
+          "zone": "middle-left",
+          "content": "CF-1R Page 2 of 11 \u2014 Opaque Surfaces table (7 surfaces: 4 walls, ceiling, exterior floor, interior floor), Attic table (asphalt shingle ventilated), Fenestration/Glazing table (Window B(1))"
+        },
+        {
+          "zone": "middle-right",
+          "content": "CF-1R Page 5 of 11 \u2014 Compliance Remarks (building complies), Fenestration wall exceptions table, Radiant Barrier/Cool Roof, SHGC details (0.23 NFRC). CHEERS logo watermark"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "CF-1R Page 3 of 11 \u2014 Detailed Fenestration/Glazing schedule (Window E(1), A(1), B(1), Door 2), Opaque Doors (Door 1, 24 ft\u00b2), Opaque Surface Constructions (R-15 Wall Stucco, 2x4 @ 16 in. O.C.)"
+        },
+        {
+          "zone": "bottom-right",
+          "content": "CF-1R Page 6 of 11 \u2014 Energy Use Summary table (Space Heating, Cooling, IAQ Ventilation, Water Heating, Photovoltaics, Lighting, Appliances, Plug Loads \u2014 Standard vs. Proposed TDV values, Total Compliance 212.83 vs 208.07)"
+        },
+        {
+          "zone": "left-center (overlapping middle-left)",
+          "content": "APPROVED stamp \u2014 City of Long Beach Electronic Plan Check, BADD326126, 10/29/25, Anthony Montez"
+        }
+      ],
+      "title_block_address": "326 FLINT AVENUE UNIT A, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 25,
+      "sheet_id": "T-2",
+      "sheet_title": "Title 24 CF-1R Compliance Certificates (Tiled \u2014 IAQ, Construction, Water Heating, HVAC, Signatures)",
+      "category": "energy",
+      "subcategory": "title_24_compliance",
+      "prepared_by": "URO DESIGN (P.O. BOX 41011, Long Beach, CA 90853)",
+      "description": "Second Title 24 sheet containing multiple tiled CF-1R Certificate of Compliance forms from CBECC-Res. Includes indoor air quality (IAQ) table, building construction assembly layers, water heating system specs, HVAC heat pump/fan system tables, building envelope HERS verification, and the responsible person declaration signed by Lawrence Gordon of URO Designs, LLC. CHEERS watermark present throughout.",
+      "key_content": [
+        "Compliance method: Residential Performance Compliance",
+        "Software: CBECC-Res version 2022.3.000, schema ver.2023R01",
+        "HERS Provider: CHEERS",
+        "Registration Date: 9/22/2025 14:14",
+        "Calculation Date: 2025-09-12T08:36:53",
+        "Documentation Author: Lawrence Gordon, URO Designs, LLC, Los Angeles, CA 90041",
+        "Building construction: R-1 Asphalt Shingle roof, R-30 ceiling insulation, R-30 exterior floor insulation, R-13 interior floor",
+        "Framing: Wood framed, standard spacing (16 or 24 O.C.)",
+        "IAQ: Exhaust fan system, airflow ~26 CFM, fan efficiency 0.6",
+        "QII (Quality Insulation Installation): Not Required",
+        "Building Envelope Air Leakage verification: Not Required",
+        "Water heating: Heat pump water heater system",
+        "HVAC system: Heat pump (central), Heat Pump System 1",
+        "HVAC fan system verification items: multiple noted as Not Required",
+        "APPROVED by City of Long Beach, 10/29/25, Anthony Montez - Building Plan Check",
+        "VALUE NOT LEGIBLE: Exact SEER2/HSPF2 heat pump efficiency ratings",
+        "VALUE NOT LEGIBLE: Exact water heater UEF rating",
+        "VALUE NOT LEGIBLE: Exact HVAC fan wattage values",
+        "NOT SHOWN: PV solar system specs (may be on another sheet or not applicable)",
+        "NOT SHOWN: Compliance margins (proposed vs standard for heating/cooling)",
+        "NOT SHOWN: Climate zone number (likely on T-1 or another CF-1R page)"
+      ],
+      "topics": [
+        "Title 24",
+        "CF-1R",
+        "energy compliance",
+        "performance compliance",
+        "CBECC-Res",
+        "CHEERS",
+        "HERS verification",
+        "building envelope",
+        "insulation R-values",
+        "R-30 ceiling",
+        "R-30 floor",
+        "R-13",
+        "IAQ",
+        "indoor air quality",
+        "ventilation",
+        "water heating",
+        "heat pump",
+        "HVAC",
+        "fan system",
+        "building construction assembly",
+        "QII",
+        "wood framing"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "top-left",
+          "content": "CF-1R Indoor Air Quality (IAQ) table (Page 10 of 13)"
+        },
+        {
+          "zone": "top-right",
+          "content": "CF-1R Building Construction table with assembly layers and R-values (Page 7 of 13); Building Envelope HERS Verification below"
+        },
+        {
+          "zone": "middle-left",
+          "content": "CF-1R Activity Declaration and Responsible Person Declaration with signatures \u2014 Lawrence Gordon, URO Designs, LLC (Page 11 of 13)"
+        },
+        {
+          "zone": "middle-right",
+          "content": "CF-1R Water Heating Systems, Water Heating HERS Description, and Water Conditioning Systems tables (Page 8 of 13)"
+        },
+        {
+          "zone": "bottom-center",
+          "content": "CF-1R HVAC Fan System table, Heat Pump HERS Verification, Final Fan Systems, and Final DIA Systems HERS Verification (Page 6 of 13)"
+        },
+        {
+          "zone": "bottom-left",
+          "content": "City of Long Beach APPROVED stamp (BAD030136, 10/29/25, Anthony Montez)"
+        },
+        {
+          "zone": "right-edge",
+          "content": "Title block: URO DESIGN logo, project info (NEW ADU, 326 Flint Avenue Unit A, Long Beach CA 90814, Owner Brandon King, Date 9/22/2025, Sheet T-2)"
+        }
+      ],
+      "title_block_address": "326 FLINT AVENUE UNIT A, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    },
+    {
+      "page_number": 26,
+      "sheet_id": "T-3",
+      "sheet_title": "Title 24 Notes & 2022 Single-Family Residential Mandatory Requirements Summary",
+      "category": "energy",
+      "subcategory": "title_24_mandatory_requirements",
+      "prepared_by": "LRG DESIGNS \u2014 P.O. Box 470011, Los Angeles, CA 90047, (323) 955-4827",
+      "description": "Title 24 energy compliance notes sheet with 23 numbered general notes (compliance information, operating information, maintenance, ventilation, appliance regulations, water heater requirements, insulation, fenestration, formaldehyde limits) plus Section E Residential Notes (fireplace, water heater, insulation, lighting). Six tiled panels of the '2022 Single-Family Residential Mandatory Requirements Summary' (dated 5/6/22) covering Building Envelope, Fireplaces/Decorative Gas Appliances, HVAC Efficiency/Certification, Ducts and Fans, Ventilation and Indoor Air Quality, Pool and Spa Systems, Lighting, Solar Readiness, and Electric/Energy Storage Readiness (ESS Ready, Heat Pump Ready, Electric Cooking Ready, Electric Clothes Dryer Ready). Red 'APPROVED' stamp present (BADD326126, 10/29/25, Anthony Montez - Building Plan Check).",
+      "key_content": [
+        "Title 24 Notes: 23 numbered notes covering compliance/operating/maintenance/ventilation information, appliance efficiency, water heater temperature controls, insulation, fenestration air infiltration, formaldehyde limits",
+        "Note 1: Compliance Information \u2014 builder shall leave copies of completed compliance documents [10-103(b)1]",
+        "Note 2: Operating Information \u2014 operating information in folder/manual with all certificates [10-103(b)2]",
+        "Note 5: All systems/equipment/appliances comply with Sections 110.0 through 110.11 for newly constructed buildings",
+        "Note 7: Service water-heating systems equipped with automatic temperature controls per ASHRAE Table 3, Chapter 50 [110.3(a)1]",
+        "Note 11: Unfired water-heater storage tanks: External insulation R-12 minimum, or internal+external R-16, or heat loss less than 6.5 Btu/hr per sq ft [110.3(c)4]",
+        "Note 13: Continuously burning pilot lights prohibited for natural gas furnaces, cooking appliances (except <150 Btu/hr), pool/spa heaters [110.5]",
+        "Note 15: Manufactured fenestration air infiltration rates not exceeding 0.3 cfm/ft2 window area [110.6(a)1]",
+        "Note 16: Fenestration rated per NFRC 100 for U-factor, NFRC 200 for SHGC [110.6(a)2]",
+        "Note 18: Joints, penetrations sealed to limit infiltration and exfiltration [110.7]",
+        "Note 19: Insulation certified by Dept of Consumer Affairs, Bureau of Home Furnishing and Thermal Insulation [110.8(a)]",
+        "Note 20: Urea formaldehyde foam insulation \u2014 exterior side walls only, requires 4-mil polyethylene vapor barrier [110.8(b)]",
+        "Note 23: External insulation on existing unfired water storage tank: R-12 minimum or heat loss <6.5 Btu/hr/sq ft [110.8(d)2]",
+        "Section E Residential Notes: fireplace requirements (closeable doors, combustion air intake, flue damper) [150.0(e)1], setback thermostat [150.0(i)], gas water heater requirements (120V receptacle within 3 ft, Category III/IV vent, condensate drain, 200,000 Btu/hr gas line) [150.0(n)]",
+        "Section E Note 8: Hot water pipe insulation required \u2014 all pipes from heating source to kitchen, 3/4 inch+ diameter, first 5 feet from tank, recirculation piping, buried piping [150.0(c)2.A]",
+        "Section E Note 10: Lighting \u2014 luminaires classified high-efficacy per TABLE 150.0-A, exhaust fans switched separately, vacancy sensors in garages/laundry/utility rooms [150.0(k)]",
+        "2022 Single-Family Residential Mandatory Requirements Summary (5/6/22): six tiled panels",
+        "Building Envelope checklist: air leakage 0.3 CFM/sq ft per NFRC-400/ASTM E283, fenestration labeling NFRC U-factor/SHGC, insulation certification by BHGS, roofing solar reflectance per CF1R, radiant barrier, roof/ceiling insulation U-0.184 max, wall insulation R-13 min (2x4) or R-20 (2x6), raised-floor insulation R-19 min, slab edge insulation, vapor retarder in climate zones 1-16",
+        "Fireplaces/Gas Appliances checklist: pilot light prohibition, closeable doors, combustion intake, flue dampers [110.5]",
+        "HVAC checklist: efficiency/certification [110.1-110.4], heat pump space/water heating [150.0(h)], thermostats [110.2(c)], isolation valves [110.3(c)]",
+        "Ducts and Fans: space conditioning airflow 350 CFM/ton, air-handling unit fan efficacy 0.45 W/CFM gas furnace / 0.58 W/CFM others, small duct high velocity 250 CFM/ton at 0.62 W/CFM [150.0(m)13]",
+        "Ventilation: ASHRAE 62.2 compliance [150.0(o)1], CFI ventilation motorized damper [150.0(o)1B], whole-dwelling mechanical ventilation [150.0(o)1C], local mechanical exhaust kitchens/bathrooms [150.0(o)1G], MERV 13 filters",
+        "Pool/Spa: certification, 36 inches pipe between filter and heater, covers required, directional inlets, time switches, no continuously burning pilot [110.4, 110.5, 150.0(p)]",
+        "Lighting: controls per 110.9, luminaire efficacy TABLE 150.0-A, screw-based luminaires per JA8, recessed downlights airtight/sealed, blank electrical boxes limited to bedroom count [150.0(k)]",
+        "Solar Readiness: solar zone minimum 250 sq ft for single-family, azimuth 90-300 degrees, structural loads on construction documents, 200A minimum busbar, reserved space for double pole breaker marked 'For Future Solar Electric' [110.10]",
+        "Energy Storage System (ESS) Ready: 80A backup capacity or dedicated raceway, 4+ ESS branch circuits including refrigerator and sleeping room, 225A minimum panelboard busbar, space for isolation equipment/transfer switch within 3 ft [150.0(s)]",
+        "Heat Pump Space Heater Ready: dedicated 240V/30A circuit within 3 ft of furnace, blank cover '240V ready', reserved panel space 'For Future 240V use' [150.0(t)]",
+        "Electric Cooking Ready: dedicated 240V/50A circuit within 3 ft of cooktop, blank cover '240V ready', reserved panel space 'For Future 240V use' [150.0(v)]",
+        "Electric Clothes Dryer Ready: dedicated 240V/30A circuit within 3 ft of dryer, blank cover '240V ready', reserved panel space 'For Future 240V use' [150.0(v)]",
+        "Duct sealing and leakage test required per RA3.1 [150.0(m)11]",
+        "Air filtration: 2-inch minimum depth filter, MERV 13 or better, accessible for regular service [150.0(m)12]",
+        "APPROVED: BADD326126, DATE 10/29/25, Anthony Montez \u2014 Building Plan Check, City of Long Beach Electronic Plan Check",
+        "NOT SHOWN: project-specific CF-1R compliance certificate (this sheet is notes/checklist only)",
+        "NOT SHOWN: specific U-factor, SHGC, or R-value calculations for this project",
+        "NOT SHOWN: climate zone designation for this project",
+        "NOT SHOWN: HVAC system type or efficiency ratings (SEER2, HSPF2, AFUE)",
+        "NOT SHOWN: PV solar system size (kW)",
+        "NOT SHOWN: compliance method (prescriptive vs performance)",
+        "NOT SHOWN: compliance software (CBECC, EnergyPro)"
+      ],
+      "topics": [
+        "Title 24",
+        "energy compliance",
+        "mandatory requirements",
+        "2022 Energy Code",
+        "Title 24 notes",
+        "building envelope",
+        "air leakage",
+        "fenestration",
+        "U-factor",
+        "SHGC",
+        "NFRC",
+        "insulation",
+        "insulation R-values",
+        "wall insulation R-13",
+        "raised-floor insulation R-19",
+        "vapor retarder",
+        "radiant barrier",
+        "roofing solar reflectance",
+        "CF1R",
+        "fireplaces",
+        "pilot light",
+        "combustion air intake",
+        "flue damper",
+        "HVAC efficiency",
+        "thermostats",
+        "setback thermostat",
+        "ducts and fans",
+        "duct sealing",
+        "duct leakage test",
+        "air filtration",
+        "MERV 13",
+        "ventilation",
+        "ASHRAE 62.2",
+        "indoor air quality",
+        "CFI ventilation",
+        "mechanical exhaust",
+        "kitchen exhaust",
+        "bathroom exhaust",
+        "pool and spa",
+        "lighting",
+        "luminaire efficacy",
+        "JA8",
+        "recessed downlights",
+        "vacancy sensors",
+        "solar readiness",
+        "solar zone",
+        "PV solar",
+        "200A busbar",
+        "energy storage system",
+        "ESS ready",
+        "heat pump ready",
+        "electric cooking ready",
+        "electric dryer ready",
+        "240V ready",
+        "water heater",
+        "water heater temperature",
+        "formaldehyde",
+        "CalGreen",
+        "compliance information",
+        "operating information",
+        "maintenance information",
+        "gravity ventilation dampers",
+        "backdraft damper",
+        "factory-fabricated duct",
+        "field-fabricated duct",
+        "mastic",
+        "duct tape",
+        "porous inner core flex duct",
+        "air infiltration",
+        "weatherstripping",
+        "mandatory measures",
+        "residential mandatory requirements"
+      ],
+      "drawing_zones": [
+        {
+          "zone": "left-column (full height)",
+          "content": "TITLE 24 NOTES: 23 numbered notes covering compliance information [10-103(b)1], operating information [10-103(b)2], maintenance information [10-103(b)3], ventilation information [10-103(b)4], appliance efficiency [110.1(a)], water heater temperature controls [110.3(a)1], circulating pump auto-off [110.3(c)2], public lavatory 110\u00b0F limit [110.3(c)8], unfired tank insulation R-12/R-16 [110.3(c)4], pilot light prohibition [110.5], pool/spa requirements [110.4], fenestration air infiltration 0.3 cfm/ft2 [110.6(a)1], NFRC rating [110.6(a)2], weatherstripping [110.6(b)3], air sealing [110.7], insulation certification [110.8(a)], urea formaldehyde [110.8(b)], flame spread [110.8(c)], existing duct insulation [110.8(d)], existing tank insulation [110.8(d)2]"
+        },
+        {
+          "zone": "center-left (upper half)",
+          "content": "Section E: Residential Notes \u2014 10 items covering fireplace requirements (closeable doors, combustion air, flue damper) [150.0(e)1], setback thermostat [150.0(i)], gas water heater specs (120V receptacle within 3 ft, Cat III/IV vent, condensate drain, 200,000 Btu/hr gas line) [150.0(n)], pipe insulation requirements [150.0(c)2.A], water heater tank insulation [150.0(j)1], lighting requirements (high-efficacy luminaires, vacancy sensors, dimmers) [150.0(k)]"
+        },
+        {
+          "zone": "upper-right quadrant",
+          "content": "2022 Single-Family Residential Mandatory Requirements Summary \u2014 Building Envelope checklist: air leakage 0.3 CFM/sq ft, fenestration labeling NFRC, field fabricated doors/windows, insulation certification BHGS, heated slab floors, roofing solar reflectance, radiant barrier, roof/ceiling insulation U-0.184, wall insulation R-13/R-20, raised-floor R-19, slab edge insulation, vapor retarder. Plus Fireplaces/Gas Appliances: pilot light, closeable doors, combustion intake, flue dampers. Plus HVAC: efficiency/certification, heat pump, thermostats, isolation valves"
+        },
+        {
+          "zone": "center (upper half)",
+          "content": "2022 Mandatory Requirements Summary \u2014 Ducts and Fans: space conditioning airflow 350 CFM/ton, fan efficacy 0.45/0.58 W/CFM. Ventilation and Indoor Air Quality: ASHRAE 62.2, CFI ventilation, whole-dwelling mechanical ventilation, local exhaust kitchens/bathrooms, airflow measurement/sound ratings, field verification per RA3.7"
+        },
+        {
+          "zone": "center (lower half)",
+          "content": "2022 Mandatory Requirements Summary \u2014 Pool and Spa Systems: certification, piping (36 in between filter/heater), covers, directional inlets, time switches, pilot light prohibition. Lighting: controls per 110.9, luminaire efficacy TABLE 150.0-A, screw-based per JA8, recessed downlights airtight, blank electrical boxes, exhaust fan lighting"
+        },
+        {
+          "zone": "center-right (upper half)",
+          "content": "2022 Mandatory Requirements Summary \u2014 Pilot Lights, Building Cooling/Heating Loads (ASHRAE/SMACNA/ACCA Manual J), Clearances (5 ft from dryer), Liquid Line Drier, Water Piping/Solar/Space Conditioning Line Insulation, Insulation Protection, Gas/Propane Water Heating (2.5x2.5x7 ft space for future heat pump), Solar Water-Heating certification SRCC/IAPMO"
+        },
+        {
+          "zone": "center-right (lower half)",
+          "content": "2022 Mandatory Requirements Summary \u2014 Ducts: CMC compliance, R-6 minimum, mechanical fastening, mastic/tape sealing, factory-fabricated duct systems, field-fabricated duct systems, backdraft danger, gravity ventilation dampers, insulation protection, porous inner core flex duct, duct sealing and leakage test per RA3.1, air filtration 2-inch depth MERV 13"
+        },
+        {
+          "zone": "lower-center-left",
+          "content": "2022 Mandatory Requirements Summary \u2014 Ventilation MERV 13 filters. Vehicles/Lighting for residential parking garages. Solar Readiness: solar zone 250 sq ft minimum, azimuth 90-300\u00b0, structural loads on documents, 200A busbar, reserved double pole breaker 'For Future Solar Electric'. Construction documents requirements for solar zone"
+        },
+        {
+          "zone": "lower-center-right",
+          "content": "2022 Mandatory Requirements Summary \u2014 Energy Storage System (ESS) Ready: 80A backup or dedicated raceway, 4+ branch circuits, 225A panelboard, isolation equipment space within 3 ft. Heat Pump Space Heater Ready: 240V/30A within 3 ft, '240V ready'. Electric Cooking Ready: 240V/50A within 3 ft. Electric Clothes Dryer Ready: 240V/30A within 3 ft. *Exceptions may apply."
+        },
+        {
+          "zone": "lower-center-right (stamp area)",
+          "content": "Red APPROVED stamp \u2014 BADD326126, DATE: 10/29/25, City of Long Beach Electronic Plan Check, Anthony Montez - Building Plan Check"
+        },
+        {
+          "zone": "right-edge (title block, rotated vertical)",
+          "content": "Title block: LRG DESIGNS, P.O. Box 470011 Los Angeles CA 90047, (323) 955-4827, LRG0DESIGNS411@GMAIL.COM, PROJECT: NEW ADU, SITE ADDRESS: 326 FLINT AVENUE UNIT A LONG BEACH CA 90814, OWNER: BRANDAN KING, DATE: 9/22/2025, SHEET: T-3"
+        },
+        {
+          "zone": "upper-right (title block area)",
+          "content": "REVISION / DATE block with 5 empty rows (no revisions)"
+        }
+      ],
+      "title_block_address": "326 FLINT AVENUE UNIT A, LONG BEACH, CA 90814",
+      "vision_extracted": true
+    }
+  ]
+}

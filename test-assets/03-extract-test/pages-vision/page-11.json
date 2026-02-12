@@ -1,0 +1,49 @@
+{
+  "page_number": 11,
+  "sheet_id": "S2",
+  "sheet_title": "Details",
+  "category": "structural",
+  "subcategory": "structural_details",
+  "prepared_by": "GSE - Gonzalez Structural Engineering",
+  "description": "Structural detail sheet with 8 numbered details including shearwall schedule, holdown/column schedule, slab edge detail, footing sections at holdowns, stud wall/shear wall sections, and anchor bolt connection details.",
+  "key_content": [
+    "Shearwall schedule: Mark 1 = 15/32 STR CD, 8d nails, 6\" edge / 12\" field, 340 PLF",
+    "Shearwall schedule: Mark 2 = 15/32 STR CD, 8d nails, 4\" edge / 12\" field, 510 PLF",
+    "Special inspection required for nailing at 4\" O.C. or less",
+    "Holdown schedule: Mark 1 = HD12, 6-SD25212 anchor, 4x4 post, 3,075 lbs uplift",
+    "Slab edge detail (Detail 1)",
+    "Footing sections at holdowns (Details 6 and 7) with anchor bolt embedment",
+    "Stud wall / shear wall cross-section (Detail 2) showing exterior wall assembly",
+    "Holdown anchor in concrete detail (Detail 5)",
+    "Anchor bolt / sill bolt connection detail (Detail 3)",
+    "Holdown notes: minimum 4x4 posts, fully blocked at panel connections, minimum 3x blocking",
+    "Galvanized sheathing nails for exterior, common wire nails for interior",
+    "NOT SHOWN: roof-to-wall connection details (may be on S3)",
+    "NOT SHOWN: uplift values for marks beyond Mark 1 in holdown schedule (partially obscured)"
+  ],
+  "topics": [
+    "shearwall schedule",
+    "holdowns",
+    "holdown schedule",
+    "PLF ratings",
+    "slab edge",
+    "footing sections",
+    "anchor bolts",
+    "connection details",
+    "special inspection",
+    "Simpson HD12",
+    "stud wall section",
+    "sill bolt"
+  ],
+  "drawing_zones": [
+    {"zone": "detail-7 (top-left)", "content": "Footing sections — DC footing and 2E footing with anchor bolts"},
+    {"zone": "detail-4 (top-center)", "content": "Shearwall Schedule table with Marks 1-2 and shearwall notes"},
+    {"zone": "detail-1 (top-right)", "content": "Slab edge detail section"},
+    {"zone": "detail-8 (middle-left)", "content": "Holdown/Column Schedule table and holdown notes 1-7"},
+    {"zone": "detail-5 (middle-center)", "content": "Holdown anchor in concrete footing cross-section"},
+    {"zone": "detail-2 (middle-right)", "content": "Stud wall / shear wall section with exterior assembly"},
+    {"zone": "detail-6 (bottom-left)", "content": "Typical section of footing at holdown — full detail"},
+    {"zone": "detail-3 (bottom-center)", "content": "Anchor bolt / sill bolt connection detail"}
+  ],
+  "vision_extracted": true
+}

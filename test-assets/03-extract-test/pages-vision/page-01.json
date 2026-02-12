@@ -1,0 +1,63 @@
+{
+  "_project": {
+    "address": "1222 N. Jefferson St., Placentia, CA 92870",
+    "type": "New Detached ADU",
+    "adu_address": "1222 N. Jefferson St., Unit 'A', Placentia, CA 92870",
+    "main_home_address": "1222 N. Jefferson St., Placentia, CA 92870",
+    "designer": "Ideal ADU Design",
+    "structural_engineer": null,
+    "energy_consultant": null,
+    "owner": null,
+    "adu_size_sqft": 600,
+    "existing_home_sqft": null,
+    "lot_size_sqft": null
+  },
+  "page_number": 1,
+  "sheet_id": "CS",
+  "sheet_title": "Cover Sheet",
+  "category": "general",
+  "subcategory": "cover_sheet",
+  "prepared_by": "Ideal ADU Design",
+  "description": "Cover sheet for a new detached 600 sq ft ADU at 1222 N. Jefferson St., Placentia, CA 92870. Includes governing codes (2022 CBC/CRC/CMC/CPC/CEC/CalGreen/CFC), scope of work, separate permits list, 20 general notes, vicinity map, sheet index, project consultants, abbreviations, and project data.",
+  "key_content": [
+    "Project type: New Detached ADU, 600 sq ft, 1 bedroom, 1 bathroom",
+    "Address: 1222 N. Jefferson St., Placentia, CA 92870",
+    "ADU address: 1222 N. Jefferson St., Unit 'A'",
+    "Governing codes: 2022 CBC, 2022 CRC, 2022 CMC, 2022 CPC, 2022 CEC, 2022 CalGreen, 2022 CFC, 2022 California Electrical Code, City of Placentia Municipal Code",
+    "PV solar: 22 panels at back of existing main home (265 Watts each)",
+    "Scope of work: new detached ADU at rear of property, wood frame construction",
+    "Separate permits required for: retaining walls, grading, swimming pool, separate structure, garage, driveway, water/gas, trash enclosure, pool/yard lighting, flagpole, concrete work, electrical/plumbing",
+    "General notes: 20 numbered items covering permits, worker's comp, OASYS/DITS, smoke/CO detectors, low-consumption fixtures, dust control, pre-construction meeting, storm drain discharge prohibition",
+    "Vicinity map showing N. Jefferson St. location in Placentia",
+    "NOT SHOWN: designer license number",
+    "NOT SHOWN: structural engineer name",
+    "NOT SHOWN: energy consultant name",
+    "NOT SHOWN: existing home square footage",
+    "NOT SHOWN: lot size (sq ft)",
+    "NOT SHOWN: bedroom/bathroom count in project data section (stated in scope as 1BR/1BA)"
+  ],
+  "topics": [
+    "cover sheet",
+    "project info",
+    "scope of work",
+    "governing codes",
+    "general notes",
+    "separate permits",
+    "vicinity map",
+    "sheet index",
+    "abbreviations",
+    "PV solar",
+    "ADU placement"
+  ],
+  "drawing_zones": [
+    {"zone": "top-center", "content": "Project header: New Detached ADU address and city"},
+    {"zone": "top-left", "content": "Governing codes list (2022 editions)"},
+    {"zone": "left-column", "content": "General notes (items 3-20), scope of work, separate permits list"},
+    {"zone": "bottom-left", "content": "Vicinity map with property location marker"},
+    {"zone": "center-column", "content": "Scope of work (item 12), separate permits (item 13), abbreviations (item 9)"},
+    {"zone": "right-column", "content": "Sheet index, legal description, owner information, project data, notes"},
+    {"zone": "top-right", "content": "Ideal ADU Design logo and firm info"},
+    {"zone": "bottom-right", "content": "Title block: project data, sheet CS designation"}
+  ],
+  "vision_extracted": true
+}

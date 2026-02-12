@@ -1,0 +1,52 @@
+{
+  "page_number": 25,
+  "sheet_id": "T-2",
+  "sheet_title": "Energy Compliance (CF-1R Forms)",
+  "category": "energy",
+  "subcategory": "cf1r_compliance_certificates",
+  "prepared_by": "LRO Designs (energy report by Lawrence Gordon)",
+  "description": "Title 24 energy compliance sheet containing approximately 5-6 tiled CF-1R (Certificate of Compliance - Residential Performance Compliance Method) forms. Includes building envelope tables, construction component data, HVAC system summary, and home ventilation data. Forms are composited at reduced scale with CHEERS watermark obscuring portions. 2022 Standards Compliance edition.",
+  "key_content": [
+    "Compliance method: Residential Performance Compliance Method (performance path)",
+    "Standards edition: 2022 California Building Energy Efficiency Standards",
+    "HERS provider: CHEERS",
+    "Report version: 2023.4.000, generated 2025-09-01",
+    "Energy consultant/preparer: Lawrence Gordon, Los Angeles CA 90001",
+    "Building envelope table present (Form 1) — specific U-factors partially obscured by CHEERS watermark",
+    "Construction components table (Form 2): ceiling, exterior floor, wall assemblies listed with U-factors",
+    "HVAC system summary table (Forms 4-5): space heater, ducted AC/heat entries visible",
+    "Home ventilation section: Manual D or duct test, measured air flow referenced",
+    "VALUE NOT LEGIBLE: specific fenestration U-factor and SHGC values (small rasterized text)",
+    "VALUE NOT LEGIBLE: HVAC efficiency ratings (SEER2, HSPF2, AFUE)",
+    "VALUE NOT LEGIBLE: compliance margins (proposed vs standard for heating, cooling, water heating)",
+    "VALUE NOT LEGIBLE: insulation R-values from building envelope table",
+    "NOT SHOWN: PV solar system specs (required for new detached ADU per Title 24) — may be on separate form or absent"
+  ],
+  "topics": [
+    "Title 24",
+    "CF1R",
+    "energy compliance",
+    "performance compliance",
+    "building envelope",
+    "U-factor",
+    "SHGC",
+    "HVAC",
+    "CHEERS",
+    "HERS",
+    "fenestration",
+    "2022 standards",
+    "ventilation",
+    "compliance certificate"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "CF-1R Form 1 — building envelope table with CHEERS watermark overlay"},
+    {"zone": "top-right", "content": "CF-1R Form 2 — construction components table (ceiling, floor, wall assemblies)"},
+    {"zone": "middle-left", "content": "CF-1R Form 3 — signature/preparer page (Lawrence Gordon)"},
+    {"zone": "middle-right", "content": "CF-1R Form 4 — HVAC/fenestration data table"},
+    {"zone": "bottom-center", "content": "CF-1R Form 5 — system summary, home ventilation section"},
+    {"zone": "left-center", "content": "APPROVED stamp — City of Long Beach, Anthony Montez, 10/20/25"},
+    {"zone": "right-edge", "content": "Title block — LRO Designs, T-2, 4/22/2025, owner Brendan King"}
+  ],
+  "title_block_address": "326 FLINT AVE UNIT A, LONG BEACH, CA 90814",
+  "vision_extracted": true
+}

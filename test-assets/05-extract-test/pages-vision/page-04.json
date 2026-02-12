@@ -1,0 +1,51 @@
+{
+  "page_number": 4,
+  "sheet_id": "AIA.2",
+  "sheet_title": "2022 CalGreen AIA Checklist",
+  "category": "code_compliance",
+  "subcategory": "calgreen_checklist",
+  "prepared_by": "Ideal Designs",
+  "description": "Second sheet of CalGreen mandatory measures checklist covering pollutant control (VOC limits for adhesives, sealants, coatings), formaldehyde limits, indoor air quality/exhaust requirements, environmental comfort, moisture control, composite wood products, and installer/special inspector qualifications. Includes APPROVED stamp from Building Plan Check.",
+  "key_content": [
+    "VOC limits table for adhesives: Indoor Carpet 50 g/L, Wood Flooring 100 g/L, Multipurpose Construction 70 g/L",
+    "VOC limits table for sealants: Architectural 250 g/L, Non-Membrane Roof 300 g/L",
+    "Interior paint VOC limits: Flat 50 g/L, Non-flat 50 g/L, Primers 100 g/L",
+    "Formaldehyde limits per CARB ATCM for HWPW, particleboard, MDF",
+    "Indoor air quality: exhaust fans ENERGY STAR rated, ducted to exterior",
+    "Moisture control: vapor retarder required at concrete slab per CBC 1907.1",
+    "Section 703 Verifications: documentation requirements",
+    "Installer and special inspector qualification requirements",
+    "APPROVED stamp signed by Anthony Montez — Building Plan Check",
+    "NOT SHOWN: CalGreen tier level (mandatory vs Tier 1 vs Tier 2) not explicitly stated",
+    "NOT SHOWN: EV charging readiness specs",
+    "NOT SHOWN: construction waste diversion percentage",
+    "NOT SHOWN: water efficiency fixture flow rates (GPM/GPF)"
+  ],
+  "topics": [
+    "CalGreen",
+    "green building",
+    "VOC limits",
+    "formaldehyde",
+    "pollutant control",
+    "indoor air quality",
+    "exhaust fans",
+    "moisture control",
+    "adhesive VOC",
+    "sealant VOC",
+    "coating VOC",
+    "CARB ATCM",
+    "mandatory measures"
+  ],
+  "drawing_zones": [
+    {"zone": "top-left", "content": "Section 4.504 Pollutant Control — VOC adhesive table (TABLE 4.504.1)"},
+    {"zone": "top-center", "content": "TABLE 4.504.5 Formaldehyde limits and sealant VOC table (TABLE 4.504.2)"},
+    {"zone": "top-right", "content": "Section 4.505 Indoor Air Quality and Exhaust, Section 4.507 Environmental Comfort"},
+    {"zone": "center-left", "content": "Continued VOC tables — paints, coatings, aerosol limits"},
+    {"zone": "center", "content": "Division 4.5 Environmental Quality continued — carpet systems, resilient flooring, composite wood"},
+    {"zone": "center-right", "content": "Interior moisture control, concrete slab foundation vapor retarder"},
+    {"zone": "bottom-right", "content": "APPROVED stamp, Section 703 Verifications, Installer & Special Inspector Qualifications"},
+    {"zone": "right-edge", "content": "Title block (vertical): project info, sheet AIA.2"}
+  ],
+  "title_block_address": "629 Eliot Ave, Long Beach, CA 90814",
+  "vision_extracted": true
+}
