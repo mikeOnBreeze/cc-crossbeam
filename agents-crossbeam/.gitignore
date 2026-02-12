@@ -1,0 +1,4 @@
+sessions/
+node_modules/
+.env.local
+.env

@@ -77,27 +77,54 @@ CC-Crossbeam/                           ← Claude Code CLI works here (parent)
 │       ├── adu-targeted-page-viewer/
 │       └── buena-park-adu/
 │
-├── backend/                            ← Agent SDK app lives here
+├── agents-crossbeam/                   ← Agent SDK app (deployable unit)
 │   ├── .claude/
 │   │   └── skills/                     ← ONLY ADU skills (6) — symlinked
 │   │       ├── california-adu → ../../../adu-skill-development/skill/california-adu
-│   │       ├── adu-corrections-flow → ../../../adu-skill-development/skill/adu-corrections-flow
-│   │       ├── adu-corrections-complete → ../../../adu-skill-development/skill/adu-corrections-complete
-│   │       ├── adu-city-research → ../../../adu-skill-development/skill/adu-city-research
-│   │       ├── adu-targeted-page-viewer → ../../../adu-skill-development/skill/adu-targeted-page-viewer
-│   │       └── buena-park-adu → ../../../adu-skill-development/skill/buena-park-adu
+│   │       ├── adu-corrections-flow → ...
+│   │       ├── adu-corrections-complete → ...
+│   │       ├── adu-city-research → ...
+│   │       ├── adu-targeted-page-viewer → ...
+│   │       └── buena-park-adu → ...
 │   ├── src/
-│   │   ├── harness.ts
-│   │   ├── run-skill-1.ts
-│   │   ├── run-skill-2.ts
-│   │   ├── test-full-flow.ts
+│   │   ├── flows/                      ← One file per Agent SDK flow
+│   │   │   ├── corrections-analysis.ts   (Skill 1 — query() wrapper)
+│   │   │   ├── corrections-response.ts   (Skill 2 — query() wrapper)
+│   │   │   └── city-prescreening.ts      (Future: city perspective flow)
+│   │   ├── tests/                      ← Leveled test suite (L0-L4)
+│   │   │   ├── test-l0-smoke.ts
+│   │   │   ├── test-l1-skill-invoke.ts
+│   │   │   ├── test-l2-subagent-bash.ts
+│   │   │   ├── test-l3-mini-pipeline.ts
+│   │   │   ├── test-l3b-skill2-only.ts
+│   │   │   └── test-l4-full-pipeline.ts
 │   │   └── utils/
+│   │       ├── config.ts               ← Shared base config factory
+│   │       ├── session.ts              ← Session directory management
+│   │       ├── progress.ts             ← Progress event handler
+│   │       └── verify.ts              ← Post-run file verification
+│   ├── sessions/                       ← Runtime output (gitignored)
 │   ├── package.json                    (@anthropic-ai/claude-agent-sdk)
-│   └── .env.local                      (ANTHROPIC_API_KEY)
+│   ├── tsconfig.json
+│   └── .env                            (ANTHROPIC_API_KEY)
+│
+├── test-assets/                        ← Test data (shared across all tools)
+│   ├── corrections/                    ← Placentia full corrections data
+│   ├── correction-01/                  ← Alternate Placentia data path
+│   ├── approved/                       ← Long Beach approved plans
+│   ├── mini/                           ← Mini test data (L3 — create this)
+│   │   ├── corrections-mini.png          (2-3 items cropped)
+│   │   ├── plan-page-A1.png              (single extracted page)
+│   │   └── sheet-manifest-mini.json      (pre-made 2-sheet manifest)
+│   └── mock-session/                   ← Pre-made Skill 1 outputs (L3b — create this)
+│       ├── corrections_parsed.json
+│       ├── corrections_categorized.json
+│       ├── contractor_answers.json
+│       └── ...
 │
 └── frontend/                           ← Next.js app (later)
     ├── app/
-    │   └── api/                        (API routes call backend/)
+    │   └── api/                        (API routes call agents-crossbeam/)
     └── package.json
 ```
 
@@ -107,11 +134,11 @@ CC-Crossbeam/                           ← Claude Code CLI works here (parent)
 
 With symlinks:
 1. Edit skills in `adu-skill-development/skill/` — no permission prompts, fast iteration
-2. Symlinks in `backend/.claude/skills/` auto-propagate changes
+2. Symlinks in `agents-crossbeam/.claude/skills/` auto-propagate changes
 3. Agent SDK picks up the latest skill content on every `query()` call
 4. Parent `.claude/skills/` stays untouched — CLI dev environment is unaffected
 
-This is the same pattern from Mako (parent repo + subrepo with its own `.claude/`) but without needing a separate git repo. The `backend/` directory acts as the Agent SDK's project root.
+This is the same pattern from Mako (parent repo + subrepo with its own `.claude/`) but without needing a separate git repo. The `agents-crossbeam/` directory acts as the Agent SDK's project root.
 
 ---
 
@@ -167,8 +194,8 @@ const result = query({
       append: CROSSBEAM_SYSTEM_PROMPT  // Our custom instructions
     },
 
-    // Skills discovery — loads backend/.claude/skills/ (only ADU skills)
-    cwd: BACKEND_ROOT,  // path.resolve(__dirname, '..')  → backend/
+    // Skills discovery — loads agents-crossbeam/.claude/skills/ (only ADU skills)
+    cwd: AGENTS_ROOT,  // path.resolve(__dirname, '..')  → agents-crossbeam/
     settingSources: ['project'],
 
     // Permissions — bypass for programmatic use
@@ -183,26 +210,190 @@ const result = query({
       'WebSearch', 'WebFetch',   // Web research
     ],
 
+    // Filesystem access — agent needs parent dir for test-assets
+    additionalDirectories: [PROJECT_ROOT],  // CC-Crossbeam/ (parent)
+
     // Limits
     maxTurns: 80,           // High — skills spawn many subagents
-    maxBudgetUsd: 8.00,     // Corrections flow uses multiple Opus calls
+    maxBudgetUsd: 15.00,    // Opus 4.6 is ~5x Sonnet; 5+ subagents adds up
     model: 'claude-opus-4-6',
 
     // Streaming for progress monitoring
     includePartialMessages: true,
+
+    // Cancellation control (Ctrl+C support)
+    abortController: new AbortController(),
   }
 });
 ```
 
-### Critical Gotchas (from Dec 2025)
+### Critical Gotchas (from Dec 2025 + Feb 2026 SDK research)
 
 | Gotcha | Details |
 |--------|---------|
 | **`tools` and `systemPrompt` presets are required** | Without `{ type: 'preset', preset: 'claude_code' }`, the agent hallucinates tool usage — says "I'll write the file" but creates nothing |
 | **`settingSources: ['project']` required for skills** | Without this, agent won't discover `.claude/skills/` directories |
-| **Model name must be full alias** | Use `'claude-opus-4-6'`, not `'opus'` |
-| **`cwd` must point to `backend/`** | Skills are loaded relative to `cwd` — must contain `.claude/skills/` with only ADU skills. Do NOT point to parent project root (loads 13 skills including nano-banana). |
+| **Model name must be full alias** | Use `'claude-opus-4-6'`, not `'opus'` (SDK docs say shorthand works, but Dec 2025 learnings say use full alias — play it safe) |
+| **`cwd` must point to `agents-crossbeam/`** | Skills are loaded relative to `cwd` — must contain `.claude/skills/` with only ADU skills. Do NOT point to parent project root (loads 13 skills including nano-banana). |
 | **Always verify file creation** | Agent reports success even when tools aren't configured. Check files exist after run. |
+| **`additionalDirectories` needed** | Agent's `cwd` is `agents-crossbeam/` but test data lives in `../test-assets/`. Without `additionalDirectories: [PROJECT_ROOT]`, filesystem access may be restricted. |
+| **Subagent skill inheritance unclear** | SDK docs say "subagents inherit allowedTools but NOT skills." If Task-spawned subagents can't invoke skills, fall back to `agents` config with inline prompts. **Test this in L2.** |
+| **Node 22.6+ required** | `--experimental-strip-types` + `import.meta.dirname` need Node 22.6+. Current: v24.9.0 ✓ |
+| **ANTHROPIC_API_KEY must be in `.env`** | The project `.env` currently has GEMINI and FAL keys only. Add `ANTHROPIC_API_KEY=sk-ant-...` before running. |
+
+---
+
+## Shared Base Config — Modularity Pattern
+
+All flows and tests import from one config factory (`src/utils/config.ts`). This gives us:
+
+1. **One place to change the model** — swap Opus/Sonnet/Haiku across everything
+2. **One place to raise budgets** — no hunting through multiple files
+3. **Multiple flows, shared foundation** — corrections flow, city prescreening flow, future flows all use the same base
+4. **Tests override what they need** — L0 uses Haiku ($0.01), L4 uses Opus ($15)
+
+```typescript
+// src/utils/config.ts — the shared foundation
+import path from 'path';
+import type { Options } from '@anthropic-ai/claude-agent-sdk';
+
+export const AGENTS_ROOT = path.resolve(import.meta.dirname, '../..');  // agents-crossbeam/
+export const PROJECT_ROOT = path.resolve(AGENTS_ROOT, '..');            // CC-Crossbeam/
+
+export type FlowConfig = {
+  model?: string;                // Default: claude-opus-4-6
+  maxTurns?: number;             // Default: 80
+  maxBudgetUsd?: number;         // Default: 15.00
+  allowedTools?: string[];       // Default: all tools
+  systemPromptAppend?: string;   // Appended to base CrossBeam prompt
+  abortController?: AbortController;
+};
+
+export function createQueryOptions(flow: FlowConfig = {}): Options {
+  return {
+    tools: { type: 'preset', preset: 'claude_code' },
+    systemPrompt: {
+      type: 'preset',
+      preset: 'claude_code',
+      append: buildSystemPrompt(flow.systemPromptAppend),
+    },
+    cwd: AGENTS_ROOT,
+    settingSources: ['project'],
+    permissionMode: 'bypassPermissions',
+    allowDangerouslySkipPermissions: true,
+    allowedTools: flow.allowedTools ?? DEFAULT_TOOLS,
+    additionalDirectories: [PROJECT_ROOT],
+    maxTurns: flow.maxTurns ?? 80,
+    maxBudgetUsd: flow.maxBudgetUsd ?? 15.00,
+    model: flow.model ?? 'claude-opus-4-6',
+    includePartialMessages: true,
+    abortController: flow.abortController ?? new AbortController(),
+  };
+}
+```
+
+**Each flow file is minimal** — just the prompt + any flow-specific overrides:
+```typescript
+// src/flows/corrections-analysis.ts
+import { query } from '@anthropic-ai/claude-agent-sdk';
+import { createQueryOptions } from '../utils/config.js';
+
+export async function runCorrectionsAnalysis(opts) {
+  const q = query({
+    prompt: buildCorrectionsPrompt(opts),
+    options: createQueryOptions({
+      maxBudgetUsd: 15.00,
+      systemPromptAppend: 'Use the adu-corrections-flow skill...',
+    }),
+  });
+  // ... iterate messages
+}
+```
+
+**Future city prescreening flow uses the same pattern:**
+```typescript
+// src/flows/city-prescreening.ts — future
+import { createQueryOptions } from '../utils/config.js';
+
+export async function runCityPrescreening(opts) {
+  const q = query({
+    prompt: buildCityPrompt(opts),
+    options: createQueryOptions({
+      maxBudgetUsd: 5.00,
+      systemPromptAppend: 'Use the california-adu skill + adu-city-research skill...',
+    }),
+  });
+}
+```
+
+See `testing-agents-sdk.md` for the full config code including session management.
+
+---
+
+## Error Recovery & Phase Checkpointing
+
+### The Problem
+
+Skill 1 runs 60-80 turns over 5-10 minutes. If it fails at turn 60, you've burned $5+ and 8 minutes. We need recovery strategies.
+
+### Strategy 1: Session Resume
+
+Capture `session_id` from the SDK result message. If a run fails, you can resume:
+
+```typescript
+// On failure, capture session ID
+if (result.subtype !== 'success') {
+  console.log(`Failed: ${result.subtype}. Session: ${result.session_id}`);
+  // Resume later:
+  // query({ prompt: 'Continue...', options: { resume: result.session_id } })
+}
+```
+
+### Strategy 2: Phase Checkpointing
+
+The corrections pipeline writes JSON files after each phase. Check which files exist to know where it stopped:
+
+```typescript
+function detectCompletedPhases(sessionDir: string): string[] {
+  const phases = [];
+  if (fs.existsSync(path.join(sessionDir, 'corrections_parsed.json'))) phases.push('Phase 1');
+  if (fs.existsSync(path.join(sessionDir, 'sheet-manifest.json'))) phases.push('Phase 2');
+  if (fs.existsSync(path.join(sessionDir, 'state_law_findings.json'))) phases.push('Phase 3A');
+  // ... etc
+  return phases;
+}
+```
+
+Then tell the next run to skip completed phases:
+```
+The following phases are ALREADY COMPLETE (files exist, do not redo):
+${completedPhases.map(p => `- ${p} ✓`).join('\n')}
+
+Resume from the next incomplete phase.
+```
+
+### Strategy 3: Reuse Previous Extractions
+
+PDF extraction (Phase 2) is deterministic — same PDF always produces the same PNGs + manifest. Once you have a good manifest for a test PDF, save it and skip Phase 2 on subsequent runs.
+
+---
+
+## Testing Strategy
+
+Full testing approach documented in **`testing-agents-sdk.md`** (separate file).
+
+**Summary:**
+
+| Level | What | Time | Cost | Model |
+|-------|------|------|------|-------|
+| L0 | SDK init + skill discovery | 30 sec | $0.01 | Haiku |
+| L1 | Single skill invocation | 1-2 min | $0.50 | Haiku/Sonnet |
+| L2 | Subagent + Bash script | 2-3 min | $1.00 | Sonnet |
+| L3 | Mini pipeline (Buena Park shortcut) | 5-7 min | $3-5 | Opus |
+| L3b | Skill 2 isolation (from mock data) | 2-3 min | $2-3 | Opus |
+| L4 | Full pipeline (real data, live search) | 15-20 min | $10-15 | Opus |
+
+**Key insight:** Use Haiku/Sonnet for L0-L2 (testing wiring, not quality). Use Opus for L3+ (testing skill behavior). The Buena Park offline skill replaces live city research in L3, saving 5-10 min per test.
 
 ---
 
@@ -210,14 +401,14 @@ const result = query({
 
 ### Step 1: Backend Subdirectory + Skills Setup
 
-Create the `backend/` directory with its own `.claude/skills/` containing only ADU skills. This is the Agent SDK's project root — `cwd` in every `query()` call points here.
+Create the `agents-crossbeam/` directory with its own `.claude/skills/` containing only ADU skills. This is the Agent SDK's project root — `cwd` in every `query()` call points here.
 
 ```bash
 # Create backend structure
-mkdir -p backend/.claude/skills backend/src/utils
+mkdir -p agents-crossbeam/.claude/skills agents-crossbeam/src/utils
 
 # Symlink ADU skills from source of truth
-cd backend/.claude/skills
+cd agents-crossbeam/.claude/skills
 ln -s ../../../adu-skill-development/skill/california-adu california-adu
 ln -s ../../../adu-skill-development/skill/adu-corrections-flow adu-corrections-flow
 ln -s ../../../adu-skill-development/skill/adu-corrections-complete adu-corrections-complete
@@ -227,34 +418,41 @@ ln -s ../../../adu-skill-development/skill/buena-park-adu buena-park-adu
 cd ../../..
 
 # Verify symlinks resolve
-ls -la backend/.claude/skills/
+ls -la agents-crossbeam/.claude/skills/
 ```
 
-**Backend directory structure:**
+**Agents directory structure:**
 ```
-backend/
+agents-crossbeam/
 ├── .claude/
 │   └── skills/                     ← 6 ADU skills only (symlinked)
 ├── src/
-│   ├── harness.ts                  # Core query() wrapper with config
-│   ├── run-skill-1.ts              # Invocation 1: corrections analysis
-│   ├── run-skill-2.ts              # Invocation 2: response generation
-│   ├── test-full-flow.ts           # End-to-end test with real data
-│   ├── types.ts                    # TypeScript types for JSON schemas
+│   ├── flows/                      ← One file per Agent SDK pipeline
+│   │   ├── corrections-analysis.ts   # Skill 1 query() wrapper
+│   │   ├── corrections-response.ts   # Skill 2 query() wrapper
+│   │   └── city-prescreening.ts      # Future: city perspective flow
+│   ├── tests/                      ← Leveled test suite (see testing-agents-sdk.md)
+│   │   ├── test-l0-smoke.ts
+│   │   ├── test-l1-skill-invoke.ts
+│   │   ├── test-l2-subagent-bash.ts
+│   │   ├── test-l3-mini-pipeline.ts
+│   │   ├── test-l3b-skill2-only.ts
+│   │   └── test-l4-full-pipeline.ts
 │   └── utils/
+│       ├── config.ts               # Shared base config factory (all flows import this)
 │       ├── session.ts              # Session directory management
 │       ├── progress.ts             # Progress event handler
 │       └── verify.ts               # Post-run file verification
-├── sessions/                       ← Created at runtime (per-job directories)
+├── sessions/                       ← Created at runtime, gitignored
 ├── package.json
 ├── tsconfig.json
-└── .env.local                      ← ANTHROPIC_API_KEY
+└── .env.local                      ← ANTHROPIC_API_KEY ($500 hackathon credits)
 ```
 
 **Package dependencies:**
 ```json
 {
-  "name": "crossbeam-backend",
+  "name": "agents-crossbeam",
   "type": "module",
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "latest"
@@ -265,12 +463,16 @@ backend/
 }
 ```
 
-**Run command (no build step needed):**
+**Run commands (no build step needed — Node 24.9 strips types natively):**
 ```bash
-cd backend && node --env-file .env.local --experimental-strip-types ./src/test-full-flow.ts
+# Run a specific test level
+cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l0-smoke.ts
+
+# Run a flow directly
+cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l4-full-pipeline.ts
 ```
 
-### Why `backend/` as a Separate Directory (Not a Subrepo)
+### Why `agents-crossbeam/` as a Separate Directory (Not a Subrepo)
 
 In Mako, the Agent SDK lived in a separate git repo (`mako/` inside the parent). That made sense for production — the subrepo could be deployed independently.
 
@@ -278,22 +480,22 @@ For the hackathon, a subdirectory is simpler:
 - No extra git repo to manage
 - Same git history for everything
 - Easy to reference test assets via relative paths (`../test-assets/`)
-- Can still deploy independently later if needed (just copy `backend/`)
+- Can still deploy independently later if needed (just copy `agents-crossbeam/`)
 
 The key thing is the **separate `.claude/skills/`**. That's what isolates the two environments.
 
 ### Step 2: Session Directory Management
 
-Each corrections job gets its own session directory under `backend/sessions/`:
+Each corrections job gets its own session directory under `agents-crossbeam/sessions/`:
 
 ```typescript
 // src/utils/session.ts
 import fs from 'fs';
 import path from 'path';
 
-export function createSession(backendRoot: string): string {
+export function createSession(agentsRoot: string): string {
   const sessionId = `correction-${Date.now()}`;
-  const sessionDir = path.join(backendRoot, 'sessions', sessionId);
+  const sessionDir = path.join(agentsRoot, 'sessions', sessionId);
   fs.mkdirSync(sessionDir, { recursive: true });
   return sessionDir;
 }
@@ -329,7 +531,7 @@ export async function runCorrectionsAnalysis(opts: {
   correctionsFile: string;   // Path to corrections letter (PNG or PDF)
   planBinderFile: string;    // Path to plan binder PDF
   sessionDir: string;        // Where to write output files
-  backendRoot: string;       // backend/ dir with its own .claude/skills/ (only ADU skills)
+  agentsRoot: string;       // agents-crossbeam/ dir with its own .claude/skills/ (only ADU skills)
   onProgress?: (event: any) => void;
 }) {
   const prompt = `
@@ -367,7 +569,7 @@ respond to city corrections letters. Use the adu-corrections-flow skill to
 analyze corrections and generate informed contractor questions. Always write
 output files to the session directory provided.`
       },
-      cwd: opts.backendRoot,  // backend/ — has .claude/skills/ with only ADU skills
+      cwd: opts.agentsRoot,  // agents-crossbeam/ — has .claude/skills/ with only ADU skills
       settingSources: ['project'],
       permissionMode: 'bypassPermissions',
       allowDangerouslySkipPermissions: true,
@@ -375,10 +577,12 @@ output files to the session directory provided.`
         'Skill', 'Task', 'Read', 'Write', 'Edit',
         'Bash', 'Glob', 'Grep', 'WebSearch', 'WebFetch',
       ],
+      additionalDirectories: [path.resolve(opts.agentsRoot, '..')],
       maxTurns: 80,
-      maxBudgetUsd: 8.00,
+      maxBudgetUsd: 15.00,    // Opus 4.6 with 5+ subagents — needs headroom
       model: 'claude-opus-4-6',
       includePartialMessages: true,
+      abortController: new AbortController(),
     }
   });
 
@@ -407,7 +611,7 @@ import { query } from '@anthropic-ai/claude-agent-sdk';
 
 export async function runResponseGeneration(opts: {
   sessionDir: string;        // Session dir with all Phase 1-4 files + contractor_answers.json
-  backendRoot: string;       // backend/ dir with its own .claude/skills/ (only ADU skills)
+  agentsRoot: string;       // agents-crossbeam/ dir with its own .claude/skills/ (only ADU skills)
   onProgress?: (event: any) => void;
 }) {
   const prompt = `
@@ -440,7 +644,7 @@ Write ALL output files to the session directory: ${opts.sessionDir}
 respond to city corrections letters. Use the adu-corrections-complete skill to
 generate the final response package from research artifacts and contractor answers.`
       },
-      cwd: opts.backendRoot,  // backend/ — has .claude/skills/ with only ADU skills
+      cwd: opts.agentsRoot,  // agents-crossbeam/ — has .claude/skills/ with only ADU skills
       settingSources: ['project'],
       permissionMode: 'bypassPermissions',
       allowDangerouslySkipPermissions: true,
@@ -449,10 +653,15 @@ generate the final response package from research artifacts and contractor answe
         'Bash', 'Glob', 'Grep',
         // No WebSearch/WebFetch needed — Skill 2 is pure writing
       ],
+      additionalDirectories: [path.resolve(opts.agentsRoot, '..')],
       maxTurns: 40,
-      maxBudgetUsd: 4.00,
+      maxBudgetUsd: 8.00,     // Opus 4.6 — Skill 2 is simpler but still needs budget
       model: 'claude-opus-4-6',
       includePartialMessages: true,
+      abortController: new AbortController(),
+      // NOTE: For sheet_annotations.json specifically, consider using outputFormat
+      // with JSON schema to enforce structure. Not critical for hackathon but good
+      // for production: outputFormat: { type: 'json_schema', schema: annotationsSchema }
     }
   });
 
@@ -557,13 +766,13 @@ import { createSession, getSessionFiles } from './utils/session.js';
 import fs from 'fs';
 import path from 'path';
 
-// backend/ is the Agent SDK's project root (has .claude/skills/ with only ADU skills)
-const BACKEND_ROOT = path.resolve(import.meta.dirname, '..');
+// agents-crossbeam/ is the Agent SDK's project root (has .claude/skills/ with only ADU skills)
+const AGENTS_ROOT = path.resolve(import.meta.dirname, '..');
 // Test assets are in the parent project
-const PROJECT_ROOT = path.resolve(BACKEND_ROOT, '..');
+const PROJECT_ROOT = path.resolve(AGENTS_ROOT, '..');
 
-// Create session inside backend/sessions/
-const sessionDir = createSession(BACKEND_ROOT);
+// Create session inside agents-crossbeam/sessions/
+const sessionDir = createSession(AGENTS_ROOT);
 console.log(`Session: ${sessionDir}`);
 
 // --- SKILL 1: Analysis ---
@@ -573,7 +782,7 @@ const skill1Result = await runCorrectionsAnalysis({
   correctionsFile: path.resolve(PROJECT_ROOT, 'test-assets/correction-01/corrections-letter.png'),
   planBinderFile: path.resolve(PROJECT_ROOT, 'test-assets/correction-01/plan-binder.pdf'),
   sessionDir,
-  backendRoot: BACKEND_ROOT,
+  agentsRoot: AGENTS_ROOT,
   onProgress: (msg) => {
     if (msg.type === 'assistant') {
       // Log tool calls for visibility
@@ -635,7 +844,7 @@ console.log('\n=== SKILL 2: Response Generation ===\n');
 
 const skill2Result = await runResponseGeneration({
   sessionDir,
-  backendRoot: BACKEND_ROOT,
+  agentsRoot: AGENTS_ROOT,
   onProgress: (msg) => {
     if (msg.type === 'assistant') {
       for (const block of msg.message.content) {
@@ -684,7 +893,7 @@ console.log(`Total cost: $${((skill1Result?.cost ?? 0) + (skill2Result?.cost ?? 
 | **Progress streaming** | Monitor agent progress for UI | `includePartialMessages: true` |
 | **Hooks** | Track subagent lifecycle, file writes | `hooks: { SubagentStart: [...] }` |
 | **Cost tracking** | Per-invocation cost in result message | `message.total_cost_usd` |
-| **Budget limits** | Prevent runaway costs | `maxBudgetUsd: 8.00` |
+| **Budget limits** | Prevent runaway costs | `maxBudgetUsd: 15.00` (Skill 1), `8.00` (Skill 2) |
 
 ---
 
@@ -705,14 +914,21 @@ These are things we get for free from the `claude_code` preset:
 
 | Component | Effort | Priority |
 |-----------|--------|----------|
-| `backend/` directory + symlinks setup | 10 min | P0 |
-| `run-skill-1.ts` — Skill 1 query wrapper | 30 min | P0 |
-| `run-skill-2.ts` — Skill 2 query wrapper | 20 min | P0 |
-| `test-full-flow.ts` — End-to-end test | 30 min | P0 |
-| Session directory management | 15 min | P0 |
-| Progress event handler (console) | 20 min | P1 |
-| File verification utility | 15 min | P1 |
-| **Total backend harness** | **~2-3 hours** | |
+| `agents-crossbeam/` directory + symlinks + package.json | 10 min | P0 |
+| `src/utils/config.ts` — Shared base config factory | 20 min | P0 |
+| `src/utils/session.ts` — Session directory management | 10 min | P0 |
+| `src/tests/test-l0-smoke.ts` — Smoke test | 10 min | P0 |
+| **Run L0 + debug until passing** | **15-30 min** | **P0** |
+| `src/tests/test-l1-skill-invoke.ts` — Skill invocation test | 10 min | P0 |
+| **Run L1 + debug until passing** | **15-30 min** | **P0** |
+| `src/flows/corrections-analysis.ts` — Skill 1 wrapper | 30 min | P0 |
+| `src/flows/corrections-response.ts` — Skill 2 wrapper | 20 min | P0 |
+| `src/tests/test-l2-subagent-bash.ts` — Subagent test | 15 min | P1 |
+| `src/tests/test-l3-mini-pipeline.ts` — Mini pipeline | 20 min | P1 |
+| `src/tests/test-l3b-skill2-only.ts` — Skill 2 isolation | 15 min | P1 |
+| `src/utils/progress.ts` — Progress event handler | 15 min | P2 |
+| `src/utils/verify.ts` — Post-run file verification | 10 min | P2 |
+| **Total agents harness + test suite** | **~3-4 hours** | |
 
 ---
 
@@ -720,20 +936,26 @@ These are things we get for free from the `claude_code` preset:
 
 ### ~~1. Skill Loading Strategy~~ → RESOLVED
 
-**Answer: Separate `backend/` directory with symlinked skills.** See "Two Environments" section above. Skills are symlinked from `adu-skill-development/skill/` into `backend/.claude/skills/`. The Agent SDK's `cwd` points to `backend/`, so it only discovers the 6 ADU skills. The parent `.claude/skills/` (with 13 skills) is untouched and used only by the CLI dev environment.
+**Answer: Separate `agents-crossbeam/` directory with symlinked skills.** See "Two Environments" section above. Skills are symlinked from `adu-skill-development/skill/` into `agents-crossbeam/.claude/skills/`. The Agent SDK's `cwd` points to `agents-crossbeam/`, so it only discovers the 6 ADU skills. The parent `.claude/skills/` (with 13 skills) is untouched and used only by the CLI dev environment.
 
-### 2. Subagent Orchestration
+### 2. Subagent Orchestration — PARTIALLY RESOLVED
 
-The corrections flow SKILL.md describes spawning 5+ subagents. In the CLI, this happens naturally via the Task tool. In the SDK:
+The corrections flow SKILL.md describes spawning 5+ subagents. In the CLI, this happens naturally via the Task tool.
 
+**What we know from SDK docs (Feb 2026):**
 - The `claude_code` preset includes the Task tool
 - Agents spawned via Task get their own context windows
-- Subagents inherit the parent's tools and skills
-- The `agents` option in `query()` can define custom subagent types programmatically
+- Subagents inherit the parent's `allowedTools`
+- **BUT: SDK docs say "subagents do NOT automatically inherit parent's skills"**
 
-**Key question:** Do we need to define custom `AgentDefinition` objects, or will the Skill's subagent prompts (in `references/subagent-prompts.md`) work through the natural Task tool?
+**Risk:** If Task-spawned subagents can't see skills, the california-adu subagent (Phase 3A) and adu-city-research subagent (Phase 3B) will fail.
 
-**Expected answer:** The Skill's prompts should work. The agent reads `subagent-prompts.md`, then uses the Task tool to spawn subagents with those prompts. This is the same pattern as the CLI. But we should test this — if subagents don't get the right skills context, we may need to use `agents` config to pre-define them.
+**Mitigation plan (in order):**
+1. **Test in L2** — spawn a subagent that tries to use the Skill tool. If it works, we're good.
+2. **If it doesn't work — use `agents` config** to pre-define subagents with inline prompts that include the reference content directly (bypass the Skill tool in subagents).
+3. **Nuclear option** — restructure so the parent agent does ALL skill invocations and only delegates non-skill work (file reading, web search) to subagents.
+
+**Expected answer:** In the CLI, subagents inherit project context because they run in the same project directory. Since the SDK's `cwd` + `settingSources: ['project']` configures the project at the session level, Task-spawned subagents *should* inherit it. But this needs verification in L2.
 
 ### 3. PDF Extraction Script
 
@@ -744,15 +966,15 @@ Phase 2 uses `scripts/extract-pages.sh` via Bash tool. This script requires:
 **For local dev:** Install poppler (`brew install poppler`)
 **For sandbox/container:** Include in setup script
 
-### 4. Cost Estimation
+### 4. Cost Estimation — UPDATED
 
-Based on Dec 2025 learnings (demand letter was $2-3 with Sonnet 4.5):
+Based on Dec 2025 learnings (demand letter was $2-3 with Sonnet 4.5). **Opus 4.6 is ~5x more expensive per token than Sonnet 4.5**, plus we're spawning 5+ subagents, all running Opus.
 
-| Invocation | Model | Est. Turns | Est. Cost |
-|------------|-------|------------|-----------|
-| Skill 1 | claude-opus-4-6 | 60-80 | $4-8 |
-| Skill 2 | claude-opus-4-6 | 20-30 | $2-4 |
-| **Total** | | | **$6-12 per job** |
+| Invocation | Model | Est. Turns | Est. Cost | maxBudgetUsd |
+|------------|-------|------------|-----------|-------------|
+| Skill 1 | claude-opus-4-6 | 60-80 | $6-12 | $15.00 |
+| Skill 2 | claude-opus-4-6 | 20-30 | $3-6 | $8.00 |
+| **Total** | | | **$9-18 per job** | |
 
 For hackathon: set `maxBudgetUsd: 10.00` per invocation. We have budget.
 
@@ -763,11 +985,11 @@ After the backend harness works:
 ```
 Next.js API Route (localhost)    Backend Harness         Filesystem
 ─────────────────────────       ───────────────         ──────────
-POST /api/analyze           →   runCorrectionsAnalysis  → backend/sessions/
+POST /api/analyze           →   runCorrectionsAnalysis  → agents-crossbeam/sessions/
 GET  /api/status/:sessionId →   poll session dir for progress
 GET  /api/questions/:id     →   read contractor_questions.json
 POST /api/answers/:id       →   write contractor_answers.json
-POST /api/generate/:id      →   runResponseGeneration   → backend/sessions/
+POST /api/generate/:id      →   runResponseGeneration   → agents-crossbeam/sessions/
 GET  /api/results/:id       →   read 4 deliverables
 ```
 
@@ -778,7 +1000,7 @@ GET  /api/results/:id       →   read 4 deliverables
 // app/api/analyze/route.ts
 export async function POST(req: Request) {
   const { correctionsFile, planBinderFile } = await req.json();
-  const sessionDir = createSession(BACKEND_ROOT);
+  const sessionDir = createSession(AGENTS_ROOT);
 
   // Fire and forget — the agent writes files to sessionDir
   // Don't await — return immediately with session ID
@@ -786,7 +1008,7 @@ export async function POST(req: Request) {
     correctionsFile,
     planBinderFile,
     sessionDir,
-    backendRoot: BACKEND_ROOT,
+    agentsRoot: AGENTS_ROOT,
   }).catch(console.error);
 
   return Response.json({ sessionId: path.basename(sessionDir) });
@@ -794,7 +1016,7 @@ export async function POST(req: Request) {
 
 // app/api/status/[id]/route.ts — frontend polls this
 export async function GET(req: Request, { params }) {
-  const sessionDir = path.join(BACKEND_ROOT, 'sessions', params.id);
+  const sessionDir = path.join(AGENTS_ROOT, 'sessions', params.id);
   const files = fs.readdirSync(sessionDir);
   const done = files.includes('contractor_questions.json');
   return Response.json({ status: done ? 'ready' : 'processing', files });
@@ -807,18 +1029,33 @@ export async function GET(req: Request, { params }) {
 
 ## Execution Order
 
-1. **Create `backend/` + symlinks** — mkdir, symlinks, verify with `ls -la` (5 min)
-2. **Install Agent SDK** — `cd backend && npm init -y && npm install @anthropic-ai/claude-agent-sdk` (5 min)
-3. **Write harness** — `run-skill-1.ts`, `run-skill-2.ts`, session management (1 hour)
-4. **First test** — Run Skill 1 against Placentia test data (wait ~5 min for result)
-5. **Verify outputs** — Check all 8 JSON files were written correctly
-6. **Debug/iterate** — Fix any skill loading or subagent issues
-7. **Run Skill 2** — With mock contractor answers
-8. **Verify deliverables** — Check all 4 output files
-9. **Full flow test** — End-to-end with real test data
-10. **If time: progress monitoring** — Hook up progress events
+### Day 3 (Wed Feb 12) — SDK Wiring + Smoke Tests
 
-**Goal:** Both skills run programmatically from `backend/`, produce correct output, and the full Skill 1 → answers → Skill 2 pipeline works end-to-end. After this, the frontend can call these functions via Next.js API routes on localhost (no timeout issues).
+1. **Create `agents-crossbeam/` + symlinks** — mkdir, symlinks, verify with `ls -la` (10 min)
+2. **Install Agent SDK** — `npm init -y && npm install @anthropic-ai/claude-agent-sdk` (5 min)
+3. **Add ANTHROPIC_API_KEY** to `agents-crossbeam/.env` (1 min)
+4. **Write shared config** — `src/utils/config.ts`, `src/utils/session.ts` (20 min)
+5. **Write + run L0 smoke test** — fix until skills discovered (15-30 min)
+6. **Write + run L1 skill invoke test** — fix until skill executes + writes file (15-30 min)
+
+### Day 4 (Thu Feb 13) — Pipeline Testing
+
+7. **Write + run L2 subagent test** — verify Task tool + Bash work (20-30 min)
+8. **Create mini test data** — crop corrections, extract single page (15 min)
+9. **Write flow wrappers** — `corrections-analysis.ts`, `corrections-response.ts` (45 min)
+10. **Write + run L3 mini pipeline** — Buena Park shortcut, 2-3 items (30-60 min)
+11. **Save session outputs** → `test-assets/mock-session/` for Skill 2 testing
+12. **Write + run L3b Skill 2 isolation** — iterate on response quality (30-60 min)
+
+### Day 5 (Fri Feb 14) — Full Pipeline + Frontend
+
+13. **Run L4 full pipeline** — real Placentia data, live city search (20 min waiting)
+14. **Wire to Next.js API routes** — frontend integration (2-3 hours)
+15. **If time: progress monitoring** — hooks + WebSocket to frontend
+
+**Goal:** Both skills run programmatically from `agents-crossbeam/`, produce correct output, and the full Skill 1 → answers → Skill 2 pipeline works end-to-end. After this, the frontend can call these functions via Next.js API routes on localhost (no timeout issues).
+
+See `testing-agents-sdk.md` for detailed test scripts and the full testing strategy.
 
 ---
 
@@ -836,3 +1073,4 @@ export async function GET(req: Request, { params }) {
 | `adu-skill-development/skill/adu-corrections-complete/SKILL.md` | Skill 2 definition |
 | `adu-skill-development/skill/adu-corrections-flow/references/subagent-prompts.md` | All subagent prompts |
 | `adu-skill-development/skill/adu-corrections-flow/references/output-schemas.md` | JSON output schemas |
+| **`testing-agents-sdk.md`** | **Testing strategy — L0-L4 test suite, mock data, Buena Park shortcut** |

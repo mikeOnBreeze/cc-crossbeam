@@ -1,0 +1,560 @@
+{
+  "project": "agents-crossbeam",
+  "version": "0.1.0",
+  "description": "Agent SDK backend for CrossBeam ADU corrections pipeline — programmatic two-skill flow via query() calls",
+  "lastUpdated": "2026-02-12T23:26:00Z",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Project Scaffolding + Shared Config",
+      "description": "Create the agents-crossbeam/ directory structure, symlink ADU skills, install Agent SDK, and build the shared config/session utilities that all tests and flows import from.",
+      "status": "complete",
+      "verification": {
+        "description": "Verify directory structure, symlinks, package install, and TypeScript imports all work.",
+        "steps": [
+          "Run: ls -la agents-crossbeam/.claude/skills/ — should show 6 symlinks, all resolving to real directories",
+          "Run: cd agents-crossbeam && npm ls @anthropic-ai/claude-agent-sdk — shows installed version",
+          "Run: cd agents-crossbeam && node --experimental-strip-types -e \"import { createQueryOptions, AGENTS_ROOT, PROJECT_ROOT } from './src/utils/config.ts'; console.log('AGENTS_ROOT:', AGENTS_ROOT); console.log('PROJECT_ROOT:', PROJECT_ROOT); console.log('OK');\" — prints OK with correct paths",
+          "Run: cd agents-crossbeam && node --experimental-strip-types -e \"import { createSession, getSessionFiles } from './src/utils/session.ts'; const d = createSession('verify'); console.log('Session:', d); const f = getSessionFiles(d); console.log('File keys:', Object.keys(f).length); console.log('OK');\" — prints OK, creates session dir, lists 13 file keys"
+        ]
+      },
+      "tasks": [
+        "scaffolding-001",
+        "scaffolding-002",
+        "scaffolding-003",
+        "scaffolding-004",
+        "scaffolding-005",
+        "config-001",
+        "config-002"
+      ]
+    },
+    {
+      "id": "phase-2",
+      "name": "L0 Smoke Test — SDK Init + Skill Discovery",
+      "description": "Write and pass the L0 smoke test. This validates: SDK connects, skills are discovered from .claude/skills/, tools are available, and the agent responds. Uses Haiku for speed/cost ($0.01).",
+      "status": "pending",
+      "verification": {
+        "description": "Run L0 smoke test and confirm SDK connects and discovers all 6 ADU skills.",
+        "steps": [
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l0-smoke.ts",
+          "Output contains '✓ SDK initialized' and '✓ Skills discovered'",
+          "Output lists at minimum: california-adu, adu-corrections-flow, adu-corrections-complete",
+          "Cost < $0.10, completes in < 60 seconds"
+        ]
+      },
+      "tasks": [
+        "test-l0-001",
+        "test-l0-002"
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "L1 — Single Skill Invocation",
+      "description": "Write and pass the L1 skill invocation test. This validates: Skill tool works in SDK context, reference files load (28 california-adu files), agent writes output to session directory.",
+      "status": "pending",
+      "verification": {
+        "description": "Run L1 test and confirm the california-adu skill runs correctly and writes a JSON file.",
+        "steps": [
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l1-skill-invoke.ts",
+          "Session directory contains test-state-law.json",
+          "JSON has rear_setback_ft=4 and side_setback_ft=4 (2026 California ADU setback values for detached ADU)",
+          "Cost < $1.00, completes in < 3 minutes"
+        ]
+      },
+      "tasks": [
+        "test-l1-001",
+        "test-l1-002"
+      ]
+    },
+    {
+      "id": "phase-4",
+      "name": "L2 — Subagent + Bash + Image Reading",
+      "description": "Prepare mini test data and write/pass the L2 test. Validates: Task tool spawns subagents in SDK context, Bash tool executes scripts, agent can read images. Critical for Phase 3 research subagents.",
+      "status": "pending",
+      "verification": {
+        "description": "Run L2 test and confirm subagent spawning, Bash execution, and image reading all work.",
+        "steps": [
+          "test-assets/mini/ directory exists with plan-page-A1.png and sheet-manifest-mini.json",
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l2-subagent-bash.ts",
+          "Session directory contains test-sheet-id.json with a valid sheet_id (e.g., 'A1', 'S1', etc.)",
+          "Cost < $2.00, completes in < 5 minutes"
+        ]
+      },
+      "tasks": [
+        "data-001",
+        "test-l2-001",
+        "test-l2-002"
+      ]
+    },
+    {
+      "id": "phase-5",
+      "name": "Flow Wrappers + L3 Mini Pipeline",
+      "description": "Build the two flow wrapper functions (corrections-analysis, corrections-response), utility modules (progress, verify), and run the L3 mini pipeline test. Uses Buena Park offline skill to skip live web search. Pre-populates sheet manifest to skip PDF extraction. This is the first multi-skill orchestration test.",
+      "status": "pending",
+      "verification": {
+        "description": "Run L3 mini pipeline and confirm multi-skill orchestration produces all Phase 1-4 outputs.",
+        "steps": [
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3-mini-pipeline.ts",
+          "Session directory contains: corrections_parsed.json, state_law_findings.json, corrections_categorized.json, contractor_questions.json",
+          "contractor_questions.json has valid structure with summary.total_items > 0",
+          "Cost < $8.00, duration < 10 minutes",
+          "Verify corrections-analysis.ts and corrections-response.ts flow wrappers export their functions correctly"
+        ]
+      },
+      "tasks": [
+        "flow-001",
+        "flow-002",
+        "util-001",
+        "util-002",
+        "data-002",
+        "test-l3-001",
+        "test-l3-002"
+      ]
+    },
+    {
+      "id": "phase-6",
+      "name": "Skill 2 Isolation (L3b)",
+      "description": "Create mock-session fixtures from existing CLI outputs (test-assets/correction-01/) and run Skill 2 independently. Validates response generation works from pre-made artifacts with no dependency on Skill 1. Key for iterating on response quality without re-running the expensive analysis.",
+      "status": "pending",
+      "verification": {
+        "description": "Run L3b test and confirm all 4 deliverables are generated from mock data.",
+        "steps": [
+          "test-assets/mock-session/ exists with: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json",
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3b-skill2-only.ts",
+          "Session directory contains: response_letter.md, professional_scope.md, corrections_report.md, sheet_annotations.json",
+          "Each deliverable file > 500 bytes (non-trivial content)",
+          "Cost < $6.00, duration < 5 minutes"
+        ]
+      },
+      "tasks": [
+        "data-003",
+        "test-l3b-001",
+        "test-l3b-002"
+      ]
+    },
+    {
+      "id": "phase-7",
+      "name": "Full Pipeline Acceptance (L4)",
+      "description": "End-to-end acceptance test with real Placentia data, live city search, full budget. Skill 1 (analysis) → simulated contractor answers → Skill 2 (response generation). Run ONLY after L0-L3b all pass.",
+      "status": "pending",
+      "verification": {
+        "description": "Run full pipeline with real data and confirm both skills produce complete, professional output.",
+        "steps": [
+          "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l4-full-pipeline.ts",
+          "Session directory contains ALL files: corrections_parsed.json, sheet-manifest.json, state_law_findings.json, city_discovery.json, city_research_findings.json, sheet_observations.json, corrections_categorized.json, contractor_questions.json, contractor_answers.json, response_letter.md, professional_scope.md, corrections_report.md, sheet_annotations.json",
+          "contractor_questions.json references actual Placentia corrections items",
+          "4 deliverables are professional quality (response letter reads like a real permit response)",
+          "Total cost < $25.00 (Skill 1 + Skill 2 combined)"
+        ]
+      },
+      "tasks": [
+        "test-l4-001",
+        "test-l4-002"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "scaffolding-001",
+      "phase": "phase-1",
+      "description": "Create agents-crossbeam/ directory structure: .claude/skills/, src/flows/, src/tests/, src/utils/, sessions/",
+      "steps": [
+        "mkdir -p agents-crossbeam/.claude/skills",
+        "mkdir -p agents-crossbeam/src/flows",
+        "mkdir -p agents-crossbeam/src/tests",
+        "mkdir -p agents-crossbeam/src/utils",
+        "mkdir -p agents-crossbeam/sessions"
+      ],
+      "passes": true
+    },
+    {
+      "id": "scaffolding-002",
+      "phase": "phase-1",
+      "description": "Create 6 ADU skill symlinks from adu-skill-development/skill/ into agents-crossbeam/.claude/skills/. These are the ONLY skills the Agent SDK should discover.",
+      "steps": [
+        "cd agents-crossbeam/.claude/skills",
+        "ln -s ../../../adu-skill-development/skill/california-adu california-adu",
+        "ln -s ../../../adu-skill-development/skill/adu-corrections-flow adu-corrections-flow",
+        "ln -s ../../../adu-skill-development/skill/adu-corrections-complete adu-corrections-complete",
+        "ln -s ../../../adu-skill-development/skill/adu-city-research adu-city-research",
+        "ln -s ../../../adu-skill-development/skill/adu-targeted-page-viewer adu-targeted-page-viewer",
+        "ln -s ../../../adu-skill-development/skill/buena-park-adu buena-park-adu",
+        "Verify with: ls -la agents-crossbeam/.claude/skills/ — all 6 symlinks should resolve"
+      ],
+      "passes": true
+    },
+    {
+      "id": "scaffolding-003",
+      "phase": "phase-1",
+      "description": "Create package.json with ESM module type and install @anthropic-ai/claude-agent-sdk.",
+      "steps": [
+        "Create agents-crossbeam/package.json with: name=agents-crossbeam, type=module, dependencies: @anthropic-ai/claude-agent-sdk (latest)",
+        "Add devDependencies: typescript ^5.0.0",
+        "Run: cd agents-crossbeam && npm install",
+        "Verify: npm ls @anthropic-ai/claude-agent-sdk"
+      ],
+      "passes": true
+    },
+    {
+      "id": "scaffolding-004",
+      "phase": "phase-1",
+      "description": "Create tsconfig.json configured for Node 24 ESM with experimental strip types (no build step needed).",
+      "steps": [
+        "Create agents-crossbeam/tsconfig.json",
+        "Set: target=ESNext, module=NodeNext, moduleResolution=NodeNext",
+        "Set: strict=true, noEmit=true (TypeScript is for type checking only — Node 24 strips types natively)",
+        "Include: src/**/*.ts"
+      ],
+      "passes": true
+    },
+    {
+      "id": "scaffolding-005",
+      "phase": "phase-1",
+      "description": "Create .env.local with ANTHROPIC_API_KEY placeholder and .gitignore for sessions/.",
+      "steps": [
+        "Create agents-crossbeam/.env.local with: ANTHROPIC_API_KEY=<paste-your-key-here>",
+        "IMPORTANT: User must manually paste their actual API key — do NOT commit real keys",
+        "Create agents-crossbeam/.gitignore with: sessions/, node_modules/, .env.local, .env",
+        "Verify .env.local is gitignored"
+      ],
+      "passes": true
+    },
+    {
+      "id": "config-001",
+      "phase": "phase-1",
+      "description": "Create src/utils/config.ts — the shared base config factory that all tests and flows import from. One place to change model, budget, tools, system prompt.",
+      "steps": [
+        "Create agents-crossbeam/src/utils/config.ts",
+        "Export AGENTS_ROOT (agents-crossbeam/) and PROJECT_ROOT (CC-Crossbeam/) using import.meta.dirname",
+        "Export CROSSBEAM_PROMPT constant with CrossBeam system prompt",
+        "Export DEFAULT_TOOLS array: Skill, Task, Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch",
+        "Export FlowConfig type with: model, maxTurns, maxBudgetUsd, allowedTools, systemPromptAppend, abortController",
+        "Export createQueryOptions(flow: FlowConfig): Options function",
+        "Config must include: tools preset=claude_code, systemPrompt preset=claude_code with append, cwd=AGENTS_ROOT, settingSources=['project'], permissionMode='bypassPermissions', allowDangerouslySkipPermissions=true, additionalDirectories=[PROJECT_ROOT], includePartialMessages=true",
+        "Default model: claude-opus-4-6, default maxTurns: 80, default maxBudgetUsd: 15.00",
+        "Reference: plan-contractors-agents-sdk.md 'The Proven Config Pattern' section and testing-agents-sdk.md 'Shared Base Config' section — use the exact patterns shown there"
+      ],
+      "passes": true
+    },
+    {
+      "id": "config-002",
+      "phase": "phase-1",
+      "description": "Create src/utils/session.ts — session directory management with createSession() and getSessionFiles().",
+      "steps": [
+        "Create agents-crossbeam/src/utils/session.ts",
+        "Export createSession(prefix?: string): string — creates timestamped session dir under agents-crossbeam/sessions/",
+        "Export getSessionFiles(sessionDir: string) — returns object with paths to all 13 expected output files (Phase 1-4 + Phase 5)",
+        "Session naming format: {prefix}-YYYY-MM-DDTHH-MM-SS (replace colons/dots in ISO string)",
+        "Files: correctionsParsed, sheetManifest, stateLawFindings, cityDiscovery, cityResearchFindings, sheetObservations, correctionsCategorized, contractorQuestions, contractorAnswers, responseLetter, professionalScope, correctionsReport, sheetAnnotations",
+        "Reference: testing-agents-sdk.md 'Session Management' section for exact implementation"
+      ],
+      "passes": true
+    },
+    {
+      "id": "test-l0-001",
+      "phase": "phase-2",
+      "description": "Write src/tests/test-l0-smoke.ts — SDK init + skill discovery test using Haiku ($0.01).",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l0-smoke.ts",
+        "Import query from @anthropic-ai/claude-agent-sdk and createQueryOptions from ../utils/config.ts",
+        "Prompt: 'List all available skills you can see. Then say SMOKE_OK.'",
+        "Override model to claude-haiku-4-5-20251001 (cheapest), maxTurns=3, maxBudgetUsd=0.10",
+        "Handle system message: log model, tools, check Skill tool is present",
+        "Handle result message: check output contains 'california-adu', log cost and subtype",
+        "Print clear pass/fail markers: ✓ SDK initialized, ✓ Skill tool available, ✓ Skills discovered",
+        "Reference: testing-agents-sdk.md L0 section for exact implementation pattern"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l0-002",
+      "phase": "phase-2",
+      "description": "Run L0 smoke test and debug until it passes. Common issues: missing API key, wrong cwd, missing settingSources, broken symlinks, wrong model name.",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l0-smoke.ts",
+        "If auth error: verify ANTHROPIC_API_KEY is set in .env.local",
+        "If skills not found: verify cwd resolves to agents-crossbeam/, settingSources includes 'project', symlinks resolve",
+        "If agent hallucinates tools: verify tools preset is { type: 'preset', preset: 'claude_code' }",
+        "If agent hangs: verify permissionMode='bypassPermissions' and allowDangerouslySkipPermissions=true",
+        "Fix issues and re-run until all checks pass",
+        "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 1-4)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l1-001",
+      "phase": "phase-3",
+      "description": "Write src/tests/test-l1-skill-invoke.ts — single skill invocation test using the california-adu skill.",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l1-skill-invoke.ts",
+        "Import query from SDK and createQueryOptions, createSession from utils",
+        "Create a session directory for output",
+        "Prompt: ask california-adu skill for 2026 California state setback requirements for a DETACHED ADU on single-family residential lot",
+        "Request output as JSON to {sessionDir}/test-state-law.json with format: { rear_setback_ft, side_setback_ft, source }",
+        "Use Haiku or Sonnet for speed, maxTurns=15, maxBudgetUsd=1.00",
+        "After result: check file exists, parse JSON, verify rear=4 and side=4 (correct 2026 values)",
+        "Print clear pass/fail markers",
+        "Reference: testing-agents-sdk.md L1 section"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l1-002",
+      "phase": "phase-3",
+      "description": "Run L1 skill invocation test and debug until it passes. Common issues: Skill tool not working, reference files not loading, file written to wrong directory.",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l1-skill-invoke.ts",
+        "If Skill tool fails: check allowedTools includes 'Skill'",
+        "If reference files not found: check symlinks resolve and california-adu/ has 28 files",
+        "If file written to wrong dir: strengthen prompt with explicit session directory path",
+        "If values wrong: check that california-adu skill has 2026 HCD addendum data (rear/side setback = 4ft for detached)",
+        "Fix issues and re-run until all checks pass",
+        "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 5-7)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "data-001",
+      "phase": "phase-4",
+      "description": "Create test-assets/mini/ directory with plan page PNG and mini sheet manifest for L2/L3 testing.",
+      "steps": [
+        "mkdir -p test-assets/mini",
+        "Copy a single plan page from test-assets/correction-01/pages-png/page-01.png to test-assets/mini/plan-page-A1.png (this is a pre-extracted page from the Placentia plan binder)",
+        "Create test-assets/mini/sheet-manifest-mini.json — a hand-written manifest with 1-2 sheets pointing to the mini plan page(s). Use absolute paths or paths relative to the session directory. Include: source_pdf, total_pages=1, indexed_sheets=1, sheets array with sheet_id/page_number/file/description",
+        "Verify the PNG file is readable and the JSON is valid"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l2-001",
+      "phase": "phase-4",
+      "description": "Write src/tests/test-l2-subagent-bash.ts — subagent + Bash + image reading test.",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l2-subagent-bash.ts",
+        "Import query from SDK and createQueryOptions, createSession from utils",
+        "Create session directory",
+        "Point to test-assets/mini/plan-page-A1.png",
+        "Prompt: read the plan sheet image, identify the sheet ID from the title block, optionally spawn a subagent via Task tool to help",
+        "Request output as JSON to {sessionDir}/test-sheet-id.json with format: { sheet_id, description, confidence }",
+        "Use Sonnet for balance of cost/capability, maxTurns=20, maxBudgetUsd=2.00",
+        "Log tool calls from assistant messages for visibility",
+        "After result: check file exists, parse JSON, verify sheet_id is a non-empty string",
+        "Reference: testing-agents-sdk.md L2 section"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l2-002",
+      "phase": "phase-4",
+      "description": "Run L2 subagent + Bash test and debug until it passes. Key risk: subagents may not inherit skills (SDK docs are ambiguous on this).",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l2-subagent-bash.ts",
+        "If Task tool fails: check allowedTools includes 'Task'",
+        "If Bash fails: check allowedTools includes 'Bash'",
+        "If image not readable: check additionalDirectories includes PROJECT_ROOT for test-assets/ access",
+        "If subagent can't see skills: THIS IS THE KEY RISK — see plan-contractors-agents-sdk.md 'Open Questions #2'. Mitigation: restructure so parent agent reads the image and writes the file directly (no subagent needed for this test)",
+        "Fix issues and re-run until all checks pass",
+        "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 8-9)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "flow-001",
+      "phase": "phase-5",
+      "description": "Create src/flows/corrections-analysis.ts — Skill 1 query() wrapper for the corrections analysis pipeline (Phases 1-4).",
+      "steps": [
+        "Create agents-crossbeam/src/flows/corrections-analysis.ts",
+        "Export async function runCorrectionsAnalysis(opts) that wraps a query() call",
+        "Accept: correctionsFile (path), planBinderFile (path), sessionDir, agentsRoot, onProgress callback",
+        "Build prompt that tells agent to use adu-corrections-flow skill with the provided files",
+        "Prompt must specify: corrections letter path, plan binder path, session directory for all outputs",
+        "Prompt must instruct: write corrections_parsed.json, sheet-manifest.json, state_law_findings.json, city_discovery.json, city_research_findings.json, sheet_observations.json, corrections_categorized.json, contractor_questions.json",
+        "Prompt must instruct: stop after contractor_questions.json, do NOT generate Phase 5 outputs",
+        "Use createQueryOptions with: maxBudgetUsd=15.00 (Opus with 5+ subagents needs headroom), all default tools",
+        "Stream messages via async iterator, call onProgress for each message, return result object with: success, sessionId, cost, turns, duration",
+        "Reference: plan-contractors-agents-sdk.md Step 3 for exact implementation"
+      ],
+      "passes": false
+    },
+    {
+      "id": "flow-002",
+      "phase": "phase-5",
+      "description": "Create src/flows/corrections-response.ts — Skill 2 query() wrapper for response generation (Phase 5).",
+      "steps": [
+        "Create agents-crossbeam/src/flows/corrections-response.ts",
+        "Export async function runResponseGeneration(opts) that wraps a query() call",
+        "Accept: sessionDir (with Phase 1-4 files + contractor_answers.json), agentsRoot, onProgress callback",
+        "Build prompt that tells agent to use adu-corrections-complete skill",
+        "Prompt must specify: session directory path, list all input files to read",
+        "Prompt must instruct: generate response_letter.md, professional_scope.md, corrections_report.md, sheet_annotations.json",
+        "Use createQueryOptions with: maxBudgetUsd=8.00, maxTurns=40",
+        "Remove WebSearch/WebFetch from allowedTools — Skill 2 is pure writing from files, no web needed",
+        "Stream messages, call onProgress, return result object",
+        "Reference: plan-contractors-agents-sdk.md Step 4 for exact implementation"
+      ],
+      "passes": false
+    },
+    {
+      "id": "util-001",
+      "phase": "phase-5",
+      "description": "Create src/utils/progress.ts — progress event handler for streaming agent messages to console.",
+      "steps": [
+        "Create agents-crossbeam/src/utils/progress.ts",
+        "Export function handleProgressMessage(msg, startTime) that formats and logs different message types",
+        "Handle 'system' type: log model, tools loaded",
+        "Handle 'assistant' type: log tool calls with elapsed time (e.g., '[2.3m] Write — corrections_parsed.json')",
+        "Handle 'result' type: log success/failure, cost, turns, duration",
+        "Keep it simple — console.log based. Can upgrade to WebSocket later for frontend.",
+        "Reference: plan-contractors-agents-sdk.md Step 5 section A for the message types"
+      ],
+      "passes": false
+    },
+    {
+      "id": "util-002",
+      "phase": "phase-5",
+      "description": "Create src/utils/verify.ts — post-run file verification utility.",
+      "steps": [
+        "Create agents-crossbeam/src/utils/verify.ts",
+        "Export function verifySessionFiles(sessionDir, expectedFiles: string[]): { found, missing, sizes }",
+        "Check each expected file: exists, size in bytes",
+        "Return structured result with lists of found/missing files and sizes",
+        "Export function detectCompletedPhases(sessionDir): string[] — check which phase output files exist",
+        "Used for phase checkpointing: if corrections_parsed.json exists, Phase 1 is done, etc.",
+        "Reference: plan-contractors-agents-sdk.md 'Phase Checkpointing' section for the skip map"
+      ],
+      "passes": false
+    },
+    {
+      "id": "data-002",
+      "phase": "phase-5",
+      "description": "Prepare mini test data for L3 test — corrections letter and sheet manifest pointing to existing pre-extracted pages.",
+      "steps": [
+        "The L3 test uses the existing corrections letter from test-assets/corrections/1232-n-jefferson-corrections-p1.png (full page is fine — the 'mini' is about fewer plan pages and offline city data, not fewer corrections)",
+        "If test-assets/mini/sheet-manifest-mini.json doesn't exist yet (from data-001), create it now",
+        "Manifest should point to 1-2 pages from test-assets/correction-01/pages-png/ using absolute paths",
+        "Include at minimum a floor plan page (the most commonly referenced sheet type)",
+        "Verify the manifest JSON is valid and the referenced PNG files exist"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l3-001",
+      "phase": "phase-5",
+      "description": "Write src/tests/test-l3-mini-pipeline.ts — mini pipeline test with Buena Park shortcut (offline city research, pre-populated manifest).",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l3-mini-pipeline.ts",
+        "Create session directory, pre-populate sheet manifest from test-assets/mini/sheet-manifest-mini.json",
+        "Point corrections file to test-assets/corrections/1232-n-jefferson-corrections-p1.png",
+        "Prompt: use adu-corrections-flow skill, CITY=Buena Park, skip Phase 2 (manifest already built), use buena-park-adu skill for city research (NOT adu-city-research), write all outputs to session dir",
+        "CRITICAL: Remove WebSearch/WebFetch from allowedTools to force offline city research via buena-park-adu",
+        "Use Opus model, maxTurns=50, maxBudgetUsd=8.00",
+        "Log tool calls with elapsed time using progress utility",
+        "After result: verify corrections_parsed.json, state_law_findings.json, corrections_categorized.json, contractor_questions.json all exist",
+        "Parse contractor_questions.json and log summary stats",
+        "Reference: testing-agents-sdk.md L3 section for exact implementation pattern"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l3-002",
+      "phase": "phase-5",
+      "description": "Run L3 mini pipeline test and debug until it passes. This is the first real multi-skill orchestration test — expect issues.",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3-mini-pipeline.ts",
+        "Expected duration: 5-7 minutes, cost: $3-5",
+        "If skills not orchestrated: strengthen prompt instructions, verify adu-corrections-flow SKILL.md is being followed",
+        "If subagents fail on skills: may need to restructure so parent agent does all skill invocations (open question #2)",
+        "If budget exceeded: raise maxBudgetUsd or switch subagent-heavy phases to Sonnet",
+        "If sheet manifest not found: verify pre-population step in test script",
+        "If city research attempts web: verify WebSearch/WebFetch removed from allowedTools",
+        "Save successful session output — these files become mock-session fixtures for L3b",
+        "Fix issues and re-run until all expected files exist"
+      ],
+      "passes": false
+    },
+    {
+      "id": "data-003",
+      "phase": "phase-6",
+      "description": "Create test-assets/mock-session/ by copying Phase 1-4 outputs from test-assets/correction-01/ (existing CLI run outputs).",
+      "steps": [
+        "mkdir -p test-assets/mock-session",
+        "Copy from test-assets/correction-01/: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json, sheet_observations.json",
+        "Also copy city_discovery.json and city_research_findings.json if they exist in correction-01/",
+        "If any files are missing from correction-01/, try to copy from a successful L3 session instead",
+        "Verify all 5 required fixtures exist: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json",
+        "These fixtures enable Skill 2 testing without any dependency on Skill 1"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l3b-001",
+      "phase": "phase-6",
+      "description": "Write src/tests/test-l3b-skill2-only.ts — Skill 2 isolation test using pre-made mock-session fixtures.",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l3b-skill2-only.ts",
+        "Create session directory, copy all fixtures from test-assets/mock-session/ into it",
+        "Prompt: use adu-corrections-complete skill, session directory has all analysis files + contractor answers, generate 4 deliverables",
+        "Use Opus model, maxTurns=30, maxBudgetUsd=6.00",
+        "Only need: Skill, Read, Write, Edit, Glob, Grep (no Task, no WebSearch/WebFetch, no Bash)",
+        "After result: verify response_letter.md, professional_scope.md, corrections_report.md, sheet_annotations.json exist",
+        "Check file sizes > 500 bytes each",
+        "Reference: testing-agents-sdk.md L3b section"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l3b-002",
+      "phase": "phase-6",
+      "description": "Run L3b Skill 2 isolation test and debug until it passes. Iterate on response quality — this is where we tune Skill 2's output.",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3b-skill2-only.ts",
+        "Expected duration: 2-3 minutes, cost: $2-3",
+        "If skill not found: verify adu-corrections-complete symlink resolves",
+        "If deliverables are low quality: review adu-corrections-complete SKILL.md, may need to strengthen instructions",
+        "If files written to wrong directory: strengthen prompt with explicit session dir path",
+        "If sheet_annotations.json has wrong format: check output-schemas.md reference in the skill",
+        "Review deliverables for quality — response_letter.md should read like a professional permit response",
+        "Fix issues and re-run until all 4 deliverables exist with substantial content"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l4-001",
+      "phase": "phase-7",
+      "description": "Write src/tests/test-l4-full-pipeline.ts — end-to-end acceptance test with real Placentia data.",
+      "steps": [
+        "Create agents-crossbeam/src/tests/test-l4-full-pipeline.ts",
+        "Use the runCorrectionsAnalysis and runResponseGeneration flow wrappers from src/flows/",
+        "Point to real data: test-assets/corrections/1232-n-jefferson-corrections-p1.png (or p2) and test-assets/corrections/Binder-1232-N-Jefferson.pdf",
+        "Create session directory",
+        "Run Skill 1: corrections analysis with full budget ($15), all tools enabled including WebSearch/WebFetch",
+        "Verify Skill 1 output files exist",
+        "Log contractor_questions.json summary",
+        "Simulate contractor answers: create mock contractor_answers.json in session dir (use realistic answers for Placentia items)",
+        "Run Skill 2: response generation with $8 budget",
+        "Verify all 4 deliverables exist",
+        "Log total cost (Skill 1 + Skill 2)",
+        "Reference: plan-contractors-agents-sdk.md Step 6 for exact implementation pattern"
+      ],
+      "passes": false
+    },
+    {
+      "id": "test-l4-002",
+      "phase": "phase-7",
+      "description": "Run L4 full pipeline with real Placentia data. This is the acceptance test — run only after L0-L3b all pass.",
+      "steps": [
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l4-full-pipeline.ts",
+        "Expected duration: 15-20 minutes total (Skill 1: 8-12 min, Skill 2: 3-5 min)",
+        "Expected cost: $10-18 total",
+        "Monitor progress via console output — tool calls, subagent starts, file writes",
+        "After completion: verify ALL 13 output files exist in session directory",
+        "Quality check: open response_letter.md and verify it references actual Placentia correction items",
+        "Quality check: open professional_scope.md and verify it has actionable scope items",
+        "If budget exceeded mid-run: use phase checkpointing — copy completed files, resume from next phase",
+        "If run times out or fails: capture session_id for potential resume",
+        "Save successful session output for demo use"
+      ],
+      "passes": false
+    }
+  ]
+}

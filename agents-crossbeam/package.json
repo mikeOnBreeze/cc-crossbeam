@@ -1,0 +1,12 @@
+{
+  "name": "agents-crossbeam",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Agent SDK backend for CrossBeam ADU corrections pipeline",
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
