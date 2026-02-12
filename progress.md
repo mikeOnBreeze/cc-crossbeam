@@ -102,3 +102,59 @@ This is smarter anyway. Don't extract everything perfectly and then figure out w
 **Also running in parallel:** the web search skill is working — it reads the corrections letter, looks up relevant state code sections, searches for city-level requirements, and produces a summary of what the contractor needs to fix. That flow is looking promising.
 
 **About to do:** Major simplification of the extraction skill. Stripping out the multi-pass vision extraction. Going back to simple programmatic PNG + text extraction. Checkpoint push first.
+
+---
+
+## Wednesday, February 11 — 10:30 PM PST
+
+**Day 2 EOD wrap-up. Big brain dump. A lot happened.**
+
+### PDF Extraction — Lessons Learned
+
+The first half of the day was all about the PDF extraction skill. These ADU blueprint plans are unlike anything I've dealt with before — and I've processed 700+ docs in a zip in other projects. The issue is the plans are designed to be printed on table-sized paper. At 200 DPI as a PNG, you lose a ton of context. Every page is a different beast — CAD software output, stamps, watermarks, signatures, tiny annotations.
+
+- Built the extraction all the way out to **95%+ accuracy** using Claude's vision model. It's genuinely impressive — Opus 4.6 crushed nearly every challenge I've thrown at it, and this was the first time I hit a wall. Not because it *couldn't* do it, but because doing it well took **35 minutes** per 26-page binder.
+- **Lesson for the future:** The hackathon speakers said "don't develop for models as-is, develop for future models." This is a perfect example. The `adu-pdf-extraction` skill is accurate with vision *today* — in 6 months, better models will make it fast AND accurate. Leaving it as-is; it'll age well.
+- **Hackathon reality check:** Spent too long chasing perfection on extraction. The time pressure actually forced a better architectural decision — targeted viewing instead of exhaustive extraction.
+
+### The Pivot — Targeted Page Viewer
+
+Built a new skill off the extraction foundation: **`adu-targeted-page-viewer`**. Instead of extracting everything from every page, it:
+- Reads the corrections letter (14 specific items to fix)
+- Targets only the pages/sheets that matter
+- Builds an index and guides the AI agent to find specific details
+- Way faster because you're not grinding through 26 pages of CAD output when you only need 6 of them
+
+### City-Level Web Search
+
+Originally planned to use the Chrome MCP browser tool for everything. Problem: too slow. Even with multiple subagents running concurrently, navigating city websites with the browser tool was taking forever — clicking around, getting lost, loading pages.
+
+**What actually works:** Web search + web fetch combo.
+- Use web search to find the city's building & planning division pages
+- Web fetch the important pages directly
+- Fire off explore subagents at those specific URLs
+- Use the corrections letter to target-search the relevant local ordinances
+
+Still using the Chrome browser tool for **one thing**: a site called e360 (or similar) — a law database that has a ton of California local ordinances indexed. Their site requires actual browser navigation to search effectively, so that's the one place the Chrome MCP tool shines.
+
+**Test run: Buena Park** (buddy's city, he's the mayor). Full orchestrator + 3 explore subagents mapped out the city-specific ADU rules in about 15 minutes. Not bad for a one-time city research task, but needs to be faster for real-time corrections flow. Still iterating.
+
+### Claude Code Guide Agent
+
+This thing is a beast. Discovered it at the Cat Wu AMA this morning, been using it all day. Speeds everything up — instant access to latest Anthropic docs without manually browsing their site. Had it help build out the Agents SDK plan for the corrections flow.
+
+### Corrections Flow — Agents SDK Plan
+
+Used the CC Guide agent + my own accumulated Agents SDK docs to build out `plan-contractors-agents-sdk.md` — the full plan for tomorrow's backend build. The corrections flow with the Claude Agents SDK: reading corrections, researching state + city law, getting contractor feedback, generating response packages. Probably won't deploy to Vercel Sandbox (time constraints), but hackathon doesn't require deployment — local demo is fine.
+
+### Surprise: City Corrections Flow (the flip side)
+
+While planning the contractor corrections flow, realized the flip side is just as valuable: **cities generating corrections letters**. Same skills, same knowledge base, opposite direction. If a contractor submits plans, a city planner could use this to *generate* the corrections letter. Built out that flow quickly because all the skill infrastructure was already there. Haven't got it producing PDFs yet but that's straightforward — done it in plenty of other projects.
+
+### Tomorrow (Thursday) — Build Day
+
+1. **Claude Agents SDK backend** — wire up both flows (contractor corrections + city corrections) programmatically, running locally
+2. **UI beginnings** — at least start the frontend, even if minimal
+3. **Video story structure** — need to outline the 3-minute demo narrative. Don't need to film yet, but need the story arc and start capturing "shots" (learned from the Replit video experience: story first, build a shot library as you go)
+
+Good day. Frustrating in the morning with the extraction rabbit hole, but the time pressure forced smarter decisions. Two flows now, both grounded in solid skills. Tomorrow is all about making them run as real agents. 10:30 PM, calling it. See you Thursday.

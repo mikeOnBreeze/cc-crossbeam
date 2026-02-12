@@ -1,0 +1,190 @@
+{
+  "project": {
+    "address": "1232 N Jefferson St",
+    "permit_number": "J25-434"
+  },
+  "revision_number": 1,
+  "revision_date": "2026-02-11",
+  "annotations": [
+    {
+      "sheet_id": "CS",
+      "page_number": 1,
+      "file": "page-01.png",
+      "sheet_title": "Cover Sheet",
+      "actions": [
+        {
+          "item_number": "9",
+          "area": "Upper-left quadrant — Governing Codes list, below existing state code entries",
+          "action": "Add City of Placentia Municipal Code to governing codes list",
+          "specification": "Add line: 'City of Placentia Municipal Code'",
+          "professional": null,
+          "status": "AUTO_FIXABLE",
+          "revision_note": "REV 1: Added City of Placentia Municipal Code per correction Item 9"
+        },
+        {
+          "item_number": "3d",
+          "area": "Right side — Sheet Index section",
+          "action": "Update sheet index to match final revised set",
+          "specification": "Verify all sheet IDs and descriptions match final submittal",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Updated sheet index per correction Item 3d"
+        }
+      ]
+    },
+    {
+      "sheet_id": "A1",
+      "page_number": 4,
+      "file": "page-04.png",
+      "sheet_title": "Site Plan (Existing & New)",
+      "actions": [
+        {
+          "item_number": "4",
+          "area": "Right half — (N) Site Plan, between main house and ADU",
+          "action": "Add sewer connection per City of Placentia standard detail",
+          "specification": "4\" ABS wye fitting into existing 4\" ABS lateral, 15' north of main house cleanout near back porch. New two-way cleanout at connection point. 4\" ABS from ADU to connection at 2% minimum slope. Show pipe sizes and material labels.",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Added sewer connection — 4\" ABS wye, 15' from cleanout, per correction Item 4"
+        },
+        {
+          "item_number": "4",
+          "area": "Right half — (N) Site Plan, north side of property",
+          "action": "Add water supply connection",
+          "specification": "New 3/4\" Type L copper, tee off existing 3/4\" supply at north side hose bib. 35' run along side yard to ADU. Isolation valve at tee and at ADU entry. Label pipe size and material.",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Added water connection — 3/4\" Cu tee at N hose bib, 35' run, per correction Item 4"
+        },
+        {
+          "item_number": "4",
+          "area": "Right half — notes area or callout near utility connections",
+          "action": "Add DFU justification note",
+          "specification": "Note: 'Existing 4\" ABS building drain serves 22 DFU (main house). ADU adds 12 DFU (WC=4, shower=2, lav=1, KS=2, CW=3). Combined 34 DFU. Per CPC Table 702.1, 4\" drain rated for 216 DFU. Adequate.'",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Added DFU justification — 34 DFU on 4\" line (216 DFU capacity), per Item 4 2nd review"
+        },
+        {
+          "item_number": "4",
+          "area": "Right half — notes area",
+          "action": "Add water meter adequacy note",
+          "specification": "Note: 'Existing 3/4\" meter with 3/4\" supply serves SFR. ADU peak demand ~4-6 GPM. 3/4\" meter rated ~30 GPM. Combined demand within capacity. Adequate.'",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Added water meter justification per Item 4 2nd review"
+        },
+        {
+          "item_number": "11",
+          "area": "Right half — around ADU perimeter on (N) Site Plan",
+          "action": "Add drainage plan with finished grades and slope arrows",
+          "specification": "Show FF=103.10'. Corner grades: NE=102.85', NW=102.60', SE=102.50', SW=102.30'. Drainage arrows: south patio 2% min (hardscape), N/E/W sides 5% min (landscape). Overall drainage direction SW toward alley. Note existing swale along south property line.",
+          "professional": "Designer",
+          "status": "COMPLETE",
+          "revision_note": "REV 1: Added drainage plan with grades and slope percentages per correction Item 11"
+        }
+      ]
+    },
+    {
+      "sheet_id": "A1.1",
+      "page_number": 5,
+      "file": "page-05.png",
+      "sheet_title": "Demolition Plan / Grading",
+      "actions": [
+        {
+          "item_number": "10",
+          "area": "Title block area or prominent location on sheet",
+          "action": "Add 'For Reference Only' notation",
+          "specification": "Stamp 'FOR REFERENCE ONLY' prominently on sheet",
+          "professional": null,
+          "status": "AUTO_FIXABLE",
+          "revision_note": "REV 1: Added 'For Reference Only' per correction Item 10"
+        }
+      ]
+    },
+    {
+      "sheet_id": "A3",
+      "page_number": 7,
+      "file": "page-07.png",
+      "sheet_title": "Sections & Elevations",
+      "actions": [
+        {
+          "item_number": "12",
+          "area": "Upper-left and upper-center — Elevation view labels",
+          "action": "Correct elevation view labels to match actual building orientation",
+          "specification": "Cross-reference roof ridge direction with site plan orientation. Swap or correct elevation labels so gable ends and eave sides match actual building faces.",
+          "professional": "Designer",
+          "status": "SCOPED",
+          "revision_note": "REV 1: Corrected elevation view orientation per correction Item 12"
+        },
+        {
+          "item_number": "13",
+          "area": "Upper-right quadrant — (N) Roof Plan",
+          "action": "Revise roof plan to show 6'x4' covered landing patio as separate shed roof",
+          "specification": "Show 6' wide x 4' deep shed roof canopy. Posts at 8' height, wall attachment at 9'2\". Clear break between main gable roof and patio shed roof. Two post locations shown.",
+          "professional": "Designer",
+          "status": "SCOPED",
+          "revision_note": "REV 1: Revised roof plan — separate 6'x4' shed patio per correction Item 13"
+        },
+        {
+          "item_number": "14",
+          "area": "Center-right — Replace Detail 2 with new fire-rated detail",
+          "action": "New 1-hour fire-rated assembly detail for patio underside (new construction)",
+          "specification": "New construction assembly: 5/8\" Type X gypsum board applied to underside of 2x rafter framing. Fasteners: 1-5/8\" Type S drywall screws at 12\" O.C. into framing. Label as 1-hour fire-rated per CRC R302.1 Table R302.1(1). Show all material layers and callouts.",
+          "professional": "Designer",
+          "status": "SCOPED",
+          "revision_note": "REV 1: New fire-rated patio soffit detail — 5/8\" Type X gypsum, new construction, per CRC R302.1 Item 14"
+        }
+      ]
+    },
+    {
+      "sheet_id": "S1",
+      "page_number": 10,
+      "file": "page-10.png",
+      "sheet_title": "Structural Plan — Foundation and Framing",
+      "actions": [
+        {
+          "item_number": "5",
+          "area": "Right half — Floor Framing Plan, bottom-center near concrete landing",
+          "action": "Add 6'x4' patio cover framing to framing plan",
+          "specification": "Show two 4x4 posts at 8' height on concrete pier footings, beam spanning 6' width, shed roof rafters from 9'2\" ledger at ADU wall down to 8' at posts over 4' depth. Show brace locations. Reference new detail on S3.",
+          "professional": "Structural Engineer",
+          "status": "SCOPED",
+          "revision_note": "REV 1: Added 6'x4' patio cover framing — two 4x4 posts, beam, shed rafters, per correction Item 5"
+        }
+      ]
+    },
+    {
+      "sheet_id": "S3",
+      "page_number": 12,
+      "file": "page-12.png",
+      "sheet_title": "Structural Details",
+      "actions": [
+        {
+          "item_number": "5",
+          "area": "Available detail space on sheet",
+          "action": "New patio cover structural connection detail",
+          "specification": "Detail showing: (1) brace angle supporting beam with dimensions, (2) lag screw schedule for brace-to-beam connection, (3) lag screw schedule for brace-to-post connection, (4) 4x4 post-to-concrete pier footing connection with hardware, (5) ledger-to-wall attachment at 9'2\". All connections designed for C&C wind per ASCE 7-16 §30.11 calculations.",
+          "professional": "Structural Engineer",
+          "status": "SCOPED",
+          "revision_note": "REV 1: New patio brace/connection detail for 6'x4' shed canopy per correction Item 5"
+        }
+      ]
+    }
+  ],
+  "revision_table": [
+    {"rev": 1, "date": "2026-02-11", "description": "Added City of Placentia Municipal Code to governing codes", "sheet": "CS", "item": "9"},
+    {"rev": 1, "date": "2026-02-11", "description": "Updated sheet index", "sheet": "CS", "item": "3d"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added sewer connection — 4\" ABS wye, 15' from cleanout, new cleanout", "sheet": "A1", "item": "4"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added water connection — 3/4\" Cu tee at N hose bib, 35' run", "sheet": "A1", "item": "4"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added DFU justification — 34 DFU combined on 4\" line (216 DFU capacity)", "sheet": "A1", "item": "4"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added water meter adequacy justification", "sheet": "A1", "item": "4"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added drainage plan — FF=103.10', corner grades, 5%/2% slopes, drains SW", "sheet": "A1", "item": "11"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added 'For Reference Only' notation", "sheet": "A1.1", "item": "10"},
+    {"rev": 1, "date": "2026-02-11", "description": "Corrected elevation view orientation (gable/eave labels)", "sheet": "A3", "item": "12"},
+    {"rev": 1, "date": "2026-02-11", "description": "Revised roof plan — separate 6'x4' shed patio element", "sheet": "A3", "item": "13"},
+    {"rev": 1, "date": "2026-02-11", "description": "New fire-rated patio soffit — 5/8\" Type X gypsum, new construction, per CRC R302.1", "sheet": "A3", "item": "14"},
+    {"rev": 1, "date": "2026-02-11", "description": "Added 6'x4' patio cover framing — two 4x4 posts, beam, shed rafters", "sheet": "S1", "item": "5"},
+    {"rev": 1, "date": "2026-02-11", "description": "New patio brace/connection detail with lag screw schedule", "sheet": "S3", "item": "5"}
+  ]
+}

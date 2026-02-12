@@ -1,0 +1,64 @@
+{
+  "project": {
+    "address": "1232 N Jefferson St",
+    "city": "Placentia",
+    "permit_number": "J25-434"
+  },
+  "answered_by": "Cameron (GC)",
+  "answered_date": "2026-02-11",
+  "answers": {
+    "q_4_0": {
+      "question_text": "What is the size of the existing waste/sewer line from the main house?",
+      "answer": "4\" ABS"
+    },
+    "q_4_1": {
+      "question_text": "What is the approximate total DFU load on the existing waste line from the main house?",
+      "answer": 22,
+      "unit": "DFU"
+    },
+    "q_4_2": {
+      "question_text": "What is the size of the existing water meter and supply line?",
+      "answer": "3/4\" meter / 3/4\" line"
+    },
+    "q_4_3": {
+      "question_text": "Describe the proposed sewer connection method and location",
+      "answer": "Wye fitting into existing 4\" ABS lateral, approximately 15' north of main house cleanout near back porch. New two-way cleanout at connection point. 4\" ABS from ADU to connection, 2% slope."
+    },
+    "q_4_4": {
+      "question_text": "Where is the proposed water supply point of connection?",
+      "answer": "New 3/4\" copper line tee off existing 3/4\" supply at north side hose bib, running 35' along side yard to ADU. Isolation valve at tee and at ADU entry."
+    },
+    "q_11_0": {
+      "question_text": "What are the finished grade elevations at each corner of the ADU?",
+      "answer": {
+        "NE corner": 102.85,
+        "NW corner": 102.60,
+        "SE corner": 102.50,
+        "SW corner": 102.30
+      },
+      "unit": "feet (elevation)"
+    },
+    "q_11_1": {
+      "question_text": "What is the proposed finished floor elevation of the ADU?",
+      "answer": 103.10,
+      "unit": "feet (elevation)"
+    },
+    "q_11_2": {
+      "question_text": "What are the surface materials around the ADU perimeter?",
+      "answer": ["Concrete flatwork/patio", "Landscape/planting area"],
+      "detail": "Concrete patio on south side (entry), landscape/planting beds on north, east, and west sides"
+    },
+    "q_11_3": {
+      "question_text": "Where does surface water currently drain on the property?",
+      "answer": "Property slopes gently southwest toward the alley. Existing swale along south property line carries runoff to street. No standing water issues observed."
+    },
+    "q_5_0": {
+      "question_text": "What is the approximate span and depth of the covered landing patio?",
+      "answer": "6' wide x 4' deep shed roof, 8' height at posts, attaching to ADU wall at 9'2\". Two 4x4 posts on concrete pier footings."
+    },
+    "q_14_0": {
+      "question_text": "Is the covered landing patio currently built, or is it new construction shown only on plans?",
+      "answer": "New construction (not built yet)"
+    }
+  }
+}

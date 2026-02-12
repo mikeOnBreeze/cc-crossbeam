@@ -1,0 +1,99 @@
+{
+  "source_pdf": "Binder-1232-N-Jefferson.pdf",
+  "total_pages": 15,
+  "indexed_sheets": 15,
+  "sheets": [
+    {
+      "sheet_id": "CS",
+      "page_number": 1,
+      "file": "page-01.png",
+      "description": "Cover Sheet — Project data, governing codes, scope of work, sheet index, general notes"
+    },
+    {
+      "sheet_id": "AIA.1",
+      "page_number": 2,
+      "file": "page-02.png",
+      "description": "CalGreen Compliance Checklist page 1 — Environmental quality, recycling, occupant requirements"
+    },
+    {
+      "sheet_id": "AIA.2",
+      "page_number": 3,
+      "file": "page-03.png",
+      "description": "CalGreen Compliance Checklist page 2"
+    },
+    {
+      "sheet_id": "A1",
+      "page_number": 4,
+      "file": "page-04.png",
+      "description": "Site Plan — Existing & new site plan, setbacks, grading notes, utility connections"
+    },
+    {
+      "sheet_id": "A1.1",
+      "page_number": 5,
+      "file": "page-05.png",
+      "description": "Site Plan Details / Grading Plan"
+    },
+    {
+      "sheet_id": "A2",
+      "page_number": 6,
+      "file": "page-06.png",
+      "description": "Floor Plan — ADU floor plan, plumbing fixture notes, fixture water use table"
+    },
+    {
+      "sheet_id": "A3",
+      "page_number": 7,
+      "file": "page-07.png",
+      "description": "Sections & Elevations — Building sections, elevation views, roof plan, construction details"
+    },
+    {
+      "sheet_id": "SN1",
+      "page_number": 8,
+      "file": "page-08.png",
+      "description": "Structural Notes page 1 — Engineer: J. Gonzalez, Job No. 25109"
+    },
+    {
+      "sheet_id": "SN2",
+      "page_number": 9,
+      "file": "page-09.png",
+      "description": "Structural Notes page 2"
+    },
+    {
+      "sheet_id": "S1",
+      "page_number": 10,
+      "file": "page-10.png",
+      "description": "Structural Plan — Framing plan, sheathing schedule, shear wall layout"
+    },
+    {
+      "sheet_id": "S2",
+      "page_number": 11,
+      "file": "page-11.png",
+      "description": "Foundation Plan — Foundation details, footing sizes, reinforcement"
+    },
+    {
+      "sheet_id": "S3",
+      "page_number": 12,
+      "file": "page-12.png",
+      "description": "Structural Details — DTC clip spacing, blocking details, connection details"
+    },
+    {
+      "sheet_id": "T-1",
+      "page_number": 13,
+      "file": "page-13.png",
+      "description": "Title 24 Energy — CF1R calculations, CHEERS/HERS provider"
+    },
+    {
+      "sheet_id": "T-2",
+      "page_number": 14,
+      "file": "page-14.png",
+      "description": "Title 24 Energy page 2 — Heat pump, HVAC, distribution"
+    },
+    {
+      "sheet_id": "T-3",
+      "page_number": 15,
+      "file": "page-15.png",
+      "description": "Title 24 Energy page 3"
+    }
+  ],
+  "unindexed_pages": [],
+  "notes": "Architectural sheets (CS, AIA, A-series) by C. Sanchez / Ideal ADU Design. Structural sheets (SN, S-series) by J. Gonzalez, Job No. 25109. Title 24 energy (T-series) dated 7/1/2025. Study Set watermark on cover sheet — 'Not For Construction / Prepped for City Submittal'."
+}
