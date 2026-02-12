@@ -70,7 +70,7 @@
       "id": "phase-4",
       "name": "L2 — Subagent + Bash + Image Reading",
       "description": "Prepare mini test data and write/pass the L2 test. Validates: Task tool spawns subagents in SDK context, Bash tool executes scripts, agent can read images. Critical for Phase 3 research subagents.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run L2 test and confirm subagent spawning, Bash execution, and image reading all work.",
         "steps": [
@@ -324,7 +324,7 @@
         "Create test-assets/mini/sheet-manifest-mini.json — a hand-written manifest with 1-2 sheets pointing to the mini plan page(s). Use absolute paths. Include: source_pdf, total_pages, indexed_sheets, sheets array with sheet_id/page_number/file/description. Reference test-assets/correction-01/sheet-manifest.json for format.",
         "Verify the PNG file is readable and the JSON is valid"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l2-001",
@@ -342,7 +342,7 @@
         "After result: check file exists, parse JSON, verify sheet_id is a non-empty string",
         "Reference: testing-agents-sdk.md L2 section"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l2-002",
@@ -357,7 +357,7 @@
         "Fix issues and re-run until all checks pass",
         "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 8-9)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "flow-001",
