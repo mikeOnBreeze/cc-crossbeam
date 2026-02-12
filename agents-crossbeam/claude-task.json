@@ -51,7 +51,7 @@
       "id": "phase-3",
       "name": "L1 — Single Skill Invocation",
       "description": "Write and pass the L1 skill invocation test. This validates: Skill tool works in SDK context, reference files load (28 california-adu files), agent writes output to session directory.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run L1 test and confirm the california-adu skill runs correctly and writes a JSON file.",
         "steps": [
@@ -296,7 +296,7 @@
         "Print clear pass/fail markers",
         "Reference: testing-agents-sdk.md L1 section"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l1-002",
@@ -311,7 +311,7 @@
         "Fix issues and re-run until all checks pass",
         "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 5-7)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "data-001",
