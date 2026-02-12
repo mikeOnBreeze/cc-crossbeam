@@ -32,7 +32,7 @@
       "id": "phase-2",
       "name": "L0 Smoke Test — SDK Init + Skill Discovery",
       "description": "Write and pass the L0 smoke test. This validates: SDK connects, skills are discovered from .claude/skills/, tools are available, and the agent responds. Uses Haiku for speed/cost ($0.01).",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run L0 smoke test and confirm SDK connects and discovers all 6 ADU skills.",
         "steps": [
@@ -264,7 +264,7 @@
         "Print clear pass/fail markers: ✓ SDK initialized, ✓ Skill tool available, ✓ Skills discovered",
         "Reference: testing-agents-sdk.md L0 section for exact implementation pattern"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l0-002",
@@ -279,7 +279,7 @@
         "Fix issues and re-run until all checks pass",
         "Reference: testing-agents-sdk.md 'What Breaks First' checklist (items 1-4)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l1-001",
@@ -319,8 +319,9 @@
       "description": "Create test-assets/mini/ directory with plan page PNG and mini sheet manifest for L2/L3 testing.",
       "steps": [
         "mkdir -p test-assets/mini",
-        "Copy a single plan page from test-assets/correction-01/pages-png/page-01.png to test-assets/mini/plan-page-A1.png (this is a pre-extracted page from the Placentia plan binder)",
-        "Create test-assets/mini/sheet-manifest-mini.json — a hand-written manifest with 1-2 sheets pointing to the mini plan page(s). Use absolute paths or paths relative to the session directory. Include: source_pdf, total_pages=1, indexed_sheets=1, sheets array with sheet_id/page_number/file/description",
+        "Copy test-assets/correction-01/pages-png/page-04.png to test-assets/mini/plan-page-A1.png — page-04 is sheet A1 (Site Plan). NOTE: page-01 is the Cover Sheet (CS), NOT A1. See sheet-manifest.json in correction-01/ for the full page-to-sheet mapping.",
+        "Optionally also copy page-06.png as plan-page-A2.png (A2 = Floor Plan, commonly referenced in corrections)",
+        "Create test-assets/mini/sheet-manifest-mini.json — a hand-written manifest with 1-2 sheets pointing to the mini plan page(s). Use absolute paths. Include: source_pdf, total_pages, indexed_sheets, sheets array with sheet_id/page_number/file/description. Reference test-assets/correction-01/sheet-manifest.json for format.",
         "Verify the PNG file is readable and the JSON is valid"
       ],
       "passes": false
@@ -334,7 +335,7 @@
         "Import query from SDK and createQueryOptions, createSession from utils",
         "Create session directory",
         "Point to test-assets/mini/plan-page-A1.png",
-        "Prompt: read the plan sheet image, identify the sheet ID from the title block, optionally spawn a subagent via Task tool to help",
+        "Prompt: You MUST spawn a subagent via the Task tool. The subagent's job is to read the plan sheet image, identify the sheet ID from the title block, and return the result. Do NOT read the image yourself — delegate to a subagent. This test validates that the Task tool works in the SDK context.",
         "Request output as JSON to {sessionDir}/test-sheet-id.json with format: { sheet_id, description, confidence }",
         "Use Sonnet for balance of cost/capability, maxTurns=20, maxBudgetUsd=2.00",
         "Log tool calls from assistant messages for visibility",
@@ -348,7 +349,7 @@
       "phase": "phase-4",
       "description": "Run L2 subagent + Bash test and debug until it passes. Key risk: subagents may not inherit skills (SDK docs are ambiguous on this).",
       "steps": [
-        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l2-subagent-bash.ts",
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l2-subagent-bash.ts (use Bash timeout: 600000 — this test takes ~3 min)",
         "If Task tool fails: check allowedTools includes 'Task'",
         "If Bash fails: check allowedTools includes 'Bash'",
         "If image not readable: check additionalDirectories includes PROJECT_ROOT for test-assets/ access",
@@ -445,7 +446,7 @@
         "Create agents-crossbeam/src/tests/test-l3-mini-pipeline.ts",
         "Create session directory, pre-populate sheet manifest from test-assets/mini/sheet-manifest-mini.json",
         "Point corrections file to test-assets/corrections/1232-n-jefferson-corrections-p1.png",
-        "Prompt: use adu-corrections-flow skill, CITY=Buena Park, skip Phase 2 (manifest already built), use buena-park-adu skill for city research (NOT adu-city-research), write all outputs to session dir",
+        "Prompt: use adu-corrections-flow skill, CITY=Buena Park, skip Phase 2 (manifest already built), use buena-park-adu skill for city research (NOT adu-city-research), write all outputs to session dir. NOTE: The corrections letter is from Placentia but we're using Buena Park as a stand-in for offline city research. Output accuracy for city-specific items doesn't matter here — we're testing multi-skill orchestration, not output correctness.",
         "CRITICAL: Remove WebSearch/WebFetch from allowedTools to force offline city research via buena-park-adu",
         "Use Opus model, maxTurns=50, maxBudgetUsd=8.00",
         "Log tool calls with elapsed time using progress utility",
@@ -460,7 +461,7 @@
       "phase": "phase-5",
       "description": "Run L3 mini pipeline test and debug until it passes. This is the first real multi-skill orchestration test — expect issues.",
       "steps": [
-        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3-mini-pipeline.ts",
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3-mini-pipeline.ts (use Bash timeout: 600000 — this test takes 5-7 min)",
         "Expected duration: 5-7 minutes, cost: $3-5",
         "If skills not orchestrated: strengthen prompt instructions, verify adu-corrections-flow SKILL.md is being followed",
         "If subagents fail on skills: may need to restructure so parent agent does all skill invocations (open question #2)",
@@ -479,7 +480,7 @@
       "steps": [
         "mkdir -p test-assets/mock-session",
         "Copy from test-assets/correction-01/: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json, sheet_observations.json",
-        "Also copy city_discovery.json and city_research_findings.json if they exist in correction-01/",
+        "NOTE: city_discovery.json and city_research_findings.json do NOT exist in correction-01/ (city research was done differently in the CLI run). These are optional — Skill 2 does not require them.",
         "If any files are missing from correction-01/, try to copy from a successful L3 session instead",
         "Verify all 5 required fixtures exist: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json",
         "These fixtures enable Skill 2 testing without any dependency on Skill 1"
@@ -507,7 +508,7 @@
       "phase": "phase-6",
       "description": "Run L3b Skill 2 isolation test and debug until it passes. Iterate on response quality — this is where we tune Skill 2's output.",
       "steps": [
-        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3b-skill2-only.ts",
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l3b-skill2-only.ts (use Bash timeout: 600000 — this test takes 2-3 min)",
         "Expected duration: 2-3 minutes, cost: $2-3",
         "If skill not found: verify adu-corrections-complete symlink resolves",
         "If deliverables are low quality: review adu-corrections-complete SKILL.md, may need to strengthen instructions",
@@ -543,7 +544,7 @@
       "phase": "phase-7",
       "description": "Run L4 full pipeline with real Placentia data. This is the acceptance test — run only after L0-L3b all pass.",
       "steps": [
-        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l4-full-pipeline.ts",
+        "Run: cd agents-crossbeam && node --env-file .env.local --experimental-strip-types ./src/tests/test-l4-full-pipeline.ts (use Bash run_in_background: true — this test takes 15-20 min, then check output with tail or TaskOutput)",
         "Expected duration: 15-20 minutes total (Skill 1: 8-12 min, Skill 2: 3-5 min)",
         "Expected cost: $10-18 total",
         "Monitor progress via console output — tool calls, subagent starts, file writes",

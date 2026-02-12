@@ -54,15 +54,30 @@ For current phase:
 - Only stop at phase boundaries
 
 ### Git Commits
-After each task:
+After each task, stage only the agents-crossbeam/ and test-assets/ directories (NOT the parent repo):
 ```bash
-git add -A && git commit -m "task-XXX: Brief description"
+git add agents-crossbeam/ test-assets/ && git commit -m "task-XXX: Brief description"
 ```
 
 ### Marking Progress
 When a task is done, update `agents-crossbeam/claude-task.json`:
 - Set task's `passes: true`
 - When all tasks in phase done, set phase's `status: "complete"`
+
+### Running SDK Tests (IMPORTANT — Bash Timeouts)
+Agent SDK tests take 30 seconds to 20 minutes. The Bash tool defaults to 2 minutes. Use extended timeouts:
+- **L0/L1**: `timeout: 180000` (3 min)
+- **L2/L3/L3b**: `timeout: 600000` (10 min)
+- **L4**: Use `run_in_background: true`, then poll with `TaskOutput` or `tail`
+
+### If Stuck
+If a task fails after 3 attempts with the same error, **STOP and ask the user**. Don't burn budget on repeat failures. Report: what you tried, what failed, your best theory on the root cause.
+
+### API Keys Are Expendable
+All API keys in this project are temporary hackathon/test keys. Do NOT worry about viewing, reading, or handling them in code. They will be deleted before production. Never hold up work because of key sensitivity concerns.
+
+### When You Have SDK Questions — Use CC Guide
+If you're unsure about Agent SDK behavior, configuration, or API details, use the **cc-guide skill** (`/cc-guide <your question>`). It has access to the full latest Anthropic docs and can answer questions about `query()`, options, hooks, tools, skills, etc. Use it liberally — it's faster than guessing.
 
 ### Never Do These
 - Do NOT skip phases
@@ -200,7 +215,7 @@ The full corrections pipeline takes 15-20 minutes per run. **We cannot iterate a
 `test-assets/correction-01/` has complete outputs from a CLI run:
 - `corrections_parsed.json` — parsed corrections
 - `corrections_categorized.json` — categorized with research
-- `sheet-manifest.json` — full sheet manifest
+- `sheet-manifest.json` — full sheet manifest (15 sheets: CS, AIA.1, AIA.2, A1, A1.1, A2, A3, SN1, SN2, S1, S2, S3, T-1, T-2, T-3)
 - `contractor_questions.json` — generated questions
 - `contractor_answers.json` — mock contractor answers
 - `state_law_findings.json` — state law research
@@ -208,15 +223,24 @@ The full corrections pipeline takes 15-20 minutes per run. **We cannot iterate a
 - `pages-png/page-01.png` through `page-15.png` — pre-extracted plan pages
 - `response_letter.md`, `professional_scope.md`, `corrections_report.md`, `sheet_annotations.json` — all 4 deliverables
 
+**NOT present** in correction-01/: `city_discovery.json`, `city_research_findings.json` (city research was done differently in the CLI run). These are optional for Skill 2 testing.
+
+**Page-to-sheet mapping** (from the manifest — important for L2 test data):
+- `page-01.png` = CS (Cover Sheet) — do NOT use this as "A1"
+- `page-04.png` = A1 (Site Plan)
+- `page-06.png` = A2 (Floor Plan) — good for corrections testing
+- `page-07.png` = A3 (Sections & Elevations)
+
 **USE THESE** for mock-session fixtures (L3b) and mini test data (L2/L3).
 
 ## Questions?
 
 If you're unsure about something:
-1. Read `plan-contractors-agents-sdk.md` for detailed architecture
-2. Read `testing-agents-sdk.md` for testing details
-3. Check `agents-crossbeam/claude-task.json` for task details
-4. Ask the user for clarification
+1. **Use `/cc-guide <question>`** — the CC Guide skill has full Agent SDK docs and is your best resource for SDK-specific questions
+2. Read `plan-contractors-agents-sdk.md` for detailed architecture
+3. Read `testing-agents-sdk.md` for testing details
+4. Check `agents-crossbeam/claude-task.json` for task details
+5. Ask the user for clarification
 
 ---
 
