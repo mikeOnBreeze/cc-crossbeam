@@ -158,3 +158,17 @@ While planning the contractor corrections flow, realized the flip side is just a
 3. **Video story structure** — need to outline the 3-minute demo narrative. Don't need to film yet, but need the story arc and start capturing "shots" (learned from the Replit video experience: story first, build a shot library as you go)
 
 Good day. Frustrating in the morning with the extraction rabbit hole, but the time pressure forced smarter decisions. Two flows now, both grounded in solid skills. Tomorrow is all about making them run as real agents. 10:30 PM, calling it. See you Thursday.
+
+---
+
+## Thursday, February 12 — Morning PST
+
+**Day 3. Agents SDK build kicking off.**
+
+- Got planning files finalized and polished (`plan-contractors-agents-sdk.md` now at 1077 lines — comprehensive).
+- Set up `.env.local` with Anthropic API key for the Agents SDK.
+- Built a **fal-ai skill** for generating visual assets (images/video for the demo).
+- Experimented with demo visuals — generated a bunch of ADU concept images and orbit videos using fal-ai + Kling. Tilt-shift miniatures, isometric views, elevation-to-photorealistic transforms. Built a `visuals/` folder with ~214MB of assets (gitignored — too heavy for the repo, kept locally).
+- **Kicked off Phase 1 of the Agents SDK build** using a long-running agent. Phase 1 complete — haven't personally tested yet but the build looks good.
+
+**Next:** Test Phase 1 output, then continue into Phase 2 of the Agents SDK implementation.

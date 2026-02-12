@@ -47,75 +47,120 @@
 
 This is the most important day. Get the agent RUNNING and PRODUCING OUTPUT.
 
+**Status:** DONE (skills & pipeline). Agent SDK harness deferred to Thursday. See EOD notes.
+
 **Priority 1: ADU Composite Skill (state + city integration)**
-- [ ] Figure out how to meld the state-level ADU skill with Claude Code's tool ecosystem
-- [ ] Design the composite skill architecture — state-level knowledge + city-level dynamic lookup
-- [ ] Build the composite skill SKILL.md and orchestrator
+- [x] Figure out how to meld the state-level ADU skill with Claude Code's tool ecosystem
+- [x] Design the composite skill architecture — state-level knowledge + city-level dynamic lookup
+- [x] Build the composite skill SKILL.md and orchestrator
 
 **Priority 2: City-Level Web Search Tool**
-- [ ] Build city-level web search skill using Chrome browser tools + web search
+- [x] Build city-level web search skill using Chrome browser tools + web search
   - CA has 480+ cities, each with its own ADU regulations published online (required by law)
   - Every city's site is different — Claude Code needs a skill to navigate, find, extract, and document city-specific ADU rules
   - Pattern: search "[City Name] ADU requirements" or "[City Name] accessory dwelling unit ordinance"
   - Extract relevant standards, compare against state law
   - Flag preemption issues
-- [ ] Test with 2-3 cities to validate the approach
+- [x] Test with 2-3 cities to validate the approach
 
 **Priority 3: Agent Harness (Claude Agents SDK backend)**
-- [ ] Set up the harness using Claude Agents SDK — the backend that orchestrates skills
-- [ ] Agent SDK test script that runs locally
+- [ ] Set up the harness using Claude Agents SDK — the backend that orchestrates skills → **DEFERRED to Thu morning**
+- [ ] Agent SDK test script that runs locally → **DEFERRED**
 - [ ] `.env.local` with Anthropic API key
-- [ ] Run a first end-to-end test
+- [ ] Run a first end-to-end test → **DEFERRED** (but full E2E works via CLI — see notes)
 
 **Also if time allows:**
-- [ ] Test ADU handbook skill — run a few queries through Claude Code locally, verify the decision tree routes correctly and reference files load
-- [ ] Build corrections interpreter skill
+- [x] Test ADU handbook skill — run a few queries through Claude Code locally, verify the decision tree routes correctly and reference files load
+- [x] Build corrections interpreter skill
   - Instructions for reading correction letters, categorizing items
   - Response letter templates and format
   - Common correction types and how to address them
-- [ ] Build checklist generator skill
+- [ ] Build checklist generator skill *(cut — corrections flow is the priority per guiding principles)*
   - Instructions for web searching city requirements
   - Cross-referencing state law against city rules
   - Output format: structured checklist with code citations
 
 **Evening (focus: iterate)**
-- [ ] Refine skills based on test results — this is where the magic happens
-- [ ] Fix any Agent SDK configuration issues
+- [x] Refine skills based on test results — this is where the magic happens
+- [ ] Fix any Agent SDK configuration issues → **N/A — SDK not set up yet**
 
 **Events:**
-- AMA with Cat Wu (12:30-1:15 PM EST / 9:30-10:15 AM PST) — worth attending, Claude Code product lead
+- [x] AMA with Cat Wu (12:30-1:15 PM EST / 9:30-10:15 AM PST) — worth attending, Claude Code product lead
 - Office hours (5:00-6:00 PM EST / 2:00-3:00 PM PST)
 
-**End of Day Goal:** Agent runs both flows locally. Output is rough but the pipeline works. You know exactly what needs to improve.
+**End of Day Goal:** ~~Agent runs both flows locally. Output is rough but the pipeline works. You know exactly what needs to improve.~~ **PARTIALLY ACHIEVED — see notes.**
+
+**EOD Notes — Wed Feb 11 (10:30 PM PST):**
+
+The day went deeper on skills and pipeline quality than planned, and the Agent SDK wiring got traded for that depth. The trade was correct — skills ARE the product (Guiding Principle #1).
+
+**What got built (exceeded plan):**
+- **8 ADU skills**, all with SKILL.md files, reference docs, and tested:
+  - `adu-corrections-flow` (Skill 1 — analysis + questions, 137 lines, subagent prompts + output schemas)
+  - `adu-corrections-complete` (Skill 2 — response generation, 164 lines)
+  - `adu-targeted-page-viewer` (born from the extraction pivot — targeted sheet viewing, 116 lines + scripts)
+  - `adu-city-research` (3 modes: Discovery/Extraction/Browser, 243 lines)
+  - `buena-park-adu` (Tier 3 onboarded city skill, 76 lines, 12 reference files)
+  - `adu-pdf-extraction` (full extraction skill, 341 lines — kept for future, too slow for hackathon)
+  - `adu-corrections-interpreter` (standalone interpreter, 68 lines)
+  - `california-adu` (updated with 2026 addendum, 28 reference files)
+- **Full corrections pipeline tested E2E through CLI** — all outputs generated:
+  - Phase 1–4 intermediates: `corrections_parsed.json`, `sheet-manifest.json`, `state_law_findings.json`, `sheet_observations.json`, `corrections_categorized.json`, `contractor_questions.json`
+  - Phase 5 deliverables (two runs!): `response_letter.md`, `professional_scope.md`, `corrections_report.md`, `sheet_annotations.json`
+  - Contractor answers simulated, second output run in `output-02/`
+- **6 PDF extraction iterations** (test runs 01–06) before pivoting to targeted viewing
+- **City research tested** — Buena Park deep dive, discovered 3-mode architecture (WebSearch → WebFetch → Browser fallback)
+- **City-side flow conceptualized** — `plan-city-corrections.md` (190 lines) — same skills, opposite direction
+- **Agent SDK plan written** — `plan-contractors-agents-sdk.md` (839 lines!) with proven config, architecture, implementation steps
+- **cc-guide skill** built from Cat Wu AMA — instant access to Anthropic docs
+
+**What did NOT get done:**
+- No `backend/` directory created (no Agent SDK code)
+- No `frontend/` directory created
+- No `package.json` anywhere
+- Checklist generator skill (Flow 1) not built — correctly deprioritized per Guiding Principle #2
+
+**Key architectural insight of the day:** Don't extract everything from construction plans and then figure out what matters. Figure out what matters first (from the corrections letter + code research), then go look for it in the plans. This pivot from `adu-pdf-extraction` (35 min, exhaustive) to `adu-targeted-page-viewer` (fast, surgical) was the single best decision of the day.
+
+**Assessment:** The pipeline works and the output quality is already good — not rough. The skill architecture is more mature than the original schedule anticipated. The Agent SDK harness is thoroughly planned (839-line plan with proven config from Dec 2025 Mako project). Wiring it up Thursday morning should be a 2-3 hour task, not a full day. This puts Thursday in a strong position: wire SDK in the morning, test + iterate in the afternoon, polish output formatting in the evening.
 
 ---
 
-### Thursday Feb 12 — Agent Quality + Q&A Loop
+### Thursday Feb 12 — Agent SDK Harness + Output Quality + Q&A Loop
 
-**Morning (focus: corrections flow quality)**
-- [ ] Iterate corrections interpreter skill based on yesterday's test results
-- [ ] Get the categorization right: what contractor can resolve vs. what needs engineer vs. what needs more info
-- [ ] Build the question/answer loop:
-  - Agent reads corrections → identifies what it needs from contractor
-  - Agent generates targeted questions (via AskUserQuestion)
-  - Contractor answers → Agent incorporates answers into response letter
-- [ ] Test the full corrections loop end-to-end (upload → questions → answers → response package)
+> **Schedule shift:** Agent SDK harness moved from Wed → Thu morning. Skills and CLI pipeline are ahead of schedule (output already good, not rough). Thursday absorbs the SDK work and still has time for quality iteration.
 
-**Afternoon (focus: checklist flow quality)**
-- [ ] Iterate checklist skill
-- [ ] Test with 2-3 different cities (Placentia, Long Beach, one more)
-- [ ] Verify WebSearch is finding the right city-specific pages
-- [ ] Make sure state vs. city preemption analysis works
+**Morning (focus: Agent SDK backend — CARRY-OVER from Wed P3)**
+- [ ] Create `backend/` directory + symlink ADU skills (6 skills only — isolate from CLI env)
+- [ ] `npm init` + install `@anthropic-ai/claude-agent-sdk`
+- [ ] Write `run-skill-1.ts` (Skill 1 query wrapper) + `run-skill-2.ts` (Skill 2 query wrapper)
+- [ ] Session directory management (`utils/session.ts`)
+- [ ] `test-full-flow.ts` — end-to-end test with Placentia test data
+- [ ] First Agent SDK run — verify skills load, subagents spawn, outputs written
+- [ ] **Target: Agent SDK running by lunch** (~2-3 hours per plan estimate)
 
-**Evening (focus: output formatting)**
+**Afternoon (focus: corrections flow quality via Agent SDK)**
+- [ ] Run full corrections pipeline through Agent SDK (not just CLI)
+- [ ] Compare Agent SDK output to CLI output — should be equivalent
+- [ ] Iterate on categorization: auto-fixable vs. needs contractor vs. needs professional
+- [ ] Test the Q&A loop: Skill 1 → contractor_questions.json → mock answers → Skill 2 → deliverables
+- [ ] Debug any skill loading or subagent issues in SDK context
+
+**Evening (focus: output formatting + polish)**
 - [ ] Polish the corrections response letter format — this is what judges SEE
-- [ ] Polish the checklist output format
-- [ ] Both should look professional, cite specific code sections, be actionable
+- [ ] Polish professional scope format (per-sheet action tables)
+- [ ] Polish corrections report format (status dashboard)
+- [ ] All outputs should cite specific code sections, reference exact sheet IDs from manifest
+
+**If time (bonus):**
+- [ ] Progress event handler (console logging from SDK message stream)
+- [ ] Start outlining the 3-minute demo video narrative / shot list
+- [ ] Test city-side corrections flow (plan-city-corrections.md) if contractor side is solid
 
 **Events:**
 - Office hours (5:00-6:00 PM EST / 2:00-3:00 PM PST)
 
-**End of Day Goal:** Both flows produce GOOD output. The corrections response letter looks like something a real contractor would use. The checklist is thorough and city-specific.
+**End of Day Goal:** Agent SDK runs the corrections pipeline programmatically. Output quality is demo-ready. Response letter looks like something a real contractor would use.
 
 ---
 
@@ -259,13 +304,35 @@ Frontend (local) → Direct Agent SDK call → Local filesystem
 
 These are the non-negotiable milestones. If any of these slip, everything downstream is at risk.
 
-| When | Milestone | Why It Matters |
-|------|-----------|----------------|
-| **Wed EOD** | Agent SDK runs corrections flow locally with real data | If the agent can't run, nothing else matters |
-| **Thu EOD** | Corrections flow output is good quality | Output quality is the demo. Bad output = bad demo. |
-| **Fri EOD** | Working web UI with both flows | Need a UI to demo. Even if rough. |
-| **Sat EOD** | At least one demo recording exists | Can't submit without a video. |
-| **Sun EOD** | Everything ready to submit | Monday is emergency-only. |
+| When | Milestone | Status | Why It Matters |
+|------|-----------|--------|----------------|
+| **Wed EOD** | ~~Agent SDK runs corrections flow locally with real data~~ Skills built + CLI pipeline E2E tested | **PARTIAL** — SDK deferred, but pipeline proven via CLI | If the agent can't run, nothing else matters |
+| **Thu EOD** | Agent SDK runs corrections flow + output is good quality | **PENDING** — Thu morning priority | Output quality is the demo. Bad output = bad demo. |
+| **Fri EOD** | Working web UI with both flows | **PENDING** | Need a UI to demo. Even if rough. |
+| **Sat EOD** | At least one demo recording exists | **PENDING** | Can't submit without a video. |
+| **Sun EOD** | Everything ready to submit | **PENDING** | Monday is emergency-only. |
+
+### Mid-Hackathon Status Check — Wed Feb 11, 10:30 PM PST
+
+**Overall position: STRONG, with one key item carried over.**
+
+| Area | Status | Confidence |
+|------|--------|------------|
+| **Skills (the product)** | 8 skills built, tested, iterated | HIGH — ahead of schedule |
+| **Corrections pipeline** | Full E2E working via CLI, output quality already good | HIGH |
+| **Agent SDK backend** | Thoroughly planned (839-line doc), not yet coded | MEDIUM — 2-3 hr estimate, proven config from Mako |
+| **Frontend** | Not started | ON TRACK — scheduled for Friday |
+| **City research** | Working, tested with Buena Park | HIGH |
+| **City-side flow** | Conceptualized + planned (190-line doc) | BONUS — not in original schedule |
+| **Demo video** | Not started | ON TRACK — scheduled for Saturday |
+
+**Risk assessment:** The only real risk is the Agent SDK wiring. The plan is thorough and the config is proven from the Dec 2025 Mako project, but "it should take 2-3 hours" is an estimate. If SDK issues eat Thursday morning, it compresses the afternoon. Mitigation: worst case, demo the corrections flow through CLI (still impressive) and show the Agent SDK architecture in the video.
+
+**Key decisions made today:**
+1. Targeted viewing over exhaustive extraction — 10x faster, architecturally smarter
+2. City research: WebSearch → WebFetch → Browser fallback (3-mode design)
+3. Skills-first, SDK-second — the right call for a hackathon where skills ARE the product
+4. Checklist generator (Flow 1) deprioritized — corrections flow is the money shot
 
 ---
 
