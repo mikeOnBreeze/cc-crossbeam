@@ -2,7 +2,7 @@
   "project": "agents-crossbeam",
   "version": "0.1.0",
   "description": "Agent SDK backend for CrossBeam ADU corrections pipeline — programmatic two-skill flow via query() calls",
-  "lastUpdated": "2026-02-12T23:26:00Z",
+  "lastUpdated": "2026-02-13T00:40:00Z",
   "phases": [
     {
       "id": "phase-1",
@@ -90,7 +90,7 @@
       "id": "phase-5",
       "name": "Flow Wrappers + L3 Mini Pipeline",
       "description": "Build the two flow wrapper functions (corrections-analysis, corrections-response), utility modules (progress, verify), and run the L3 mini pipeline test. Uses Buena Park offline skill to skip live web search. Pre-populates sheet manifest to skip PDF extraction. This is the first multi-skill orchestration test.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run L3 mini pipeline and confirm multi-skill orchestration produces all Phase 1-4 outputs.",
         "steps": [
@@ -375,7 +375,7 @@
         "Stream messages via async iterator, call onProgress for each message, return result object with: success, sessionId, cost, turns, duration",
         "Reference: plan-contractors-agents-sdk.md Step 3 for exact implementation"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "flow-002",
@@ -393,7 +393,7 @@
         "Stream messages, call onProgress, return result object",
         "Reference: plan-contractors-agents-sdk.md Step 4 for exact implementation"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "util-001",
@@ -408,7 +408,7 @@
         "Keep it simple — console.log based. Can upgrade to WebSocket later for frontend.",
         "Reference: plan-contractors-agents-sdk.md Step 5 section A for the message types"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "util-002",
@@ -423,7 +423,7 @@
         "Used for phase checkpointing: if corrections_parsed.json exists, Phase 1 is done, etc.",
         "Reference: plan-contractors-agents-sdk.md 'Phase Checkpointing' section for the skip map"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "data-002",
@@ -436,7 +436,7 @@
         "Include at minimum a floor plan page (the most commonly referenced sheet type)",
         "Verify the manifest JSON is valid and the referenced PNG files exist"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l3-001",
@@ -454,7 +454,7 @@
         "Parse contractor_questions.json and log summary stats",
         "Reference: testing-agents-sdk.md L3 section for exact implementation pattern"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l3-002",
@@ -471,7 +471,7 @@
         "Save successful session output — these files become mock-session fixtures for L3b",
         "Fix issues and re-run until all expected files exist"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "data-003",
