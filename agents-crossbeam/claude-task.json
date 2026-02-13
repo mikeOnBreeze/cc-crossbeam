@@ -2,7 +2,7 @@
   "project": "agents-crossbeam",
   "version": "0.1.0",
   "description": "Agent SDK backend for CrossBeam ADU corrections pipeline — programmatic two-skill flow via query() calls",
-  "lastUpdated": "2026-02-13T00:40:00Z",
+  "lastUpdated": "2026-02-13T01:10:00Z",
   "phases": [
     {
       "id": "phase-1",
@@ -115,7 +115,7 @@
       "id": "phase-6",
       "name": "Skill 2 Isolation (L3b)",
       "description": "Create mock-session fixtures from existing CLI outputs (test-assets/correction-01/) and run Skill 2 independently. Validates response generation works from pre-made artifacts with no dependency on Skill 1. Key for iterating on response quality without re-running the expensive analysis.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run L3b test and confirm all 4 deliverables are generated from mock data.",
         "steps": [
@@ -485,7 +485,7 @@
         "Verify all 5 required fixtures exist: corrections_parsed.json, corrections_categorized.json, sheet-manifest.json, contractor_answers.json, state_law_findings.json",
         "These fixtures enable Skill 2 testing without any dependency on Skill 1"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l3b-001",
@@ -501,7 +501,7 @@
         "Check file sizes > 500 bytes each",
         "Reference: testing-agents-sdk.md L3b section"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l3b-002",
@@ -517,7 +517,7 @@
         "Review deliverables for quality — response_letter.md should read like a professional permit response",
         "Fix issues and re-run until all 4 deliverables exist with substantial content"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l4-001",

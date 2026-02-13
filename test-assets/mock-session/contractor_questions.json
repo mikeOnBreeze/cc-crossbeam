@@ -1,0 +1,225 @@
+{
+  "project": {
+    "address": "1232 N Jefferson St",
+    "city": "Placentia",
+    "permit_number": "J25-434"
+  },
+  "summary": {
+    "total_items": 13,
+    "auto_fixable": 5,
+    "needs_contractor_input": 2,
+    "needs_professional": 6
+  },
+  "question_groups": [
+    {
+      "correction_item_id": "4",
+      "item_summary": "Utility connections — sewer, water, gas, electrical on Sheet A1",
+      "category": "NEEDS_CONTRACTOR_INPUT",
+      "research_context": "CPC Table 702.1 governs fixture unit calculations. The 600 sq ft ADU likely adds ~12-15 DFU (toilet=4, shower=2, lavatory=1, kitchen sink=2, clothes washer=3). A 3\" drain handles up to 42 DFU; 4\" handles up to 216 DFU. City of Placentia has a standard ADU Sewer Connection Detail. No utility lines are currently shown on Sheet A1.",
+      "affected_sheets": ["A1"],
+      "questions": [
+        {
+          "question_index": 0,
+          "question_id": "q_4_0",
+          "question_text": "What is the size of the existing waste/sewer line from the main house?",
+          "question_type": "choice",
+          "options": ["3\" ABS", "4\" ABS", "4\" PVC", "6\" PVC"],
+          "allow_other": true,
+          "context": "CPC Table 702.1 allows up to 42 DFU on a 3\" line and up to 216 DFU on a 4\" line. The ADU adds approximately 12-15 DFU. If the existing line is 3\" and already near capacity, an upgrade may be required.",
+          "required": true
+        },
+        {
+          "question_index": 1,
+          "question_id": "q_4_1",
+          "question_text": "What is the approximate total DFU load on the existing waste line from the main house?",
+          "question_type": "number",
+          "unit": "DFU",
+          "min": 0,
+          "max": 200,
+          "placeholder": "e.g., 18",
+          "context": "Needed to calculate remaining capacity on the existing line. Main house fixtures typically total 15-25 DFU for a single-story 3BR/2BA home.",
+          "required": true
+        },
+        {
+          "question_index": 2,
+          "question_id": "q_4_2",
+          "question_text": "What is the size of the existing water meter and supply line?",
+          "question_type": "choice",
+          "options": ["5/8\" meter / 3/4\" line", "3/4\" meter / 3/4\" line", "1\" meter / 1\" line"],
+          "allow_other": true,
+          "context": "The city requires justification that the existing water meter and supply line can handle the increased demand from the ADU plumbing fixtures. A 5/8\" meter typically handles one single-family residence; adding an ADU may require an upgrade to 3/4\" or 1\".",
+          "required": true
+        },
+        {
+          "question_index": 3,
+          "question_id": "q_4_3",
+          "question_text": "Describe the proposed sewer connection method and location",
+          "question_type": "text",
+          "placeholder": "e.g., Wye fitting into existing 4\" ABS lateral, 20' north of main house cleanout, new cleanout at connection point",
+          "context": "City of Placentia has a standard ADU Sewer Connection Detail. Include: fitting type, distance from main house, cleanout location, and pipe material. The designer will reference the city standard detail on the plan.",
+          "required": true
+        },
+        {
+          "question_index": 4,
+          "question_id": "q_4_4",
+          "question_text": "Where is the proposed water supply point of connection?",
+          "question_type": "text",
+          "placeholder": "e.g., New 3/4\" line tee off existing supply near front hose bib, running 45' to ADU",
+          "context": "The 2nd review specifically asks to 'show point of connection' for water. Include the connection location, pipe size, and approximate run distance to the ADU.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "correction_item_id": "11",
+      "item_summary": "Drainage slope and direction around all portions of ADU",
+      "category": "NEEDS_CONTRACTOR_INPUT",
+      "research_context": "CRC R401.3 requires minimum drainage slope: 5% (6\" in 10 feet) at landscape or 2% at hardscape away from foundation. No grading info exists anywhere in the current plan set — Sheet A1.1 is a demolition plan only.",
+      "affected_sheets": ["A1", "A1.1"],
+      "questions": [
+        {
+          "question_index": 0,
+          "question_id": "q_11_0",
+          "question_text": "What are the finished grade elevations at each corner of the ADU?",
+          "question_type": "measurement",
+          "unit": "feet (elevation)",
+          "placeholder": "e.g., 102.35",
+          "context": "Enter elevation values for each corner. These establish drainage direction on the grading plan. If you don't have a survey, provide pad elevation and approximate fall from pad to each property line.",
+          "required": true,
+          "sub_fields": ["NE corner", "NW corner", "SE corner", "SW corner"]
+        },
+        {
+          "question_index": 1,
+          "question_id": "q_11_1",
+          "question_text": "What is the proposed finished floor elevation of the ADU?",
+          "question_type": "measurement",
+          "unit": "feet (elevation)",
+          "placeholder": "e.g., 103.00",
+          "context": "The finished floor must be above the surrounding grade to ensure positive drainage away from the foundation. Typical is 6-8\" above adjacent grade.",
+          "required": true
+        },
+        {
+          "question_index": 2,
+          "question_id": "q_11_2",
+          "question_text": "What are the surface materials around the ADU perimeter?",
+          "question_type": "multi_choice",
+          "options": ["Concrete flatwork/patio", "Landscape/planting area", "Gravel/decomposed granite", "Existing lawn"],
+          "allow_other": true,
+          "context": "Determines which slope standard applies: 5% minimum for landscape areas, 2% minimum for hardscape (concrete, pavers). Different areas around the ADU may have different materials.",
+          "required": true
+        },
+        {
+          "question_index": 3,
+          "question_id": "q_11_3",
+          "question_text": "Where does surface water currently drain on the property?",
+          "question_type": "text",
+          "placeholder": "e.g., Slopes toward rear alley, existing swale along south property line",
+          "context": "Understanding existing drainage patterns helps the designer show how ADU drainage integrates without creating ponding or redirecting water to neighbors.",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "auto_fixable_items": [
+    {
+      "correction_item_id": "1",
+      "item_summary": "Resubmit complete set of plans with each resubmittal",
+      "auto_fix_description": "Standard procedural requirement — addressed automatically by resubmitting the full corrected plan set.",
+      "affected_sheets": ["all sheets"],
+      "confidence": "high"
+    },
+    {
+      "correction_item_id": "2",
+      "item_summary": "Submit written responses addressing each plan review comment",
+      "auto_fix_description": "This pipeline generates the response letter (response_letter.md) which fulfills this requirement.",
+      "affected_sheets": [],
+      "confidence": "high"
+    },
+    {
+      "correction_item_id": "3d",
+      "item_summary": "Verify sheet index matches set and all detail references are correct",
+      "auto_fix_description": "After all corrections are addressed (may add/modify sheets), update the Sheet Index on CS to match the final set. Verify all detail callout numbers reference valid details.",
+      "affected_sheets": ["CS"],
+      "confidence": "high"
+    },
+    {
+      "correction_item_id": "9",
+      "item_summary": "Add 'City of Placentia Municipal Code' to governing codes on Cover Sheet",
+      "auto_fix_description": "Add 'City of Placentia Municipal Code' as a line item in the governing codes list on Sheet CS, alongside the existing state codes.",
+      "affected_sheets": ["CS"],
+      "confidence": "high"
+    },
+    {
+      "correction_item_id": "10",
+      "item_summary": "Add 'For Reference Only' to all Grading Sheets",
+      "auto_fix_description": "After grading/drainage info is added per Item 11, stamp those sheets with 'For Reference Only' since grading is shown on architectural plans (not by a licensed civil engineer).",
+      "affected_sheets": ["A1.1", "A1"],
+      "confidence": "high"
+    }
+  ],
+  "professional_items": [
+    {
+      "correction_item_id": "3a",
+      "item_summary": "Final drawings must be stamped and signed by Registered Design Professional",
+      "professional_needed": "Designer (C. Sanchez) + Structural Engineer (J. Gonzalez)",
+      "scope_summary": "Both professionals must stamp and sign their respective sheets with date of signing. Digital stamps must be noted. Applies to all sheets.",
+      "affected_sheets": ["all sheets"],
+      "contractor_question": null
+    },
+    {
+      "correction_item_id": "3b",
+      "item_summary": "Designer wet signature required on all sheets",
+      "professional_needed": "Designer (C. Sanchez) + Structural Engineer (J. Gonzalez)",
+      "scope_summary": "Original ink (wet) signatures required on all plan sheets per B&P Code 5536.1. To be done at final submittal.",
+      "affected_sheets": ["all sheets"],
+      "contractor_question": null
+    },
+    {
+      "correction_item_id": "5",
+      "item_summary": "Structural details for covered landing patio — braces, posts, wind calculations",
+      "professional_needed": "Structural Engineer (J. Gonzalez)",
+      "scope_summary": "Add to S1 framing plan: post locations/sizes, beam for patio cover, brace angle, lag screw connection detail (brace-to-beam and brace-to-post), cantilever dimension. Provide updated C&C wind calculations per ASCE 7-16 §30.11. Currently no patio cover framing shown on S1.",
+      "affected_sheets": ["S1", "S3"],
+      "contractor_question": {
+        "question_id": "q_5_0",
+        "question_text": "What is the approximate span and depth of the covered landing patio?",
+        "question_type": "text",
+        "placeholder": "e.g., 8' wide x 4' deep shed roof, 8' height at post, attaching to ADU wall at 9'6\"",
+        "context": "Helps the structural engineer scope the patio cover design. The 2nd review asks for brace angles, post sizes, and lag screw connections — the engineer needs approximate dimensions to begin calculations.",
+        "required": false
+      }
+    },
+    {
+      "correction_item_id": "12",
+      "item_summary": "Elevation views don't match roof plan — gable ends and eaves appear reversed",
+      "professional_needed": "Designer (C. Sanchez / Ideal ADU Design)",
+      "scope_summary": "Cross-reference roof ridge direction with site plan orientation. Correct elevation view labels or redraw elevations so gable ends and eave sides match the actual building orientation. Currently West/East show gable ends and South/North show eave sides — correction says this is reversed.",
+      "affected_sheets": ["A3"],
+      "contractor_question": null
+    },
+    {
+      "correction_item_id": "13",
+      "item_summary": "Revise roof plan to show low roof covered landing patio as separate element",
+      "professional_needed": "Designer (C. Sanchez / Ideal ADU Design)",
+      "scope_summary": "Revise roof plan on A3 to clearly show the covered landing patio as a distinct lower roof (shed or flat), separate from the main gable rafters. Must be consistent with elevation views and structural sheets.",
+      "affected_sheets": ["A3"],
+      "contractor_question": null
+    },
+    {
+      "correction_item_id": "14",
+      "item_summary": "1-hour fire protection required for underside of covered landing patio (CRC R302.1)",
+      "professional_needed": "Designer (C. Sanchez / Ideal ADU Design)",
+      "scope_summary": "Create new fire-rated assembly detail for patio soffit/underside. Detail 2/A3 is explicitly rejected. New detail must show 1-hour fire-rated assembly — typically 5/8\" Type X gypsum board on underside of patio roof framing per CRC R302.1. Covered patio is within 5' of imaginary property line.",
+      "affected_sheets": ["A3"],
+      "contractor_question": {
+        "question_id": "q_14_0",
+        "question_text": "Is the covered landing patio currently built, or is it new construction shown only on plans?",
+        "question_type": "choice",
+        "options": ["New construction (not built yet)", "Already built — exposed wood framing", "Already built — has existing sheathing"],
+        "allow_other": true,
+        "context": "If already built with exposed framing, the designer needs to detail a retrofit fire-rated assembly (adding 5/8\" Type X gypsum to existing framing). If new construction, the assembly can be designed from scratch. This affects the detail drawing.",
+        "required": false
+      }
+    }
+  ]
+}

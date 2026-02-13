@@ -1,0 +1,104 @@
+{
+  "sheets_reviewed": [
+    {
+      "sheet_id": "CS",
+      "page_number": 1,
+      "file": "page-01.png",
+      "description": "Cover Sheet",
+      "observations": [
+        {
+          "area": "Upper-left quadrant — Governing Codes list (item 1)",
+          "current_state": "The governing codes list is visible in the upper-left corner. It lists: 2022 CBC, 2022 CPC, 2022 CMC, 2022 CEC, 2022 California Energy Code, 2022 California Fire Code, 2022 CRC (California Residential Code), 2022 California Existing Building Code, and 2022 CalGreen (California Green Building Standards). These appear to be the state-level codes.",
+          "correction_relevance": "Item 3d — Correction asks that 'City of Placentia Municipal Code' be added to the governing codes list.",
+          "what_appears_missing": "There is NO reference to the City of Placentia Municipal Code anywhere in the governing codes list. Only state-level California codes are listed. The municipal code reference needs to be added as a separate line item."
+        },
+        {
+          "area": "Right side — Sheet Index (column 1, upper-right area)",
+          "current_state": "A sheet index is present in the upper-right portion of the cover sheet. It lists the sheets included in the plan set. The visible sheets include CS, AIA.1, AIA.2, A1, A1.1, A2, A3, SN1, SN2, S1, S2, S3, T-1, T-2, T-3 — matching the 15-page manifest.",
+          "correction_relevance": "Item 9 — Correction asks for sheet index completeness.",
+          "what_appears_missing": "The sheet index appears to list 15 sheets which matches the actual set. However, the correction item 9 likely references that specific required sheets (such as a separate grading plan, drainage plan, or utility plan) may need to be added to the set and then reflected in the index. The index itself is consistent with what is in the current set, but the set may be incomplete per city requirements."
+        }
+      ],
+      "applies_to_items": ["3d", "9"]
+    },
+    {
+      "sheet_id": "A1",
+      "page_number": 4,
+      "file": "page-04.png",
+      "description": "Site Plan (Existing & New)",
+      "observations": [
+        {
+          "area": "Right half — (N) Site Plan, upper portion near ADU footprint",
+          "current_state": "The new site plan (right half of sheet) shows the ADU footprint at the rear of the property. An electric heat pump is labeled at the top-left of the ADU. There is an A/C condenser unit noted. The plan shows property lines, setback dimensions, the existing single-family residence, driveway, walkway, sidewalk, parkway, and apron along N. Jefferson St. Landscape areas are labeled on both sides of the property. A covered patio area is indicated adjacent to the ADU. The ADU setback from the rear property line is dimensioned. Hatched areas appear near the ADU indicating the patio or covered area.",
+          "correction_relevance": "Item 4 — Correction asks for utility line connections (water, sewer, gas, electrical) to be shown on the site plan.",
+          "what_appears_missing": "No visible utility line routing is shown on the site plan. There are no dashed or labeled lines indicating water supply connection from the main house or street to the ADU, no sewer lateral connection, no gas line routing, and no electrical conduit routing. A note at the bottom references 'new water meter' in the scope of work on the cover sheet, but the actual utility line paths are not drawn on this site plan. There is no sewer connection detail or callout. The correction likely requires: (1) dashed lines showing water, sewer, gas, and electrical routes from their sources to the ADU, (2) a sewer connection detail or reference to one, and (3) labels/notes for each utility line with sizes."
+        }
+      ],
+      "applies_to_items": ["4"]
+    },
+    {
+      "sheet_id": "A1.1",
+      "page_number": 5,
+      "file": "page-05.png",
+      "description": "Site Plan Details / Grading — Currently shows Demolition Plan only",
+      "observations": [
+        {
+          "area": "Full sheet — labeled '(E) S.F.R. ROOF PLAN w/ DEMOLITION'",
+          "current_state": "This sheet is titled 'A1.1' and currently contains ONLY a demolition plan. It shows the existing single-family residence roof plan with demolition notes. The upper-left has 'DEMOLITION NOTES' with a paragraph about contractor responsibilities for demolition. A 'DEMO LEGEND' shows building & porch outline, roof outline, and 'existing trellis to be demo' as dashed lines. The plan shows 2 existing trellis structures to be demolished (378.0 sq.ft. noted). The existing SFR is labeled as '(E) ONE-STORY SINGLE-FAMILY RESIDENCE (1,854.0 SQ.FT.)'. There is NO grading information, NO drainage information, and NO site plan details on this sheet despite the manifest describing it as 'Site Plan Details / Grading Plan'.",
+          "correction_relevance": "Items 10, 11 — Corrections ask for grading information, drainage slopes, and 'For Reference Only' notation on grading.",
+          "what_appears_missing": "This sheet contains zero grading or drainage information. There are no spot elevations, no finish floor elevations, no drainage arrows, no slope percentages, no pad elevations, and no 'For Reference Only' notation. The entire sheet is dedicated to the demolition plan. The corrections require: (1) grading plan showing existing and proposed spot elevations, (2) drainage slope directions and percentages around the ADU perimeter, (3) flow arrows showing surface water direction, (4) a 'For Reference Only' stamp or notation if the grading is conceptual. Either this sheet needs to be reworked to include grading/drainage info, or a separate grading sheet needs to be added."
+        }
+      ],
+      "applies_to_items": ["10", "11"]
+    },
+    {
+      "sheet_id": "A3",
+      "page_number": 7,
+      "file": "page-07.png",
+      "description": "Sections & Elevations",
+      "observations": [
+        {
+          "area": "Upper-left quadrant — West Elevation and upper-center — South Elevation",
+          "current_state": "Four elevation views are shown: West Elevation (upper-left), South Elevation (upper-center), North Elevation (center-left), and East Elevation (lower-left). The West Elevation shows a gable end facing the viewer with the roof peak centered, an electric heat pump on the left side, and a '2 ft (N) PATIO COVER' notation. The South Elevation shows the side/eave view of the building with the roof slope running left-to-right, windows, a door, and the roofline profile. The North Elevation shows another eave-side view with roofing material notes and attic ventilation calculations. The East Elevation shows the other gable end with a bedroom window, door, and the roof peak.",
+          "correction_relevance": "Item 12 — Correction says gable ends and eaves are reversed between elevation views.",
+          "what_appears_missing": "Comparing the elevations: The West and East elevations show gable ends (triangular roof profile). The South and North elevations show eave sides (horizontal roofline). However, the correction states these are reversed. This suggests that based on the actual building orientation on the site plan, what is labeled as the 'West Elevation' should actually show an eave side (not a gable), and vice versa. The roof ridge direction on the roof plan (upper-right) would need to be cross-referenced with the site plan orientation to confirm which faces are gable vs. eave. The labels on the elevation views may need to be swapped or the elevation drawings themselves may need to be corrected."
+        },
+        {
+          "area": "Upper-right quadrant — (N) ROOF PLAN and area labeled 'ROOF PLAN FOR ADU'S'",
+          "current_state": "The roof plan is in the upper-right quadrant. It shows a gable roof with a ridge beam running roughly east-west. There are notations for drip edge, shadow board, and galvanized pieces. The roof plan shows the main ADU roof footprint. Near the entry/south side, there appears to be a small covered area or landing indicated, but it is not clearly detailed as a separate low-roof patio structure.",
+          "correction_relevance": "Item 13 — Correction says the roof plan should show the low roof covered landing patio as a separate element, not an extension of the main roof rafters.",
+          "what_appears_missing": "The roof plan does not clearly delineate a separate low-roof structure for the covered landing patio. If a covered patio exists at the entry, it should appear as a distinct lower roof element (likely a shed roof or flat roof) rather than a continuation of the main gable rafters. The roof plan needs to be revised to show: (1) the covered landing patio as a separate lower roof structure, (2) the break between the main roof and the patio roof, and (3) appropriate framing indication for the patio cover."
+        },
+        {
+          "area": "Center-right area — Detail 2 (Section View labeled 'SECTION VIEW (N.T.S.) 2') and Detail 1 (Capillary Break Detail)",
+          "current_state": "Detail 1 is labeled 'CAPILLARY BREAK DETAIL' and shows a wall-to-foundation connection detail with capillary break material. Detail 2 is a section view (not to scale) that appears to show an exterior wall assembly with cement plaster, surface treatment notes, and a connection to the foundation. The detail shows stud framing, exterior finish, and foundation interface. It appears to be a generic wall section detail.",
+          "correction_relevance": "Item 14 — Correction says 'Detail 2/A3' does not match the condition at the covered landing patio location near the property line. A fire-rated assembly detail is needed.",
+          "what_appears_missing": "Detail 2/A3 shows a standard (non-fire-rated) wall section. Since the covered landing patio is near the property line (likely within 5 feet based on typical ADU setbacks), it requires a 1-hour fire-rated exterior wall assembly per CBC. The detail needs to show: (1) fire-rated wall assembly (e.g., 5/8 Type X gypsum board on the interior, fire-rated sheathing), (2) fire-rated eave/soffit detail if the overhang is within the setback, (3) specific callouts for fire-rating materials and assemblies. The current generic wall section does not address fire-resistance requirements for the property-line-adjacent condition."
+        }
+      ],
+      "applies_to_items": ["12", "13", "14"]
+    },
+    {
+      "sheet_id": "S1",
+      "page_number": 10,
+      "file": "page-10.png",
+      "description": "Structural Plan — Foundation and Framing",
+      "observations": [
+        {
+          "area": "Left half — PARTIAL FOUNDATION plan (1/2\" = 1'-0\" scale)",
+          "current_state": "The foundation plan shows the ADU perimeter with continuous footings. Dimensions include 8'-9\", 12'-6\" across the top, and 7'-6\" and 7'-0\" along the left side. Footing is noted as '15\" WIDE FTG. X 18\" DEEP CONC. FTG W/ 2-#4 T&B, TYP.' The interior shows '4\" SLAB ON GRADE W/ #4 @ 18\" O.C. EA. WAY. SEE DETAIL 1/S2.' Shear wall symbols (diamond shapes with 'S' labels) are shown at multiple locations around the perimeter. At the bottom-center, there is a notation for 'CONC. LANDING PER ARCH'L' with a small area projecting from the main foundation — this is a concrete landing pad. The dimension shows 4'-3\" for the landing projection area and 19'-6\" for an interior span.",
+          "correction_relevance": "Item 5 — Correction asks about the covered landing patio structural framing, braces, post sizes, and cantilever/overhang details.",
+          "what_appears_missing": "The foundation plan shows a 'CONC. LANDING PER ARCH'L' notation at the bottom-center, but there is NO structural framing shown for any covered structure above this landing. There are no post footings for patio cover posts, no beam callouts for a patio cover header, and no detail reference for a covered patio structure."
+        },
+        {
+          "area": "Right half — PARTIAL FLOOR FRAMING PLAN (1/2\" = 1'-0\" scale)",
+          "current_state": "The framing plan shows 2x6 roof rafters at 16\" O.C. running north-south, a 4x8 ridge board running east-west, 4x6 headers (HDR.) over window/door openings at multiple locations, and shear wall symbols. The plan also shows 2x10 cripple jack rafters at corners. Plan notes reference shearwall schedule (detail 5/S2), wall sheathing specs, floor sheathing specs, header sizes, and stud wall framing. There is NO framing shown for a covered patio or landing area outside the main building footprint.",
+          "correction_relevance": "Item 5 — Correction asks for covered landing patio structural framing details.",
+          "what_appears_missing": "The framing plan shows only the main ADU structure framing. For the covered landing patio, the following are completely absent: (1) post locations and sizes (e.g., 4x4 or 6x6 posts), (2) beam/header spanning the patio cover, (3) rafter or framing members for the patio roof, (4) any bracing or lateral support for the patio structure, (5) cantilever or overhang details if the patio cover extends from the main roof, (6) connection details between patio cover and main structure, (7) post-to-footing connection detail. The structural engineer needs to add the patio cover framing to this plan or provide a separate detail sheet."
+        }
+      ],
+      "applies_to_items": ["5"]
+    }
+  ],
+  "sheets_not_found": []
+}

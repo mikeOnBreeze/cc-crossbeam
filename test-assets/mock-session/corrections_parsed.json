@@ -1,0 +1,144 @@
+{
+  "project": {
+    "address": "1232 N Jefferson St",
+    "city": "Placentia",
+    "state": "CA",
+    "permit_number": "J25-434",
+    "project_type": "New Detached ADU at rear of Property, 600 sq ft",
+    "review_round": "2nd Review",
+    "reviewer": "Gabriel Linares, 1st — CSG Consultants",
+    "reviewer_email": "gabriell@csgengr.com",
+    "reviewer_phone": "714-471-4900",
+    "date": "2026-01-13"
+  },
+  "items": [
+    {
+      "item_number": "1",
+      "section": "Building Plan Check Comments",
+      "description": "Resubmit complete sets of revised hardcopy plans and supporting documents with responses to the comment counter.",
+      "referenced_codes": [],
+      "referenced_sheets": [],
+      "original_wording": "For electronically submitted plans, please resubmit a complete set of plans and documents upon every resubmittal. Any missing plan sheets, missing stamps and/or signatures (where required) may delay the review process.",
+      "severity_hint": "minor"
+    },
+    {
+      "item_number": "2",
+      "section": "Building Plan Check Comments",
+      "description": "Provide written responses addressing each correction item with summary of changes and sheet/page references.",
+      "referenced_codes": [],
+      "referenced_sheets": [],
+      "original_wording": "Submit written responses addressing each plan review comments below and a summary of changes for any additional modifications. In each response, refer to specific detail or sheet, or specific page of the supporting documents. Show compliance with all comments within the construction documents.",
+      "severity_hint": "minor"
+    },
+    {
+      "item_number": "3a",
+      "section": "Building Plan Check Comments",
+      "description": "Final drawings must be stamped and signed by Registered Design Professional with date of signing. Digital stamps and signatures must be noted as such on the plan.",
+      "referenced_codes": ["B&P Code 5536.1", "B&P Code 5802", "B&P Code 6735"],
+      "referenced_sheets": ["all sheets"],
+      "original_wording": "Final drawings and calculations shall be stamped and signed by the respective Registered Design Professional and shall include the date of signing below the stamp. Digital stamps and signatures must be noted as such on the plan. (Business & Professions Code 5536.1, 5802, & 6735).",
+      "severity_hint": "important"
+    },
+    {
+      "item_number": "3b",
+      "section": "Building Plan Check Comments",
+      "description": "Designer wet signature required on all sheets.",
+      "referenced_codes": ["B&P Code 5536.1"],
+      "referenced_sheets": ["all sheets"],
+      "original_wording": "Designer wet signature is required on all sheets. (Business & Professions Code 5536.1).",
+      "severity_hint": "important"
+    },
+    {
+      "item_number": "3d",
+      "section": "Building Plan Check Comments",
+      "description": "Verify all sheets in set correspond with SHEET INDEX and all notes/detail references are correct and applicable.",
+      "referenced_codes": [],
+      "referenced_sheets": ["cover sheet"],
+      "original_wording": "Final Set: Please make sure that all the sheets in the set correspond with the SHEET INDEX and that all notes/detail references are correct & applicable.",
+      "severity_hint": "minor"
+    },
+    {
+      "item_number": "4",
+      "section": "Building Plan Check Comments",
+      "description": "Provide utility line connections on Sheet A1 — water, sewer, gas, and electrical. City has standard for sewer line connection. 2nd Review adds: show/justify adequacy of existing waste line and water meter/line for increased plumbing fixture demand.",
+      "referenced_codes": ["CPC Table 702.1"],
+      "referenced_sheets": ["A1"],
+      "original_wording": "Sheet A1, Provide utility line connections, water, sewer, gas and electrical. City has standard for sewer line connection. See ADU Sewer Connection Detail @ city link.\n\n2nd Review Comment: show/justify:\n• Adequacy of existing waste line due to increase to the number of plumbing fixtures (show the size, justify the size for the new demand).\n• Adequacy of the existing water meter and line due to increase to the number of plumbing fixtures (show the size, justify the size for the new demand, and show point of connection)",
+      "severity_hint": "critical"
+    },
+    {
+      "item_number": "5",
+      "section": "Building Plan Check Comments",
+      "description": "Provide calculations and structural details for new covered landing patio. Overhang/cantilever not detailed in structural plan sheet S1. 2nd Review adds: detail braces supporting beam — show angle, lag screw connection, posts on framing plan, post sizes. Provide updated wind calculations per ASCE 7-16 §30.11.",
+      "referenced_codes": ["ASCE 7-16 §30.11"],
+      "referenced_sheets": ["S1", "framing plan", "calculations sheet 3 of 37"],
+      "original_wording": "Calculations sheet 3 of 37. Provide calculations and structural details for new covered landing patio. Overhang/cantilever is not detailed in structural plan sheet S1.\na. Provide structural detail and cantilever dimension.\n\n2nd Review Comment: Provide additional information for the braces supporting the beam at the covered landing patio. Show the angle of the brace supporting the beam. Detail the lag screw connection between the brace to beam and brace to post. Show the required posts supporting the braces on the framing plan and list the post size. Provide updated calculations to verify that the covered landing patio is designed for component and cladding wind force per ASCE 7-16 section 30.11.",
+      "severity_hint": "critical"
+    },
+    {
+      "item_number": "9",
+      "section": "2nd Review Comments",
+      "description": "Add 'City of Placentia Municipal Code' to the Governing Codes on the Cover Sheet.",
+      "referenced_codes": [],
+      "referenced_sheets": ["cover sheet"],
+      "original_wording": "Add \"City of Placentia Municipal Code\" to the Governing Codes on the Cover Sheet.",
+      "severity_hint": "minor"
+    },
+    {
+      "item_number": "10",
+      "section": "2nd Review Comments",
+      "description": "Add 'For Reference Only' to all Grading Sheets.",
+      "referenced_codes": [],
+      "referenced_sheets": ["grading sheets"],
+      "original_wording": "Add \"For Reference Only\" to all the Grading Sheets.",
+      "severity_hint": "minor"
+    },
+    {
+      "item_number": "11",
+      "section": "2nd Review Comments",
+      "description": "Provide drainage slope and direction around all portions of ADU. 5% at landscape or 2% at hardscape away from foundation.",
+      "referenced_codes": [],
+      "referenced_sheets": ["site plan", "grading sheets"],
+      "original_wording": "Provide the drainage slope and direction around all portions of the ADU (5% at landscape or 2% at hardscape away from the foundation).",
+      "severity_hint": "important"
+    },
+    {
+      "item_number": "12",
+      "section": "2nd Review Comments",
+      "description": "Elevation views do not match roof plan — gable ends and eaves appear reversed on elevation views. Review and revise.",
+      "referenced_codes": [],
+      "referenced_sheets": ["elevations", "roof plan"],
+      "original_wording": "Elevation views do not match the roof plan. Appears that gable ends and eaves are reversed on the elevation views. Please review and revise.",
+      "severity_hint": "critical"
+    },
+    {
+      "item_number": "13",
+      "section": "2nd Review Comments",
+      "description": "Revise roof plan to show the low roof covered landing patio. Current roof plan shows extension of roof rafters, inconsistent with elevation views and structural sheets.",
+      "referenced_codes": [],
+      "referenced_sheets": ["roof plan", "elevations", "structural sheets"],
+      "original_wording": "Revise the roof plan to show the low roof covered landing patio. Current roof plan appears to show an extension of the roof rafters and is inconsistent with the elevation views and structural sheets.",
+      "severity_hint": "critical"
+    },
+    {
+      "item_number": "14",
+      "section": "2nd Review Comments",
+      "description": "Covered landing patio within 5' of imaginary property line requires 1-hour fire protection on underside per CRC R302.1. Show on plans and provide detail. Detail 2/A3 does not match the condition and is not valid.",
+      "referenced_codes": ["CRC R302.1"],
+      "referenced_sheets": ["elevations", "A3"],
+      "original_wording": "Covered landing patio is within 5' of the imaginary property line. 1-hour fire protection is required for the underside of the covered landing patio (CRC R302.1). Please show on the plans and provide a detail. Note, detail 2/A3 does not match the condition at this location and is not valid to address this comment.",
+      "severity_hint": "critical"
+    }
+  ],
+  "deadline": null,
+  "total_items": 13,
+  "code_references_summary": [
+    "B&P Code 5536.1",
+    "B&P Code 5802",
+    "B&P Code 6735",
+    "CPC Table 702.1",
+    "ASCE 7-16 §30.11",
+    "CRC R302.1"
+  ],
+  "notes": "Items 6, 7, 8 not present — likely resolved in 1st review. Items 1 and 2 are procedural instructions, not technical corrections. Items in bold are new 2nd Review additions."
+}
