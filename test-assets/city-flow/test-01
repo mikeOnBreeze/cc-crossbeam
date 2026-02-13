@@ -1,0 +1,91 @@
+@adu-skill-development/skill/adu-plan-review/SKILL.md // @test-assets/corrections/Binder-1232-N-Jefferson.pdf //    
+  review the binder and create a corrections letter                                                                   
+  ⎿  Read adu-skill-development/skill/adu-plan-review/SKILL.md (231 lines)
+  ⎿  Referenced PDF test-assets/corrections/Binder-1232-N-Jefferson.pdf (15 pages)
+
+⏺ I'll start by reading the plan binder and checking what reference files exist for the review skill. Let me kick off
+  multiple reads in parallel.
+
+⏺ Searched for 2 patterns, read 1 file (ctrl+o to expand)
+
+⏺ Good, I can see the cover sheet and first several pages. Let me read the remaining pages and the checklist reference
+  file.
+
+⏺ Read 2 files (ctrl+o to expand)
+
+⏺ Now I have the full 15-page plan set. Let me read a few key state law references to verify compliance, then compile the
+  corrections letter.
+
+⏺ 2 Explore agents finished (ctrl+o to expand)
+   ├─ Check state law refs for review · 4 tool uses · 22.1k tokens
+   │  ⎿  Done
+   └─ Check Placentia city skill · 6 tool uses · 23.0k tokens
+      ⎿  Done
+
+⏺ Now I have everything I need. Let me also quickly read the Placentia-specific submittal requirements and fire rules to
+  round out the city-specific findings.
+
+⏺ Read 2 files (ctrl+o to expand)
+  ⎿  Loaded adu-skill-development/skill/placentia-adu/CLAUDE.md
+
+⏺ Excellent. Now I have all the information needed. Let me compile the full draft corrections letter based on:
+  - Cover sheet checklist (the one existing reference)
+  - California ADU state law (28 reference files)
+  - Placentia city-specific rules (12 reference files)
+  - Visual review of all 15 plan pages
+
+⏺ Write(test-assets/corrections/DRAFT-CORRECTIONS-1232-N-Jefferson.md)
+  ⎿  Wrote 258 lines to test-assets/corrections/DRAFT-CORRECTIONS-1232-N-Jefferson.md
+     # DRAFT CORRECTIONS LETTER
+
+     **Project:** New Detached ADU
+     **Address:** 1232 N. Jefferson St., Unit 'A', Placentia, CA 92870
+     **Applicant/Owner:** Kiet Le
+     **Designer:** Ideal Designs, Inc. (Oscar Sanchez)
+     **Structural Engineer:** GSE / Gonzalez Structural Engineering (Jorge Alberto Gonzalez, Lic# C88762)
+     **Plan Date:** 06/19/2025 (Architectural) / 06.23.25 (Structural)
+     **Review Date:** 2026-02-12 (AI-assisted draft)
+     **Scope:** New detached 600 SF one-story ADU at rear of existing SFR; demolition of two trellises (378 SF); new
+     covered landing/patio (98 SF)
+     … +248 lines (ctrl+o to expand)
+
+⏺ The draft corrections letter is written. Here's a summary of what was found:
+
+  Review Results: 1232 N. Jefferson St., Placentia — 600 SF Detached ADU
+
+  23 total findings across 6 categories:
+
+  Key Findings by Section
+
+  Planning/Zoning (5 items):
+  - APN and legal description missing from cover sheet
+  - Building separation (Placentia requires 10 ft min) not dimensioned
+  - ADU entrance orientation needs verification per PMC
+  - Parking determination/exemption not stated
+
+  Building (7 items):
+  - Study set watermark on all sheets — must be removed for final submittal
+  - Sheet A3.1 listed in index but missing from binder
+  - T-1/T-2/T-3 energy sheets in binder but not in sheet index
+  - Occupancy (R-3) not stated, construction type V-A vs V-B not specified
+  - CFC and Placentia Municipal Code not cited in governing codes
+
+  Site/Civil (7 items):
+  - Grading/drainage plan missing (required by Placentia)
+  - Landscape plan missing (required by Placentia)
+  - Utility connections, easements, exterior lighting, site summary table not shown
+  - Color/material sample board required
+
+  Fire/Life Safety (2 items):
+  - Sprinkler status needs clarification
+  - 1-HR fire-rated construction consistency needs verification
+
+  Structural (2 items):
+  - Deferred to [REVIEWER] — soils report question + general adequacy
+
+  State Law Compliance
+
+  The project passes state law on size (600 SF < 1,200 max), setbacks (4 ft), and height (16'-3" < Placentia's 20 ft
+  allowance). Sprinkler status needs clarification.
+
+  Output saved to: test-assets/corrections/DRAFT-CORRECTIONS-1232-N-Jefferson.md

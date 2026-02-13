@@ -1,5 +1,6 @@
 ---
-skill: california-adu
+name: california-adu
+description: "California state-level ADU and JADU rules from the HCD ADU Handbook (Jan 2025) and 2026 Addendum. Covers Government Code §§ 66310-66342 including setbacks, height, size, parking, permitting, fees, and ownership. Use this skill for any California ADU question about state requirements."
 version: "1.0"
 source: "HCD ADU Handbook, January 2025 (54 pages) + January 2026 Addendum (pages 55-58)"
 authority: "California Department of Housing and Community Development"

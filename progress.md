@@ -172,3 +172,43 @@ Good day. Frustrating in the morning with the extraction rabbit hole, but the ti
 - **Kicked off Phase 1 of the Agents SDK build** using a long-running agent. Phase 1 complete — haven't personally tested yet but the build looks good.
 
 **Next:** Test Phase 1 output, then continue into Phase 2 of the Agents SDK implementation.
+
+---
+
+## Thursday, February 12 — 7:45 PM PST
+
+**Day 3 EOD. Agents SDK backend taking shape. Both flows working.**
+
+### Contractor Corrections Flow — Working via CLI
+
+The contractor flow is running end-to-end through the Agents SDK. Takes about **15 minutes** per run — reads corrections letter, researches state + city law, cross-references the plans, generates contractor guidance. That's longer than ideal but it's doing real work: web search, code lookup, plan analysis, response generation. Successfully tested today.
+
+### City Plan Review Flow — Built and Testing
+
+Built out the city flow today — the flip side where a city planner reviews submitted plans and generates corrections. This one runs **7.5–10 minutes** through the CLI. The city skill itself came together really well. Currently have another agent critiquing the plan for incorporating the city flow into the Agents SDK backend (`plan-city-agents-sdk.md`).
+
+New skills built today:
+- `adu-plan-review` — city-side plan review skill
+- `adu-corrections-pdf` — corrections document generation
+- `placentia-adu` — Placentia-specific ADU research (city-level skill)
+
+### City Market Economics — Compelling Discovery
+
+Built out `marketing-city.md` — the city-side market economics are wild. Cities are legally required to provide feedback on permit applications within 30 days (state law). To hit those deadlines they're paying contractors, third-party consultants, overtime staff. The cost per review is significant. An AI agent that can do the initial plan review and draft corrections letters in 10 minutes vs. days of human reviewer time — that's a real market with real budget dollars already being spent.
+
+### Placentia Research
+
+Deep-dived Placentia specifically (our test city): broader research, city site analysis, ecode360 municipal code lookup. Four research docs produced. Also pulled Placentia's ADU/JADU submittal requirements PDF.
+
+### Visual Design Direction
+
+Been exploring isometric ADU building icons using fal-ai on the side. Love the look — tilt-shift miniature style, clean isometric buildings. The idea: while the agent runs its 10–15 minute flow, the loading screen shows tool calls streaming AND an animated ADU building itself getting "built." Need to balance design time vs. agent quality — can't sacrifice the core product for pretty UI — but this could make the demo video pop.
+
+### Tomorrow (Friday) — Frontend + Video
+
+1. **Wire the city flow into the Agents SDK backend** (plan is being refined tonight)
+2. **Frontend** — build the UI, tie it to the backend, get both flows running through a web interface
+3. **Demo video story** — start outlining the narrative, capture shots as we build
+4. Don't over-design. Agent output quality > pretty UI. But make it look good.
+
+Solid day. Both flows functional, city economics validated, Agents SDK backend coming together. Heading to the gym. See you Friday.
