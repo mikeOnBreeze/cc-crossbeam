@@ -136,7 +136,7 @@
       "id": "phase-7",
       "name": "Full Pipeline Acceptance (L4)",
       "description": "End-to-end acceptance test with real Placentia data, live city search, full budget. Skill 1 (analysis) → simulated contractor answers → Skill 2 (response generation). Run ONLY after L0-L3b all pass.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Run full pipeline with real data and confirm both skills produce complete, professional output.",
         "steps": [
@@ -537,7 +537,7 @@
         "Log total cost (Skill 1 + Skill 2)",
         "Reference: plan-contractors-agents-sdk.md Step 6 for exact implementation pattern"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "test-l4-002",
@@ -555,7 +555,7 @@
         "If run times out or fails: capture session_id for potential resume",
         "Save successful session output for demo use"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }
