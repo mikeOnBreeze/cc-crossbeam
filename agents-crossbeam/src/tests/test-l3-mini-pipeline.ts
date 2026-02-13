@@ -5,16 +5,21 @@
  * Uses Buena Park offline skill instead of live city web search.
  * Pre-populates sheet manifest to skip PDF extraction.
  *
+ * Includes subagent lifecycle tracking for pipeline debugging:
+ * - Per-subagent spawn/resolve timing
+ * - File timestamp analysis (which research file was written when)
+ * - Bottleneck identification
+ *
  * Model: Opus (testing skill behavior)
- * Expected duration: 5-7 minutes
- * Expected cost: $3-5
+ * Expected duration: 5-10 minutes
+ * Expected cost: $2-5
  */
 import fs from 'fs';
 import path from 'path';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import { createQueryOptions, PROJECT_ROOT } from '../utils/config.ts';
 import { createSession } from '../utils/session.ts';
-import { handleProgressMessage } from '../utils/progress.ts';
+import { handleProgressMessage, SubagentTracker } from '../utils/progress.ts';
 import { verifySessionFiles } from '../utils/verify.ts';
 
 console.log('=== L3 Mini Pipeline Test — Buena Park Shortcut ===\n');
@@ -41,6 +46,9 @@ console.log(`  Pre-populated sheet manifest: ${manifestData.sheets.length} sheet
 const correctionsFile = path.resolve(PROJECT_ROOT, 'test-assets/corrections/1232-n-jefferson-corrections-p1.png');
 console.log(`  Corrections: ${correctionsFile}`);
 console.log(`  Corrections exists: ${fs.existsSync(correctionsFile)}\n`);
+
+// --- Subagent tracker ---
+const tracker = new SubagentTracker(startTime);
 
 // --- Build prompt ---
 const prompt = `You have a corrections letter and a pre-built sheet manifest for an ADU permit.
@@ -93,16 +101,22 @@ const q = query({
   },
 });
 
-// --- Stream progress ---
+// --- Stream progress with subagent tracking ---
 let passed = true;
 
 for await (const msg of q) {
-  handleProgressMessage(msg, startTime);
+  handleProgressMessage(msg, startTime, tracker);
 
   if (msg.type === 'result') {
-    // Brief pause to let any final subagent file writes complete
+    // Brief pause to let any final subagent file writes flush
     await new Promise(r => setTimeout(r, 2000));
-    console.log('\n--- Checking outputs ---');
+
+    // --- Subagent timing analysis ---
+    tracker.printSummary();
+    tracker.analyzeFileTimestamps(sessionDir);
+
+    // --- File verification ---
+    console.log('\n--- Output Verification ---');
 
     // Core required files (the Phase 4 outputs that matter most)
     const coreRequired = [
@@ -111,11 +125,11 @@ for await (const msg of q) {
       'contractor_questions.json',
     ];
 
-    // Research files — accept either naming pattern (subagents may name differently)
-    const researchAlternatives = [
-      { expected: 'state_law_findings.json', alt: 'research_state_law.json' },
-      { expected: 'sheet_observations.json', alt: 'research_sheet_observations.json' },
-      { expected: 'city_research_findings.json', alt: 'research_city_rules.json' },
+    // Research files — accept multiple naming patterns (subagents name freely)
+    const researchPatterns = [
+      { names: ['state_law_findings.json', 'research_state_law.json', 'research_state.json'], label: 'State law' },
+      { names: ['sheet_observations.json', 'research_sheet_observations.json', 'research_sheets.json'], label: 'Sheets' },
+      { names: ['city_research_findings.json', 'research_city_rules.json', 'research_city.json'], label: 'City' },
     ];
 
     // Check core files
@@ -128,21 +142,21 @@ for await (const msg of q) {
       passed = false;
     }
 
-    // Check research files (accept alternate names)
+    // Check research files (accept any matching name)
     let researchCount = 0;
-    for (const { expected, alt } of researchAlternatives) {
-      const check = verifySessionFiles(sessionDir, [expected]);
-      if (check.found.length > 0) {
-        console.log(`  ✓ ${check.found[0].file} (${check.found[0].size} bytes)`);
-        researchCount++;
-      } else {
-        const altCheck = verifySessionFiles(sessionDir, [alt]);
-        if (altCheck.found.length > 0) {
-          console.log(`  ✓ ${altCheck.found[0].file} (${altCheck.found[0].size} bytes) [alt name for ${expected}]`);
+    for (const { names, label } of researchPatterns) {
+      let found = false;
+      for (const name of names) {
+        const check = verifySessionFiles(sessionDir, [name]);
+        if (check.found.length > 0) {
+          console.log(`  ✓ ${check.found[0].file} (${check.found[0].size} bytes) [${label}]`);
           researchCount++;
-        } else {
-          console.log(`  · ${expected} not found [research file]`);
+          found = true;
+          break;
         }
+      }
+      if (!found) {
+        console.log(`  · ${label} research file not found`);
       }
     }
     if (researchCount >= 1) {
@@ -158,7 +172,7 @@ for await (const msg of q) {
       console.log(`  · ${f.file} (${f.size} bytes) [pre-populated]`);
     }
 
-    // Parse contractor_questions.json for summary stats
+    // --- Questions analysis ---
     const questionsPath = path.join(sessionDir, 'contractor_questions.json');
     if (fs.existsSync(questionsPath)) {
       try {
@@ -170,7 +184,6 @@ for await (const msg of q) {
         if (summary.needs_contractor_input !== undefined) console.log(`    Needs contractor: ${summary.needs_contractor_input}`);
         if (summary.needs_professional !== undefined) console.log(`    Needs professional: ${summary.needs_professional}`);
 
-        // Basic validity check — should have at least 1 item
         const items = questions.items ?? questions.questions ?? questions.correction_items ?? [];
         if (Array.isArray(items) && items.length > 0) {
           console.log(`    Question items: ${items.length}`);
@@ -187,13 +200,15 @@ for await (const msg of q) {
       }
     }
 
-    console.log(`\n  Cost: $${msg.total_cost_usd?.toFixed(4) ?? 'unknown'}`);
+    // --- Final stats ---
+    console.log(`\n--- Run Stats ---`);
+    console.log(`  Cost: $${msg.total_cost_usd?.toFixed(4) ?? 'unknown'}`);
     console.log(`  Turns: ${msg.num_turns ?? 'unknown'}`);
     console.log(`  Subtype: ${msg.subtype ?? 'unknown'}`);
   }
 }
 
 const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-console.log(`\n  Duration: ${elapsed}s`);
+console.log(`  Duration: ${elapsed}s (${(parseFloat(elapsed) / 60).toFixed(1)} min)`);
 console.log(passed ? '\n✅ L3 MINI PIPELINE TEST PASSED' : '\n❌ L3 MINI PIPELINE TEST FAILED');
 process.exit(passed ? 0 : 1);
