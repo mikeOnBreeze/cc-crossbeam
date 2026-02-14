@@ -143,10 +143,18 @@ ${preExtractedNotice}
 ${cityRouting}
 
 Use the adu-plan-review skill to:
-1. Extract and catalog the plan pages from the PDF binder
-2. Research ${city} ADU requirements (state + city code)
-3. Review each relevant sheet against code requirements
-4. Generate a draft corrections letter with code citations
+1. Build the sheet manifest (read ONLY the cover sheet + title block crops — do NOT read full plan PNGs yourself)
+2. Spawn subagents for sheet-by-sheet review (each subagent gets 2-3 sheet PNGs + checklist — see Phase 2 in skill)
+3. Spawn subagents for code compliance (state law + city rules — see Phase 3 in skill)
+4. Merge findings and generate draft corrections letter
+
+SUBAGENT ARCHITECTURE — MANDATORY:
+You are the orchestrator. You MUST use subagents for all image-heavy work:
+- Phase 1: You read the cover sheet (1 image) to get the sheet index. If page count != index count, spawn subagents to read title block crops (small images) in batches.
+- Phase 2: Spawn 3-5 review subagents grouped by discipline (Architectural, Site/Civil, Structural, MEP). Each subagent receives its assigned sheet PNGs + checklist reference file. Rolling window: 3 in flight at a time.
+- Phase 3: Spawn subagents for state law lookup + city rules lookup (concurrent).
+- Phase 4: YOU merge all subagent findings and write the output files. No images needed — just text.
+Do NOT read full plan sheet PNGs (page-XX.png) in your main context. They will fill your context window and you will fail before completing the review.
 
 Write all output files to ${SANDBOX_OUTPUT_PATH}/
 
@@ -242,6 +250,13 @@ Always write output files to the output directory provided in the prompt.
 You are reviewing an ADU plan submittal from the city's perspective.
 Your job is to identify issues that violate state or city code and produce a draft corrections letter.
 
+CONTEXT MANAGEMENT — MANDATORY:
+- NEVER read full-size plan sheet PNGs (page-XX.png) in your main context. They are large images that will fill your context window.
+- The ONLY images you may read directly are: the cover sheet (page-01.png) and title block crops (title-block-XX.png, which are small).
+- ALL sheet review work MUST happen in subagents. Spawn one subagent per discipline group (see adu-plan-review skill Phase 2). Each subagent reads only its assigned 2-3 sheet PNGs.
+- Your main context handles orchestration: build the manifest, spawn review subagents, collect their text findings, merge with code research, write output files.
+- If you read more than 2 full-size plan PNGs in your main context, you WILL run out of context and fail to complete the job.
+
 CRITICAL RULES:
 - NO false positives. Every correction MUST have a specific code citation.
 - Drop findings that lack code basis.
@@ -254,7 +269,14 @@ Always write output files to the output directory provided in the prompt.
 
 You are analyzing corrections for an ADU permit on behalf of a contractor.
 Your goal is to categorize each correction item, research the relevant codes,
-and prepare materials for a professional response.`;
+and prepare materials for a professional response.
+
+CONTEXT MANAGEMENT — MANDATORY:
+- NEVER read full-size plan sheet PNGs (page-XX.png) in your main context. They are large images that will fill your context window.
+- Read the corrections letter PNGs directly (1-3 small pages — that's fine).
+- Read the cover sheet (page-01.png) for the sheet index — that's fine.
+- ALL plan sheet viewing MUST happen in subagents. Spawn subagents that each read only their assigned 2-3 sheet PNGs.
+- Your main context handles orchestration: read corrections, build manifest, spawn research subagents, merge results, write output files.`;
 
 export const RESPONSE_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
 Use available skills to generate professional deliverables.
