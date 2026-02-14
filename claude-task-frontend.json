@@ -65,7 +65,7 @@
       "id": "phase-4",
       "name": "Project Detail — Status-Driven Rendering",
       "description": "The most important page. Status-driven rendering with ADU miniatures on every state. Ready state must shine — it's the 'before' moment in the demo. Agent working screen with progress dots and activity log.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Project page renders correctly for each status, with ADU miniatures and polling",
         "steps": [
@@ -342,7 +342,7 @@
         "Keep role-based icon system but use Design Bible color variables",
         "Detect completion message ('Completed in ') and trigger page refresh after 5 seconds"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "project-002",
@@ -358,7 +358,7 @@
         "Phase labels below dots: completed/active = text-foreground, pending = text-muted-foreground",
         "Support different phase sets per flow type (city review vs contractor)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "project-003",
@@ -372,7 +372,7 @@
         "Pass initialProject, initialFiles, userId to <ProjectDetailClient> client component",
         "Set force-dynamic"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "project-004",
@@ -389,7 +389,7 @@
         "Start Analysis button handler: POST to /api/generate with { project_id, user_id, flow_type }",
         "Handle all status transitions with smooth animate-fade-up entrance"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "completion-001",
