@@ -44,7 +44,6 @@ export function ProjectDetailClient({
 
   // DevTools phase control — listen for phase events from dev widget
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_DEV_TOOLS !== 'true') return
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail
       if (typeof detail?.phase === 'number') {

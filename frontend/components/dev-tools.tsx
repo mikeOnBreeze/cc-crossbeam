@@ -10,6 +10,7 @@ import {
   DEMO_CITY_PROJECT_ID,
   DEMO_CONTRACTOR_PROJECT_ID,
 } from '@/lib/dev-fixtures'
+import { useAppMode } from '@/hooks/use-app-mode'
 import type { ProjectStatus } from '@/types/database'
 
 const CONTRACTOR_STATES: ProjectStatus[] = [
@@ -38,9 +39,10 @@ export function DevTools() {
   const pathname = usePathname()
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
+  const appMode = useAppMode()
 
-  // Don't render if env var is not set
-  if (process.env.NEXT_PUBLIC_DEV_TOOLS !== 'true') return null
+  // Only show in dev-test mode
+  if (appMode !== 'dev-test') return null
 
   const projectId =
     flow === 'city' ? DEMO_CITY_PROJECT_ID : DEMO_CONTRACTOR_PROJECT_ID
