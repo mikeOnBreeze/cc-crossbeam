@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # extract-pages.sh — Split a PDF into page PNGs, resized for API consumption
 # Usage: extract-pages.sh <input.pdf> <output-dir>
-# Requires: pdftoppm (from poppler), sips (macOS) for resize
+# Requires: pdftoppm (from poppler), ImageMagick or sips (macOS) for resize
 # Output: output-dir/pages-png/page-01.png, page-02.png, etc.
 
 set -euo pipefail
@@ -46,7 +46,7 @@ if command -v pdftoppm &>/dev/null; then
     fi
   done
 else
-  echo "Error: pdftoppm not found. Install: brew install poppler"
+  echo "Error: pdftoppm not found. Install: apt-get install poppler-utils (Linux) or brew install poppler (macOS)"
   exit 1
 fi
 
@@ -56,12 +56,28 @@ echo "Extracted $EXTRACTED page PNGs"
 # Resize for API consumption (Claude max 1568px internally)
 echo "Resizing to max 1568px..."
 for f in "${PNG_DIR}"/page-*.png; do
-  dims=$(sips -g pixelWidth -g pixelHeight "$f" 2>/dev/null)
-  w=$(echo "$dims" | grep pixelWidth | awk '{print $2}')
-  h=$(echo "$dims" | grep pixelHeight | awk '{print $2}')
-  max=$((w > h ? w : h))
-  if [ "$max" -gt 1568 ]; then
-    sips --resampleHeightWidthMax 1568 "$f" -o "$f" 2>/dev/null
+  # Cross-platform: ImageMagick (Linux/macOS) or sips (macOS fallback)
+  if command -v identify &>/dev/null; then
+    read w h <<< $(identify -format '%w %h' "$f" 2>/dev/null)
+    max=$((w > h ? w : h))
+    if [ "$max" -gt 1568 ]; then
+      if command -v magick &>/dev/null; then
+        magick "$f" -resize '1568x1568>' "$f"
+      elif command -v convert &>/dev/null; then
+        convert "$f" -resize '1568x1568>' "$f"
+      fi
+    fi
+  elif command -v sips &>/dev/null; then
+    dims=$(sips -g pixelWidth -g pixelHeight "$f" 2>/dev/null)
+    w=$(echo "$dims" | grep pixelWidth | awk '{print $2}')
+    h=$(echo "$dims" | grep pixelHeight | awk '{print $2}')
+    max=$((w > h ? w : h))
+    if [ "$max" -gt 1568 ]; then
+      sips --resampleHeightWidthMax 1568 "$f" -o "$f" 2>/dev/null
+    fi
+  else
+    echo "Warning: No image tool found for resize (need ImageMagick or sips). Skipping."
+    break
   fi
 done
 

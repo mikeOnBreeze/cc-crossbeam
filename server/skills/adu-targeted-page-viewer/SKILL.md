@@ -15,9 +15,8 @@ Extract a construction plan PDF into page PNGs and build a JSON manifest mapping
 
 ## Prerequisites
 
-- `pdftoppm` (from poppler): `brew install poppler`
-- `ImageMagick` (for title block cropping): `brew install imagemagick`
-- `sips` (macOS built-in, for resize)
+- `pdftoppm` / `pdfinfo` (from poppler): `apt-get install poppler-utils` (Linux) or `brew install poppler` (macOS)
+- `ImageMagick` (for resize + title block cropping): `apt-get install imagemagick` (Linux) or `brew install imagemagick` (macOS)
 
 ## Workflow
 

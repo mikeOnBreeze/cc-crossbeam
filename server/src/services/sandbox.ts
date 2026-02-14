@@ -112,8 +112,33 @@ async function createSandbox(): Promise<Sandbox> {
   return sandbox;
 }
 
-async function installDependencies(sandbox: Sandbox): Promise<void> {
+async function installDependencies(sandbox: Sandbox, projectId?: string): Promise<void> {
+  // Install system packages needed by skills (poppler for PDF→PNG, imagemagick for resize/crop)
+  console.log('Installing system packages (poppler, imagemagick)...');
+  if (projectId) {
+    insertMessage(projectId, 'system', 'Installing system packages...').catch(() => {});
+  }
+  const aptUpdate = await sandbox.runCommand({
+    cmd: 'apt-get',
+    args: ['update', '-qq'],
+    sudo: true,
+  });
+  if (aptUpdate.exitCode !== 0) {
+    console.warn('apt-get update failed, continuing...');
+  }
+  const aptInstall = await sandbox.runCommand({
+    cmd: 'apt-get',
+    args: ['install', '-y', '-qq', 'poppler-utils', 'imagemagick'],
+    sudo: true,
+  });
+  if (aptInstall.exitCode !== 0) {
+    console.warn('apt-get install failed, skills may not work correctly');
+  }
+
   console.log('Installing Claude Code CLI...');
+  if (projectId) {
+    insertMessage(projectId, 'system', 'Installing Claude Code CLI...').catch(() => {});
+  }
   const cliResult = await sandbox.runCommand({
     cmd: 'npm',
     args: ['install', '-g', '@anthropic-ai/claude-code'],
@@ -637,7 +662,7 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
 
     // Install dependencies
     await insertMessage(options.projectId, 'system', 'Installing dependencies...');
-    await installDependencies(sandbox);
+    await installDependencies(sandbox, options.projectId);
 
     // Download project files
     await insertMessage(options.projectId, 'system', `Downloading ${options.files.length} project files...`);

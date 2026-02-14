@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # crop-title-blocks.sh — Crop the title block area from each page PNG
 # Usage: crop-title-blocks.sh <pages-png-dir> <output-dir>
-# Requires: sips (macOS) or ImageMagick
+# Requires: ImageMagick (Linux/macOS) or sips (macOS fallback)
 #
 # Title blocks are in the bottom-right corner of construction plan sheets.
 # This crops approximately the bottom-right 25% of each page — enough to
@@ -26,10 +26,17 @@ for f in "${PNG_DIR}"/page-*.png; do
   basename_f=$(basename "$f" .png)
   num=$(echo "$basename_f" | sed 's/page-//')
 
-  # Get image dimensions
-  dims=$(sips -g pixelWidth -g pixelHeight "$f" 2>/dev/null)
-  w=$(echo "$dims" | grep pixelWidth | awk '{print $2}')
-  h=$(echo "$dims" | grep pixelHeight | awk '{print $2}')
+  # Get image dimensions — cross-platform
+  if command -v identify &>/dev/null; then
+    read w h <<< $(identify -format '%w %h' "$f" 2>/dev/null)
+  elif command -v sips &>/dev/null; then
+    dims=$(sips -g pixelWidth -g pixelHeight "$f" 2>/dev/null)
+    w=$(echo "$dims" | grep pixelWidth | awk '{print $2}')
+    h=$(echo "$dims" | grep pixelHeight | awk '{print $2}')
+  else
+    echo "Error: No image tool found. Install imagemagick."
+    exit 1
+  fi
 
   # Title block: rightmost 25% width, bottom 35% height
   # Architectural sheets: wide horizontal title block in bottom-right
@@ -40,15 +47,14 @@ for f in "${PNG_DIR}"/page-*.png; do
   crop_x=$((w - crop_w))
   crop_y=$((h - crop_h))
 
-  # Use sips to crop (macOS)
-  # sips doesn't have a direct crop-to-region, so we use ImageMagick if available
+  # Use ImageMagick to crop (works on Linux + macOS)
   if command -v magick &>/dev/null; then
     magick "$f" -crop "${crop_w}x${crop_h}+${crop_x}+${crop_y}" +repage "${TB_DIR}/title-block-${num}.png" 2>/dev/null
   elif command -v convert &>/dev/null; then
     convert "$f" -crop "${crop_w}x${crop_h}+${crop_x}+${crop_y}" +repage "${TB_DIR}/title-block-${num}.png" 2>/dev/null
   else
     echo "Warning: ImageMagick not found. Cannot crop title blocks."
-    echo "Install: brew install imagemagick"
+    echo "Install: apt-get install imagemagick (Linux) or brew install imagemagick (macOS)"
     echo "Falling back to full-page reading for sheet ID identification."
     exit 1
   fi

@@ -93,7 +93,7 @@ The script does three things:
    to 1568px on the longest side. Construction PDFs at 200 DPI on D-size
    sheets produce 7200x4800 PNGs — resizing before upload saves bandwidth
    and avoids the 32MB API payload limit without losing any information
-   the model would actually see. Uses `sips` (macOS).
+   the model would actually see. Uses ImageMagick (Linux) or `sips` (macOS).
 3. **Tesseract OCR** — Runs `tesseract` on each resized PNG to produce
    `pages-text/page-01.txt`, etc. These raw text dumps supplement vision
    extraction by providing reliable numeric values for cross-reference.
