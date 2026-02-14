@@ -26,7 +26,7 @@
       "id": "phase-2",
       "name": "Design Components + First Screens",
       "description": "Build the AduMiniature component (the visual signature), then the landing page and login page. After this phase, the first thing judges see looks premium.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Landing page and login render beautifully with ADU miniatures",
         "steps": [
@@ -225,7 +225,7 @@
         "Use Next.js <Image> with quality={85}, priority={true} for hero variant",
         "Apply drop-shadow-lg for floating effect on the gradient background"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "design-002",
@@ -237,7 +237,7 @@
         "Return the selected image path string",
         "Ensure selection is stable across re-renders but changes on new mount (page navigation)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "design-003",
@@ -254,7 +254,7 @@
         "Footer with 'Built with Claude Opus 4.6' credit",
         "Apply animate-fade-up with stagger classes for entrance sequence"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "design-004",
@@ -270,7 +270,7 @@
         "Error state display",
         "Card uses standard floating shadow: shadow-[0_8px_32px_rgba(28,25,23,0.08)]"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "dashboard-001",
