@@ -68,8 +68,18 @@ export function buildPrompt(
   city: string,
   address?: string,
   contractorAnswersJson?: string,
+  preExtracted?: boolean,
 ): string {
   const addressLine = address ? `ADDRESS: ${address}` : '';
+
+  // Pre-extraction notice — PNGs and title blocks are already ready
+  const preExtractedNotice = preExtracted ? `
+PRE-EXTRACTED DATA:
+- Page PNGs are ALREADY extracted at full DPI in ${SANDBOX_FILES_PATH}/pages-png/
+- Title block crops are ALREADY in ${SANDBOX_FILES_PATH}/title-blocks/
+- Do NOT run extract-pages.sh or crop-title-blocks.sh — they are already done.
+- Go straight to reading the cover sheet and building the sheet manifest.
+` : '';
 
   if (flowType === 'city-review') {
     return `You are reviewing an ADU permit submission from the city's perspective.
@@ -77,7 +87,7 @@ export function buildPrompt(
 PROJECT FILES: ${SANDBOX_FILES_PATH}/
 CITY: ${city}
 ${addressLine}
-
+${preExtractedNotice}
 Use the adu-plan-review skill to:
 1. Extract and catalog the plan pages from the PDF binder
 2. Research ${city} ADU requirements (state + city code)
@@ -107,7 +117,7 @@ YOU MUST COMPLETE ALL PHASES. The job is NOT done until these files exist:
 PROJECT FILES: ${SANDBOX_FILES_PATH}/
 CITY: ${city}
 ${addressLine}
-
+${preExtractedNotice}
 The project-files directory contains:
 - A plan binder PDF (the original submittal)
 - Corrections letter PNG files (the city's correction items — may be multiple pages)

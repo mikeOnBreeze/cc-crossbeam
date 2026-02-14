@@ -70,12 +70,13 @@ Save as `corrections_parsed.json`. See `references/output-schemas.md` for the fu
 
 Run the `adu-targeted-page-viewer` skill workflow:
 
-1. Extract PDF pages to PNGs: `scripts/extract-pages.sh <binder.pdf> <output-dir>`
-2. Read the cover sheet (page 1) for the sheet index
-3. If page count differs from index count, crop and read title blocks to resolve
-4. Save `sheet-manifest.json`
+1. **Check first:** PNGs and title block crops may already be pre-extracted in `project-files/pages-png/` and `project-files/title-blocks/`. If they exist, skip extraction and go straight to reading the cover sheet.
+2. If PNGs don't exist: Extract PDF pages to PNGs: `scripts/extract-pages.sh <binder.pdf> <output-dir>`
+3. Read the cover sheet (page 1) for the sheet index
+4. If page count differs from index count, crop and read title blocks to resolve
+5. Save `sheet-manifest.json`
 
-This takes ~90 seconds and produces the sheet-to-page mapping needed for Phase 3C.
+This takes ~90 seconds (or ~30 seconds if PNGs are pre-extracted) and produces the sheet-to-page mapping needed for Phase 3C.
 
 ### Phase 3 (concurrent — 3 subagents)
 

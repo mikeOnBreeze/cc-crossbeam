@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-# extract-pages.sh — Split a PDF into page PNGs, resized for API consumption
+# extract-pages.sh — Split a PDF into page PNGs at full DPI (no resize)
 # Usage: extract-pages.sh <input.pdf> <output-dir>
-# Requires: pdftoppm (from poppler), ImageMagick or sips (macOS) for resize
+# Requires: pdftoppm (from poppler)
 # Output: output-dir/pages-png/page-01.png, page-02.png, etc.
+#
+# IMPORTANT: Pages are kept at full DPI (200 DPI on D-size = 7200x4800).
+# Do NOT resize — the targeted page viewer sends one sheet at a time,
+# so Claude gets maximum detail for reading dimensions, annotations, etc.
 
 set -euo pipefail
 
 if [ $# -lt 2 ]; then
   echo "Usage: $0 <input.pdf> <output-dir>"
-  echo "  Splits a PDF into one PNG per page at 200 DPI, resized for API use."
+  echo "  Splits a PDF into one PNG per page at 200 DPI. No resize."
   exit 1
 fi
 
@@ -22,6 +26,14 @@ if [ ! -f "$INPUT_PDF" ]; then
 fi
 
 mkdir -p "$PNG_DIR"
+
+# Idempotent: skip if PNGs already exist (pre-extracted)
+EXISTING=$(ls "${PNG_DIR}"/page-*.png 2>/dev/null | wc -l | tr -d ' ')
+if [ "$EXISTING" -gt 0 ]; then
+  echo "Found $EXISTING existing page PNGs in $PNG_DIR — skipping extraction."
+  echo "Done. $EXISTING pages ready in $PNG_DIR"
+  exit 0
+fi
 
 # Get page count
 PAGE_COUNT=$(pdfinfo "$INPUT_PDF" 2>/dev/null | grep "^Pages:" | awk '{print $2}')
@@ -51,34 +63,4 @@ else
 fi
 
 EXTRACTED=$(ls "${PNG_DIR}"/page-*.png 2>/dev/null | wc -l | tr -d ' ')
-echo "Extracted $EXTRACTED page PNGs"
-
-# Resize for API consumption (Claude max 1568px internally)
-echo "Resizing to max 1568px..."
-for f in "${PNG_DIR}"/page-*.png; do
-  # Cross-platform: ImageMagick (Linux/macOS) or sips (macOS fallback)
-  if command -v identify &>/dev/null; then
-    read w h <<< $(identify -format '%w %h' "$f" 2>/dev/null)
-    max=$((w > h ? w : h))
-    if [ "$max" -gt 1568 ]; then
-      if command -v magick &>/dev/null; then
-        magick "$f" -resize '1568x1568>' "$f"
-      elif command -v convert &>/dev/null; then
-        convert "$f" -resize '1568x1568>' "$f"
-      fi
-    fi
-  elif command -v sips &>/dev/null; then
-    dims=$(sips -g pixelWidth -g pixelHeight "$f" 2>/dev/null)
-    w=$(echo "$dims" | grep pixelWidth | awk '{print $2}')
-    h=$(echo "$dims" | grep pixelHeight | awk '{print $2}')
-    max=$((w > h ? w : h))
-    if [ "$max" -gt 1568 ]; then
-      sips --resampleHeightWidthMax 1568 "$f" -o "$f" 2>/dev/null
-    fi
-  else
-    echo "Warning: No image tool found for resize (need ImageMagick or sips). Skipping."
-    break
-  fi
-done
-
-echo "Done. $EXTRACTED pages ready in $PNG_DIR"
+echo "Done. $EXTRACTED pages ready in $PNG_DIR (full DPI, no resize)"

@@ -22,6 +22,14 @@ TB_DIR="$2"
 
 mkdir -p "$TB_DIR"
 
+# Idempotent: skip if title blocks already exist (pre-extracted)
+EXISTING=$(ls "${TB_DIR}"/title-block-*.png 2>/dev/null | wc -l | tr -d ' ')
+if [ "$EXISTING" -gt 0 ]; then
+  echo "Found $EXISTING existing title blocks in $TB_DIR — skipping cropping."
+  echo "Done. $EXISTING title blocks ready in $TB_DIR"
+  exit 0
+fi
+
 for f in "${PNG_DIR}"/page-*.png; do
   basename_f=$(basename "$f" .png)
   num=$(echo "$basename_f" | sed 's/page-//')
@@ -39,9 +47,6 @@ for f in "${PNG_DIR}"/page-*.png; do
   fi
 
   # Title block: rightmost 25% width, bottom 35% height
-  # Architectural sheets: wide horizontal title block in bottom-right
-  # Structural sheets: narrow vertical strip along right edge
-  # This crop size captures both layouts reliably
   crop_w=$((w * 25 / 100))
   crop_h=$((h * 35 / 100))
   crop_x=$((w - crop_w))
@@ -55,7 +60,6 @@ for f in "${PNG_DIR}"/page-*.png; do
   else
     echo "Warning: ImageMagick not found. Cannot crop title blocks."
     echo "Install: apt-get install imagemagick (Linux) or brew install imagemagick (macOS)"
-    echo "Falling back to full-page reading for sheet ID identification."
     exit 1
   fi
 done

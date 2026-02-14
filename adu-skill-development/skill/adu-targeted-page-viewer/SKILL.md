@@ -22,13 +22,15 @@ Extract a construction plan PDF into page PNGs and build a JSON manifest mapping
 
 ### Step 1: Extract All Pages to PNG
 
-Run `scripts/extract-pages.sh` to split the PDF into individual page PNGs:
+**Check first:** PNGs may already be pre-extracted. Look for `pages-png/page-01.png` in the project files directory. If PNGs already exist, **skip this step entirely** — go straight to Step 2.
+
+If PNGs don't exist, run `scripts/extract-pages.sh` to split the PDF into individual page PNGs:
 
 ```bash
 scripts/extract-pages.sh <input.pdf> <output-dir>
 ```
 
-This produces `output-dir/pages-png/page-01.png`, `page-02.png`, etc. at 200 DPI, resized to max 1568px for API consumption. Takes ~5 seconds for a 26-page set.
+This produces `output-dir/pages-png/page-01.png`, `page-02.png`, etc. at 200 DPI (full resolution, no resize). Takes ~5 seconds for a 26-page set. The script is idempotent — if PNGs already exist it exits immediately.
 
 ### Step 2: Read the Cover Sheet and Find the Sheet Index
 
@@ -55,7 +57,7 @@ The sheet index order generally matches the PDF page order, but there can be mis
 
 **To resolve the mismatch, read the title blocks:**
 
-1. Run `scripts/crop-title-blocks.sh` to crop the bottom-right corner of each page:
+1. Check if title block crops already exist at `title-blocks/title-block-01.png`. If they do, skip the cropping step. Otherwise, run `scripts/crop-title-blocks.sh` to crop the bottom-right corner of each page:
 ```bash
 scripts/crop-title-blocks.sh <output-dir>/pages-png <output-dir>/title-blocks
 ```
@@ -147,8 +149,8 @@ Corrections interpreter reads those PNGs and produces targeted findings:
 
 | Script | Purpose | Runtime |
 |--------|---------|---------|
-| `scripts/extract-pages.sh` | PDF → page PNGs at 200 DPI, resized | ~5 sec for 26 pages |
-| `scripts/crop-title-blocks.sh` | Crop bottom-right title block from each page | ~2 sec for 26 pages |
+| `scripts/extract-pages.sh` | PDF → page PNGs at 200 DPI (full res, no resize). Idempotent. | ~5 sec for 26 pages |
+| `scripts/crop-title-blocks.sh` | Crop bottom-right title block from each page. Idempotent. | ~2 sec for 26 pages |
 
 ## References
 

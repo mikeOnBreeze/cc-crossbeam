@@ -39,6 +39,9 @@ firebase-debug.log
 visuals/
 *.mp4
 
+# Demo archives (stored in Supabase Storage, not git)
+test-assets/demo-archives/*.tar.gz
+
 # Misc
 *.swp
 *.swo

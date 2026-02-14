@@ -76,12 +76,13 @@ All written to the session directory.
 
 Run `adu-targeted-page-viewer`:
 
-1. Extract PDF pages to PNGs: `scripts/extract-pages.sh <binder.pdf> <output-dir>`
-2. Read cover sheet for sheet index
-3. Match sheet IDs to pages (title block reading if needed)
-4. Save `sheet-manifest.json`
+1. **Check first:** PNGs and title block crops may already be pre-extracted in `project-files/pages-png/` and `project-files/title-blocks/`. If they exist, skip extraction and go straight to reading the cover sheet.
+2. If PNGs don't exist: Extract PDF pages to PNGs: `scripts/extract-pages.sh <binder.pdf> <output-dir>`
+3. Read cover sheet for sheet index
+4. Match sheet IDs to pages (title block reading if needed)
+5. Save `sheet-manifest.json`
 
-~90 seconds. Identical to Phase 2 of `adu-corrections-flow`.
+~90 seconds (or ~30 seconds if PNGs are pre-extracted). Identical to Phase 2 of `adu-corrections-flow`.
 
 ### Phase 2: Sheet-by-Sheet Review
 

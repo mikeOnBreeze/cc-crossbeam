@@ -108,6 +108,7 @@ async function processGeneration(
       userId,
       contractorAnswersJson,
       phase1Artifacts,
+      isDemo: project.is_demo ?? false,
     });
 
     const duration = ((Date.now() - startTime) / 1000 / 60).toFixed(1);
