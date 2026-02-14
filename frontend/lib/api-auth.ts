@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { createClient as createServiceClient, type SupabaseClient } from '@supabase/supabase-js'
 
 export interface AuthResult {
   authenticated: boolean
@@ -41,7 +41,7 @@ export async function authenticateRequest(request: NextRequest): Promise<AuthRes
  * Returns a Supabase client appropriate for the auth method.
  * API key → service-role client (bypasses RLS). Browser → cookie-based client.
  */
-export async function getSupabaseForAuth(auth: AuthResult) {
+export async function getSupabaseForAuth(auth: AuthResult): Promise<SupabaseClient> {
   if (auth.isApiKey) {
     return createServiceClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -49,5 +49,5 @@ export async function getSupabaseForAuth(auth: AuthResult) {
       { auth: { autoRefreshToken: false, persistSession: false } }
     )
   }
-  return createClient()
+  return await createClient() as unknown as SupabaseClient
 }
