@@ -1,0 +1,487 @@
+{
+  "project": "crossbeam-frontend",
+  "version": "0.1.0",
+  "description": "CrossBeam frontend — Next.js 15 + shadcn/ui + Tailwind v4. Magic Dirt v2 design direction. ADU miniatures on every screen.",
+  "lastUpdated": "2026-02-13T19:05:00Z",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Foundation",
+      "description": "Project scaffold, image pipeline, Design Bible styling, infrastructure files from Mako. App should render the gradient background with correct fonts after this phase.",
+      "status": "complete",
+      "verification": {
+        "description": "Confirm project runs, gradient renders, fonts load, no dark mode artifacts",
+        "steps": [
+          "Run `cd frontend && npm install && npm run dev` — app starts without errors",
+          "Visit http://localhost:3000 — see the sky-to-earth gradient background (blue top → white middle → warm earth bottom)",
+          "Inspect the page — confirm Playfair Display and Nunito fonts are loaded (check Network tab or computed styles)",
+          "Confirm NO dark mode: no `.dark` class in CSS, no ThemeProvider in layout, no `next-themes` in node_modules",
+          "Confirm `public/images/adu/` contains 9 compressed PNG files (7 exteriors + 2 interiors), each under 500KB",
+          "Run `npx tsc --noEmit` — no TypeScript errors"
+        ]
+      },
+      "tasks": ["foundation-001", "foundation-002", "foundation-003", "foundation-004", "foundation-005", "foundation-006"]
+    },
+    {
+      "id": "phase-2",
+      "name": "Design Components + First Screens",
+      "description": "Build the AduMiniature component (the visual signature), then the landing page and login page. After this phase, the first thing judges see looks premium.",
+      "status": "pending",
+      "verification": {
+        "description": "Landing page and login render beautifully with ADU miniatures",
+        "steps": [
+          "Visit http://localhost:3000 — see the landing page with hero ADU miniature, headline, CTA, feature cards",
+          "Refresh 3-4 times — the hero ADU miniature should randomly change between different house styles",
+          "Scroll the page — confirm the gradient stays fixed (doesn't scroll with content)",
+          "Confirm topographic contour lines are faintly visible in the background (15% opacity)",
+          "Click 'Sign In' or 'Get Started' — navigate to login page",
+          "Login page shows a small ADU miniature accent above the 'CrossBeam' heading",
+          "Click 'Sign in as a Judge' — successfully logs in and redirects to /dashboard (may show 404 — that's OK, dashboard isn't built yet)"
+        ]
+      },
+      "tasks": ["design-001", "design-002", "design-003", "design-004"]
+    },
+    {
+      "id": "phase-3",
+      "name": "Dashboard Flow",
+      "description": "Nav bar, dashboard layout, persona cards with ADU miniature images. After this phase, the full login → dashboard flow works with two clickable demo scenario cards.",
+      "status": "pending",
+      "verification": {
+        "description": "Dashboard renders with two persona cards featuring ADU miniatures",
+        "steps": [
+          "Login as judge → redirects to /dashboard",
+          "See 'Choose your perspective' heading in Playfair Display",
+          "Two persona cards side by side — each with a DIFFERENT ADU miniature image at the top (NOT Lucide icons)",
+          "Cards have deep soft shadows, generous padding, pill-shaped CTA buttons",
+          "Hover over a card — it lifts 2px with shadow deepening",
+          "Nav bar shows 'CrossBeam' branding on left, user email + sign out on right",
+          "Click either card — navigates to /projects/[id] (may show minimal content — project detail isn't built yet)",
+          "Sign out button works — redirects to /login"
+        ]
+      },
+      "tasks": ["dashboard-001", "dashboard-002", "dashboard-003", "dashboard-004"]
+    },
+    {
+      "id": "phase-4",
+      "name": "Project Detail — Status-Driven Rendering",
+      "description": "The most important page. Status-driven rendering with ADU miniatures on every state. Ready state must shine — it's the 'before' moment in the demo. Agent working screen with progress dots and activity log.",
+      "status": "pending",
+      "verification": {
+        "description": "Project page renders correctly for each status, with ADU miniatures and polling",
+        "steps": [
+          "Navigate to a demo project — see the 'ready' state with hero ADU miniature, project info, file list, prominent CTA",
+          "The CTA button ('Analyze Corrections' or 'Run AI Review') is pill-shaped, moss green, impossible to miss",
+          "Click CTA — triggers POST to /api/generate (may fail if backend isn't running — that's OK)",
+          "Manually update project status in Supabase to 'processing' — page transitions to agent working screen",
+          "Agent working screen shows: ADU miniature center-stage, progress dots (● ◉ ○), activity log below",
+          "Activity log polls every 2 seconds and shows new messages sliding in from the left",
+          "Progress dots show correct phase names for the flow type",
+          "Change status to 'completed' — page transitions to show results heading",
+          "Change status to 'failed' — page shows error card with retry button"
+        ]
+      },
+      "tasks": ["project-001", "project-002", "project-003", "project-004"]
+    },
+    {
+      "id": "phase-5",
+      "name": "Completion Screens + API",
+      "description": "Contractor questions form, results viewer with markdown tabs, and the API generate route. After this phase, every status state renders correctly.",
+      "status": "pending",
+      "verification": {
+        "description": "All status states render correctly with proper content",
+        "steps": [
+          "Set project status to 'awaiting-answers' with questions in contractor_answers table — questions form renders",
+          "Questions form shows numbered items, appropriate input types (text, choice, measurement)",
+          "Submit answers — updates contractor_answers table, triggers Phase 2 via /api/generate",
+          "Set project status to 'completed' with output data — results viewer renders",
+          "Results viewer shows tabbed content (Response Letter, Scope of Work, etc.) with markdown rendered correctly",
+          "Summary stats card shows duration, turns, cost",
+          "Small ADU miniature accent appears at top of results page as 'celebration' header",
+          "API route /api/generate accepts POST with { project_id, user_id, flow_type } and proxies to CLOUD_RUN_URL"
+        ]
+      },
+      "tasks": ["completion-001", "completion-002", "completion-003"]
+    },
+    {
+      "id": "phase-6",
+      "name": "Integration & Polish",
+      "description": "Full end-to-end flow test. Polish animations, hover effects, stagger timings. Verify every screen has an ADU miniature. Final quality pass.",
+      "status": "pending",
+      "verification": {
+        "description": "Full flow works end-to-end, animations are smooth, design matches Design Bible",
+        "steps": [
+          "Full flow: Landing → Login → Dashboard → Click Contractor card → Ready state → (simulate processing) → Questions → Results",
+          "Full flow: Landing → Login → Dashboard → Click City card → Ready state → (simulate processing) → Results",
+          "Every screen has an ADU miniature in the appropriate variant (hero, card, accent)",
+          "All animations are smooth: fade-up on page load, stagger between elements, card hover lift, button hover glow",
+          "No dark mode artifacts anywhere — pure light mode",
+          "Gradient is fixed on scroll on all pages",
+          "Topographic contour lines visible on landing page",
+          "Run `npx tsc --noEmit` — no TypeScript errors",
+          "Run `npm run build` — builds successfully for Vercel deployment"
+        ]
+      },
+      "tasks": ["polish-001", "polish-002", "polish-003"]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "foundation-001",
+      "phase": "phase-1",
+      "description": "Image pipeline — copy and compress ADU miniature PNGs",
+      "steps": [
+        "Create `frontend/public/images/adu/` directory",
+        "Copy 7 exterior PNGs from `~/openai-demo/cc-crossbeam-video/assets/keyed/` (see Image Pipeline section in plan for exact filenames)",
+        "Copy 2 interior PNGs from same source",
+        "Rename files per the plan's rename table (e.g., `cameron-01-longbeach-keyed.png` → `exterior-longbeach-modern.png`)",
+        "Compress all PNGs with pngquant: `for f in *.png; do pngquant --quality=65-85 --force --output \"$f\" \"$f\"; done`",
+        "Verify each image is under 500KB",
+        "SKIP the `no-go/` subfolder entirely"
+      ],
+      "passes": true
+    },
+    {
+      "id": "foundation-002",
+      "phase": "phase-1",
+      "description": "Copy infrastructure files from Mako reference frontend",
+      "steps": [
+        "Initialize Next.js project in `frontend/` if not already done (or scaffold manually)",
+        "Copy from `~/openai-demo/CC-Agents-SDK-test-1225/mako/frontend/`: middleware.ts, app/auth/callback/route.ts, app/auth/signout/route.ts",
+        "Copy lib/supabase/client.ts, lib/supabase/server.ts, lib/supabase/middleware.ts, lib/utils.ts",
+        "Copy ALL shadcn components from Mako's components/ui/ directory",
+        "Copy tsconfig.json, postcss.config.mjs, next.config.ts, .gitignore",
+        "Do NOT copy theme-provider.tsx (CrossBeam is light-mode only)"
+      ],
+      "passes": true
+    },
+    {
+      "id": "foundation-003",
+      "phase": "phase-1",
+      "description": "Write globals.css — Design Bible palette, light-only, gradient with fixed attachment",
+      "steps": [
+        "Read DESIGN-BIBLE.md before starting (this is the law)",
+        "Write globals.css with: Tailwind imports, @theme inline block with hsl() wrappers, :root light mode variables",
+        "Add .bg-crossbeam-gradient class with background-attachment: fixed",
+        "Add .bg-topo-lines class with SVG contour line pattern at 15% opacity",
+        "Add animations: fade-up, fade-in, slide-in-left, gentle-pulse (NO bounce, NO spring)",
+        "Add typography utilities: heading-display, heading-section, heading-card",
+        "Add hover-lift, scrollbar-thin, prose-crossbeam classes",
+        "Do NOT include .dark block or @custom-variant dark",
+        "CRITICAL: Every --color-* in @theme inline MUST use hsl() wrapper"
+      ],
+      "passes": true
+    },
+    {
+      "id": "foundation-004",
+      "phase": "phase-1",
+      "description": "Write app/layout.tsx — fonts, gradient, no ThemeProvider",
+      "steps": [
+        "Import Playfair_Display and Nunito from next/font/google",
+        "Configure font variables: --font-display and --font-body",
+        "Set metadata: 'CrossBeam | AI-Powered ADU Permit Review'",
+        "Apply className with both font variables to <html>",
+        "Apply bg-crossbeam-gradient and antialiased to <body>",
+        "Render {children} directly — NO ThemeProvider wrapper",
+        "Do NOT import next-themes anywhere"
+      ],
+      "passes": true
+    },
+    {
+      "id": "foundation-005",
+      "phase": "phase-1",
+      "description": "Write types/database.ts — CrossBeam schema types",
+      "steps": [
+        "Define all types matching crossbeam schema: Project, ProjectFile, Message, Output, ContractorAnswer",
+        "Define enums: ProjectStatus, FlowType, FlowPhase, FileType, MessageRole, QuestionType",
+        "Define Database interface for Supabase client generic with crossbeam schema",
+        "Reference plan-supabase-0213.md for exact schema if needed"
+      ],
+      "passes": true
+    },
+    {
+      "id": "foundation-006",
+      "phase": "phase-1",
+      "description": "Write package.json and config files",
+      "steps": [
+        "Copy package.json from Mako, update name to 'crossbeam-frontend'",
+        "Remove: stripe, @react-pdf/renderer, docx-preview, jszip, framer-motion, @base-ui/react, next-themes",
+        "Keep: @supabase/ssr, @supabase/supabase-js, react-markdown, remark-gfm, lucide-react, shadcn, tw-animate-css",
+        "Write components.json with style: 'new-york'",
+        "Create .env.local with NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, CLOUD_RUN_URL"
+      ],
+      "passes": true
+    },
+    {
+      "id": "design-001",
+      "phase": "phase-2",
+      "description": "Write AduMiniature component — reusable, random selection, video-swap-ready",
+      "steps": [
+        "Create components/adu-miniature.tsx as a 'use client' component",
+        "Define ADU_EXTERIORS array with all 7 exterior image paths from public/images/adu/",
+        "Define VARIANT_CONFIG with 4 size variants: hero (600x420), card (280x200), accent (140x100), background (800x560, opacity-20)",
+        "Props: variant (required), src (optional override), videoSrc (optional for future video swap), alt, className",
+        "Use useRandomAdu hook for random selection when no src override provided",
+        "If videoSrc provided, render <video autoPlay loop muted playsInline> instead of <Image>",
+        "Use Next.js <Image> with quality={85}, priority={true} for hero variant",
+        "Apply drop-shadow-lg for floating effect on the gradient background"
+      ],
+      "passes": false
+    },
+    {
+      "id": "design-002",
+      "phase": "phase-2",
+      "description": "Write useRandomAdu hook — stable random selection per mount",
+      "steps": [
+        "Create hooks/use-random-adu.ts as a 'use client' module",
+        "Use useState with initializer function to select random index once on mount",
+        "Return the selected image path string",
+        "Ensure selection is stable across re-renders but changes on new mount (page navigation)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "design-003",
+      "phase": "phase-2",
+      "description": "Write landing page — hero ADU miniature, headline, CTA, feature cards",
+      "steps": [
+        "Create app/page.tsx as a server component (NOT a redirect to /login)",
+        "Add bg-topo-lines class to wrapper div for contour line background texture",
+        "Simple nav with CrossBeam branding and 'Sign In' link to /login",
+        "Hero section: 'Your ADU Permit, Simplified' in heading-display, subtitle in Nunito, pill-shaped 'Get Started' CTA",
+        "Below hero: <AduMiniature variant='hero' /> — randomly selected, floating on gradient",
+        "Feature cards section: 3 cards (Corrections Interpreter, Code Verification, Response Letter) with Lucide icons",
+        "Cards use standard floating shadow, border-border/50",
+        "Footer with 'Built with Claude Opus 4.6' credit",
+        "Apply animate-fade-up with stagger classes for entrance sequence"
+      ],
+      "passes": false
+    },
+    {
+      "id": "design-004",
+      "phase": "phase-2",
+      "description": "Write login page — judge button, Google OAuth, ADU accent miniature",
+      "steps": [
+        "Rewrite app/(auth)/login/page.tsx as 'use client' component",
+        "Add <AduMiniature variant='accent' /> at top of card for visual continuity",
+        "CrossBeam heading in heading-display, subtitle in Nunito",
+        "Primary CTA: 'Sign in as a Judge' pill button — signs in with hardcoded judge@crossbeam.app credentials",
+        "Divider with 'or'",
+        "Secondary: 'Sign in with Google' outline button with Google SVG icon",
+        "Error state display",
+        "Card uses standard floating shadow: shadow-[0_8px_32px_rgba(28,25,23,0.08)]"
+      ],
+      "passes": false
+    },
+    {
+      "id": "dashboard-001",
+      "phase": "phase-3",
+      "description": "Write nav-bar component",
+      "steps": [
+        "Create components/nav-bar.tsx as 'use client' component",
+        "Sticky top nav with backdrop blur: border-b border-border/50 bg-card/80 backdrop-blur-sm sticky top-0 z-50",
+        "Left: CrossBeam branding link to /dashboard in heading-card style",
+        "Right: user email (hidden on mobile) + sign out button",
+        "Sign out calls POST /auth/signout then redirects to /login",
+        "Max width 6xl, centered"
+      ],
+      "passes": false
+    },
+    {
+      "id": "dashboard-002",
+      "phase": "phase-3",
+      "description": "Write dashboard layout — protected, top nav, no sidebar",
+      "steps": [
+        "Create app/(dashboard)/layout.tsx as server component",
+        "Check auth with supabase.auth.getUser() — redirect to /login if no user",
+        "Render <NavBar> with user email",
+        "Wrap children in max-w-6xl centered container with padding",
+        "Do NOT add sidebar navigation — CrossBeam uses top nav only"
+      ],
+      "passes": false
+    },
+    {
+      "id": "dashboard-003",
+      "phase": "phase-3",
+      "description": "Write persona-card component — ADU miniature hero, NOT Lucide icon",
+      "steps": [
+        "Create components/persona-card.tsx",
+        "Props: aduImage (string path), title, description, projectName, projectCity, projectId, ctaText",
+        "Card top: <Image> of the ADU miniature (280x200, object-contain, drop-shadow-lg) — NOT a Lucide icon",
+        "Title in heading-card, description in muted Nunito, project info section with border-t divider",
+        "Pill-shaped CTA button with hover glow shadow",
+        "Entire card is a Link to /projects/[projectId]",
+        "Apply hover-lift class for card hover animation"
+      ],
+      "passes": false
+    },
+    {
+      "id": "dashboard-004",
+      "phase": "phase-3",
+      "description": "Write dashboard page — two persona cards with different ADU styles",
+      "steps": [
+        "Create app/(dashboard)/dashboard/page.tsx with force-dynamic",
+        "Heading: 'Choose your perspective' in heading-display, subtitle in Nunito",
+        "Two PersonaCard components in a 2-column grid (gap-8)",
+        "City Reviewer card: uses exterior-garage-2story.png, projectId: a0000000-0000-0000-0000-000000000001",
+        "Contractor card: uses exterior-whittier-2story.png, projectId: a0000000-0000-0000-0000-000000000002",
+        "Apply animate-fade-up to wrapper"
+      ],
+      "passes": false
+    },
+    {
+      "id": "project-001",
+      "phase": "phase-4",
+      "description": "Write agent-stream component — polling messages, CSS animations",
+      "steps": [
+        "Fork Mako's components/project/agent-activity-log.tsx",
+        "Change .schema('mako') to .schema('crossbeam')",
+        "Replace Supabase Realtime with setInterval polling every 2 seconds",
+        "Poll with WHERE id > lastSeenId for efficiency",
+        "Remove framer-motion — use CSS animate-slide-in-left for new messages",
+        "Use Design Bible card styling (deep soft shadows, border-border/50)",
+        "Keep role-based icon system but use Design Bible color variables",
+        "Detect completion message ('Completed in ') and trigger page refresh after 5 seconds"
+      ],
+      "passes": false
+    },
+    {
+      "id": "project-002",
+      "phase": "phase-4",
+      "description": "Write progress-phases component — progress dots indicator",
+      "steps": [
+        "Create components/progress-phases.tsx",
+        "Props: phases (string[]), currentPhaseIndex (number)",
+        "Render horizontal dots connected by thin lines",
+        "Completed dots: w-3 h-3 rounded-full bg-success (green)",
+        "Active dot: w-3 h-3 rounded-full bg-warning animate-gentle-pulse (amber)",
+        "Pending dots: w-3 h-3 rounded-full bg-muted-foreground/30 (gray)",
+        "Phase labels below dots: completed/active = text-foreground, pending = text-muted-foreground",
+        "Support different phase sets per flow type (city review vs contractor)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "project-003",
+      "phase": "phase-4",
+      "description": "Write project detail server page — data fetching wrapper",
+      "steps": [
+        "Create app/(dashboard)/projects/[id]/page.tsx as server component",
+        "Fetch project from crossbeam.projects by ID",
+        "Fetch files from crossbeam.files by project_id",
+        "Auth check — notFound() if no user",
+        "Pass initialProject, initialFiles, userId to <ProjectDetailClient> client component",
+        "Set force-dynamic"
+      ],
+      "passes": false
+    },
+    {
+      "id": "project-004",
+      "phase": "phase-4",
+      "description": "Write project detail client component — status-driven rendering with ADU miniatures",
+      "steps": [
+        "Create app/(dashboard)/projects/[id]/project-detail-client.tsx as 'use client'",
+        "Poll project status every 3 seconds with setInterval — stop on completed/failed",
+        "READY STATE (must shine): <AduMiniature variant='hero' /> at top, project name in heading-display, city/flow badges, file list card, giant pill-shaped CTA button",
+        "PROCESSING STATES: <AduMiniature variant='hero' /> center-stage, heading in Playfair ('Building your response...' / 'Reviewing plans...'), <ProgressPhases>, <AgentStream>",
+        "AWAITING-ANSWERS: small accent miniature, render <ContractorQuestionsForm> (built in Phase 5)",
+        "COMPLETED: small accent miniature as celebration, render <ResultsViewer> (built in Phase 5)",
+        "FAILED: error card with retry button (no miniature needed)",
+        "Start Analysis button handler: POST to /api/generate with { project_id, user_id, flow_type }",
+        "Handle all status transitions with smooth animate-fade-up entrance"
+      ],
+      "passes": false
+    },
+    {
+      "id": "completion-001",
+      "phase": "phase-5",
+      "description": "Write contractor-questions-form — awaiting-answers state",
+      "steps": [
+        "Create components/contractor-questions-form.tsx as 'use client'",
+        "Fetch questions from crossbeam.contractor_answers by project_id",
+        "Heading: 'A few questions for you' in Playfair, subtext with question count",
+        "Render each question: numbered, question_text, context hint in muted text",
+        "Input type based on question_type: text → Textarea, number/measurement → Input, choice → radio buttons from options array",
+        "Pre-fill with answer_text if partially answered",
+        "Submit handler: update each answer in contractor_answers, then POST to /api/generate with flow_type='corrections-response'",
+        "Pill-shaped 'Submit & Generate Response' button",
+        "Card wrapper with standard floating shadow"
+      ],
+      "passes": false
+    },
+    {
+      "id": "completion-002",
+      "phase": "phase-5",
+      "description": "Write results-viewer — tabbed content, markdown, summary stats",
+      "steps": [
+        "Create components/results-viewer.tsx as 'use client'",
+        "Fetch outputs from crossbeam.outputs by project_id",
+        "Header: <AduMiniature variant='accent' /> + 'Your response package is ready' or 'Review complete' in Playfair",
+        "City review tabs: 'Corrections Letter' (corrections_letter_md), 'Review Checklist' (review_checklist_json)",
+        "Contractor tabs: 'Response Letter', 'Professional Scope', 'Corrections Report' (all _md fields)",
+        "Render markdown with ReactMarkdown + remarkGfm, wrapped in prose-crossbeam class",
+        "Summary stats sidebar card: duration (formatted), agent turns, cost ($X.XX)",
+        "Active tab: moss green underline (border-b-2 border-primary)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "completion-003",
+      "phase": "phase-5",
+      "description": "Write API generate route — Cloud Run proxy",
+      "steps": [
+        "Create app/api/generate/route.ts",
+        "Fork from Mako's app/api/generate/route.ts",
+        "Accept POST with { project_id, user_id, flow_type }",
+        "Remove credits check entirely",
+        "Change .schema('mako') to .schema('crossbeam')",
+        "Forward to CLOUD_RUN_URL with project_id, user_id, flow_type in body",
+        "Handle errors gracefully — return appropriate status codes"
+      ],
+      "passes": false
+    },
+    {
+      "id": "polish-001",
+      "phase": "phase-6",
+      "description": "Full end-to-end flow test",
+      "steps": [
+        "Test full contractor flow: Landing → Login → Dashboard → Contractor card → Ready → Processing → Questions → Results",
+        "Test full city flow: Landing → Login → Dashboard → City card → Ready → Processing → Results",
+        "Verify status transitions work via polling",
+        "Test sign out and re-login",
+        "Test that middleware redirects work (unauthenticated → /login, authenticated away from /login)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "polish-002",
+      "phase": "phase-6",
+      "description": "Polish animations and hover effects",
+      "steps": [
+        "Verify all pages use animate-fade-up entrance animations with correct stagger timing",
+        "Test card hover-lift on persona cards (2px lift + shadow deepen)",
+        "Test button hover glow on all pill-shaped CTAs",
+        "Verify activity log messages slide in from left smoothly",
+        "Verify progress dot pulse animation is smooth (not jarring)",
+        "Ensure no animation exceeds 500ms",
+        "No bounce, no spring, no particles anywhere"
+      ],
+      "passes": false
+    },
+    {
+      "id": "polish-003",
+      "phase": "phase-6",
+      "description": "Verify design system compliance across all screens",
+      "steps": [
+        "Every major screen has an ADU miniature (landing hero, login accent, persona cards, ready hero, processing center, results accent)",
+        "Gradient is fixed on scroll on ALL pages",
+        "Topographic contour lines visible on landing page",
+        "No hardcoded colors (no bg-blue-600, text-[#xxx], etc.) — all CSS variables",
+        "No dark mode artifacts (no .dark classes, no theme toggle)",
+        "All headings use Playfair Display (24px+), all body uses Nunito",
+        "Run `npx tsc --noEmit` — no errors",
+        "Run `npm run build` — builds successfully for Vercel"
+      ],
+      "passes": false
+    }
+  ]
+}
