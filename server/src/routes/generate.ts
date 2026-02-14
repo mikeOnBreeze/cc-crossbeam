@@ -8,6 +8,7 @@ import {
   getProject,
 } from '../services/supabase.js';
 import { runCrossBeamFlow } from '../services/sandbox.js';
+import { extractPdfForProject } from '../services/extract.js';
 import type { InternalFlowType } from '../utils/config.js';
 
 export const generateRouter = Router();
@@ -62,7 +63,18 @@ async function processGeneration(
       await updateProjectStatus(projectId, 'processing');
     }
 
-    // Get files to download into sandbox
+    // Pre-extract PDF → PNGs on Cloud Run (skips if archives already exist)
+    // This runs pdftoppm + imagemagick locally so the sandbox is pure AI
+    if (flowType !== 'corrections-response') {
+      try {
+        await extractPdfForProject(projectId);
+      } catch (extractErr) {
+        console.warn('Pre-extraction failed, sandbox will handle it:', extractErr);
+        // Non-fatal — sandbox can still do extraction as fallback
+      }
+    }
+
+    // Get files to download into sandbox (re-fetch to include any new archives)
     const fileRecords = await getProjectFiles(projectId);
     console.log(`Found ${fileRecords.length} project files`);
 
@@ -108,7 +120,6 @@ async function processGeneration(
       userId,
       contractorAnswersJson,
       phase1Artifacts,
-      isDemo: project.is_demo ?? false,
     });
 
     const duration = ((Date.now() - startTime) / 1000 / 60).toFixed(1);

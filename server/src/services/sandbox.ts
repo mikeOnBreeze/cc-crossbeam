@@ -50,7 +50,6 @@ interface RunFlowOptions {
   userId: string;
   contractorAnswersJson?: string;
   phase1Artifacts?: Record<string, unknown>;
-  isDemo?: boolean;
 }
 
 // --- Helpers ---
@@ -113,32 +112,9 @@ async function createSandbox(): Promise<Sandbox> {
   return sandbox;
 }
 
-async function installDependencies(sandbox: Sandbox, projectId?: string, isDemo?: boolean): Promise<void> {
-  // Demo projects have pre-extracted PNGs — skip system packages entirely (~30s saved)
-  if (!isDemo) {
-    console.log('Installing system packages (poppler, imagemagick)...');
-    if (projectId) {
-      insertMessage(projectId, 'system', 'Installing system packages...').catch(() => {});
-    }
-    const aptUpdate = await sandbox.runCommand({
-      cmd: 'apt-get',
-      args: ['update', '-qq'],
-      sudo: true,
-    });
-    if (aptUpdate.exitCode !== 0) {
-      console.warn('apt-get update failed, continuing...');
-    }
-    const aptInstall = await sandbox.runCommand({
-      cmd: 'apt-get',
-      args: ['install', '-y', '-qq', 'poppler-utils', 'imagemagick'],
-      sudo: true,
-    });
-    if (aptInstall.exitCode !== 0) {
-      console.warn('apt-get install failed, skills may not work correctly');
-    }
-  } else {
-    console.log('Demo project — skipping system package install');
-  }
+async function installDependencies(sandbox: Sandbox, projectId?: string): Promise<void> {
+  // No system packages needed — PDF extraction happens on Cloud Run before sandbox.
+  // The sandbox is pure AI processing.
 
   console.log('Installing Claude Code CLI...');
   if (projectId) {
@@ -312,71 +288,6 @@ async function unpackArchivesInSandbox(
       // Delete the archive after unpacking
       await sandbox.runCommand({ cmd: 'rm', args: [archive] });
     }
-  }
-}
-
-// --- Pre-Extraction (real projects) ---
-
-async function runPreExtraction(
-  sandbox: Sandbox,
-  projectId?: string,
-): Promise<void> {
-  // Run extract-pages.sh + crop-title-blocks.sh before the agent starts.
-  // This converts PDF → PNGs as a sandbox command (not an agent turn).
-  // The scripts are idempotent — if PNGs already exist they skip.
-
-  const extractScript = `${SANDBOX_SKILLS_BASE}/adu-targeted-page-viewer/scripts/extract-pages.sh`;
-  const cropScript = `${SANDBOX_SKILLS_BASE}/adu-targeted-page-viewer/scripts/crop-title-blocks.sh`;
-
-  // Find the PDF binder in project-files/
-  const findPdf = await sandbox.runCommand({
-    cmd: 'bash',
-    args: ['-c', `ls ${SANDBOX_FILES_PATH}/*.pdf 2>/dev/null | head -1`],
-  });
-  const pdfPath = (await findPdf.stdout()).toString().trim();
-
-  if (!pdfPath) {
-    console.log('No PDF found in project-files — skipping pre-extraction');
-    return;
-  }
-
-  console.log(`Pre-extracting pages from: ${pdfPath}`);
-  if (projectId) {
-    insertMessage(projectId, 'system', 'Extracting plan pages from PDF...').catch(() => {});
-  }
-
-  // Make scripts executable
-  await sandbox.runCommand({ cmd: 'chmod', args: ['+x', extractScript, cropScript] });
-
-  // Run extract-pages.sh <pdf> <output-dir>
-  const extractResult = await sandbox.runCommand({
-    cmd: 'bash',
-    args: [extractScript, pdfPath, SANDBOX_FILES_PATH],
-  });
-  const extractOut = await extractResult.stdout();
-  console.log('extract-pages.sh:', extractOut.toString().trim());
-  if (extractResult.exitCode !== 0) {
-    const stderr = await extractResult.stderr();
-    console.warn('extract-pages.sh failed:', stderr.toString());
-  }
-
-  // Run crop-title-blocks.sh <pages-png-dir> <title-blocks-dir>
-  const pagesDir = `${SANDBOX_FILES_PATH}/pages-png`;
-  const titleBlocksDir = `${SANDBOX_FILES_PATH}/title-blocks`;
-
-  const cropResult = await sandbox.runCommand({
-    cmd: 'bash',
-    args: [cropScript, pagesDir, titleBlocksDir],
-  });
-  const cropOut = await cropResult.stdout();
-  console.log('crop-title-blocks.sh:', cropOut.toString().trim());
-  if (cropResult.exitCode !== 0) {
-    const stderr = await cropResult.stderr();
-    console.warn('crop-title-blocks.sh failed:', stderr.toString());
-  }
-
-  if (projectId) {
-    insertMessage(projectId, 'system', 'Page extraction complete').catch(() => {});
   }
 }
 
@@ -765,18 +676,17 @@ runAgent();
 
 export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
   let sandbox: Sandbox | null = null;
-  const isDemo = options.isDemo ?? false;
 
   try {
     // 1. Create sandbox
     await insertMessage(options.projectId, 'system', 'Creating secure sandbox environment...');
     sandbox = await createSandbox();
 
-    // 2. Install dependencies (skip apt for demo — PNGs are pre-extracted)
+    // 2. Install dependencies (no system packages — extraction happens on Cloud Run)
     await insertMessage(options.projectId, 'system', 'Installing dependencies...');
-    await installDependencies(sandbox, options.projectId, isDemo);
+    await installDependencies(sandbox, options.projectId);
 
-    // 3. Download project files
+    // 3. Download project files (includes pre-extracted .tar.gz archives)
     await insertMessage(options.projectId, 'system', `Downloading ${options.files.length} project files...`);
     await downloadFilesInSandbox(
       sandbox,
@@ -785,27 +695,20 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
       options.supabaseKey,
     );
 
-    // 4. Unpack archives (demo projects have pre-extracted .tar.gz archives)
-    if (isDemo) {
-      await unpackArchivesInSandbox(sandbox, options.projectId);
-    }
+    // 4. Unpack any .tar.gz archives (PNGs from Cloud Run extraction or demo pre-builds)
+    await unpackArchivesInSandbox(sandbox, options.projectId);
 
     // 5. Copy skills
     await insertMessage(options.projectId, 'system', 'Preparing AI agent...');
     await copySkillsToSandbox(sandbox, options.flowType);
 
-    // 6. Pre-extraction (real projects only — run extract-pages.sh + crop-title-blocks.sh)
-    if (!isDemo && options.flowType !== 'corrections-response') {
-      await runPreExtraction(sandbox, options.projectId);
-    }
-
-    // 7. For corrections-response: write Phase 1 artifacts + answers into sandbox
+    // 6. For corrections-response: write Phase 1 artifacts + answers into sandbox
     if (options.flowType === 'corrections-response' && options.phase1Artifacts && options.contractorAnswersJson) {
       await insertMessage(options.projectId, 'system', 'Loading analysis artifacts...');
       await writePhase1Artifacts(sandbox, options.phase1Artifacts, options.contractorAnswersJson);
     }
 
-    // 8. Run agent
+    // 7. Run agent
     const flowLabel = options.flowType === 'city-review' ? 'plan review'
       : options.flowType === 'corrections-analysis' ? 'corrections analysis'
       : 'response generation';

@@ -2,6 +2,11 @@ FROM node:22-slim
 
 WORKDIR /app
 
+# System packages for PDF extraction (baked in — zero runtime cost)
+RUN apt-get update -qq && \
+    apt-get install -y -qq --no-install-recommends poppler-utils imagemagick && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy package files
 COPY package*.json ./
 
