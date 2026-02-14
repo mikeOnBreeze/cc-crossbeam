@@ -41,9 +41,6 @@ export function DevTools() {
   const supabase = useMemo(() => createClient(), [])
   const appMode = useAppMode()
 
-  // Only show in dev-test mode
-  if (appMode !== 'dev-test') return null
-
   const projectId =
     flow === 'city' ? DEMO_CITY_PROJECT_ID : DEMO_CONTRACTOR_PROJECT_ID
   const states = flow === 'city' ? CITY_STATES : CONTRACTOR_STATES
@@ -242,6 +239,9 @@ export function DevTools() {
     const phaseIdx = latestMessage?.phase ?? 0
     return phaseLabels[phaseIdx] ?? phaseLabels[0]
   })()
+
+  // Only show in dev-test mode (guard must be after all hooks)
+  if (appMode !== 'dev-test') return null
 
   return (
     <div className="fixed bottom-4 right-4 z-50 font-body">
