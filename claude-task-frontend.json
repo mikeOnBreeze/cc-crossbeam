@@ -45,7 +45,7 @@
       "id": "phase-3",
       "name": "Dashboard Flow",
       "description": "Nav bar, dashboard layout, persona cards with ADU miniature images. After this phase, the full login → dashboard flow works with two clickable demo scenario cards.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Dashboard renders with two persona cards featuring ADU miniatures",
         "steps": [
@@ -284,7 +284,7 @@
         "Sign out calls POST /auth/signout then redirects to /login",
         "Max width 6xl, centered"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "dashboard-002",
@@ -297,7 +297,7 @@
         "Wrap children in max-w-6xl centered container with padding",
         "Do NOT add sidebar navigation — CrossBeam uses top nav only"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "dashboard-003",
@@ -312,7 +312,7 @@
         "Entire card is a Link to /projects/[projectId]",
         "Apply hover-lift class for card hover animation"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "dashboard-004",
@@ -326,7 +326,7 @@
         "Contractor card: uses exterior-whittier-2story.png, projectId: a0000000-0000-0000-0000-000000000002",
         "Apply animate-fade-up to wrapper"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "project-001",
