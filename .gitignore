@@ -32,6 +32,8 @@ firebase-debug.log
 
 # Generated images (PNGs from PDF extraction — PDFs are the source of truth)
 *.png
+# But allow frontend static images
+!frontend/public/**/*.png
 
 # Visuals / video assets (generated with fal-ai, too large for git)
 visuals/
