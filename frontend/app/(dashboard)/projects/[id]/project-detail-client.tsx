@@ -220,19 +220,8 @@ export function ProjectDetailClient({
 
   // COMPLETED
   if (project.status === 'completed') {
-    // ResultsViewer will be built in Phase 5
     return (
-      <div className="space-y-6 animate-fade-up">
-        <div className="text-center space-y-4">
-          <div className="flex justify-center">
-            <AduMiniature variant="accent" />
-          </div>
-          <h1 className="heading-display text-foreground">
-            {project.flow_type === 'city-review'
-              ? 'Review complete'
-              : 'Your response package is ready'}
-          </h1>
-        </div>
+      <div className="animate-fade-up">
         <ResultsViewer projectId={project.id} flowType={project.flow_type} />
       </div>
     )

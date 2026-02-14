@@ -106,7 +106,7 @@
       "id": "phase-6",
       "name": "Integration & Polish",
       "description": "Full end-to-end flow test. Polish animations, hover effects, stagger timings. Verify every screen has an ADU miniature. Final quality pass.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "Full flow works end-to-end, animations are smooth, design matches Design Bible",
         "steps": [
@@ -450,7 +450,7 @@
         "Test sign out and re-login",
         "Test that middleware redirects work (unauthenticated → /login, authenticated away from /login)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "polish-002",
@@ -465,7 +465,7 @@
         "Ensure no animation exceeds 500ms",
         "No bounce, no spring, no particles anywhere"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "polish-003",
@@ -481,7 +481,7 @@
         "Run `npx tsc --noEmit` — no errors",
         "Run `npm run build` — builds successfully for Vercel"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }
