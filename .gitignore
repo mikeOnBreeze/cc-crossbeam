@@ -41,3 +41,4 @@ visuals/
 *.swp
 *.swo
 *~
+.vercel

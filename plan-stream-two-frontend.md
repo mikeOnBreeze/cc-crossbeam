@@ -28,7 +28,8 @@ The Design Bible overrides any styling you see in Mako. The Mako code provides t
 | Strategy doc | `~/openai-demo/CC-Crossbeam/plan-strategy-0213.md` |
 | Deploy plan | `~/openai-demo/CC-Crossbeam/plan-deploy.md` |
 | Design mockups | `~/openai-demo/CC-Crossbeam/design-directions/` |
-| ADU miniature assets | `~/openai-demo/cc-crossbeam-video/assets/keyed/` |
+| ADU miniature assets (source) | `~/openai-demo/cc-crossbeam-video/assets/keyed/` (skip `no-go/` subfolder) |
+| ADU miniature assets (frontend) | `CC-Crossbeam/frontend/public/images/adu/` (copied + compressed) |
 
 ---
 
@@ -40,7 +41,6 @@ The Design Bible overrides any styling you see in Mako. The Mako code provides t
 | UI Library | shadcn/ui | Latest (new-york style) |
 | Styling | Tailwind CSS | v4 |
 | Fonts | Playfair Display + Nunito | via next/font/google |
-| Theme | next-themes | latest |
 | Icons | Lucide React | latest |
 | Animations | CSS + tw-animate-css | (no framer-motion) |
 | Auth | Supabase SSR | @supabase/ssr ^0.8.0 |
@@ -55,6 +55,7 @@ The Design Bible overrides any styling you see in Mako. The Mako code provides t
 - `jszip` (no zip handling)
 - `framer-motion` (use CSS animations per Design Bible -- restraint over spectacle)
 - `@base-ui/react` (not needed)
+- `next-themes` (no dark mode -- light-only for hackathon)
 
 ---
 
@@ -62,10 +63,13 @@ The Design Bible overrides any styling you see in Mako. The Mako code provides t
 
 ```
 CC-Crossbeam/frontend/
+├── public/
+│   └── images/
+│       └── adu/                              # ADU miniature PNGs (copied from keyed assets -- see Image Pipeline)
 ├── app/
-│   ├── page.tsx                              # Redirect to /login (or simple landing)
+│   ├── page.tsx                              # REWRITE: Landing page with ADU hero miniature + CTA
 │   ├── layout.tsx                            # REWRITE: Playfair + Nunito fonts, gradient bg, CrossBeam branding
-│   ├── globals.css                           # REWRITE: Design Bible palette, @theme inline, gradient
+│   ├── globals.css                           # REWRITE: Design Bible palette, @theme inline, gradient (LIGHT ONLY)
 │   ├── auth/
 │   │   ├── callback/route.ts                 # COPY from Mako as-is
 │   │   └── signout/route.ts                  # COPY from Mako as-is
@@ -80,8 +84,8 @@ CC-Crossbeam/frontend/
 │       └── generate/route.ts                 # ADAPT from Mako: add flow_type, remove credits
 ├── components/
 │   ├── ui/                                   # COPY from Mako (all shadcn components)
-│   ├── theme-provider.tsx                    # COPY from Mako as-is
-│   ├── persona-card.tsx                      # NEW: Dashboard persona card
+│   ├── adu-miniature.tsx                     # NEW: Reusable ADU miniature image component (rotating/random)
+│   ├── persona-card.tsx                      # NEW: Dashboard persona card (uses AduMiniature, NOT Lucide icons)
 │   ├── agent-stream.tsx                      # ADAPT from Mako's agent-activity-log.tsx
 │   ├── progress-phases.tsx                   # NEW: Progress dots (● ◉ ○)
 │   ├── contractor-questions-form.tsx         # NEW: Questions form for awaiting-answers state
@@ -95,6 +99,8 @@ CC-Crossbeam/frontend/
 │   └── utils.ts                              # COPY from Mako as-is (cn() utility)
 ├── types/
 │   └── database.ts                           # REWRITE: CrossBeam schema types
+├── hooks/
+│   └── use-random-adu.ts                     # NEW: Hook for random ADU miniature selection
 ├── middleware.ts                              # COPY from Mako as-is
 ├── package.json                              # COPY from Mako, update name, trim deps
 ├── next.config.ts                            # COPY from Mako as-is
@@ -104,6 +110,51 @@ CC-Crossbeam/frontend/
 ├── .env.local                                # Create with Supabase + Cloud Run URLs
 └── .gitignore                                # COPY from Mako as-is
 ```
+
+---
+
+## Image Pipeline (DO THIS FIRST)
+
+Before writing any code, copy ADU miniature assets into the frontend. These are the photorealistic tilt-shift miniatures that define CrossBeam's visual identity.
+
+**Source:** `~/openai-demo/cc-crossbeam-video/assets/keyed/`
+**Destination:** `CC-Crossbeam/frontend/public/images/adu/`
+**SKIP:** the `no-go/` subfolder — everything else is good
+
+### Selected Exteriors (copy these)
+
+| Source File | Rename To | Description |
+|---|---|---|
+| `cameron-01-longbeach-keyed.png` | `exterior-longbeach-modern.png` | Modern concrete box, desert landscaping |
+| `cameron-04-whittier-2story-keyed.png` | `exterior-whittier-2story.png` | 2-story modern, stairs, palm tree |
+| `cameron-05-lakewood-porch-keyed.png` | `exterior-lakewood-porch.png` | Cottage with covered porch |
+| `cameron-07-sandimas-raised-keyed.png` | `exterior-sandimas-raised.png` | Raised modern ADU |
+| `cameron-09-signalhill-cottage-keyed.png` | `exterior-signalhill-cottage.png` | White farmhouse, picket fence |
+| `adu-01-2story-garage-keyed.png` | `exterior-garage-2story.png` | 2-story over garage |
+| `adu-05-modern-box-keyed.png` | `exterior-modern-box.png` | Minimalist box with hot tub |
+
+### Selected Interiors (copy these)
+
+| Source File | Rename To |
+|---|---|
+| `interior-750sf-sandimas-transparent.png` | `interior-sandimas-750sf.png` |
+| `interior-786sf-lakewood-transparent.png` | `interior-lakewood-786sf.png` |
+
+### Compression
+
+The original PNGs are large (5-15MB each). After copying, compress them:
+
+```bash
+# Install if needed: brew install pngquant
+cd frontend/public/images/adu/
+for f in *.png; do pngquant --quality=65-85 --force --output "$f" "$f"; done
+```
+
+Target: under 500KB per image. Next.js `<Image>` will further optimize at runtime.
+
+### Video Swap Architecture
+
+The current assets are still PNGs. Spinning video loops (MP4) will be ready later. The `<AduMiniature>` component (see below) is designed for easy swap: it renders `<Image>` now, but has a `videoSrc` prop that switches to `<video autoPlay loop muted playsInline>` when provided. No other component changes needed.
 
 ---
 
@@ -129,9 +180,9 @@ These files are identical between Mako and CrossBeam. Copy them verbatim.
 
 **`components/ui/*`** -- Copy ALL of Mako's shadcn components from `~/openai-demo/CC-Agents-SDK-test-1225/mako/frontend/components/ui/`. These are: `alert-dialog.tsx`, `badge.tsx`, `button.tsx`, `card.tsx`, `collapsible.tsx`, `combobox.tsx`, `dialog.tsx`, `dropdown-menu.tsx`, `field.tsx`, `input-group.tsx`, `input.tsx`, `label.tsx`, `select.tsx`, `separator.tsx`, `sheet.tsx`, `textarea.tsx`.
 
-**`components/theme-provider.tsx`** -- Copy from Mako as-is. Change default theme to `"light"` (CrossBeam defaults to light mode, unlike Mako's dark default).
-
 **`tsconfig.json`** -- Copy as-is.
+
+**NOTE:** Do NOT copy `theme-provider.tsx` from Mako. CrossBeam is light-mode only — no ThemeProvider, no `next-themes`.
 
 **`postcss.config.mjs`** -- Copy as-is.
 
@@ -163,7 +214,6 @@ Copy from Mako, then make these changes:
     "clsx": "^2.1.1",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",
-    "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "19.2.1",
     "react-dom": "19.2.1",
@@ -186,7 +236,7 @@ Copy from Mako, then make these changes:
 }
 ```
 
-**Removed:** `stripe`, `@react-pdf/renderer`, `docx-preview`, `jszip`, `framer-motion`, `@base-ui/react`.
+**Removed:** `stripe`, `@react-pdf/renderer`, `docx-preview`, `jszip`, `framer-motion`, `@base-ui/react`, `next-themes`.
 
 ---
 
@@ -220,15 +270,17 @@ Copy from Mako, then make these changes:
 
 ### globals.css (REWRITE -- CRITICAL)
 
-This is the most important styling file. Replace ALL of Mako's CSS variables with the Design Bible palette. The file structure is:
+This is the most important styling file. Replace ALL of Mako's CSS variables with the Design Bible palette. **LIGHT MODE ONLY — no `.dark` block.**
+
+The file structure is:
 
 1. Tailwind imports
 2. `@theme inline` block (REQUIRED for Tailwind v4 -- without this, `bg-primary` etc. will not work)
 3. `:root` light mode variables (Design Bible palette)
-4. `.dark` dark mode variables (Design Bible Twilight palette)
-5. Custom status colors (success, warning, info)
-6. Base layer
-7. `.bg-crossbeam-gradient` class (sky-to-earth gradient)
+4. Custom status colors (success, warning, info)
+5. Base layer
+6. `.bg-crossbeam-gradient` class (sky-to-earth gradient with `background-attachment: fixed`)
+7. `.bg-topo-lines` class (topographic contour lines — subtle sophistication)
 8. Custom animations (fade-up, pulse, slide-in -- NO bounce, NO spring)
 9. Typography utilities (heading-display uses Playfair, body uses Nunito)
 10. Scrollbar styles
@@ -239,8 +291,6 @@ Here is the complete globals.css content to write:
 ```css
 @import "tailwindcss";
 @import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: hsl(var(--background));
@@ -328,45 +378,7 @@ Here is the complete globals.css content to write:
   --info-foreground: 0 0% 100%;
 }
 
-/* ==========================================
-   DARK MODE (TWILIGHT) — Design Bible Palette
-   ========================================== */
-.dark {
-  --background: 224 48% 9%;          /* #0C1222 - night sky */
-  --foreground: 212 100% 97%;        /* #F0F7FF */
-
-  --card: 226 37% 13%;               /* #151B2E - dark indigo */
-  --card-foreground: 212 100% 97%;   /* #F0F7FF */
-  --popover: 226 37% 13%;
-  --popover-foreground: 212 100% 97%;
-
-  --primary: 153 35% 45%;            /* lighter moss for dark bg */
-  --primary-foreground: 136 100% 97%;
-
-  --secondary: 43 60% 45%;           /* lighter soil brown */
-  --secondary-foreground: 55 92% 95%;
-
-  --accent: 13 84% 69%;              /* coral stays vivid */
-  --accent-foreground: 55 92% 95%;
-
-  --muted: 226 30% 18%;
-  --muted-foreground: 215 16% 65%;
-
-  --destructive: 0 72% 45%;
-  --destructive-foreground: 0 0% 100%;
-
-  --border: 226 30% 22%;
-  --input: 226 30% 22%;
-  --ring: 153 35% 45%;
-
-  /* Status Colors (dark) */
-  --success: 153 35% 45%;
-  --success-foreground: 136 100% 97%;
-  --warning: 38 85% 55%;
-  --warning-foreground: 38 100% 10%;
-  --info: 212 70% 60%;
-  --info-foreground: 0 0% 100%;
-}
+/* NO DARK MODE — light-only for hackathon. See DESIGN-BIBLE.md for twilight palette if needed later. */
 
 /* ==========================================
    BASE LAYER
@@ -393,17 +405,25 @@ Here is the complete globals.css content to write:
     #FAF3E8 90%,      /* warm earth */
     #E8DCC8 100%      /* deep soil */
   );
+  background-attachment: fixed;  /* CRITICAL: gradient stays fixed as page scrolls */
   min-height: 100vh;
 }
 
-.dark .bg-crossbeam-gradient {
-  background: linear-gradient(180deg,
-    #0C1222 0%,       /* night sky */
-    #111827 20%,
-    #151B2E 50%,      /* dark indigo */
-    #1A1714 80%,
-    #1E1A14 100%      /* dark warm earth */
-  );
+/* ==========================================
+   TOPOGRAPHIC CONTOUR LINES (subtle sophistication)
+   ========================================== */
+.bg-topo-lines {
+  position: relative;
+}
+.bg-topo-lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q100 180 200 200 T400 200' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 160 Q100 140 200 160 T400 160' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 240 Q100 260 200 240 T400 240' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 120 Q100 100 200 120 T400 120' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 280 Q100 300 200 280 T400 280' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 80 Q150 60 250 80 T400 80' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 320 Q150 340 250 320 T400 320' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ==========================================
@@ -617,17 +637,19 @@ Here is the complete globals.css content to write:
 - The `:root` variables are HSL channels only (no `hsl()` wrapper) -- this is the shadcn convention.
 - The `@theme inline` block bridges these two formats.
 - Do NOT include any sidebar-related variables (CrossBeam has no sidebar).
+- Do NOT include `.dark` CSS block or `@custom-variant dark` -- this is light-mode only.
+- The gradient uses `background-attachment: fixed` so it stays anchored as the user scrolls.
+- The `.bg-topo-lines` class adds subtle topographic contour lines as a background texture. Use it on hero sections and landing page for sophistication.
 
 ---
 
 ### app/layout.tsx (REWRITE)
 
-Replace Mako's Inter + Geist Mono fonts with Playfair Display + Nunito. Apply the gradient background. Change branding to CrossBeam.
+Replace Mako's Inter + Geist Mono fonts with Playfair Display + Nunito. Apply the gradient background. Change branding to CrossBeam. **No ThemeProvider -- light-mode only.**
 
 ```tsx
 import type { Metadata } from "next"
 import { Playfair_Display, Nunito } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -655,13 +677,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${nunito.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${playfair.variable} ${nunito.variable}`}>
       <body className="antialiased bg-crossbeam-gradient">
-        <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   )
@@ -670,27 +688,115 @@ export default function RootLayout({
 
 **Key differences from Mako:**
 - Fonts: Playfair Display + Nunito (not Inter + Geist Mono)
-- Default theme: `"light"` (not `"dark"`)
-- Body class: `bg-crossbeam-gradient` (the sky-to-earth gradient)
+- NO ThemeProvider, NO `next-themes` -- light mode only
+- Body class: `bg-crossbeam-gradient` (the sky-to-earth gradient, fixed on scroll)
 - Metadata: CrossBeam branding
+- No `suppressHydrationWarning` (not needed without theme switching)
 
 ---
 
-### app/page.tsx (simple redirect)
+### app/page.tsx (REWRITE -- Landing Page with ADU Hero)
+
+This is the FIRST thing judges see. It must demonstrate the premium visual quality immediately. The ADU miniature is the hero — floating on the sky-to-earth gradient. Clean, sophisticated, Apple product page energy.
 
 ```tsx
-import { redirect } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { AduMiniature } from '@/components/adu-miniature'
+import { FileTextIcon, SearchIcon, ShieldCheckIcon } from 'lucide-react'
 
-export default function Home() {
-  redirect('/login')
+export default function LandingPage() {
+  return (
+    <div className="bg-topo-lines">
+      {/* Nav */}
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <span className="heading-card text-primary">CrossBeam</span>
+        <Link href="/login">
+          <Button variant="outline" size="sm" className="font-body">
+            Sign In
+          </Button>
+        </Link>
+      </nav>
+
+      {/* Hero */}
+      <section className="max-w-4xl mx-auto px-4 pt-12 pb-8 text-center space-y-6 animate-fade-up">
+        <h1 className="heading-display text-foreground">
+          Your ADU Permit, Simplified
+        </h1>
+        <p className="text-xl text-muted-foreground font-body max-w-2xl mx-auto">
+          AI-powered permit review for California ADUs. Get corrections interpreted,
+          code citations verified, and response letters drafted — in minutes, not weeks.
+        </p>
+        <Link href="/login">
+          <Button className="rounded-full px-10 py-6 text-lg font-bold font-body
+                             hover:shadow-[0_0_20px_rgba(45,106,79,0.15)]"
+                  size="lg">
+            Get Started
+          </Button>
+        </Link>
+      </section>
+
+      {/* ADU Hero Miniature — THE VISUAL CENTERPIECE */}
+      <section className="max-w-3xl mx-auto px-4 py-8 animate-fade-up stagger-1">
+        <AduMiniature variant="hero" />
+      </section>
+
+      {/* Feature Cards */}
+      <section className="max-w-5xl mx-auto px-4 pb-20 grid gap-6 md:grid-cols-3 animate-fade-up stagger-2">
+        <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
+          <CardContent className="p-6 space-y-3">
+            <FileTextIcon className="w-8 h-8 text-primary" />
+            <h3 className="heading-card text-foreground">Corrections Interpreter</h3>
+            <p className="text-muted-foreground font-body text-sm">
+              Upload your corrections letter. Get every item categorized, code-referenced, and explained in plain English.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
+          <CardContent className="p-6 space-y-3">
+            <SearchIcon className="w-8 h-8 text-primary" />
+            <h3 className="heading-card text-foreground">Code Verification</h3>
+            <p className="text-muted-foreground font-body text-sm">
+              Every correction cross-checked against California state law and your city's municipal code.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
+          <CardContent className="p-6 space-y-3">
+            <ShieldCheckIcon className="w-8 h-8 text-primary" />
+            <h3 className="heading-card text-foreground">Response Letter</h3>
+            <p className="text-muted-foreground font-body text-sm">
+              Professional response letter drafted automatically, ready for your engineer or architect.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border/30 py-6 text-center">
+        <p className="text-sm text-muted-foreground font-body">
+          Built with Claude Opus 4.6 · CrossBeam © 2026
+        </p>
+      </footer>
+    </div>
+  )
 }
 ```
+
+**Key design decisions:**
+- `bg-topo-lines` adds the subtle contour line texture to the entire page
+- `<AduMiniature variant="hero" />` renders a randomly-selected photorealistic miniature at 60% viewport width
+- Feature cards use Lucide icons (NOT miniatures — reserve those for flow cards)
+- `animate-fade-up` + stagger classes create the premium entrance sequence
+- No ADU miniatures in feature cards — those are for the persona/flow selection cards
 
 ---
 
 ### app/(auth)/login/page.tsx (REWRITE)
 
-This is the hackathon entry point. One-click judge login. No email/password form needed for the demo.
+This is the hackathon entry point. One-click judge login. No email/password form needed for the demo. Includes a small ADU miniature for visual continuity.
 
 ```tsx
 'use client'
@@ -700,6 +806,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { AduMiniature } from '@/components/adu-miniature'
 import { KeyIcon, Loader2Icon } from 'lucide-react'
 
 export default function LoginPage() {
@@ -745,6 +852,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
         <CardContent className="pt-10 pb-8 px-8 text-center space-y-8">
+          {/* ADU Miniature — small, accent size */}
+          <div className="flex justify-center">
+            <AduMiniature variant="accent" />
+          </div>
+
           {/* Branding */}
           <div className="space-y-2">
             <h1 className="heading-display text-foreground">CrossBeam</h1>
@@ -901,13 +1013,12 @@ export function NavBar({ userEmail }: NavBarProps) {
 
 ---
 
-### app/(dashboard)/dashboard/page.tsx (NEW -- Persona Cards)
+### app/(dashboard)/dashboard/page.tsx (NEW -- Persona Cards with ADU Miniatures)
 
-Two floating cards side by side. Each links to its demo project.
+Two floating cards side by side. Each links to its demo project. **Each card features a different ADU miniature — NOT a Lucide icon.** The miniatures are the visual star. Different ADU styles per card reinforce that these are different perspectives on a real building project.
 
 ```tsx
 import { PersonaCard } from '@/components/persona-card'
-import { BuildingIcon, HammerIcon } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -925,10 +1036,10 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Persona Cards */}
-      <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+      {/* Persona Cards — each with a different ADU miniature */}
+      <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
         <PersonaCard
-          icon={BuildingIcon}
+          aduImage="/images/adu/exterior-garage-2story.png"
           title="City Reviewer"
           description="I'm reviewing a permit submission. Help me pre-screen it against state + city code."
           projectName="742 Flint Ave ADU"
@@ -937,7 +1048,7 @@ export default function DashboardPage() {
           ctaText="Run AI Review"
         />
         <PersonaCard
-          icon={HammerIcon}
+          aduImage="/images/adu/exterior-whittier-2story.png"
           title="Contractor"
           description="I got a corrections letter back. Help me understand what to fix and build a response."
           projectName="742 Flint Ave ADU"
@@ -953,18 +1064,19 @@ export default function DashboardPage() {
 
 ---
 
-### components/persona-card.tsx (NEW)
+### components/persona-card.tsx (NEW -- with ADU Miniature, NOT Lucide icon)
 
-Floating card per Design Bible: deep soft shadows, generous padding, pill-shaped CTA.
+Floating card per Design Bible: deep soft shadows, generous padding, pill-shaped CTA. The ADU miniature at the top of each card replaces the old Lucide icon approach. The miniature IS the visual identity.
 
 ```tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRightIcon, type LucideIcon } from 'lucide-react'
+import { ArrowRightIcon } from 'lucide-react'
 
 interface PersonaCardProps {
-  icon: LucideIcon
+  aduImage: string         // Path to ADU miniature PNG (e.g., "/images/adu/exterior-garage-2story.png")
   title: string
   description: string
   projectName: string
@@ -974,7 +1086,7 @@ interface PersonaCardProps {
 }
 
 export function PersonaCard({
-  icon: Icon,
+  aduImage,
   title,
   description,
   projectName,
@@ -986,9 +1098,16 @@ export function PersonaCard({
     <Link href={`/projects/${projectId}`}>
       <Card className="hover-lift shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 cursor-pointer h-full">
         <CardContent className="p-8 space-y-6">
-          {/* Icon */}
-          <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-            <Icon className="w-7 h-7 text-primary" />
+          {/* ADU Miniature — the hero of the card */}
+          <div className="relative w-full h-48 flex items-center justify-center">
+            <Image
+              src={aduImage}
+              alt={title}
+              width={280}
+              height={200}
+              className="object-contain drop-shadow-lg"
+              quality={85}
+            />
           </div>
 
           {/* Title */}
@@ -1016,6 +1135,122 @@ export function PersonaCard({
   )
 }
 ```
+
+**Key change from original:** The Lucide icon (`BuildingIcon`, `HammerIcon`) is gone. Each card now features a photorealistic ADU miniature image at the top. The miniatures are different per card (city gets a 2-story garage ADU, contractor gets the Whittier modern) to reinforce different perspectives on the same project.
+
+---
+
+### components/adu-miniature.tsx (NEW -- Reusable ADU Visual Component)
+
+This is the design system's signature component. It renders a photorealistic ADU miniature with size variants. The component selects randomly from a curated pool so each page load feels fresh. Designed for easy video-swap later.
+
+```tsx
+'use client'
+
+import Image from 'next/image'
+import { useRandomAdu } from '@/hooks/use-random-adu'
+
+// All available ADU exterior images (from public/images/adu/)
+const ADU_EXTERIORS = [
+  '/images/adu/exterior-longbeach-modern.png',
+  '/images/adu/exterior-whittier-2story.png',
+  '/images/adu/exterior-lakewood-porch.png',
+  '/images/adu/exterior-sandimas-raised.png',
+  '/images/adu/exterior-signalhill-cottage.png',
+  '/images/adu/exterior-garage-2story.png',
+  '/images/adu/exterior-modern-box.png',
+]
+
+const VARIANT_CONFIG = {
+  hero: { width: 600, height: 420, className: 'max-w-[60vw]' },
+  card: { width: 280, height: 200, className: 'max-w-[280px]' },
+  accent: { width: 140, height: 100, className: 'max-w-[140px]' },
+  background: { width: 800, height: 560, className: 'max-w-full opacity-20' },
+} as const
+
+interface AduMiniatureProps {
+  variant: keyof typeof VARIANT_CONFIG
+  src?: string             // Override random selection with specific image
+  videoSrc?: string        // When ready: provide MP4 path to switch to <video> loop
+  alt?: string
+  className?: string
+}
+
+export function AduMiniature({
+  variant,
+  src,
+  videoSrc,
+  alt = 'ADU architectural miniature',
+  className = '',
+}: AduMiniatureProps) {
+  const randomSrc = useRandomAdu(ADU_EXTERIORS)
+  const imageSrc = src || randomSrc
+  const config = VARIANT_CONFIG[variant]
+
+  // Video swap: when videoSrc is provided, render <video> instead of <Image>
+  if (videoSrc) {
+    return (
+      <div className={`flex items-center justify-center ${config.className} ${className}`}>
+        <video
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="object-contain drop-shadow-lg w-full h-auto"
+          style={{ maxWidth: config.width, maxHeight: config.height }}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div className={`flex items-center justify-center ${config.className} ${className}`}>
+      <Image
+        src={imageSrc}
+        alt={alt}
+        width={config.width}
+        height={config.height}
+        className="object-contain drop-shadow-lg"
+        quality={85}
+        priority={variant === 'hero'}
+      />
+    </div>
+  )
+}
+```
+
+**Variant sizes:**
+| Variant | Width | Use Case |
+|---------|-------|----------|
+| `hero` | 60% viewport | Landing page hero, agent working screen |
+| `card` | 280px | Persona/flow selection cards |
+| `accent` | 140px | Login page, results header, corner decoration |
+| `background` | Full width, 20% opacity | Upload screen background |
+
+**Video swap architecture:** When video loops are ready, just pass `videoSrc="/videos/adu-spinning-01.mp4"` and the component switches from `<Image>` to `<video autoPlay loop muted playsInline>`. No other changes needed anywhere else.
+
+---
+
+### hooks/use-random-adu.ts (NEW -- Random Selection Hook)
+
+Returns a stable random selection per component mount. Uses `useState` with initializer to select once and stay consistent across re-renders.
+
+```ts
+'use client'
+
+import { useState } from 'react'
+
+export function useRandomAdu(pool: string[]): string {
+  const [selected] = useState(() => {
+    const index = Math.floor(Math.random() * pool.length)
+    return pool[index]
+  })
+  return selected
+}
+```
+
+This ensures the miniature doesn't change during re-renders or status polling updates, but WILL change on page navigation (each mount = new random pick). Different pages will naturally show different ADUs.
 
 ---
 
@@ -1099,12 +1334,39 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
    ```
    When status changes, update local state. Stop polling when status is `completed` or `failed`.
 
-2. **Render based on status:**
-   - `ready`: Show project header, file list, "Start Analysis" / "Run AI Review" button. Button calls POST to `/api/generate`.
-   - `processing` / `processing-phase1` / `processing-phase2`: Show `<ProgressPhases>` + `<AgentStream>` components. Show appropriate heading ("Reviewing plans..." / "Analyzing corrections..." / "Building your response...").
-   - `awaiting-answers`: Show `<ContractorQuestionsForm>`.
-   - `completed`: Fetch outputs, show `<ResultsViewer>`.
-   - `failed`: Show error card + "Retry" button.
+2. **Render based on status — every state features the ADU miniature:**
+   - `ready`: **THE READY STATE MUST SHINE.** This is the "before" moment. Large ADU miniature hero, project info in a clean card, file list, prominent pill-shaped CTA button ("Start Analysis" / "Run AI Review"). The CTA should be impossible to miss. See layout below.
+   - `processing` / `processing-phase1` / `processing-phase2`: ADU miniature center-stage (or video loop when ready) + `<ProgressPhases>` + `<AgentStream>`. Show appropriate heading in Playfair Display.
+   - `awaiting-answers`: Small ADU miniature as accent in top-right + `<ContractorQuestionsForm>`.
+   - `completed`: Small "completed" ADU miniature at top as celebration header + `<ResultsViewer>`. This is the "after" — the response package is ready.
+   - `failed`: Error card + "Retry" button (no miniature needed — keep it clean).
+
+**READY STATE LAYOUT (critical for demo):**
+
+```
+┌─────────────────────────────────────────────┐
+│         ┌─────────────────┐                 │
+│         │  ADU miniature   │                │
+│         │  (hero size)     │                │
+│         │  floating on     │                │
+│         │  gradient bg     │                │
+│         └─────────────────┘                 │
+│                                             │
+│   "742 Flint Ave ADU"  (Playfair Display)   │
+│   Buena Park, CA · Corrections Analysis     │
+│                                             │
+│   ┌────────────────────────────────┐        │
+│   │ Files:                          │        │
+│   │ 📄 corrections-letter.pdf      │        │
+│   │ 📄 plan-binder.pdf             │        │
+│   └────────────────────────────────┘        │
+│                                             │
+│        [🚀 Analyze Corrections]             │
+│        (big pill button, moss green)        │
+└─────────────────────────────────────────────┘
+```
+
+The ADU miniature uses `<AduMiniature variant="hero" />` — randomly selected, floating on the gradient. The CTA button is `rounded-full px-10 py-6 text-lg font-bold`.
 
 3. **"Start Analysis" button handler:**
    ```ts
@@ -1175,6 +1437,8 @@ Lay them out horizontally with a thin line connecting dots.
 ---
 
 ### components/agent-stream.tsx (ADAPT from Mako's agent-activity-log.tsx)
+
+**Design note:** The agent working screen is THE DEMO SCREEN. The ADU miniature sits above the progress phases and activity log, providing visual anchoring while the agent works. The miniature + progress dots + scrolling activity log = the "wow" moment for judges. See Design Bible screen layout #4.
 
 Fork Mako's `components/project/agent-activity-log.tsx` with these changes:
 
@@ -1260,7 +1524,15 @@ Renders when `project.status === 'awaiting-answers'`.
 
 ### components/results-viewer.tsx (NEW)
 
-Renders when `project.status === 'completed'`.
+Renders when `project.status === 'completed'`. Includes a small ADU miniature at the top as a "celebration" — the project is done, the house is built.
+
+```tsx
+// At the top of the results layout:
+<div className="text-center space-y-4 animate-fade-up">
+  <AduMiniature variant="accent" />
+  <h1 className="heading-display text-foreground">Your response package is ready</h1>
+</div>
+```
 
 1. **Fetch outputs:**
    ```ts
@@ -1553,12 +1825,14 @@ Read `DESIGN-BIBLE.md` before writing any code. These rules are non-negotiable:
 - Deep soft shadows on cards: `shadow-[0_8px_32px_rgba(28,25,23,0.08)]`
 - Generous whitespace: `p-6` minimum on cards, generous gaps
 - Pill-shaped primary CTAs: `rounded-full`
-- Sky-to-earth gradient background on root layout (`bg-crossbeam-gradient`)
+- Sky-to-earth gradient background on root layout (`bg-crossbeam-gradient`) with `background-attachment: fixed`
 - Card hover: `translateY(-2px)` + shadow deepens (200ms transition)
 - Button hover glow: `hover:shadow-[0_0_20px_rgba(45,106,79,0.15)]`
 - Status badges: pill-shaped (`rounded-full`), use semantic colors (success/warning/accent/destructive/info)
 - Maintain background/foreground pairs for contrast
-- Test both light and dark mode
+- **Use `<AduMiniature>` component for all ADU visuals — never raw `<img>` tags**
+- **Place ADU miniatures on every major screen** (landing hero, persona cards, agent working, results header, login accent)
+- **Use Next.js `<Image>` with `quality={85}`** for all ADU assets
 - Animations: smooth, subtle, purposeful. Max 500ms. Easing: `cubic-bezier(0.4, 0, 0.2, 1)` or `cubic-bezier(0, 0.55, 0.45, 1)`.
 
 ### NEVER
@@ -1572,30 +1846,58 @@ Read `DESIGN-BIBLE.md` before writing any code. These rules are non-negotiable:
 - Forget the `hsl()` wrapper in `@theme inline` (this breaks all Tailwind color utilities)
 - Create new files when you can edit existing ones
 - Add sidebar navigation (CrossBeam uses top nav only)
+- **Use Lucide icons where an ADU miniature should go** (persona cards, hero sections)
+- **Add dark mode** -- light-only for hackathon
+- **Import `next-themes` or `ThemeProvider`** -- not needed
 
 ---
 
-## Build Order
+## Build Order (Design + Engineering Interleaved)
 
-Execute in this order for the most efficient build:
+This build order mixes design and engineering so the app looks right from the first `npm run dev`. Each step produces a visually complete screen, not a wireframe that gets styled later.
 
-1. **Copy infrastructure files** (middleware, supabase clients, utils, shadcn components, configs)
-2. **Write globals.css** (Design Bible palette, @theme inline, gradient)
-3. **Write layout.tsx** (fonts, gradient, metadata)
-4. **Write types/database.ts** (CrossBeam schema types)
-5. **Write login page** (judge button + Google OAuth)
-6. **Write nav-bar component** (simple top nav)
-7. **Write dashboard layout** (protected, top nav)
-8. **Write persona-card component**
-9. **Write dashboard page** (two persona cards)
-10. **Write agent-stream component** (polling, message log)
-11. **Write progress-phases component** (progress dots)
-12. **Write project detail page** (status-driven rendering)
-13. **Write contractor-questions-form** (awaiting-answers state)
-14. **Write results-viewer** (completed state, markdown tabs)
-15. **Write API generate route** (Cloud Run proxy)
-16. **Test: `npm run dev`** -- verify login, dashboard, project pages render
-17. **Polish: hover effects, animations, dark mode**
+### Phase 1: Foundation (infrastructure + visual identity)
+
+1. **Image pipeline** -- Copy and compress ADU miniature PNGs into `frontend/public/images/adu/` (see Image Pipeline section above)
+2. **Copy infrastructure files** -- middleware, supabase clients, utils, shadcn components, configs (NOT theme-provider)
+3. **Write globals.css** -- Design Bible palette, `@theme inline`, gradient with `background-attachment: fixed`, topo lines, animations, typography utilities. NO dark mode.
+4. **Write layout.tsx** -- Playfair + Nunito fonts, `bg-crossbeam-gradient` body, CrossBeam metadata. NO ThemeProvider.
+5. **Write types/database.ts** -- CrossBeam schema types
+
+### Phase 2: First screens (design-forward — make it beautiful immediately)
+
+6. **Write `<AduMiniature>` component** -- Reusable component with `hero`, `card`, `accent`, `background` variants. Random selection from pool. Video-swap-ready architecture.
+7. **Write `useRandomAdu` hook** -- Stable random selection per mount
+8. **Write landing page** (`app/page.tsx`) -- Hero ADU miniature, headline, CTA, feature cards, topo lines background. **This is the first thing judges see.**
+9. **Write login page** -- Judge button + Google OAuth + accent ADU miniature
+10. **Test: `npm run dev`** -- verify landing page looks premium, gradient works on scroll, miniatures render
+
+### Phase 3: Dashboard flow (persona cards with miniatures)
+
+11. **Write nav-bar component** -- Simple top nav, CrossBeam branding
+12. **Write dashboard layout** -- Protected, top nav
+13. **Write persona-card component** -- ADU miniature hero in each card (NOT Lucide icons)
+14. **Write dashboard page** -- Two persona cards with different ADU styles
+15. **Test** -- verify dashboard renders, cards show miniatures, links work
+
+### Phase 4: The demo screen (agent working + status-driven rendering)
+
+16. **Write agent-stream component** -- Polling, message log, CSS animations
+17. **Write progress-phases component** -- Progress dots (`● ◉ ○`)
+18. **Write project detail client component** -- Status-driven rendering with ADU miniature on every state (hero on ready, center on processing, accent on results)
+19. **Write project detail server page** -- Data fetching wrapper
+20. **Test** -- verify ready state looks impressive, CTA is prominent
+
+### Phase 5: Completion screens
+
+21. **Write contractor-questions-form** -- Awaiting-answers state, accent miniature
+22. **Write results-viewer** -- Completed state, markdown tabs, accent miniature header
+23. **Write API generate route** -- Cloud Run proxy
+
+### Phase 6: Final check
+
+24. **Full flow test: `npm run dev`** -- Login → dashboard → project → (simulate status changes) → results
+25. **Polish: hover effects, animations, stagger timings** -- ensure all animations are smooth and purposeful
 
 ---
 
@@ -1610,11 +1912,14 @@ Execute in this order for the most efficient build:
 - No sidebar navigation
 - No signup page (judge button is sufficient)
 - No complex state management (use React state + polling)
+- No dark mode (no ThemeProvider, no `next-themes`, no `.dark` CSS)
+- No framer-motion animations (CSS only)
 
-This is a hackathon demo. Keep it focused: login, dashboard, project detail (status-driven), results. That is the entire app.
+This is a hackathon demo. Keep it focused: landing page, login, dashboard, project detail (status-driven), results. The ADU miniatures are on every screen. The gradient is the canvas. That is the entire app.
 
 ---
 
 *Brief written: Feb 13, 2026*
+*Revised: Feb 13, 2026 — Design integration pass (landing page, ADU miniatures, no dark mode, gradient fix, topo lines, image pipeline)*
 *For: Stream 2 Claude Code instance*
-*Author: Foreman Claude (orchestrating instance)*
+*Author: Foreman Claude (orchestrating instance) + Design Claude (design direction)*

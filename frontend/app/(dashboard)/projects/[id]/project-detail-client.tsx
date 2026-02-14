@@ -42,6 +42,19 @@ export function ProjectDetailClient({
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0)
   const supabase = useMemo(() => createClient(), [])
 
+  // DevTools phase control — listen for phase events from dev widget
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_DEV_TOOLS !== 'true') return
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail
+      if (typeof detail?.phase === 'number') {
+        setCurrentPhaseIndex(detail.phase)
+      }
+    }
+    window.addEventListener('devtools-phase', handler)
+    return () => window.removeEventListener('devtools-phase', handler)
+  }, [])
+
   // Status polling every 3 seconds
   useEffect(() => {
     if (TERMINAL_STATUSES.includes(project.status)) return
