@@ -81,7 +81,7 @@ export function ProjectDetailClient({
   // Status polling every 3 seconds
   useEffect(() => {
     if (TERMINAL_STATUSES.includes(project.status)) return
-    if (project.status === 'ready') return // Don't poll when idle
+    if (project.status === 'ready' && !starting) return // Don't poll when idle, but poll after clicking Start
 
     const interval = setInterval(async () => {
       const { data } = await supabase
@@ -97,7 +97,7 @@ export function ProjectDetailClient({
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [project.id, project.status, supabase])
+  }, [project.id, project.status, starting, supabase])
 
   const getPhases = useCallback(() => {
     if (project.flow_type === 'city-review') return CITY_PHASES
