@@ -108,9 +108,22 @@ Contractor responses to agent-generated questions.
 
 | Bucket | Contents |
 |--------|----------|
-| `crossbeam-demo-assets` | Pre-loaded demo files (Placentia plan binder, corrections letter PNGs) |
-| `crossbeam-uploads` | User-uploaded files |
+| `crossbeam-demo-assets` | Pre-loaded demo files (plan binder, corrections PNGs, pre-built archives) |
+| `crossbeam-uploads` | User-uploaded files + Cloud Run extraction archives |
 | `crossbeam-outputs` | Agent-generated PDFs and artifacts |
+
+### Archive Files
+
+Pre-extracted page PNGs and title block crops are stored as `.tar.gz` archives. These are created either:
+- **Demo projects:** Pre-built and uploaded to `crossbeam-demo-assets/placentia/`
+- **Real projects:** Created by Cloud Run extraction service, uploaded to `crossbeam-uploads/`
+
+File records use `file_type: 'other'`. The sandbox downloads and unpacks them automatically.
+
+| Archive | Contents | Typical Size |
+|---------|----------|------|
+| `pages-png.tar.gz` | Full-DPI page PNGs (7200×4800 at 200 DPI) | ~30MB |
+| `title-blocks.tar.gz` | Cropped title blocks (bottom-right 25%×35%) | ~1MB |
 
 ---
 

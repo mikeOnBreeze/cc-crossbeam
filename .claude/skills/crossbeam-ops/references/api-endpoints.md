@@ -138,6 +138,43 @@ curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
 
 ---
 
+## POST /api/extract
+
+Pre-extracts a project's PDF binder into page PNGs + title block crops on Cloud Run. The sandbox never needs system packages — all mechanical extraction happens here. **Idempotent:** skips if archives already exist.
+
+**Auth:** Bearer token or Supabase session
+**Content-Type:** application/json
+
+**Body:**
+```json
+{ "project_id": "UUID (required)" }
+```
+
+**Success (200):**
+```json
+{ "success": true, ... }
+```
+
+**What it does (async on Cloud Run):**
+1. Downloads the PDF binder from Supabase Storage
+2. Runs `pdftoppm` at 200 DPI → full-resolution page PNGs (7200×4800 for D-size sheets)
+3. Crops title blocks (bottom-right 25%×35%) using ImageMagick
+4. Creates `pages-png.tar.gz` and `title-blocks.tar.gz` archives
+5. Uploads archives to Supabase Storage (`crossbeam-uploads` bucket)
+6. Inserts file records with `file_type: 'other'`
+
+**Note:** This is also called automatically by `/api/generate` before the sandbox starts (for non-corrections-response flows). You can call it standalone to pre-extract before triggering the agent.
+
+**Example:**
+```bash
+curl -X POST https://cc-crossbeam.vercel.app/api/extract \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000002"}'
+```
+
+---
+
 ## Cloud Run Direct Access (No Auth)
 
 The Cloud Run server has no auth — it's meant to be called by the Next.js API. Agents can hit it directly for testing.
@@ -160,3 +197,12 @@ curl -X POST https://crossbeam-server-v7eqq3533a-uc.a.run.app/generate \
 ```
 
 Note: `user_id` is required here (Cloud Run validates with Zod). Use any valid UUID.
+
+### POST /extract
+Same body as `/api/extract`. Returns immediately with `{"status":"extracting","project_id":"..."}`.
+
+```bash
+curl -X POST https://crossbeam-server-v7eqq3533a-uc.a.run.app/extract \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000002"}'
+```

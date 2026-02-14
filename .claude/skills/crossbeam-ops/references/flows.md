@@ -6,7 +6,11 @@ relevance: "When you need to understand what each flow does, its phases, budgets
 
 # CrossBeam Flow Types
 
-Three flow types, two user-facing flows:
+Three flow types, two user-facing flows.
+
+**Architecture:** Cloud Run handles all mechanical file processing (PDF extraction, image cropping, archive creation). The Vercel Sandbox is purely for the AI agent — no system packages, no file conversion. Archives are downloaded and unpacked in the sandbox automatically.
+
+**Pipeline:** `/api/generate` → Cloud Run pre-extract (if needed) → create sandbox → download files → unpack archives → copy skills → run agent
 
 ## city-review
 
@@ -15,7 +19,8 @@ Three flow types, two user-facing flows:
 **Status progression:** `ready` → `processing` → `completed` / `failed`
 
 **Phases:**
-1. **Extract** — Build sheet manifest from plan binder PDF
+0. **Pre-Extract (Cloud Run)** — PDF → page PNGs + title block crops (automatic, before sandbox)
+1. **Sheet Manifest** — Read cover sheet, build sheet-to-page mapping
 2. **Research** — Look up state + city ADU requirements
 3. **Review** — Check each relevant sheet against code requirements
 4. **Generate** — Draft corrections letter with code citations
@@ -42,8 +47,9 @@ Three flow types, two user-facing flows:
 **Status progression:** `ready` → `processing-phase1` → `awaiting-answers` / `failed`
 
 **Phases:**
-1. **Extract** — Read corrections letter PNGs, parse individual items
-2. **Analyze** — Build sheet manifest, cross-reference plan pages
+0. **Pre-Extract (Cloud Run)** — PDF → page PNGs + title block crops (automatic, before sandbox)
+1. **Parse** — Read corrections letter PNGs, parse individual items
+2. **Analyze** — Read cover sheet, build sheet manifest, cross-reference plan pages
 3. **Research** — Look up state + city codes for each correction item
 4. **Categorize** — Sort items: contractor fix / needs engineer / already compliant
 5. **Prepare** — Generate contractor questions for ambiguous items

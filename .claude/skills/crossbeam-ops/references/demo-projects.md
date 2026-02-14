@@ -17,6 +17,8 @@ Pre-seeded projects for hackathon judging. Always available.
 - **Files:**
   - Plan binder PDF (32 pages, Placentia ADU)
   - Corrections letter PNGs (2 pages, from city plan check)
+  - `pages-png.tar.gz` — Pre-extracted page PNGs (full DPI, 7200×4800)
+  - `title-blocks.tar.gz` — Pre-cropped title blocks
 - **Storage:** `crossbeam-demo-assets/placentia/`
 
 ### City Review Project
@@ -25,6 +27,8 @@ Pre-seeded projects for hackathon judging. Always available.
 - **City:** Placentia
 - **Files:**
   - Plan binder PDF (same as contractor project)
+  - `pages-png.tar.gz` — Pre-extracted page PNGs (full DPI)
+  - `title-blocks.tar.gz` — Pre-cropped title blocks
 - **Storage:** `crossbeam-demo-assets/placentia/`
 
 ## Dev-Test Projects (dev-test mode only)
@@ -76,6 +80,8 @@ curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000
 | crossbeam-demo-assets | `placentia/plan-binder.pdf` | 32-page plan binder |
 | crossbeam-demo-assets | `placentia/corrections-letter-p1.png` | Corrections page 1 |
 | crossbeam-demo-assets | `placentia/corrections-letter-p2.png` | Corrections page 2 |
+| crossbeam-demo-assets | `placentia/pages-png.tar.gz` | Pre-extracted page PNGs (~30MB) |
+| crossbeam-demo-assets | `placentia/title-blocks.tar.gz` | Pre-cropped title blocks (~1MB) |
 | crossbeam-outputs | `{project_id}/...` | Agent-generated outputs |
 
 ## What a Successful Run Looks Like
