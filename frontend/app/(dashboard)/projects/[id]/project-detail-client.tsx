@@ -110,10 +110,10 @@ export function ProjectDetailClient({
   // READY STATE
   if (project.status === 'ready') {
     return (
-      <div className="space-y-8 animate-fade-up">
-        {/* Hero ADU Miniature */}
-        <div className="flex justify-center pt-4">
-          <AduMiniature variant="hero" />
+      <div className="space-y-4 animate-fade-up">
+        {/* ADU Miniature */}
+        <div className="flex justify-center pt-2">
+          <AduMiniature variant="card" />
         </div>
 
         {/* Project Info */}
@@ -189,14 +189,14 @@ export function ProjectDetailClient({
         : 'Analyzing corrections...'
 
     return (
-      <div className="space-y-8 animate-fade-up">
+      <div className="space-y-4 animate-fade-up">
         {/* ADU Miniature — center stage */}
-        <div className="flex justify-center pt-4">
-          <AduMiniature variant="hero" />
+        <div className="flex justify-center pt-2">
+          <AduMiniature variant="card" />
         </div>
 
         {/* Heading */}
-        <div className="text-center space-y-2">
+        <div className="text-center space-y-1">
           <h1 className="heading-section text-foreground">{heading}</h1>
           <p className="text-muted-foreground font-body">Usually takes 12-18 minutes</p>
         </div>
@@ -217,9 +217,6 @@ export function ProjectDetailClient({
     // ContractorQuestionsForm will be built in Phase 5
     return (
       <div className="space-y-6 animate-fade-up">
-        <div className="flex justify-center">
-          <AduMiniature variant="accent" />
-        </div>
         <div className="text-center">
           <h1 className="heading-section text-foreground">A few questions for you</h1>
           <p className="text-muted-foreground font-body mt-2">

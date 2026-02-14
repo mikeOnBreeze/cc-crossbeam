@@ -18,7 +18,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative z-10 max-w-4xl mx-auto px-4 pt-12 pb-8 text-center space-y-6 animate-fade-up">
+      <section className="relative z-10 max-w-4xl mx-auto px-4 pt-8 pb-2 text-center space-y-5 animate-fade-up">
         <h1 className="heading-display text-foreground">
           Your ADU Permit, Simplified
         </h1>
@@ -36,12 +36,12 @@ export default function LandingPage() {
       </section>
 
       {/* ADU Hero Miniature — THE VISUAL CENTERPIECE */}
-      <section className="relative z-10 max-w-3xl mx-auto px-4 py-8 animate-fade-up stagger-1">
+      <section className="relative z-10 max-w-3xl mx-auto px-4 py-2 animate-fade-up stagger-1">
         <AduMiniature variant="hero" />
       </section>
 
       {/* Feature Cards */}
-      <section className="relative z-10 max-w-5xl mx-auto px-4 pb-20 grid gap-6 md:grid-cols-3 animate-fade-up stagger-2">
+      <section className="relative z-10 max-w-5xl mx-auto px-4 pb-12 grid gap-6 md:grid-cols-3 animate-fade-up stagger-2">
         <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
           <CardContent className="p-6 space-y-3">
             <FileTextIcon className="w-8 h-8 text-primary" />

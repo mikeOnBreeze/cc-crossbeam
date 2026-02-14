@@ -100,6 +100,13 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
+  /* Smooth transitions for all buttons — makes hover shadows + colors animate */
+  button,
+  [role="button"] {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
 }
 
 /* ==========================================
@@ -107,12 +114,13 @@
    ========================================== */
 .bg-crossbeam-gradient {
   background: linear-gradient(180deg,
-    #F0F7FF 0%,      /* sky blue */
-    #FAFCFF 15%,
-    #FFFFFF 40%,      /* white middle */
-    #FFFDF8 70%,
-    #FAF3E8 90%,      /* warm earth */
-    #E8DCC8 100%      /* deep soil */
+    #F0F7FF 0%,       /* sky blue */
+    #FAFCFF 12%,
+    #FEFEFA 30%,      /* slightly warm white */
+    #FFFDF8 50%,      /* warm cream — pulled up */
+    #FAF3E8 68%,      /* warm earth — pulled up */
+    #E8DCC8 85%,      /* deep soil — pulled up */
+    #D9CCAF 100%      /* deeper soil at very bottom */
   );
   background-attachment: fixed;  /* CRITICAL: gradient stays fixed as page scrolls */
   min-height: 100vh;
@@ -128,9 +136,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q100 180 200 200 T400 200' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 160 Q100 140 200 160 T400 160' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 240 Q100 260 200 240 T400 240' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 120 Q100 100 200 120 T400 120' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 280 Q100 300 200 280 T400 280' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 80 Q150 60 250 80 T400 80' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3Cpath d='M0 320 Q150 340 250 320 T400 320' fill='none' stroke='%23D9CEBD' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q100 180 200 200 T400 200' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 160 Q100 140 200 160 T400 160' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 240 Q100 260 200 240 T400 240' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 120 Q100 100 200 120 T400 120' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 280 Q100 300 200 280 T400 280' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 80 Q150 60 250 80 T400 80' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3Cpath d='M0 320 Q150 340 250 320 T400 320' fill='none' stroke='%23D9CEBD' stroke-width='0.8'/%3E%3C/svg%3E");
   background-size: 400px 400px;
-  opacity: 0.15;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
 }

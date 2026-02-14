@@ -7,9 +7,9 @@ const DEMO_CONTRACTOR_PROJECT_ID = 'a0000000-0000-0000-0000-000000000002'
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-10 animate-fade-up">
+    <div className="space-y-6 animate-fade-up">
       {/* Heading */}
-      <div className="text-center space-y-2 pt-8">
+      <div className="text-center space-y-2 pt-2">
         <h1 className="heading-display text-foreground">Choose your perspective</h1>
         <p className="text-muted-foreground text-lg font-body">
           Select a demo scenario to see CrossBeam in action

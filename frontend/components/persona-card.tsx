@@ -28,7 +28,7 @@ export function PersonaCard({
       <Card className="hover-lift shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 cursor-pointer h-full">
         <CardContent className="p-8 space-y-6">
           {/* ADU Miniature — the hero of the card */}
-          <div className="relative w-full h-48 flex items-center justify-center">
+          <div className="relative w-full h-40 flex items-center justify-center">
             <Image
               src={aduImage}
               alt={title}
