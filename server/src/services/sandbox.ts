@@ -1,0 +1,687 @@
+import { Sandbox } from '@vercel/sandbox';
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import {
+  CONFIG,
+  SKIP_FILES,
+  SANDBOX_FILES_PATH,
+  SANDBOX_OUTPUT_PATH,
+  SANDBOX_SKILLS_BASE,
+  FLOW_SKILLS,
+  FLOW_BUDGET,
+  buildPrompt,
+  getSystemAppend,
+  type InternalFlowType,
+} from '../utils/config.js';
+import { insertMessage } from './supabase.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// --- Types ---
+
+interface FileToUpload {
+  relativePath: string;
+  content: Buffer;
+}
+
+interface ProjectFile {
+  filename: string;
+  storage_path: string;
+  file_type: string;
+}
+
+interface FileToDownload {
+  bucket: string;
+  storagePath: string;
+  targetFilename: string;
+}
+
+interface RunFlowOptions {
+  files: ProjectFile[];
+  flowType: InternalFlowType;
+  city: string;
+  address?: string;
+  apiKey: string;
+  supabaseUrl: string;
+  supabaseKey: string;
+  projectId: string;
+  userId: string;
+  contractorAnswersJson?: string;
+  phase1Artifacts?: Record<string, unknown>;
+}
+
+// --- Helpers ---
+
+function shouldSkipFile(filename: string): boolean {
+  return SKIP_FILES.includes(filename) || filename.startsWith('.');
+}
+
+function readSkillFilesFromDisk(flowType: InternalFlowType): Map<string, FileToUpload[]> {
+  const skillNames = FLOW_SKILLS[flowType];
+  const result = new Map<string, FileToUpload[]>();
+
+  for (const skillName of skillNames) {
+    const skillDir = path.join(__dirname, '../../skills', skillName);
+    const files: FileToUpload[] = [];
+
+    if (!fs.existsSync(skillDir)) {
+      console.warn(`Skill directory not found: ${skillDir}`);
+      continue;
+    }
+
+    function walk(currentPath: string, basePath: string) {
+      const entries = fs.readdirSync(currentPath, { withFileTypes: true });
+      for (const entry of entries) {
+        if (shouldSkipFile(entry.name)) continue;
+        const fullPath = path.join(currentPath, entry.name);
+        const relativePath = path.relative(basePath, fullPath);
+
+        if (entry.isDirectory()) {
+          walk(fullPath, basePath);
+        } else {
+          files.push({
+            relativePath,
+            content: fs.readFileSync(fullPath),
+          });
+        }
+      }
+    }
+
+    walk(skillDir, skillDir);
+    result.set(skillName, files);
+  }
+
+  return result;
+}
+
+// --- Sandbox Lifecycle ---
+
+async function createSandbox(): Promise<Sandbox> {
+  console.log('Creating Vercel Sandbox...');
+  const sandbox = await Sandbox.create({
+    teamId: process.env.VERCEL_TEAM_ID!,
+    projectId: process.env.VERCEL_PROJECT_ID!,
+    token: process.env.VERCEL_TOKEN!,
+    resources: { vcpus: CONFIG.SANDBOX_VCPUS },
+    timeout: CONFIG.SANDBOX_TIMEOUT,
+    runtime: CONFIG.RUNTIME,
+  });
+  console.log(`Sandbox created: ${sandbox.sandboxId}`);
+  return sandbox;
+}
+
+async function installDependencies(sandbox: Sandbox): Promise<void> {
+  console.log('Installing Claude Code CLI...');
+  const cliResult = await sandbox.runCommand({
+    cmd: 'npm',
+    args: ['install', '-g', '@anthropic-ai/claude-code'],
+    sudo: true,
+  });
+  if (cliResult.exitCode !== 0) {
+    throw new Error('Failed to install Claude Code CLI');
+  }
+
+  console.log('Installing Claude Agent SDK and Supabase...');
+  const sdkResult = await sandbox.runCommand({
+    cmd: 'npm',
+    args: ['install', '@anthropic-ai/claude-agent-sdk', '@supabase/supabase-js'],
+  });
+  if (sdkResult.exitCode !== 0) {
+    throw new Error('Failed to install Agent SDK');
+  }
+}
+
+// --- File Handling ---
+
+function buildDownloadManifest(files: ProjectFile[]): FileToDownload[] {
+  return files.map((f) => {
+    // Determine the bucket based on storage_path prefix
+    let bucket: string;
+    let storagePath: string;
+
+    if (f.storage_path.startsWith('crossbeam-demo-assets/')) {
+      bucket = 'crossbeam-demo-assets';
+      storagePath = f.storage_path.replace('crossbeam-demo-assets/', '');
+    } else if (f.storage_path.startsWith('crossbeam-uploads/')) {
+      bucket = 'crossbeam-uploads';
+      storagePath = f.storage_path.replace('crossbeam-uploads/', '');
+    } else {
+      // Fallback: treat the whole path as the storage path, use uploads bucket
+      bucket = 'crossbeam-uploads';
+      storagePath = f.storage_path;
+    }
+
+    return {
+      bucket,
+      storagePath,
+      targetFilename: f.filename,
+    };
+  });
+}
+
+async function downloadFilesInSandbox(
+  sandbox: Sandbox,
+  files: ProjectFile[],
+  supabaseUrl: string,
+  supabaseKey: string,
+): Promise<void> {
+  const filesToDownload = buildDownloadManifest(files);
+  console.log(`Setting up download of ${filesToDownload.length} files...`);
+
+  const downloadScript = `
+import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
+
+const supabase = createClient('${supabaseUrl}', '${supabaseKey}');
+const files = ${JSON.stringify(filesToDownload)};
+const basePath = '${SANDBOX_FILES_PATH}';
+
+async function downloadFiles() {
+  console.log('Starting download of ' + files.length + ' files from Supabase...');
+
+  let downloaded = 0;
+  let failed = 0;
+
+  for (const file of files) {
+    const targetPath = path.join(basePath, file.targetFilename);
+    const targetDir = path.dirname(targetPath);
+
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
+
+    try {
+      const { data, error } = await supabase.storage
+        .from(file.bucket)
+        .download(file.storagePath);
+
+      if (error) {
+        console.error('Error downloading ' + file.targetFilename + ':', error.message);
+        failed++;
+        continue;
+      }
+
+      const buffer = Buffer.from(await data.arrayBuffer());
+      fs.writeFileSync(targetPath, buffer);
+      downloaded++;
+      console.log('Downloaded: ' + file.targetFilename + ' from ' + file.bucket);
+    } catch (err) {
+      console.error('Failed to download ' + file.targetFilename + ':', err.message);
+      failed++;
+    }
+  }
+
+  console.log('Download complete: ' + downloaded + ' succeeded, ' + failed + ' failed');
+
+  if (failed > 0 && downloaded === 0) {
+    process.exit(1);
+  }
+}
+
+downloadFiles();
+`;
+
+  await sandbox.writeFiles([
+    { path: '/vercel/sandbox/download-files.mjs', content: Buffer.from(downloadScript) },
+  ]);
+
+  console.log('Running file download script in sandbox...');
+  const result = await sandbox.runCommand({
+    cmd: 'node',
+    args: ['download-files.mjs'],
+  });
+
+  const stdout = await result.stdout();
+  console.log(stdout.toString());
+
+  if (result.exitCode !== 0) {
+    const stderr = await result.stderr();
+    throw new Error(`Failed to download files: ${stderr.toString()}`);
+  }
+
+  console.log('Files downloaded successfully in sandbox');
+}
+
+// --- Skills ---
+
+async function copySkillsToSandbox(
+  sandbox: Sandbox,
+  flowType: InternalFlowType,
+): Promise<void> {
+  const skillsMap = readSkillFilesFromDisk(flowType);
+  let totalFiles = 0;
+
+  for (const [skillName, files] of skillsMap) {
+    const skillPath = `${SANDBOX_SKILLS_BASE}/${skillName}`;
+    console.log(`Copying skill ${skillName} (${files.length} files)...`);
+
+    // Get unique directories
+    const dirs = new Set<string>();
+    for (const file of files) {
+      const dir = path.dirname(file.relativePath);
+      if (dir !== '.') {
+        const parts = dir.split('/');
+        for (let i = 1; i <= parts.length; i++) {
+          dirs.add(parts.slice(0, i).join('/'));
+        }
+      }
+    }
+
+    // Create skill directory and subdirs
+    await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', skillPath] });
+    for (const dir of Array.from(dirs).sort()) {
+      await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', `${skillPath}/${dir}`] });
+    }
+
+    // Upload skill files
+    await sandbox.writeFiles(
+      files.map((file) => ({
+        path: `${skillPath}/${file.relativePath}`,
+        content: file.content,
+      }))
+    );
+
+    totalFiles += files.length;
+  }
+
+  console.log(`Copied ${skillsMap.size} skills (${totalFiles} total files) to sandbox`);
+}
+
+// --- Phase 1 Artifacts (for corrections-response) ---
+
+async function writePhase1Artifacts(
+  sandbox: Sandbox,
+  phase1Artifacts: Record<string, unknown>,
+  contractorAnswersJson: string,
+): Promise<void> {
+  // Create output directory
+  await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', SANDBOX_OUTPUT_PATH] });
+
+  // Write each artifact as a JSON file
+  const filesToWrite: Array<{ path: string; content: Buffer }> = [];
+
+  for (const [filename, content] of Object.entries(phase1Artifacts)) {
+    const jsonContent = typeof content === 'string' ? content : JSON.stringify(content, null, 2);
+    filesToWrite.push({
+      path: `${SANDBOX_OUTPUT_PATH}/${filename}`,
+      content: Buffer.from(jsonContent),
+    });
+  }
+
+  // Also write contractor_answers.json
+  filesToWrite.push({
+    path: `${SANDBOX_OUTPUT_PATH}/contractor_answers.json`,
+    content: Buffer.from(contractorAnswersJson),
+  });
+
+  await sandbox.writeFiles(filesToWrite);
+  console.log(`Wrote ${filesToWrite.length} Phase 1 artifacts + contractor answers to sandbox`);
+}
+
+// --- Agent Execution ---
+
+async function runAgent(
+  sandbox: Sandbox,
+  options: {
+    apiKey: string;
+    projectId: string;
+    userId: string;
+    supabaseUrl: string;
+    supabaseKey: string;
+    flowType: InternalFlowType;
+    city: string;
+    address?: string;
+    contractorAnswersJson?: string;
+  },
+): Promise<{ exitCode: number }> {
+  const {
+    apiKey, projectId, userId, supabaseUrl, supabaseKey,
+    flowType, city, address, contractorAnswersJson,
+  } = options;
+
+  const prompt = buildPrompt(flowType, city, address, contractorAnswersJson);
+  const budget = FLOW_BUDGET[flowType];
+  const systemAppend = getSystemAppend(flowType);
+
+  // Determine what status to set on completion
+  const completedStatus = flowType === 'corrections-analysis' ? 'awaiting-answers' : 'completed';
+  const flowPhase = flowType === 'city-review' ? 'review'
+    : flowType === 'corrections-analysis' ? 'analysis'
+    : 'response';
+
+  const agentScript = `
+import { query } from '@anthropic-ai/claude-agent-sdk';
+import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
+
+const supabase = createClient('${supabaseUrl}', '${supabaseKey}');
+const projectId = '${projectId}';
+const userId = '${userId}';
+const FILES_PATH = '${SANDBOX_FILES_PATH}';
+const OUTPUT_PATH = '${SANDBOX_OUTPUT_PATH}';
+
+// Fire-and-forget message logging
+function logMessage(role, content) {
+  supabase
+    .schema('crossbeam')
+    .from('messages')
+    .insert({ project_id: projectId, role, content })
+    .then(() => {})
+    .catch(err => console.error('Failed to log message:', err.message));
+}
+
+// Upload file to Supabase Storage
+async function uploadFile(filename, content) {
+  const storagePath = userId + '/' + projectId + '/' + filename;
+  const { error } = await supabase.storage
+    .from('crossbeam-outputs')
+    .upload(storagePath, content, { upsert: true });
+  if (error) {
+    console.error('Upload error for', filename, ':', error.message);
+    throw error;
+  }
+  console.log('Uploaded:', storagePath);
+  return storagePath;
+}
+
+// Read all output files from the output directory
+function readOutputFiles() {
+  if (!fs.existsSync(OUTPUT_PATH)) return {};
+  const result = {};
+  const files = fs.readdirSync(OUTPUT_PATH);
+  for (const file of files) {
+    const filePath = path.join(OUTPUT_PATH, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isFile()) {
+      try {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        try {
+          result[file] = JSON.parse(content);
+        } catch {
+          result[file] = content;
+        }
+      } catch {
+        console.log('Skipping binary file:', file);
+      }
+    }
+  }
+  return result;
+}
+
+// Create output record
+async function createOutputRecord(data) {
+  const { error } = await supabase
+    .schema('crossbeam')
+    .from('outputs')
+    .insert({
+      project_id: projectId,
+      flow_phase: '${flowPhase}',
+      version: 1,
+      ...data,
+    });
+  if (error) {
+    console.error('Failed to create output record:', error.message);
+    throw error;
+  }
+  console.log('Output record created');
+}
+
+// Insert contractor questions into contractor_answers table
+async function insertContractorQuestions(questions) {
+  if (!questions || !Array.isArray(questions)) {
+    console.log('No contractor questions to insert');
+    return;
+  }
+  const rows = questions.map(q => ({
+    project_id: projectId,
+    question_key: q.key || q.question_key || q.id || 'q_' + Math.random().toString(36).slice(2),
+    question_text: q.question || q.question_text || q.text || '',
+    question_type: q.type || 'text',
+    options: q.options ? JSON.stringify(q.options) : null,
+    context: q.context || q.why || null,
+    correction_item_id: q.correction_item_id || q.item_id || null,
+    is_answered: false,
+  }));
+
+  const { error } = await supabase
+    .schema('crossbeam')
+    .from('contractor_answers')
+    .insert(rows);
+
+  if (error) {
+    console.error('Failed to insert questions:', error.message);
+    throw error;
+  }
+  console.log('Inserted', rows.length, 'contractor questions');
+}
+
+// Update project status
+async function updateProjectStatus(status, errorMessage = null) {
+  const updateData = { status, updated_at: new Date().toISOString() };
+  if (errorMessage) updateData.error_message = errorMessage;
+  const { error } = await supabase
+    .schema('crossbeam')
+    .from('projects')
+    .update(updateData)
+    .eq('id', projectId);
+  if (error) {
+    console.error('Failed to update project status:', error.message);
+    throw error;
+  }
+  console.log('Project status updated to:', status);
+}
+
+async function runAgent() {
+  console.log('Agent starting...');
+  logMessage('system', 'Agent starting...');
+
+  const startTime = Date.now();
+
+  try {
+    const result = await query({
+      prompt: PROMPT_PLACEHOLDER,
+      options: {
+        permissionMode: 'bypassPermissions',
+        allowDangerouslySkipPermissions: true,
+        maxTurns: ${budget.maxTurns},
+        maxBudgetUsd: ${budget.maxBudgetUsd},
+        tools: { type: 'preset', preset: 'claude_code' },
+        systemPrompt: {
+          type: 'preset',
+          preset: 'claude_code',
+          append: ${JSON.stringify(systemAppend)},
+        },
+        settingSources: ['project'],
+        cwd: '/vercel/sandbox',
+        model: '${CONFIG.MODEL}',
+      },
+    });
+
+    let finalResult = null;
+    for await (const message of result) {
+      if (message.type === 'assistant') {
+        const content = message.message?.content;
+        if (Array.isArray(content)) {
+          for (const block of content) {
+            if (block.type === 'text' && block.text) {
+              const text = block.text.length > 200 ? block.text.substring(0, 200) + '...' : block.text;
+              console.log('Assistant:', text);
+              logMessage('assistant', text);
+            } else if (block.type === 'tool_use') {
+              console.log('Tool:', block.name);
+              logMessage('tool', block.name);
+            }
+          }
+        }
+      } else if (message.type === 'result') {
+        finalResult = message;
+        console.log('Result:', message.subtype);
+        console.log('Turns:', message.num_turns);
+        console.log('Cost: $' + (message.total_cost_usd || 0).toFixed(4));
+        logMessage('system', 'Completed in ' + message.num_turns + ' turns, cost: $' + (message.total_cost_usd || 0).toFixed(4));
+      }
+    }
+
+    // === RESILIENT UPLOAD PHASE ===
+    logMessage('system', 'Processing outputs...');
+
+    // Read all output files
+    const allFiles = readOutputFiles();
+    console.log('Found output files:', Object.keys(allFiles));
+
+    // Build output record based on flow phase
+    const outputData = {
+      raw_artifacts: allFiles,
+      agent_cost_usd: finalResult?.total_cost_usd || 0,
+      agent_turns: finalResult?.num_turns || 0,
+      agent_duration_ms: Date.now() - startTime,
+    };
+
+    const flowPhase = '${flowPhase}';
+
+    if (flowPhase === 'review') {
+      outputData.corrections_letter_md = allFiles['draft_corrections.md'] || null;
+      outputData.review_checklist_json = allFiles['draft_corrections.json'] || null;
+      if (fs.existsSync(path.join(OUTPUT_PATH, 'corrections_letter.pdf'))) {
+        const pdfContent = fs.readFileSync(path.join(OUTPUT_PATH, 'corrections_letter.pdf'));
+        outputData.corrections_letter_pdf_path = await uploadFile('corrections_letter.pdf', pdfContent);
+      }
+    } else if (flowPhase === 'analysis') {
+      outputData.corrections_analysis_json = allFiles['corrections_categorized.json'] || null;
+      outputData.contractor_questions_json = allFiles['contractor_questions.json'] || null;
+
+      // Insert contractor questions into contractor_answers table
+      const questions = allFiles['contractor_questions.json'];
+      if (questions) {
+        const questionsList = Array.isArray(questions) ? questions : questions.questions || [];
+        await insertContractorQuestions(questionsList);
+      }
+    } else if (flowPhase === 'response') {
+      outputData.response_letter_md = allFiles['response_letter.md'] || null;
+      outputData.professional_scope_md = allFiles['professional_scope.md'] || null;
+      outputData.corrections_report_md = allFiles['corrections_report.md'] || null;
+      if (fs.existsSync(path.join(OUTPUT_PATH, 'response_letter.pdf'))) {
+        const pdfContent = fs.readFileSync(path.join(OUTPUT_PATH, 'response_letter.pdf'));
+        outputData.response_letter_pdf_path = await uploadFile('response_letter.pdf', pdfContent);
+      }
+    }
+
+    // Create output record
+    await createOutputRecord(outputData);
+
+    // Update project status
+    await updateProjectStatus('${completedStatus}');
+    logMessage('system', 'Processing complete');
+
+    // Output result JSON for server-side parsing
+    console.log('\\n__RESULT_JSON__');
+    console.log(JSON.stringify({
+      success: finalResult?.subtype === 'success',
+      cost: finalResult?.total_cost_usd || 0,
+      turns: finalResult?.num_turns || 0,
+      duration: finalResult?.duration_ms || 0,
+      uploadedInSandbox: true,
+    }));
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+  } catch (error) {
+    console.error('Agent error:', error);
+    logMessage('system', 'Agent error: ' + error.message);
+    try {
+      await updateProjectStatus('failed', error.message);
+    } catch (statusErr) {
+      console.error('Failed to update status:', statusErr.message);
+    }
+    await new Promise(resolve => setTimeout(resolve, 500));
+    process.exit(1);
+  }
+}
+
+runAgent();
+`;
+
+  // Replace the placeholder prompt with the actual prompt
+  const finalScript = agentScript.replace(
+    'prompt: PROMPT_PLACEHOLDER,',
+    `prompt: ${JSON.stringify(prompt)},`,
+  );
+
+  await sandbox.writeFiles([
+    { path: '/vercel/sandbox/agent.mjs', content: Buffer.from(finalScript) },
+  ]);
+
+  console.log('Running agent...');
+  const result = await sandbox.runCommand({
+    cmd: 'node',
+    args: ['agent.mjs'],
+    env: { ANTHROPIC_API_KEY: apiKey },
+  });
+
+  return { exitCode: result.exitCode };
+}
+
+// --- Main Export ---
+
+export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
+  let sandbox: Sandbox | null = null;
+
+  try {
+    // Create sandbox
+    await insertMessage(options.projectId, 'system', 'Creating secure sandbox environment...');
+    sandbox = await createSandbox();
+
+    // Install dependencies
+    await insertMessage(options.projectId, 'system', 'Installing dependencies...');
+    await installDependencies(sandbox);
+
+    // Download project files
+    await insertMessage(options.projectId, 'system', `Downloading ${options.files.length} project files...`);
+    await downloadFilesInSandbox(
+      sandbox,
+      options.files,
+      options.supabaseUrl,
+      options.supabaseKey,
+    );
+
+    // For corrections-response: write Phase 1 artifacts + answers into sandbox
+    if (options.flowType === 'corrections-response' && options.phase1Artifacts && options.contractorAnswersJson) {
+      await insertMessage(options.projectId, 'system', 'Loading analysis artifacts...');
+      await writePhase1Artifacts(sandbox, options.phase1Artifacts, options.contractorAnswersJson);
+    }
+
+    // Copy skills
+    await insertMessage(options.projectId, 'system', 'Preparing AI agent...');
+    await copySkillsToSandbox(sandbox, options.flowType);
+
+    // Run agent
+    const flowLabel = options.flowType === 'city-review' ? 'plan review'
+      : options.flowType === 'corrections-analysis' ? 'corrections analysis'
+      : 'response generation';
+    await insertMessage(options.projectId, 'system', `Starting ${flowLabel}...`);
+
+    const result = await runAgent(sandbox, {
+      apiKey: options.apiKey,
+      projectId: options.projectId,
+      userId: options.userId,
+      supabaseUrl: options.supabaseUrl,
+      supabaseKey: options.supabaseKey,
+      flowType: options.flowType,
+      city: options.city,
+      address: options.address,
+      contractorAnswersJson: options.contractorAnswersJson,
+    });
+
+    console.log(`Agent completed with exit code: ${result.exitCode}`);
+
+  } finally {
+    if (sandbox) {
+      console.log('Stopping sandbox...');
+      await sandbox.stop();
+    }
+  }
+}

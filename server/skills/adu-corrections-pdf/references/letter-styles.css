@@ -1,0 +1,209 @@
+/* CrossBeam ADU Plan Review — Corrections Letter PDF Styles */
+/* Applied to markdown→HTML before PDF rendering */
+
+@page {
+  size: letter;
+  margin: 1in 0.75in;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+  color: #1a1a1a;
+  max-width: 100%;
+}
+
+/* --- Page Header --- */
+.letter-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #333;
+}
+
+.letter-header .city-name {
+  font-size: 14pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.letter-header .department {
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 2px 0 0 0;
+}
+
+.letter-header .document-type {
+  font-size: 10pt;
+  font-weight: normal;
+  color: #555;
+  margin: 8px 0 0 0;
+  font-style: italic;
+}
+
+/* --- Project Info Block --- */
+.project-info {
+  margin: 16px 0;
+  font-size: 9.5pt;
+}
+
+.project-info table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.project-info td:first-child {
+  font-weight: bold;
+  width: 160px;
+  padding: 2px 8px 2px 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.project-info td:last-child {
+  padding: 2px 0;
+}
+
+/* --- AI Notice Banner --- */
+blockquote, .ai-notice {
+  background: #fffde7;
+  border: 1px solid #f9a825;
+  border-left: 4px solid #f9a825;
+  padding: 10px 14px;
+  margin: 16px 0;
+  font-size: 9pt;
+  line-height: 1.4;
+}
+
+blockquote strong:first-child {
+  color: #e65100;
+}
+
+/* --- Section Headers --- */
+h2 {
+  font-size: 12pt;
+  font-weight: bold;
+  margin: 24px 0 8px 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #999;
+  color: #1a1a1a;
+  page-break-after: avoid;
+}
+
+/* --- Correction Items --- */
+h3 {
+  font-size: 10.5pt;
+  font-weight: bold;
+  margin: 16px 0 4px 0;
+  color: #1a1a1a;
+  page-break-after: avoid;
+}
+
+/* Item metadata line (Sheet, Confidence, Action) */
+h3 + p strong {
+  font-size: 9pt;
+}
+
+/* --- Confidence / Action Badges --- */
+/* These get applied via HTML class injection during markdown→HTML conversion */
+.badge {
+  display: inline-block;
+  font-size: 8pt;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-confirm {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.badge-verify {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+}
+
+.badge-reviewer {
+  background: #fce4ec;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.badge-complete {
+  background: #f5f5f5;
+  color: #616161;
+  border: 1px solid #bdbdbd;
+}
+
+/* --- Code Citations --- */
+p:last-of-type strong:first-child {
+  font-size: 9pt;
+  color: #37474f;
+}
+
+/* --- Tables --- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 8px 0;
+  font-size: 9pt;
+  page-break-inside: avoid;
+}
+
+th {
+  background: #f5f5f5;
+  font-weight: bold;
+  text-align: left;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  font-size: 8.5pt;
+}
+
+td {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+/* Highlight rows with issues */
+tr td strong {
+  color: #c62828;
+}
+
+/* --- Horizontal Rules (section dividers) --- */
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+/* --- Process Notes (informational) --- */
+h2:last-of-type ~ h3 {
+  color: #555;
+}
+
+/* --- Footer (rendered by Puppeteer displayHeaderFooter) --- */
+.page-footer {
+  font-size: 8pt;
+  color: #888;
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
+}
+
+/* --- Print Optimizations --- */
+@media print {
+  h2 { page-break-after: avoid; }
+  h3 { page-break-after: avoid; }
+  table { page-break-inside: avoid; }
+  .ai-notice { page-break-inside: avoid; }
+  blockquote { page-break-inside: avoid; }
+}
