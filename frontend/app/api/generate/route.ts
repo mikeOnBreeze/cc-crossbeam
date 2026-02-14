@@ -16,11 +16,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'project_id is required' }, { status: 400 })
     }
 
-    // Verify user owns this project
+    // Verify user owns this project (or it's a demo project)
     const { data: project, error: projectError } = await supabase
       .schema('crossbeam')
       .from('projects')
-      .select('id, user_id')
+      .select('id, user_id, is_demo')
       .eq('id', project_id)
       .single()
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 })
     }
 
-    if (project.user_id !== user.id) {
+    if (project.user_id !== user.id && !project.is_demo) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
     }
 

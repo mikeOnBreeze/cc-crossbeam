@@ -131,6 +131,28 @@ export function ProjectDetailClient({
     setStarting(false)
   }
 
+  // Full reset for demo projects — clears messages, outputs, answers, resets to ready
+  const [resetting, setResetting] = useState(false)
+  const handleReset = async () => {
+    setResetting(true)
+    try {
+      const res = await fetch('/api/reset-project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: project.id }),
+      })
+      if (res.ok) {
+        setProject(prev => ({ ...prev, status: 'ready', error_message: null }))
+        setStarting(false)
+        setCurrentPhaseIndex(0)
+      }
+    } catch {
+      // ignore
+    } finally {
+      setResetting(false)
+    }
+  }
+
   // READY STATE
   if (project.status === 'ready') {
     return (
@@ -255,8 +277,21 @@ export function ProjectDetailClient({
   // COMPLETED
   if (project.status === 'completed') {
     return (
-      <div className="animate-fade-up">
+      <div className="animate-fade-up space-y-6">
         <ResultsViewer projectId={project.id} flowType={project.flow_type} />
+        {project.is_demo && (
+          <div className="flex justify-center pb-8">
+            <Button
+              onClick={handleReset}
+              disabled={resetting}
+              variant="outline"
+              className="rounded-full font-body"
+            >
+              <RotateCcwIcon className="w-4 h-4 mr-2" />
+              {resetting ? 'Resetting...' : 'Reset & Run Again'}
+            </Button>
+          </div>
+        )}
       </div>
     )
   }
@@ -273,12 +308,13 @@ export function ProjectDetailClient({
               {project.error_message || 'The analysis encountered an error. Please try again.'}
             </p>
             <Button
-              onClick={handleRetry}
+              onClick={project.is_demo ? handleReset : handleRetry}
+              disabled={resetting}
               variant="outline"
               className="rounded-full font-body"
             >
               <RotateCcwIcon className="w-4 h-4 mr-2" />
-              Try Again
+              {resetting ? 'Resetting...' : 'Try Again'}
             </Button>
           </CardContent>
         </Card>
