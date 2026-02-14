@@ -57,22 +57,26 @@ export function DevTools() {
     }
   }, [pathname, projectId, router])
 
-  // Update project status in Supabase
+  // Update project status in Supabase + broadcast to page instantly
   const setProjectStatus = useCallback(
     async (status: ProjectStatus) => {
+      const errorMessage = status === 'failed' ? 'Demo error: testing the failed state UI' : null
+
       await supabase
         .schema('crossbeam')
         .from('projects')
-        .update({
-          status,
-          error_message:
-            status === 'failed' ? 'Demo error: testing the failed state UI' : null,
-        })
+        .update({ status, error_message: errorMessage })
         .eq('id', projectId)
 
       setCurrentState(status)
 
-      // Force the page to re-fetch server data
+      // Instant sync — tell the page to update without waiting for polling
+      window.dispatchEvent(
+        new CustomEvent('devtools-state-change', {
+          detail: { status, projectId, errorMessage },
+        })
+      )
+
       router.refresh()
     },
     [supabase, projectId, router]
@@ -122,17 +126,14 @@ export function DevTools() {
     [messages, supabase, projectId]
   )
 
-  // Go to a specific state
+  // Go to a specific state — always navigate to the project page
   const goToState = useCallback(
     async (state: ProjectStatus) => {
       setPlaying(false)
       setSliderValue(0)
       await clearMessages()
       await setProjectStatus(state)
-
-      if (state === 'processing') {
-        ensureOnProjectPage()
-      }
+      ensureOnProjectPage()
     },
     [clearMessages, setProjectStatus, ensureOnProjectPage]
   )

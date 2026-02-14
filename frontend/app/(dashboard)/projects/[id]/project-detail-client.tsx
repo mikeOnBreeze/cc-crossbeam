@@ -42,6 +42,30 @@ export function ProjectDetailClient({
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0)
   const supabase = useMemo(() => createClient(), [])
 
+  // Sync with server re-renders (e.g., after router.refresh())
+  useEffect(() => {
+    setProject(initialProject)
+    setStarting(false)
+  }, [initialProject.id, initialProject.status])
+
+  // DevTools instant state sync — no waiting for polling or server refresh
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { status, projectId, errorMessage } = (e as CustomEvent).detail
+      if (projectId === project.id) {
+        setProject(prev => ({
+          ...prev,
+          status,
+          error_message: errorMessage ?? null,
+        }))
+        setStarting(false)
+        setCurrentPhaseIndex(0)
+      }
+    }
+    window.addEventListener('devtools-state-change', handler)
+    return () => window.removeEventListener('devtools-state-change', handler)
+  }, [project.id])
+
   // DevTools phase control — listen for phase events from dev widget
   useEffect(() => {
     const handler = (e: Event) => {
@@ -57,6 +81,7 @@ export function ProjectDetailClient({
   // Status polling every 3 seconds
   useEffect(() => {
     if (TERMINAL_STATUSES.includes(project.status)) return
+    if (project.status === 'ready') return // Don't poll when idle
 
     const interval = setInterval(async () => {
       const { data } = await supabase
