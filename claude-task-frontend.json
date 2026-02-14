@@ -86,7 +86,7 @@
       "id": "phase-5",
       "name": "Completion Screens + API",
       "description": "Contractor questions form, results viewer with markdown tabs, and the API generate route. After this phase, every status state renders correctly.",
-      "status": "pending",
+      "status": "complete",
       "verification": {
         "description": "All status states render correctly with proper content",
         "steps": [
@@ -406,7 +406,7 @@
         "Pill-shaped 'Submit & Generate Response' button",
         "Card wrapper with standard floating shadow"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "completion-002",
@@ -422,7 +422,7 @@
         "Summary stats sidebar card: duration (formatted), agent turns, cost ($X.XX)",
         "Active tab: moss green underline (border-b-2 border-primary)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "completion-003",
@@ -437,7 +437,7 @@
         "Forward to CLOUD_RUN_URL with project_id, user_id, flow_type in body",
         "Handle errors gracefully — return appropriate status codes"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "polish-001",

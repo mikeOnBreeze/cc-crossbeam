@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge'
 import { AduMiniature } from '@/components/adu-miniature'
 import { AgentStream } from '@/components/agent-stream'
 import { ProgressPhases } from '@/components/progress-phases'
+import { ContractorQuestionsForm } from '@/components/contractor-questions-form'
+import { ResultsViewer } from '@/components/results-viewer'
 import type { Project, ProjectFile, ProjectStatus } from '@/types/database'
 import {
   FileTextIcon,
@@ -211,14 +213,7 @@ export function ProjectDetailClient({
             Our AI needs your input to build the best response
           </p>
         </div>
-        {/* ContractorQuestionsForm placeholder — built in Phase 5 */}
-        <div className="max-w-2xl mx-auto">
-          <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
-            <CardContent className="p-6 text-center text-muted-foreground font-body">
-              Questions form loading...
-            </CardContent>
-          </Card>
-        </div>
+        <ContractorQuestionsForm projectId={project.id} userId={userId} />
       </div>
     )
   }
@@ -238,14 +233,7 @@ export function ProjectDetailClient({
               : 'Your response package is ready'}
           </h1>
         </div>
-        {/* ResultsViewer placeholder — built in Phase 5 */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
-            <CardContent className="p-6 text-center text-muted-foreground font-body">
-              Results loading...
-            </CardContent>
-          </Card>
-        </div>
+        <ResultsViewer projectId={project.id} flowType={project.flow_type} />
       </div>
     )
   }
