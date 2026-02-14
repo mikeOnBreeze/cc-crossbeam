@@ -1,12 +1,10 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { authenticateRequest, getSupabaseForAuth } from '@/lib/api-auth'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-
-    if (!user) {
+    const auth = await authenticateRequest(request)
+    if (!auth.authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -15,6 +13,8 @@ export async function POST(request: Request) {
     if (!project_id) {
       return NextResponse.json({ error: 'project_id is required' }, { status: 400 })
     }
+
+    const supabase = await getSupabaseForAuth(auth)
 
     // Only allow resetting demo projects
     const { data: project, error: projectError } = await supabase

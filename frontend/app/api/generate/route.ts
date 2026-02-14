@@ -1,12 +1,10 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { authenticateRequest, getSupabaseForAuth } from '@/lib/api-auth'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-
-    if (!user) {
+    const auth = await authenticateRequest(request)
+    if (!auth.authenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -16,20 +14,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'project_id is required' }, { status: 400 })
     }
 
-    // Verify user owns this project (or it's a demo project)
-    const { data: project, error: projectError } = await supabase
-      .schema('crossbeam')
-      .from('projects')
-      .select('id, user_id, is_demo')
-      .eq('id', project_id)
-      .single()
+    // For browser auth: verify project ownership (existing behavior)
+    // For API key auth: skip ownership check (agent is trusted)
+    if (!auth.isApiKey) {
+      const supabase = await getSupabaseForAuth(auth)
+      const { data: project, error: projectError } = await supabase
+        .schema('crossbeam')
+        .from('projects')
+        .select('id, user_id, is_demo')
+        .eq('id', project_id)
+        .single()
 
-    if (projectError || !project) {
-      return NextResponse.json({ error: 'Project not found' }, { status: 404 })
-    }
+      if (projectError || !project) {
+        return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+      }
 
-    if (project.user_id !== user.id && !project.is_demo) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+      if (project.user_id !== auth.userId && !project.is_demo) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+      }
     }
 
     // Get Cloud Run URL from environment
@@ -47,6 +49,12 @@ export async function POST(request: Request) {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 30000)
 
+      // API key path: use user_id from request body
+      // Browser path: use authenticated user's ID
+      const effectiveUserId = auth.isApiKey
+        ? (user_id || '00000000-0000-0000-0000-000000000000')
+        : auth.userId
+
       const response = await fetch(`${cloudRunUrl}/generate`, {
         method: 'POST',
         headers: {
@@ -54,7 +62,7 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify({
           project_id,
-          user_id: user.id,
+          user_id: effectiveUserId,
           flow_type,
         }),
         signal: controller.signal,

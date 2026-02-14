@@ -1,0 +1,162 @@
+---
+title: "API Endpoints Reference"
+category: operations
+relevance: "When triggering flows, checking status, getting results, or resetting projects via HTTP"
+---
+
+# CrossBeam API Endpoints
+
+All endpoints accept `Authorization: Bearer $CROSSBEAM_API_KEY` header. Browser users authenticate via Supabase session cookies instead.
+
+**Base URL (production):** `https://cc-crossbeam.vercel.app`
+**Base URL (local dev):** `http://localhost:3000`
+
+---
+
+## POST /api/generate
+
+Triggers an agent flow. Returns immediately — processing happens async on Cloud Run.
+
+**Auth:** Bearer token or Supabase session
+**Content-Type:** application/json
+
+**Body:**
+```json
+{
+  "project_id": "UUID (required)",
+  "user_id": "UUID (optional for API key, defaults to zero UUID)",
+  "flow_type": "city-review | corrections-analysis | corrections-response"
+}
+```
+
+**Success (200):**
+```json
+{ "success": true, "message": "Generation started" }
+```
+
+**Errors:**
+- 400: Missing project_id
+- 401: No auth / bad API key
+- 403: User doesn't own project (browser auth only)
+- 404: Project not found
+- 500: CLOUD_RUN_URL not configured
+- 502: Can't reach Cloud Run
+- 504: Cloud Run timeout (30s — server may be cold-starting)
+
+**Example:**
+```bash
+curl -X POST https://cc-crossbeam.vercel.app/api/generate \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000002","flow_type":"corrections-analysis"}'
+```
+
+---
+
+## GET /api/projects/:id
+
+Returns project + messages + latest output + files + contractor answers in one call. The "check on everything" endpoint.
+
+**Auth:** Bearer token or Supabase session
+
+**Response (200):**
+```json
+{
+  "project": {
+    "id": "UUID",
+    "user_id": "UUID",
+    "flow_type": "corrections-analysis",
+    "project_name": "...",
+    "status": "processing-phase1",
+    "city": "Placentia",
+    "is_demo": true,
+    "error_message": null,
+    "created_at": "...",
+    "updated_at": "..."
+  },
+  "files": [
+    { "id": "UUID", "filename": "plan-binder.pdf", "file_type": "plan-binder", "storage_path": "..." }
+  ],
+  "messages": [
+    { "id": 1, "role": "system", "content": "Agent starting...", "created_at": "..." },
+    { "id": 2, "role": "assistant", "content": "Reading corrections letter...", "created_at": "..." }
+  ],
+  "latest_output": {
+    "id": "UUID",
+    "flow_phase": "analysis",
+    "raw_artifacts": { ... },
+    "agent_cost_usd": 2.34,
+    "agent_turns": 15,
+    "agent_duration_ms": 180000
+  },
+  "contractor_answers": [
+    { "question_key": "q1", "question_text": "...", "answer_text": "...", "is_answered": true }
+  ]
+}
+```
+
+**Polling pattern:**
+```bash
+# Loop until status is "completed", "awaiting-answers", or "failed"
+while true; do
+  STATUS=$(curl -s https://cc-crossbeam.vercel.app/api/projects/$PROJECT_ID \
+    -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq -r '.project.status')
+  echo "Status: $STATUS"
+  if [[ "$STATUS" == "completed" || "$STATUS" == "awaiting-answers" || "$STATUS" == "failed" ]]; then
+    break
+  fi
+  sleep 10
+done
+```
+
+---
+
+## POST /api/reset-project
+
+Resets a demo project to "ready" state. Clears messages, outputs, and contractor answers.
+
+**Auth:** Bearer token or Supabase session
+**Constraint:** Only works on projects where `is_demo = true`
+
+**Body:**
+```json
+{ "project_id": "UUID (required)" }
+```
+
+**Success (200):**
+```json
+{ "success": true }
+```
+
+**Example:**
+```bash
+curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000002"}'
+```
+
+---
+
+## Cloud Run Direct Access (No Auth)
+
+The Cloud Run server has no auth — it's meant to be called by the Next.js API. Agents can hit it directly for testing.
+
+**Base URL:** `https://crossbeam-server-v7eqq3533a-uc.a.run.app`
+
+### GET /health
+```bash
+curl https://crossbeam-server-v7eqq3533a-uc.a.run.app/health
+# → {"status":"ok"}
+```
+
+### POST /generate
+Same body as `/api/generate`. Returns immediately with `{"status":"processing","project_id":"..."}`.
+
+```bash
+curl -X POST https://crossbeam-server-v7eqq3533a-uc.a.run.app/generate \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000002","user_id":"00000000-0000-0000-0000-000000000000","flow_type":"corrections-analysis"}'
+```
+
+Note: `user_id` is required here (Cloud Run validates with Zod). Use any valid UUID.
