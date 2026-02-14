@@ -1,0 +1,22 @@
+FROM node:22-slim
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy compiled code and skills
+COPY dist/ ./dist/
+COPY skills/ ./skills/
+
+# Set environment
+ENV NODE_ENV=production
+ENV PORT=8080
+
+EXPOSE 8080
+
+# Start server
+CMD ["node", "dist/index.js"]
