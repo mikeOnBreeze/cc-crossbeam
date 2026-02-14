@@ -133,3 +133,64 @@ The agent manual. When Claude loads this skill, it knows how to operate every pa
 ## Future: Per-User API Keys (Tier 2)
 
 When multi-user isolation is needed: `api_keys` table + self-signed JWT. Agent presents `cb_live_xxx` → hash lookup → get `user_id` → sign JWT → RLS works naturally. ~2.5 hrs. Not building now.
+
+---
+
+## Status: DONE (Feb 14, 2026)
+
+All implemented and verified on production. Commit `a6e5ca9`.
+
+**Working endpoints (tested with curl on cc-crossbeam.vercel.app):**
+- `GET /api/projects/:id` → 200 with full project JSON
+- `POST /api/generate` → 200, triggers Cloud Run, agent starts processing
+- `POST /api/reset-project` → 200, resets demo project
+- No auth → 401
+- Wrong key → 401
+- Non-existent project → 404
+
+**Production API key:** Set in Vercel env as `CROSSBEAM_API_KEY`. Value is in `vercel env pull --environment production`.
+
+**`crossbeam-ops` skill:** Live and auto-detected by Claude Code. 5 reference files covering API, data model, flows, UI navigation, and demo projects.
+
+---
+
+## Learnings & Gotchas
+
+### 1. `echo | vercel env add` adds a trailing newline to env var values
+
+**This broke auth for 30 minutes.** When you pipe with `echo "value" | vercel env add VAR production`, the newline from echo becomes part of the stored value. So the env var becomes `mykey\n` instead of `mykey`, and the Bearer token comparison silently fails.
+
+**Fix:** Always use `printf` (no trailing newline) instead of `echo`:
+```bash
+printf 'my-secret-value' | npx vercel env add MY_VAR production
+```
+
+This affected ALL env vars set via echo — including `CLOUD_RUN_URL`, which explains some earlier 502 errors.
+
+### 2. TypeScript: `@supabase/ssr` and `@supabase/supabase-js` client types are incompatible
+
+`createServerClient` (from `@supabase/ssr`) and `createClient` (from `@supabase/supabase-js`) return different types. Their `.schema()` methods are both valid but TypeScript can't unify the union. The build error:
+```
+Each member of the union type ... has signatures, but none of those signatures are compatible with each other.
+```
+
+**Fix:** Explicitly type the return as `SupabaseClient` and cast the SSR client:
+```typescript
+import { type SupabaseClient } from '@supabase/supabase-js'
+export async function getSupabaseForAuth(auth: AuthResult): Promise<SupabaseClient> {
+  // ...
+  return await createClient() as unknown as SupabaseClient
+}
+```
+
+### 3. Next.js middleware doesn't block API routes (good for us)
+
+The middleware at `frontend/middleware.ts` runs on all matched paths but only redirects for `/dashboard` and `/projects` page routes. API routes at `/api/*` pass through harmlessly — the middleware calls `updateSession()` which returns `user: null` when there are no cookies, but doesn't redirect.
+
+### 4. Vercel deployments need a redeploy after adding env vars
+
+Adding env vars via `vercel env add` doesn't restart the current deployment. The new values only take effect on the **next** deployment. If you add env vars and need them immediately, trigger a redeploy with `npx vercel --prod`.
+
+### 5. The corrections-analysis flow can exhaust its budget before finishing
+
+The first production test triggered corrections-analysis, which ran for ~6 minutes and was terminated before writing outputs. The flow launches 3+ parallel subagents (sheet manifest extraction, state law research, city discovery) all using Claude Opus — budget ($15) and turn limit (80) can be hit quickly. **This is a sandbox/agent config issue, not an API auth issue.**
