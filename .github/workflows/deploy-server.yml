@@ -58,7 +58,7 @@ jobs:
             --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
             --platform managed \
             --region $REGION \
-            --timeout 900 \
+            --timeout 3600 \
             --memory 2Gi \
             --cpu 2 \
             --concurrency 1 \

@@ -25,41 +25,81 @@ export type InternalFlowType = 'city-review' | 'corrections-analysis' | 'correct
 // --- Budget per Flow ---
 
 export const FLOW_BUDGET: Record<InternalFlowType, { maxTurns: number; maxBudgetUsd: number }> = {
-  'city-review':          { maxTurns: 100, maxBudgetUsd: 20.00 },
-  'corrections-analysis': { maxTurns: 80,  maxBudgetUsd: 15.00 },
-  'corrections-response': { maxTurns: 40,  maxBudgetUsd: 8.00  },
+  'city-review':          { maxTurns: 500, maxBudgetUsd: 50.00 },
+  'corrections-analysis': { maxTurns: 500, maxBudgetUsd: 50.00 },
+  'corrections-response': { maxTurns: 150, maxBudgetUsd: 20.00 },
 };
+
+// --- Onboarded Cities ---
+// Cities with dedicated, verified skill data. These use offline reference files
+// instead of web search — faster, more reliable, higher quality.
+// Key: city slug (lowercase, hyphenated). Value: skill directory name.
+export const ONBOARDED_CITIES: Record<string, string> = {
+  'placentia': 'placentia-adu',
+  'buena-park': 'buena-park-adu',
+};
+
+/** Normalize city name to slug for lookup */
+export function citySlug(city: string): string {
+  return city.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+/** Check if a city has a dedicated skill */
+export function isCityOnboarded(city: string): boolean {
+  return citySlug(city) in ONBOARDED_CITIES;
+}
+
+/** Get the skill name for an onboarded city */
+export function getCitySkillName(city: string): string | null {
+  return ONBOARDED_CITIES[citySlug(city)] ?? null;
+}
 
 // --- Skills per Flow ---
-// Which skill directories to copy into the sandbox for each flow type.
-// Skills are read from server/skills/<name>/ on disk.
+// Returns the skill list dynamically based on flow type and city.
+// City-review: NO web search — onboarded cities only, use dedicated skill.
+// Corrections-analysis: web search available as fallback, but onboarded cities use dedicated skill.
+// Corrections-response: no research needed — just generates deliverables.
 
-export const FLOW_SKILLS: Record<InternalFlowType, string[]> = {
-  'city-review': [
-    'california-adu',
-    'adu-plan-review',
-    'adu-targeted-page-viewer',
-    'adu-city-research',
-    'adu-corrections-pdf',
-    'buena-park-adu',
-    'placentia-adu',
-  ],
-  'corrections-analysis': [
-    'california-adu',
-    'adu-corrections-flow',
-    'adu-targeted-page-viewer',
-    'adu-city-research',
-    'adu-corrections-pdf',
-    'buena-park-adu',
-    'placentia-adu',
-  ],
-  'corrections-response': [
+export function getFlowSkills(flowType: InternalFlowType, city: string): string[] {
+  const citySkill = getCitySkillName(city);
+
+  if (flowType === 'city-review') {
+    // NO adu-city-research — city review only works with onboarded cities
+    const skills = [
+      'california-adu',
+      'adu-plan-review',
+      'adu-targeted-page-viewer',
+      'adu-corrections-pdf',
+    ];
+    if (citySkill) skills.push(citySkill);
+    return skills;
+  }
+
+  if (flowType === 'corrections-analysis') {
+    const skills = [
+      'california-adu',
+      'adu-corrections-flow',
+      'adu-targeted-page-viewer',
+      'adu-corrections-pdf',
+    ];
+    if (citySkill) {
+      // Onboarded city — use dedicated skill, skip web search
+      skills.push(citySkill);
+    } else {
+      // Non-onboarded city — need web search
+      skills.push('adu-city-research');
+    }
+    return skills;
+  }
+
+  // corrections-response — no research, just deliverables
+  const skills = [
     'california-adu',
     'adu-corrections-complete',
-    'buena-park-adu',
-    'placentia-adu',
-  ],
-};
+  ];
+  if (citySkill) skills.push(citySkill);
+  return skills;
+}
 
 // --- Prompt Builders ---
 
@@ -81,13 +121,27 @@ PRE-EXTRACTED DATA:
 - Go straight to reading the cover sheet and building the sheet manifest.
 ` : '';
 
+  // Build city routing instruction
+  const citySkillName = getCitySkillName(city);
+  const onboarded = isCityOnboarded(city);
+
   if (flowType === 'city-review') {
+    const cityRouting = onboarded
+      ? `CITY ROUTING: ${city} is an onboarded city with a dedicated skill (${citySkillName}).
+Use the ${citySkillName} skill reference files for ALL city-level research in Phase 3B.
+Do NOT use adu-city-research. Do NOT use WebSearch or WebFetch for city rules.
+The ${citySkillName} skill has complete, verified data — it is better than any web search.
+For Phase 3B, load the ${citySkillName} reference files and check findings against city-specific amendments, standard details, and IBs. This is Tier 3 (offline, ~30 sec).`
+      : `CITY ROUTING: ${city} is NOT an onboarded city. Use adu-city-research for city rules.`;
+
     return `You are reviewing an ADU permit submission from the city's perspective.
 
 PROJECT FILES: ${SANDBOX_FILES_PATH}/
 CITY: ${city}
 ${addressLine}
 ${preExtractedNotice}
+${cityRouting}
+
 Use the adu-plan-review skill to:
 1. Extract and catalog the plan pages from the PDF binder
 2. Research ${city} ADU requirements (state + city code)
@@ -112,12 +166,22 @@ YOU MUST COMPLETE ALL PHASES. The job is NOT done until these files exist:
   }
 
   if (flowType === 'corrections-analysis') {
+    const cityRouting = onboarded
+      ? `CITY ROUTING: ${city} is an onboarded city with a dedicated skill (${citySkillName}).
+For Phase 3B (city research), use the ${citySkillName} skill reference files INSTEAD of adu-city-research.
+Do NOT use WebSearch or WebFetch for city rules — the ${citySkillName} skill has complete, verified data.
+Load ${citySkillName} reference files and check corrections against city-specific amendments, standard details, and IBs.
+Skip Phase 3.5 (city extraction) and Browser Fallback entirely — they are not needed for onboarded cities.`
+      : `CITY ROUTING: ${city} is NOT an onboarded city. Use adu-city-research for Phase 3B city rules (Discovery → Extraction → optional Browser Fallback).`;
+
     return `You are analyzing corrections for an ADU permit on behalf of the contractor.
 
 PROJECT FILES: ${SANDBOX_FILES_PATH}/
 CITY: ${city}
 ${addressLine}
 ${preExtractedNotice}
+${cityRouting}
+
 The project-files directory contains:
 - A plan binder PDF (the original submittal)
 - Corrections letter PNG files (the city's correction items — may be multiple pages)

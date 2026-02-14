@@ -8,7 +8,7 @@ import {
   SANDBOX_FILES_PATH,
   SANDBOX_OUTPUT_PATH,
   SANDBOX_SKILLS_BASE,
-  FLOW_SKILLS,
+  getFlowSkills,
   FLOW_BUDGET,
   buildPrompt,
   getSystemAppend,
@@ -58,8 +58,7 @@ function shouldSkipFile(filename: string): boolean {
   return SKIP_FILES.includes(filename) || filename.startsWith('.');
 }
 
-function readSkillFilesFromDisk(flowType: InternalFlowType): Map<string, FileToUpload[]> {
-  const skillNames = FLOW_SKILLS[flowType];
+function readSkillFilesFromDisk(skillNames: string[]): Map<string, FileToUpload[]> {
   const result = new Map<string, FileToUpload[]>();
 
   for (const skillName of skillNames) {
@@ -99,7 +98,7 @@ function readSkillFilesFromDisk(flowType: InternalFlowType): Map<string, FileToU
 // --- Sandbox Lifecycle ---
 
 async function createSandbox(): Promise<Sandbox> {
-  console.log('Creating Vercel Sandbox...');
+  console.log(`Creating Vercel Sandbox (timeout: ${CONFIG.SANDBOX_TIMEOUT}ms, vcpus: ${CONFIG.SANDBOX_VCPUS})...`);
   const sandbox = await Sandbox.create({
     teamId: process.env.VERCEL_TEAM_ID!,
     projectId: process.env.VERCEL_PROJECT_ID!,
@@ -108,7 +107,13 @@ async function createSandbox(): Promise<Sandbox> {
     timeout: CONFIG.SANDBOX_TIMEOUT,
     runtime: CONFIG.RUNTIME,
   });
-  console.log(`Sandbox created: ${sandbox.sandboxId}`);
+  console.log(`Sandbox created: ${sandbox.sandboxId}, timeout: ${sandbox.timeout}ms`);
+  // Extend timeout to ensure we have the full 30 minutes
+  if (sandbox.timeout < CONFIG.SANDBOX_TIMEOUT) {
+    console.log(`Extending sandbox timeout from ${sandbox.timeout}ms to ${CONFIG.SANDBOX_TIMEOUT}ms`);
+    await sandbox.extendTimeout(CONFIG.SANDBOX_TIMEOUT - sandbox.timeout);
+    console.log(`Sandbox timeout after extension: ${sandbox.timeout}ms`);
+  }
   return sandbox;
 }
 
@@ -295,9 +300,9 @@ async function unpackArchivesInSandbox(
 
 async function copySkillsToSandbox(
   sandbox: Sandbox,
-  flowType: InternalFlowType,
+  skillNames: string[],
 ): Promise<void> {
-  const skillsMap = readSkillFilesFromDisk(flowType);
+  const skillsMap = readSkillFilesFromDisk(skillNames);
   let totalFiles = 0;
 
   for (const [skillName, files] of skillsMap) {
@@ -662,14 +667,50 @@ runAgent();
     { path: '/vercel/sandbox/agent.mjs', content: Buffer.from(finalScript) },
   ]);
 
-  console.log('Running agent...');
-  const result = await sandbox.runCommand({
+  console.log('Running agent in detached mode...');
+  const cmd = await sandbox.runCommand({
     cmd: 'node',
     args: ['agent.mjs'],
     env: { ANTHROPIC_API_KEY: apiKey },
+    detached: true,
   });
+  console.log(`Agent command started: ${cmd.cmdId}`);
 
-  return { exitCode: result.exitCode };
+  // Resilient wait loop — detached commands survive connection drops
+  let attempts = 0;
+  const MAX_WAIT_ATTEMPTS = 120; // 120 * 30s = 60 min max
+  while (true) {
+    try {
+      console.log(`Waiting for agent completion (attempt ${attempts + 1})...`);
+      const finished = await cmd.wait();
+      console.log(`Agent finished with exit code: ${finished.exitCode}`);
+      return { exitCode: finished.exitCode };
+    } catch (err: unknown) {
+      attempts++;
+      const errMsg = err instanceof Error ? err.message : String(err);
+      console.log(`Wait attempt ${attempts} failed: ${errMsg}`);
+
+      if (attempts >= MAX_WAIT_ATTEMPTS) {
+        throw new Error(`Agent wait failed after ${attempts} attempts: ${errMsg}`);
+      }
+
+      // Check if sandbox is still alive before retrying
+      try {
+        const sandboxStatus = sandbox.status;
+        console.log(`Sandbox status: ${sandboxStatus}`);
+        if (sandboxStatus !== 'running') {
+          throw new Error(`Sandbox is no longer running (status: ${sandboxStatus})`);
+        }
+      } catch (statusErr: unknown) {
+        const statusMsg = statusErr instanceof Error ? statusErr.message : String(statusErr);
+        console.log(`Could not check sandbox status: ${statusMsg}`);
+      }
+
+      // Wait before retrying
+      console.log('Retrying wait in 30 seconds...');
+      await new Promise(resolve => setTimeout(resolve, 30000));
+    }
+  }
 }
 
 // --- Main Export ---
@@ -679,41 +720,46 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
 
   try {
     // 1. Create sandbox
-    await insertMessage(options.projectId, 'system', 'Creating secure sandbox environment...');
     sandbox = await createSandbox();
+    await insertMessage(options.projectId, 'system', '[SANDBOX 1/7] Sandbox created');
 
     // 2. Install dependencies (no system packages — extraction happens on Cloud Run)
-    await insertMessage(options.projectId, 'system', 'Installing dependencies...');
     await installDependencies(sandbox, options.projectId);
+    await insertMessage(options.projectId, 'system', '[SANDBOX 2/7] Dependencies installed');
 
     // 3. Download project files (includes pre-extracted .tar.gz archives)
-    await insertMessage(options.projectId, 'system', `Downloading ${options.files.length} project files...`);
     await downloadFilesInSandbox(
       sandbox,
       options.files,
       options.supabaseUrl,
       options.supabaseKey,
     );
+    await insertMessage(options.projectId, 'system', `[SANDBOX 3/7] Downloaded ${options.files.length} files`);
 
     // 4. Unpack any .tar.gz archives (PNGs from Cloud Run extraction or demo pre-builds)
     await unpackArchivesInSandbox(sandbox, options.projectId);
+    await insertMessage(options.projectId, 'system', '[SANDBOX 4/7] Archives unpacked');
 
-    // 5. Copy skills
-    await insertMessage(options.projectId, 'system', 'Preparing AI agent...');
-    await copySkillsToSandbox(sandbox, options.flowType);
+    // 5. Copy skills (dynamic based on flow type + city)
+    const skillNames = getFlowSkills(options.flowType, options.city);
+    await copySkillsToSandbox(sandbox, skillNames);
+    await insertMessage(options.projectId, 'system', `[SANDBOX 5/7] Skills copied (${skillNames.length} skills: ${skillNames.join(', ')})`);
 
     // 6. For corrections-response: write Phase 1 artifacts + answers into sandbox
     if (options.flowType === 'corrections-response' && options.phase1Artifacts && options.contractorAnswersJson) {
-      await insertMessage(options.projectId, 'system', 'Loading analysis artifacts...');
       await writePhase1Artifacts(sandbox, options.phase1Artifacts, options.contractorAnswersJson);
+      await insertMessage(options.projectId, 'system', '[SANDBOX 6/7] Phase 1 artifacts loaded');
+    } else {
+      await insertMessage(options.projectId, 'system', '[SANDBOX 6/7] Setup complete');
     }
 
     // 7. Run agent
     const flowLabel = options.flowType === 'city-review' ? 'plan review'
       : options.flowType === 'corrections-analysis' ? 'corrections analysis'
       : 'response generation';
-    await insertMessage(options.projectId, 'system', `Starting ${flowLabel}...`);
+    await insertMessage(options.projectId, 'system', `[SANDBOX 7/7] Launching ${flowLabel} agent...`);
 
+    await insertMessage(options.projectId, 'system', 'Agent running in detached mode (connection-resilient)');
     const result = await runAgent(sandbox, {
       apiKey: options.apiKey,
       projectId: options.projectId,
