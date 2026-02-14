@@ -70,3 +70,57 @@ export function detectCompletedPhases(sessionDir: string): string[] {
 
   return phases;
 }
+
+/**
+ * Detect which city plan review phases have completed based on output files.
+ *
+ * Phase mapping (from adu-plan-review SKILL.md):
+ * - Phase 1: sheet-manifest.json + pages-png/
+ * - Phase 2: sheet_findings.json
+ * - Phase 3A: state_compliance.json
+ * - Phase 3B: city_compliance.json
+ * - Phase 4: draft_corrections.json + draft_corrections.md + review_summary.json
+ * - Phase 5: corrections_letter.pdf
+ */
+export function detectReviewPhases(sessionDir: string): string[] {
+  const phases: string[] = [];
+  const has = (file: string) => fs.existsSync(path.join(sessionDir, file));
+
+  if (has('sheet-manifest.json')) phases.push('Phase 1 (Extract & Map)');
+  if (has('sheet_findings.json')) phases.push('Phase 2 (Sheet Review)');
+  if (has('state_compliance.json')) phases.push('Phase 3A (State Law)');
+  if (has('city_compliance.json')) phases.push('Phase 3B (City Rules)');
+  if (has('draft_corrections.json') && has('draft_corrections.md')) {
+    phases.push('Phase 4 (Corrections Letter)');
+  }
+  if (has('review_summary.json')) phases.push('Phase 4 (Review Summary)');
+  if (has('corrections_letter.pdf')) phases.push('Phase 5 (PDF Generation)');
+
+  return phases;
+}
+
+/**
+ * Find a file in sessionDir by checking multiple naming patterns.
+ * Subagents name files however they want — accept multiple variants.
+ */
+export function findFileByPattern(
+  sessionDir: string,
+  patterns: { names: string[]; label: string },
+): string | null {
+  for (const name of patterns.names) {
+    const fp = path.join(sessionDir, name);
+    if (fs.existsSync(fp)) return fp;
+  }
+  return null;
+}
+
+/** Common file naming patterns for city review outputs. */
+export const REVIEW_FILE_PATTERNS = [
+  { names: ['sheet_findings.json', 'review_findings.json', 'sheet_review.json'], label: 'Sheet findings' },
+  { names: ['state_compliance.json', 'state_law_findings.json', 'state_verification.json'], label: 'State compliance' },
+  { names: ['city_compliance.json', 'city_findings.json', 'city_rules.json'], label: 'City compliance' },
+  { names: ['draft_corrections.json', 'corrections_draft.json', 'corrections.json'], label: 'Draft corrections (JSON)' },
+  { names: ['draft_corrections.md', 'corrections_letter.md', 'corrections_draft.md'], label: 'Draft corrections (MD)' },
+  { names: ['review_summary.json', 'summary.json', 'review_stats.json'], label: 'Review summary' },
+  { names: ['corrections_letter.pdf', 'draft_corrections.pdf', 'letter.pdf'], label: 'PDF' },
+];

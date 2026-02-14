@@ -4,9 +4,8 @@ import path from 'path';
 export const AGENTS_ROOT = path.resolve(import.meta.dirname, '../..');  // agents-crossbeam/
 export const PROJECT_ROOT = path.resolve(AGENTS_ROOT, '..');            // CC-Crossbeam/
 
-const CROSSBEAM_PROMPT = `You are CrossBeam, an AI ADU permit assistant for California.
-You help contractors respond to city corrections letters for ADU (Accessory Dwelling Unit) permits.
-Use available skills to research codes, analyze plans, and generate professional responses.
+const CROSSBEAM_PROMPT = `You are working on CrossBeam, an ADU permit assistant for California.
+Use available skills to research codes, analyze plans, and generate professional output.
 Always write output files to the session directory provided in the prompt.`;
 
 export const DEFAULT_TOOLS = [

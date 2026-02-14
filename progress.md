@@ -212,3 +212,56 @@ Been exploring isometric ADU building icons using fal-ai on the side. Love the l
 4. Don't over-design. Agent output quality > pretty UI. But make it look good.
 
 Solid day. Both flows functional, city economics validated, Agents SDK backend coming together. Heading to the gym. See you Friday.
+
+---
+
+## Friday, February 13 — 5:00 PM PST
+
+**Day 4. Planning & design done. Entering execution phase.**
+
+### Big Realization from Office Hours
+
+Asked the question: "What's better — deploy or polish?" Assumed they'd say polish. **They want deployment.** Glad I asked because my whole plan was local demo + good video + GitHub. Now deployment on Vercel is a must. Funny thing is, this is how I actually learned everything — by deploying, not just building local examples. GitHub repos that say "figure out deployment yourself" have always been useless to me.
+
+This is the **third (maybe fourth) time** building with the Agents SDK. First attempts when it was still called "Claude Code SDK" were a nightmare — no sandbox infrastructure, everything failed. Got burned. But the SDK has gotten a lot better since then, and we got Mako working great, so there's proven patterns now. Built-up trauma but also built-up knowledge.
+
+### What Got Done Today
+
+**Strategy & Architecture:**
+- `plan-strategy-0213.md` — full strategy doc (541 lines). Lays out the entire approach: Agents-CrossBeam goes into the Vercel Sandbox, harness wraps around it.
+- `plan-deploy.md` — deployment plan (756 lines). The full Vercel deployment story.
+- `plan-supabase-0213.md` — Supabase integration plan (395 lines). Database, storage, real-time.
+- `plan-supabase-feedback-0213.md` — feedback loop architecture (173 lines).
+- `learnings-agents-sdk.md` — consolidated learnings from all previous Agents SDK attempts.
+- `reference-mako.md` — reference from Mako (the demand letter app that actually works) to pattern-match against.
+
+**City Flow — Agents SDK:**
+- City plan review flow built into agents-crossbeam (`plan-review.ts`)
+- City-specific skills wired in (Placentia ADU, plan review, corrections PDF)
+- Test suite for city flow: smoke tests, skill reads, admin review, PDF generation, full review
+- Mock session data for testing
+
+**Design Bible:**
+- `DESIGN-BIBLE.md` created — the full visual design system.
+- Explored 4 design directions with generated mockups:
+  1. Golden Ground — warm, premium
+  2. Blueprint Precision — technical, clean
+  3. Magic Dirt — playful, the "dirt to house" metaphor
+  4. Hybrid Golden Magic — the winner, blending premium feel with the playful ADU building concept
+- 13 design mockups generated (landing, flow selection, upload, agent working, questions, results)
+- Super excited about this direction. The isometric ADU building animations during the agent's working phase are going to make the demo pop.
+
+### Tonight's Plan — The Big Push
+
+Working late tonight (targeting ~11 PM). This is THE night to push hard:
+
+1. **Build the full Next.js frontend** — using the Design Bible, wire everything together
+2. **Deploy to Vercel** — get the whole thing running: frontend + Agents SDK backend in Vercel Sandbox
+3. **Both flows working deployed** — contractor corrections + city plan review
+
+**If I hit 11 PM with deployment working on Vercel:**
+- Saturday = clean up, test thoroughly, capture demo video shots
+- Sunday = video editing, tie narrative together
+- Monday morning = last-minute polish, submit
+
+Feeling good. The planning is done. The skills are done. The Agents SDK flows work locally. Now it's execution. Let's go.

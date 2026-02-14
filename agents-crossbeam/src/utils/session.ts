@@ -14,7 +14,8 @@ export function createSession(prefix: string = 'session'): string {
 }
 
 /**
- * Returns an object with absolute paths to all 13 expected output files for a session.
+ * Returns an object with absolute paths to all 13 expected output files
+ * for a contractor corrections session.
  */
 export function getSessionFiles(sessionDir: string) {
   return {
@@ -33,5 +34,28 @@ export function getSessionFiles(sessionDir: string) {
     professionalScope: path.join(sessionDir, 'professional_scope.md'),
     correctionsReport: path.join(sessionDir, 'corrections_report.md'),
     sheetAnnotations: path.join(sessionDir, 'sheet_annotations.json'),
+  };
+}
+
+/**
+ * Returns an object with absolute paths to all expected output files
+ * for a city plan review session.
+ */
+export function getReviewSessionFiles(sessionDir: string) {
+  return {
+    // Phase 1: Extract & Map
+    sheetManifest: path.join(sessionDir, 'sheet-manifest.json'),
+    // Phase 2: Sheet-by-Sheet Review
+    sheetFindings: path.join(sessionDir, 'sheet_findings.json'),
+    // Phase 3: Code Compliance
+    stateCompliance: path.join(sessionDir, 'state_compliance.json'),
+    cityCompliance: path.join(sessionDir, 'city_compliance.json'),
+    // Phase 4: Draft Corrections Letter
+    draftCorrectionsJson: path.join(sessionDir, 'draft_corrections.json'),
+    draftCorrectionsMd: path.join(sessionDir, 'draft_corrections.md'),
+    reviewSummary: path.join(sessionDir, 'review_summary.json'),
+    // Phase 5: PDF Generation
+    correctionsLetterPdf: path.join(sessionDir, 'corrections_letter.pdf'),
+    qaScreenshot: path.join(sessionDir, 'qa_screenshot.png'),
   };
 }

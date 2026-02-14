@@ -13,8 +13,8 @@ A single `query()` call that:
 3. Reviews each sheet against code-grounded checklists via subagents (Phase 2)
 4. Verifies findings against state law + city rules (Phase 3)
 5. Generates a draft corrections letter with confidence flags (Phase 4)
-6. Optionally generates a formatted PDF (Phase 5 — nice-to-have)
-7. Returns `draft_corrections.json` + `draft_corrections.md` + `review_summary.json`
+6. Generates a professional formatted PDF with confidence badges (Phase 5)
+7. Returns `draft_corrections.json` + `draft_corrections.md` + `review_summary.json` + `corrections_letter.pdf`
 
 ### Context
 
@@ -56,7 +56,10 @@ What changes:
 1. Add 3 new skill symlinks (adu-plan-review, placentia-adu, adu-corrections-pdf)
 2. Add 1 new flow wrapper (`src/flows/plan-review.ts`)
 3. Add new test files (`test-l0c-smoke-city.ts`, `test-l1c-skill-invoke.ts`, etc.)
-4. Update `config.ts` system prompt to be flow-neutral
+4. ~~Update `config.ts` system prompt to be flow-neutral~~ **DONE** (2026-02-12)
+5. ~~Add `getReviewSessionFiles()` to session.ts~~ **DONE** (2026-02-12)
+6. ~~Add `detectReviewPhases()` + `findFileByPattern()` to verify.ts~~ **DONE** (2026-02-12)
+7. ~~Pre-extract PNGs + sheet manifest as fixtures~~ **DONE** — `test-assets/city-flow/mock-session/` (15 PNGs + manifest)
 
 ### Updated Skill Symlinks
 
@@ -102,7 +105,7 @@ query({
   ├── Phase 2: Sheet-by-sheet review (5 subagents)
   ├── Phase 3: Code compliance (2 concurrent subagents)
   ├── Phase 4: Generate draft corrections letter
-  └── (Phase 5: PDF generation — optional)
+  └── Phase 5: PDF generation + QA screenshot
         │
         ▼
   UI renders draft_corrections.md
@@ -128,17 +131,18 @@ The PDF is a key deliverable — city plan checkers expect a printed document, n
 
 ## System Prompt & Configuration
 
-### Updated System Prompt
+### System Prompt Architecture — DONE
 
-The current `CROSSBEAM_PROMPT` in config.ts is contractor-specific. We need to generalize it:
+Base prompt is minimal — project context only, no identity (Claude Code preset handles that):
 
 ```typescript
-// config.ts — updated
-const CROSSBEAM_PROMPT = `You are CrossBeam, an AI ADU permit assistant for California.
-You support both contractors responding to corrections and city plan checkers reviewing submittals.
+// config.ts — DONE (updated 2026-02-12)
+const CROSSBEAM_PROMPT = `You are working on CrossBeam, an ADU permit assistant for California.
 Use available skills to research codes, analyze plans, and generate professional output.
 Always write output files to the session directory provided in the prompt.`;
 ```
+
+Each flow adds role-specific instructions via `systemPromptAppend` (concatenated after the base by `createQueryOptions()`). The Claude Code preset system prompt is NOT overridden — our text is appended to it.
 
 The flow-specific context goes in `systemPromptAppend`:
 
@@ -271,10 +275,11 @@ Two subagents run concurrently after Phase 2 completes.
 - Catches false positives (e.g., conversion exemptions)
 - Output: `state_compliance.json`
 
-**3B — City Rules:**
-- Routes based on city skill availability:
-  - Tier 3 (onboarded): Reads `placentia-adu` reference files (~30 sec, offline)
-  - Tier 2 (web research): Uses `adu-city-research` skill modes 1-2-3 (~90 sec-3 min)
+**3B — City Rules (onboarded cities only for hackathon):**
+- City flow requires an onboarded city skill (Tier 3) — no web search needed
+- Reads `placentia-adu` or `buena-park-adu` reference files (~30 sec, offline)
+- Web search fallback (Tier 2) is a post-hackathon feature
+- This is the key simplification vs. contractor flow: no 14-min web search bottleneck
 - Output: `city_compliance.json`
 
 ### Phase 4: Generate Draft Corrections Letter (~2 min)
@@ -468,9 +473,11 @@ City research is the bottleneck in the contractor flow (14 min). For Placentia (
 
 1. Add 3 new symlinks to `agents-crossbeam/.claude/skills/`
 2. Verify symlinks resolve with `ls -la`
-3. Update `CROSSBEAM_PROMPT` in config.ts to be flow-neutral
-4. Write + run L0c smoke test
-5. **Gate:** Agent discovers all 9 skills including adu-plan-review
+3. ~~Update `CROSSBEAM_PROMPT` in config.ts to be flow-neutral~~ **DONE**
+4. ~~Add `getReviewSessionFiles()` to session.ts~~ **DONE**
+5. ~~Add `detectReviewPhases()` + `findFileByPattern()` to verify.ts~~ **DONE**
+6. Write + run L0c smoke test
+7. **Gate:** Agent discovers all 9 skills including adu-plan-review
 
 ### Phase B: Flow Wrapper + Phase 1 Test (~45 min)
 
@@ -482,8 +489,8 @@ City research is the bottleneck in the contractor flow (14 min). For Placentia (
 
 ### Phase C: Administrative Review Test (~1 hour)
 
-1. Pre-populate sheet manifest fixture (from L2c output) into `test-assets/city-flow/mock-session/`
-2. Write L3c administrative review test (with L3c shortcut — pre-populated manifest)
+1. ~~Pre-populate sheet manifest fixture~~ **DONE** — `test-assets/city-flow/mock-session/` has 15 PNGs + sheet-manifest.json
+2. Write L3c administrative review test (with L3c shortcut — pre-populated manifest + PNGs)
 3. Run L3c — verify cover sheet findings against checklist-cover.md expectations
 4. **Gate:** `draft_corrections.md` contains cover sheet corrections with code citations
 
@@ -519,61 +526,38 @@ This is doable in a single focused day. Phases A-D could run on Day 4 (Thu), Pha
 
 ---
 
-## Open Questions
+## Open Questions — RESOLVED
 
-### 1. Config.ts: Shared or Forked?
+### 1. Config.ts: Shared or Forked? → **RESOLVED: Shared (Option A)**
 
-**Option A (recommended):** Update the shared `CROSSBEAM_PROMPT` to be flow-neutral. Each flow adds its own context via `systemPromptAppend`. This keeps one config.ts for both contractor and city flows.
+**DONE.** Updated the shared `CROSSBEAM_PROMPT` to be flow-neutral. `systemPromptAppend` support was already built in. Zero risk to contractor flow — all changes are additive.
 
-**Option B:** Fork config.ts into `config-contractor.ts` and `config-city.ts`. More isolation but violates DRY.
+### 2. Subagent Skill Access → **RESOLVED: Read tool with file paths (Option A)**
 
-### 2. Subagent Skill Access
+Subagents use `Read` tool to load checklist files by absolute path. The main agent's prompt tells each subagent the full path. Path resolution works because `additionalDirectories: [PROJECT_ROOT]` includes the parent `CC-Crossbeam/` directory, which contains `adu-skill-development/skill/...`.
 
-From learnings doc: "subagents do NOT automatically inherit parent's skills." In the contractor flow, this wasn't an issue because subagents did web search / file reads, not skill invocations.
+**CRITICAL: Validate in L1c** — L1c must include a subagent variant that spawns a Task subagent to read a checklist file. If this fails, fall back to inlining checklist content in subagent prompts (Option B).
 
-For the city flow: Phase 2 subagents need checklist reference files. Two options:
-- **A (preferred):** Subagents use `Read` tool to load checklist files by path. The main agent's prompt tells each subagent the file path. No Skill tool needed.
-- **B (fallback):** Use the `agents` config to define named agents with checklist content inlined in their prompts. More control but larger prompt payloads.
+### 3. Checklist Reference File Access Path → **RESOLVED: Absolute paths via PROJECT_ROOT**
 
-Test this in L2c — if subagents can Read files from the skill directory, option A works.
-
-### 3. Checklist Reference File Access Path
-
-Subagents need to read checklist files. The files live at:
+Subagents access checklist files at:
 ```
-adu-skill-development/skill/adu-plan-review/references/checklist-cover.md
+${PROJECT_ROOT}/adu-skill-development/skill/adu-plan-review/references/checklist-cover.md
 ```
 
-Since `additionalDirectories: [PROJECT_ROOT]` includes the parent, this path should be accessible. But verify in L2c.
+This is within `additionalDirectories: [PROJECT_ROOT]` and should resolve. L1c validates this.
 
-### 4. Sheet-by-Sheet Review Without Checklists
+### 4. Sheet-by-Sheet Review Without Checklists → **RESOLVED: Option A (general knowledge)**
 
-For sheets that lack checklists (everything except cover sheet), the agent has two options:
-- **A:** Use general construction knowledge + state/city law skills to review
-- **B:** Skip review of those sheets and only produce cover sheet findings
+For sheets without checklists, the agent uses general construction knowledge + state/city law reference files. Flag all such findings as MEDIUM confidence. The CLI test proved 70% accuracy with this approach. Demo framing: "HIGH confidence = checklist-driven, MEDIUM = agent-assessed."
 
-The CLI test shows option A works well (70% accuracy). The SKILL.md could be updated to say: "If no checklist reference file exists for a sheet type, review using your construction knowledge and the california-adu reference files. Flag all findings as MEDIUM confidence."
+### 5. Named Agents vs. Task Tool → **RESOLVED: Task tool (proven pattern)**
 
-### 5. Named Agents vs. Task Tool for Phase 2 Subagents
+Stick with the Task tool approach. It's proven in the contractor flow. Named agents would introduce an untested pattern during a hackathon — not worth the risk.
 
-The `agents` parameter in `query()` options lets us pre-define named subagents:
+### 6. City Flow Scope → **RESOLVED: Onboarded cities only (Tier 3)**
 
-```typescript
-agents: {
-  "arch-reviewer-a": {
-    description: "Reviews cover sheet and floor plan against checklists",
-    prompt: "...(checklist content inlined)...",
-    tools: ["Read", "Write", "Glob"],  // No web access needed
-    model: "opus"
-  },
-  // ...
-}
-```
-
-**Pros:** Model control per subagent, explicit tool restrictions, structured prompts
-**Cons:** New pattern (untested in this project), large prompt payloads, more code
-
-**Recommendation:** Start with the Task tool approach (proven). Switch to named agents only if Task subagents can't access reference files.
+The city flow requires a pre-built city skill (e.g., `placentia-adu`, `buena-park-adu`). No web search needed — this eliminates the 14-minute city research bottleneck from the contractor flow. Web search fallback (Tier 2) is post-hackathon.
 
 ---
 

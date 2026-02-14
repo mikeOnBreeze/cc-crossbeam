@@ -243,15 +243,114 @@ const response = await runResponseGeneration({
 });
 ```
 
-## Applying This to the City Flow
+## City Flow Learnings (Added Feb 13)
 
-When building the city flow Agent SDK integration:
+We built the city plan review flow into the same `agents-crossbeam/` directory. Here's what we learned beyond the contractor flow:
+
+### 5. systemPromptAppend Works Great for Multi-Flow Projects
+
+The contractor flow doesn't use `systemPromptAppend` — it relies on the base `CROSSBEAM_PROMPT` alone. The city flow adds a role-specific append:
+
+```typescript
+const CITY_SYSTEM_PROMPT = `You are reviewing an ADU plan submittal from the city's perspective...`;
+
+createQueryOptions({
+  systemPromptAppend: CITY_SYSTEM_PROMPT,  // Concatenated after CROSSBEAM_PROMPT
+});
+```
+
+`config.ts` line 26-28 handles the concatenation. This keeps the base prompt flow-neutral while each flow adds its own identity. **Pattern: One shared config, flow-specific systemPromptAppend.**
+
+### 6. Manifest Path Rewriting is a Real Gotcha
+
+When pre-populating fixtures from `test-assets/city-flow/mock-session/`, the sheet manifest has relative file paths (`"file": "page-01.png"`). These must be rewritten to absolute paths pointing at the **session copy**, not the mock source:
+
+```typescript
+const destPngDir = path.join(sessionDir, 'pages-png');
+for (const sheet of manifestData.sheets) {
+  sheet.file = path.resolve(destPngDir, sheet.file);  // Session copy, NOT mock source
+}
+```
+
+The contractor L3 test does the same thing (lines 36-39). If you point at the mock source, it works for the main agent but subagents may not have access. **Always resolve to the session directory.**
+
+### 7. Subagent File Access Through Symlinks Works
+
+This was the #1 unknown going into the city flow build. L1c proved that Task subagents CAN read files through symlinked skill paths:
+
+```
+Checklist path: ${PROJECT_ROOT}/adu-skill-development/skill/adu-plan-review/references/checklist-cover.md
+```
+
+The subagent successfully read this file via absolute path. The `additionalDirectories: [PROJECT_ROOT]` setting in `createQueryOptions()` is what makes this work — it gives subagents access to the parent directory tree. **No need to inline checklist content in subagent prompts.**
+
+### 8. Single query() Beats Two-Call Pipelines When There's No Human Pause
+
+The contractor flow uses two `query()` calls with a human pause between them (contractor answers questions). The city flow has no natural pause point, so it uses a single `query()` call that runs all 4 phases continuously.
+
+Benefits:
+- Simpler error handling (one session to track)
+- Agent keeps full context across phases (can reference Phase 1 findings in Phase 4)
+- No need to serialize/deserialize state between calls
+
+**Rule: Use single `query()` for fully autonomous pipelines. Use multi-call for human-in-the-loop.**
+
+### 9. Onboarded Cities Are Way Faster and Cheaper
+
+| Approach | Duration | Cost | Web Search? |
+|----------|----------|------|------------|
+| Contractor flow (Placentia, live web) | 24 min | $6.54 | Yes — 14 min bottleneck |
+| City flow (Placentia, Tier 3 offline) | 20 min | $6.75 | No — reads local skill |
+
+The city flow with Placentia (onboarded, 12 reference files) ran the full 5-subagent review pipeline in 20 min with no web search. Contractor flow with live web search had a 14-min city research bottleneck. **Onboard every target city before the demo.**
+
+### 10. Test the Flow Wrapper Before the Expensive Test
+
+L3c used `runPlanReview()` (the flow wrapper) instead of raw `query()`. This caught any wrapper bugs at $2.19 instead of waiting for L4c at $6.75. The L4c test was just a scope upgrade (admin → full), not a wrapper validation.
+
+**Pattern: Your L3 test should use the flow wrapper, not raw query(). Then L4 is pure scope expansion.**
+
+### 11. Haiku Abbreviates Skill Lists — Relax Your Smoke Test Thresholds
+
+L0c initially failed because Haiku only listed 4 of 9 skills in its output text. The existing L0 contractor test already handled this with `≥3` threshold. For L0c we check that all 3 **new** city skills are found (strict) but only require `≥3` total skills (relaxed).
+
+**Pattern: Check critical new skills strictly. Check total skill count loosely — Haiku abbreviates.**
+
+### 12. Review Subagents Write Findings to Separate Files
+
+The 5 Phase 2 review subagents each wrote their own findings file (`findings-arch-a.json`, `findings-arch-b.json`, `findings-site.json`, `findings-structural.json`, `findings-energy.json`). The main agent then read all 5 and merged them into `sheet_findings.json` (100,767 bytes).
+
+This is different from the contractor flow where subagents wrote to a single shared file. **The merge step in Phase 4 is critical — it combines, deduplicates, and filters findings from multiple subagents.**
+
+### 13. PDF Generation is Cheap and Fast with reportlab
+
+L3d generated a 56KB, 6-page professional PDF with color-coded confidence badges for $0.74 in 4.2 min. The agent wrote a Python script using reportlab, ran it via Bash, then screenshotted page 1 with pdftoppm for QA.
+
+**Pattern: Let the agent write a one-off Python script for PDF generation. reportlab + pdftoppm is the winning combo. Don't overthink the PDF pipeline — it just works.**
+
+## City Flow Cost Benchmarks
+
+| Test | Subagents | Cost | Duration | Notes |
+|------|-----------|------|----------|-------|
+| L0c (smoke) | 0 | $0.02 | 14s | Haiku, skill discovery only |
+| L1c (skill read) | 1 | $0.10 | 62s | Haiku, subagent file access test |
+| L3c (admin review) | 3 | $2.19 | 6.6 min | Opus, cover sheet only, pre-populated fixtures |
+| L3d (PDF generation) | 0 | $0.74 | 4.2 min | Opus, markdown → 6-page PDF |
+| L4c (full pipeline) | 7 | $6.75 | 20.4 min | Opus, all 15 sheets, 5 review + 2 compliance subagents |
+
+**Total test ladder: $9.80** (estimated $18-30 — came in at 1/2 to 1/3 of budget).
+
+The city flow is significantly cheaper per subagent than expected. Opus with 7 subagents at $6.75 vs. contractor flow with 4 subagents at $5.48. Offline city research (Tier 3) eliminates the expensive web search bottleneck.
+
+## Applying This to Future Flows
+
+When building the next Agent SDK integration:
 
 1. **Start with the same scaffolding**: Copy the project structure, config.ts, session.ts, progress.ts, verify.ts. Change the system prompt and skill symlinks.
 
 2. **Build the test ladder bottom-up**: L0 → L1 → L2 → L3. Don't skip levels.
 
-3. **Create offline shortcuts early**: If the city flow has expensive phases (web research, PDF extraction), create pre-populated fixtures and offline skills so you can test orchestration cheaply.
+3. **Create offline shortcuts early**: If the flow has expensive phases (web research, PDF extraction), create pre-populated fixtures and offline skills so you can test orchestration cheaply.
 
 4. **Be explicit about completion**: In the prompt, list every file that must be written. Say "the job is not done until X, Y, and Z exist."
 
@@ -261,19 +360,41 @@ When building the city flow Agent SDK integration:
 
 7. **Restrict tools per skill**: If a skill doesn't need web access or Bash, remove those tools. Reduces cost, prevents unexpected behavior, and makes the agent more predictable.
 
-8. **Budget with headroom**: For multi-subagent Opus runs, budget 2-3x what you think you'll need. Skill 1 with 4 subagents needed $15 headroom even though it only used $5.48.
+8. **Budget with headroom**: For multi-subagent Opus runs, budget 2-3x what you think you'll need. Actual costs came in at 1/3 of budget both times.
+
+9. **Use systemPromptAppend for flow identity**: Keep the base prompt flow-neutral. Each flow adds its own role via systemPromptAppend.
+
+10. **Test the flow wrapper at L3, not L4**: Catch wrapper bugs at $2-3, not $10-20.
+
+11. **Onboard target cities**: Tier 3 (offline skill) eliminates web search bottlenecks. Worth 1-2 hours of research per city.
 
 ## File Reference
 
+### Shared Utilities
 | File | Purpose |
 |------|---------|
-| `agents-crossbeam/src/utils/config.ts` | Shared config factory — copy this first |
-| `agents-crossbeam/src/utils/session.ts` | Session directory management |
+| `agents-crossbeam/src/utils/config.ts` | Shared config factory (systemPromptAppend, tools, model) |
+| `agents-crossbeam/src/utils/session.ts` | Session dirs + file path helpers (both flows) |
 | `agents-crossbeam/src/utils/progress.ts` | Progress logging + SubagentTracker |
-| `agents-crossbeam/src/utils/verify.ts` | Post-run file verification |
-| `agents-crossbeam/src/flows/corrections-analysis.ts` | Skill 1 flow wrapper pattern |
-| `agents-crossbeam/src/flows/corrections-response.ts` | Skill 2 flow wrapper pattern (restricted tools) |
-| `agents-crossbeam/claude-task.json` | Phase-based task tracker (all 7 phases complete) |
-| `agents-crossbeam/claude-prompt.md` | Development prompt for the agent building this |
-| `plan-contractors-agents-sdk.md` | Architecture spec (the plan we followed) |
-| `testing-agents-sdk.md` | Testing strategy doc |
+| `agents-crossbeam/src/utils/verify.ts` | File verification + phase detection (both flows) |
+
+### Contractor Flow (Corrections Interpreter)
+| File | Purpose |
+|------|---------|
+| `agents-crossbeam/src/flows/corrections-analysis.ts` | Skill 1 flow wrapper |
+| `agents-crossbeam/src/flows/corrections-response.ts` | Skill 2 flow wrapper (restricted tools) |
+| `agents-crossbeam/src/tests/test-l0-smoke.ts` through `test-l4-full-pipeline.ts` | 6 test levels |
+| `plan-contractors-agents-sdk.md` | Architecture spec |
+| `testing-agents-sdk.md` | Testing strategy |
+
+### City Flow (Plan Review)
+| File | Purpose |
+|------|---------|
+| `agents-crossbeam/src/flows/plan-review.ts` | Single query() flow wrapper |
+| `agents-crossbeam/src/tests/test-l0c-smoke-city.ts` | Smoke test — 9 skills |
+| `agents-crossbeam/src/tests/test-l1c-skill-read.ts` | Skill read + subagent file access |
+| `agents-crossbeam/src/tests/test-l3c-admin-review.ts` | Admin review (cover sheet, pre-populated) |
+| `agents-crossbeam/src/tests/test-l3d-pdf-generation.ts` | PDF generation (isolated Phase 5) |
+| `agents-crossbeam/src/tests/test-l4c-full-review.ts` | Full pipeline acceptance |
+| `plan-city-agents-sdk.md` | Architecture spec |
+| `testing-agents-sdk-city.md` | Testing strategy |

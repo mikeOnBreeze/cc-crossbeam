@@ -26,27 +26,39 @@ This doc defines a layered testing approach for the city flow, adapted from the 
 | `adu-skill-development/skill/buena-park-adu/` | Onboarded city skill (partial) | Offline city shortcut |
 | `adu-skill-development/skill/adu-plan-review/references/checklist-cover.md` | Cover sheet review checklist (450 lines) | L3c administrative review |
 
-### What We Need to Create
+### Pre-Extracted Fixtures — READY
+
+**DONE (2026-02-12).** The following fixtures are pre-populated and ready for L3c shortcuts:
+
+| Asset | Status | Source |
+|-------|--------|--------|
+| `test-assets/city-flow/mock-session/sheet-manifest.json` | **READY** | Copied from contractor L4 session |
+| `test-assets/city-flow/mock-session/pages-png/` (15 PNGs) | **READY** | Copied from `test-assets/04-extract-test/` |
+| `test-assets/corrections/DRAFT-CORRECTIONS-1232-N-Jefferson.md` | **EXISTS** | CLI-generated draft (use for L3d Phase 5 input) |
+
+Sheet manifest has 15 sheets: CS, AIA.1, AIA.2, A1, A1.1, A2, A3, SN1, SN2, S1, S2, S3, T-1, T-2, T-3.
+
+**Additional pre-extracted sources (backup):**
+| Location | Pages | Project |
+|----------|-------|---------|
+| `test-assets/04-extract-test/pages-png/` | 15 PNGs | 1232 N Jefferson, Placentia (same project) |
+| `test-assets/05-extract-test/pages-png/` | 26 PNGs | 326 Flint Ave, Long Beach (different city) |
+| `agents-crossbeam/sessions/l4-*/pages-png/` | 15 PNGs + title blocks | 1232 N Jefferson (from contractor L4) |
+
+### What Still Needs to Be Created (After First Runs)
 
 | Asset | Purpose | How to Create |
 |-------|---------|---------------|
-| `test-assets/city-flow/mock-session/` | Pre-populated Phase 1-4 outputs for isolation testing | Copy from a successful L4c run |
-| `test-assets/city-flow/mock-session/sheet-manifest.json` | Sheet manifest fixture | Copy from L2c run or contractor L4 session |
-| `test-assets/city-flow/mock-session/sheet_findings.json` | Review findings fixture | Copy from L3c or L4c run |
-| `test-assets/city-flow/mock-session/draft_corrections.md` | Draft corrections for Phase 5 testing | Use existing DRAFT-CORRECTIONS-1232-N-Jefferson.md |
-| `test-assets/city-flow/mock-session/draft_corrections.json` | Structured corrections data | Copy from L4c run |
-| `test-assets/city-flow/plan-page-cover.png` | Single cover sheet page (pre-extracted) | Extract page 1 from Placentia binder |
-| Buena Park plan binder (if available) | Alternative test input | From user — not required for initial tests |
+| `test-assets/city-flow/mock-session/sheet_findings.json` | Review findings fixture for L3d/L4c isolation | Copy from first successful L3c run |
+| `test-assets/city-flow/mock-session/draft_corrections.json` | Structured corrections data | Copy from first successful L3c/L4c run |
 
-**Strategy:** We already have the Placentia binder and a CLI-generated draft corrections letter. That's enough to test every level. Run L2c first to get the sheet manifest, then L3c to get sheet findings, then use those outputs as fixtures for downstream isolation tests.
-
-The contractor flow's L4 session (`agents-crossbeam/sessions/l4-2026-02-13T01-16-14/`) has extracted PNGs and a sheet manifest we can reuse for Phase 1 shortcuts.
+These will be populated after the first L3c run succeeds — they're downstream fixtures, not blockers.
 
 ---
 
 ## Session Files — City Flow
 
-Different from the contractor flow. Need a separate `getReviewSessionFiles()` helper.
+Different from the contractor flow. **DONE** — `getReviewSessionFiles()` added to `session.ts` (2026-02-12).
 
 ```typescript
 export function getReviewSessionFiles(sessionDir: string) {
@@ -69,26 +81,11 @@ export function getReviewSessionFiles(sessionDir: string) {
 }
 ```
 
-### Phase Detection — City Flow
+### Phase Detection — City Flow — DONE
 
-```typescript
-export function detectReviewPhases(sessionDir: string): string[] {
-  const phases: string[] = [];
-  const has = (file: string) => fs.existsSync(path.join(sessionDir, file));
+**Added to `verify.ts`** (2026-02-12): `detectReviewPhases()`, `findFileByPattern()`, and `REVIEW_FILE_PATTERNS` constant.
 
-  if (has('sheet-manifest.json')) phases.push('Phase 1 (Extract & Map)');
-  if (has('sheet_findings.json')) phases.push('Phase 2 (Sheet Review)');
-  if (has('state_compliance.json')) phases.push('Phase 3A (State Law)');
-  if (has('city_compliance.json')) phases.push('Phase 3B (City Rules)');
-  if (has('draft_corrections.json') && has('draft_corrections.md')) {
-    phases.push('Phase 4 (Corrections Letter)');
-  }
-  if (has('review_summary.json')) phases.push('Phase 4 (Review Summary)');
-  if (has('corrections_letter.pdf')) phases.push('Phase 5 (PDF Generation)');
-
-  return phases;
-}
-```
+See `agents-crossbeam/src/utils/verify.ts` for implementation.
 
 ---
 
@@ -151,41 +148,52 @@ for await (const msg of q) {
 
 ---
 
-### L1c: Skill Read + Checklist Access (~1-2 min, ~$0.50)
+### L1c: Skill Read + Checklist Access + Subagent File Access (~1-2 min, ~$0.50)
 
-**What it tests:** Can the agent read the adu-plan-review skill AND access its checklist reference files? This is the critical path — if the agent can't reach reference files inside the skill directory, Phase 2 review can't work.
+**What it tests:** Can the agent read the adu-plan-review skill AND access its checklist reference files? **CRITICAL: Also tests whether a Task subagent can read checklist files** — this is the #1 risk for Phase 2 review subagents.
 
 ```typescript
 // tests/test-l1c-skill-read.ts
 import { query } from '@anthropic-ai/claude-agent-sdk';
-import { createQueryOptions } from '../utils/config.ts';
+import { createQueryOptions, PROJECT_ROOT } from '../utils/config.ts';
 import { createSession } from '../utils/session.ts';
 import fs from 'fs';
 import path from 'path';
 
 const sessionDir = createSession('l1c');
-console.log('=== L1c: Skill Read + Checklist Access ===\n');
+const checklistPath = `${PROJECT_ROOT}/adu-skill-development/skill/adu-plan-review/references/checklist-cover.md`;
+
+console.log('=== L1c: Skill Read + Checklist Access + Subagent File Access ===\n');
 console.log(`Session: ${sessionDir}\n`);
 
 const q = query({
-  prompt: `Do three things:
+  prompt: `Do FOUR things:
 
 1. Read the adu-plan-review skill and tell me how many phases it has.
-2. Read the checklist reference file at adu-plan-review/references/checklist-cover.md
-   and count how many check categories exist (e.g., "1. Architect/Engineer Stamps").
+2. Read the checklist reference file at:
+   ${checklistPath}
+   Count how many check categories exist (e.g., "1. Architect/Engineer Stamps").
 3. Read the placentia-adu skill and list the reference files it contains.
+4. **CRITICAL TEST:** Spawn a Task subagent. The subagent must:
+   a. Read the file at: ${checklistPath}
+   b. Count the number of categories
+   c. Write its count to: ${sessionDir}/subagent-check.json
+   Format: { "categories_found": number, "first_category": "string" }
+   The subagent should have access to Read and Write tools.
 
-Write your findings as JSON to: ${sessionDir}/skill-check.json
+Write YOUR findings (steps 1-3) as JSON to: ${sessionDir}/skill-check.json
 
 Format:
 {
   "plan_review_phases": number,
   "checklist_categories": number,
   "placentia_reference_files": string[]
-}`,
+}
+
+Wait for the subagent to complete before finishing.`,
   options: {
     ...createQueryOptions({ model: 'claude-haiku-4-5-20251001' }),
-    maxTurns: 15,
+    maxTurns: 20,
     maxBudgetUsd: 1.00,
   }
 });
@@ -194,14 +202,17 @@ for await (const msg of q) {
   if (msg.type === 'assistant') {
     for (const block of msg.message.content) {
       if (block.type === 'tool_use') {
-        console.log(`  [Tool] ${block.name}`);
+        console.log(`  [Tool] ${block.name}${block.name === 'Task' ? ' (subagent spawn)' : ''}`);
       }
     }
   }
   if (msg.type === 'result') {
+    // 2-second delay for file flush
+    await new Promise(r => setTimeout(r, 2000));
+
     const filePath = path.join(sessionDir, 'skill-check.json');
     const fileExists = fs.existsSync(filePath);
-    console.log(fileExists ? '\n✓ File written' : '\n✗ File NOT written');
+    console.log(fileExists ? '\n✓ skill-check.json written' : '\n✗ skill-check.json NOT written');
 
     if (fileExists) {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -213,9 +224,26 @@ for await (const msg of q) {
       const checklistOk = data.checklist_categories >= 6; // flexible on exact count
       const placentiaOk = data.placentia_reference_files?.length >= 10;
 
-      console.log(`\n${phasesOk && checklistOk && placentiaOk ? '✓' : '✗'} L1c ${phasesOk && checklistOk && placentiaOk ? 'PASSED' : 'FAILED'}`);
+      console.log(`\n${phasesOk && checklistOk && placentiaOk ? '✓' : '✗'} Main agent checks ${phasesOk && checklistOk && placentiaOk ? 'PASSED' : 'FAILED'}`);
     }
-    console.log(`  Cost: $${msg.total_cost_usd?.toFixed(4)}`);
+
+    // CRITICAL: Check subagent file access
+    const subagentPath = path.join(sessionDir, 'subagent-check.json');
+    const subagentExists = fs.existsSync(subagentPath);
+    console.log(`\n${subagentExists ? '✓' : '✗'} subagent-check.json ${subagentExists ? 'written' : 'NOT written — SUBAGENT FILE ACCESS FAILED'}`);
+
+    if (subagentExists) {
+      const subData = JSON.parse(fs.readFileSync(subagentPath, 'utf-8'));
+      console.log(`  Subagent found ${subData.categories_found} categories`);
+      console.log(`  First category: ${subData.first_category}`);
+      console.log('\n✓ SUBAGENT CAN READ CHECKLIST FILES — Phase 2 approach confirmed');
+    } else {
+      console.log('\n✗ SUBAGENT CANNOT READ CHECKLIST FILES');
+      console.log('  → Fallback: Inline checklist content in subagent prompts');
+      console.log('  → This adds ~450 lines per subagent prompt but guarantees access');
+    }
+
+    console.log(`\n  Cost: $${msg.total_cost_usd?.toFixed(4)}`);
   }
 }
 ```
@@ -223,10 +251,14 @@ for await (const msg of q) {
 **What this catches:**
 - Skill tool not invoking properly
 - Reference files inside skill directories not accessible
+- **Subagent file access through symlinked paths** — the critical unknown
 - Path resolution issues with symlinked skills
-- `additionalDirectories` misconfiguration
+- `additionalDirectories` inheritance by subagents
 
-**Pass criteria:** JSON file exists with correct counts — 5 phases, ~7 checklist categories, ~12 Placentia reference files.
+**Pass criteria:**
+1. `skill-check.json` exists with correct counts — 5 phases, ~7 checklist categories, ~12 Placentia reference files
+2. **`subagent-check.json` exists** — proves Task subagents can read checklist files via absolute path
+3. If #2 fails, Phase 2 must use inlined checklist content in subagent prompts (Option B fallback)
 
 ---
 
@@ -329,7 +361,7 @@ for await (const msg of q) {
 
 **What it tests:** The core review loop — can the agent review the cover sheet against `checklist-cover.md`, verify findings against state + city code, and produce a draft corrections letter? This uses `administrative` scope to limit to the cover sheet only.
 
-Uses the **L3c shortcut:** Pre-populate the sheet manifest from L2c output so we skip Phase 1 extraction.
+Uses the **L3c shortcut:** Pre-populated fixtures are **READY** at `test-assets/city-flow/mock-session/` (15 PNGs + sheet-manifest.json). Skips Phase 1 extraction (~90 sec saved per test).
 
 ```typescript
 // tests/test-l3c-admin-review.ts
@@ -861,41 +893,30 @@ L3d (PDF generation) can run as soon as L1c passes — it doesn't depend on L2c 
 
 | Order | Test | Time | Depends On |
 |-------|------|------|-----------|
-| 1 | **L0c** — add symlinks, run smoke test | 5 min | Symlinks created |
-| 2 | **L1c** — skill read + checklist access | 5 min | L0c passes |
-| 3 | **L2c** — PDF extraction + manifest | 5 min | L1c passes |
-| 4 | Save L2c manifest → `test-assets/city-flow/mock-session/` | 2 min | L2c passes |
-| 5 | **L3c** — admin review (with L2c shortcut) | 10-15 min | L2c passes + fixtures saved |
-| 6 | **L3d** — PDF generation (parallel with L3c if desired) | 5-8 min | L1c passes |
-| 7 | **L4c** — full pipeline (only if L3c + L3d both pass) | 15-20 min | L3c + L3d pass |
+| 0 | Pre-extract fixtures + update shared utils | — | None | **DONE** |
+| 1 | **L0c** — add symlinks, run smoke test | 5 min | Symlinks created | TODO |
+| 2 | **L1c** — skill read + checklist + **subagent file access** | 5 min | L0c passes | TODO — **CRITICAL** |
+| 3 | **L2c** — PDF extraction + manifest (optional — fixtures ready) | 5 min | L1c passes | OPTIONAL |
+| 4 | **L3c** — admin review (pre-populated fixtures) | 10-15 min | L1c passes | TODO |
+| 5 | **L3d** — PDF generation (parallel with L3c) | 5-8 min | L1c passes | TODO |
+| 6 | **L4c** — full pipeline (only if L3c + L3d both pass) | 15-20 min | L3c + L3d pass | TODO |
 
-**Clock time (sequential):** ~45-60 min for the full ladder
-**Clock time (L3c + L3d parallel):** ~35-45 min
+**Clock time (sequential):** ~40-55 min (faster — fixtures pre-populated, L2c optional)
+**Clock time (L3c + L3d parallel):** ~30-40 min
+**L2c is now optional** — can jump from L1c straight to L3c using pre-populated fixtures
 
 ---
 
-## Flexible File Naming (from Learnings)
+## Flexible File Naming (from Learnings) — DONE
 
-Subagents name files however they want. Accept multiple patterns per expected file:
+**Moved to `verify.ts`** (2026-02-12). Use `findFileByPattern()` and `REVIEW_FILE_PATTERNS` from `agents-crossbeam/src/utils/verify.ts`.
 
 ```typescript
-const reviewFilePatterns = [
-  { names: ['sheet_findings.json', 'review_findings.json', 'sheet_review.json'], label: 'Sheet findings' },
-  { names: ['state_compliance.json', 'state_law_findings.json', 'state_verification.json'], label: 'State compliance' },
-  { names: ['city_compliance.json', 'city_findings.json', 'city_rules.json'], label: 'City compliance' },
-  { names: ['draft_corrections.json', 'corrections_draft.json', 'corrections.json'], label: 'Draft corrections (JSON)' },
-  { names: ['draft_corrections.md', 'corrections_letter.md', 'corrections_draft.md'], label: 'Draft corrections (MD)' },
-  { names: ['review_summary.json', 'summary.json', 'review_stats.json'], label: 'Review summary' },
-  { names: ['corrections_letter.pdf', 'draft_corrections.pdf', 'letter.pdf'], label: 'PDF' },
-];
+import { findFileByPattern, REVIEW_FILE_PATTERNS } from '../utils/verify.ts';
 
-function findFile(sessionDir: string, patterns: { names: string[]; label: string }): string | null {
-  for (const name of patterns.names) {
-    const fp = path.join(sessionDir, name);
-    if (fs.existsSync(fp)) return fp;
-  }
-  return null;
-}
+// Example: find sheet findings regardless of naming
+const findingsPath = findFileByPattern(sessionDir, REVIEW_FILE_PATTERNS[0]);
+// Checks: sheet_findings.json, review_findings.json, sheet_review.json
 ```
 
 ---
@@ -925,7 +946,10 @@ Adapted from the contractor flow experience, with city-specific additions:
 
 - **Always check `msg.subtype`** — `'success'` vs `'error_max_turns'` vs `'error_max_budget_usd'`
 - **2-second delay before file verification** — subagent-written files may not have flushed yet (from learnings doc)
-- **Save L2c manifest as a fixture** — this is the #1 time saver. Pre-populated manifest skips 90s of extraction per test.
+- ~~**Save L2c manifest as a fixture**~~ **DONE** — `test-assets/city-flow/mock-session/` has 15 PNGs + sheet-manifest.json
 - **L3d is your iteration loop for PDF quality** — run it repeatedly with the same draft MD to dial in formatting
 - **The CLI baseline is your ground truth** — `DRAFT-CORRECTIONS-1232-N-Jefferson.md` is what the agent produced interactively. The Agent SDK should match or exceed this quality.
 - **If you get a Buena Park binder** — create an L4c-buena-park variant. Same test structure, different input PDF + city name. The `buena-park-adu` skill gives you Tier 3 offline testing for a second city.
+- **Onboarded cities only (hackathon)** — city flow requires Tier 3 city skill (placentia-adu or buena-park-adu). No WebSearch/WebFetch needed. This eliminates the 14-minute city research bottleneck from the contractor flow.
+- **Shared utilities updated** — `config.ts` (flow-neutral prompt), `session.ts` (`getReviewSessionFiles()`), `verify.ts` (`detectReviewPhases()` + `findFileByPattern()` + `REVIEW_FILE_PATTERNS`) are all ready.
+- **L1c is the critical gate** — the subagent file access test determines whether Phase 2 subagents can read checklist files via absolute path. If it fails, inline the checklist content in subagent prompts (adds ~450 lines per prompt but guaranteed to work).
