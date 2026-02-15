@@ -65,22 +65,22 @@ export function getFlowSkills(flowType: InternalFlowType, city: string): string[
 
   if (flowType === 'city-review') {
     // NO adu-city-research — city review only works with onboarded cities
+    // NO adu-corrections-pdf — PDF generation happens post-sandbox on Cloud Run
     const skills = [
       'california-adu',
       'adu-plan-review',
       'adu-targeted-page-viewer',
-      'adu-corrections-pdf',
     ];
     if (citySkill) skills.push(citySkill);
     return skills;
   }
 
   if (flowType === 'corrections-analysis') {
+    // NO adu-corrections-pdf — PDF generation happens post-sandbox on Cloud Run
     const skills = [
       'california-adu',
       'adu-corrections-flow',
       'adu-targeted-page-viewer',
-      'adu-corrections-pdf',
     ];
     if (citySkill) {
       // Onboarded city — use dedicated skill, skip web search
@@ -163,6 +163,9 @@ CRITICAL RULES:
 - ADUs are subject to OBJECTIVE standards only (Gov. Code 66314(b)(1)).
 - State law preempts city rules — if city is more restrictive, flag the conflict.
 - Use [REVIEWER: ...] blanks for structural, engineering, and judgment items.
+
+PDF GENERATION: Do NOT generate PDFs. Do NOT use adu-corrections-pdf. Do NOT install reportlab, puppeteer, or any PDF tools.
+Your job ends at draft_corrections.md. PDF conversion happens externally after this agent completes.
 
 YOU MUST COMPLETE ALL PHASES. The job is NOT done until these files exist:
 - sheet-manifest.json
@@ -261,7 +264,8 @@ CRITICAL RULES:
 - NO false positives. Every correction MUST have a specific code citation.
 - Drop findings that lack code basis.
 - ADUs can ONLY be subject to objective standards (Gov. Code 66314(b)(1)).
-- State law preempts city rules.`;
+- State law preempts city rules.
+- Do NOT generate PDFs. Do NOT install Python, reportlab, or any PDF tools. Your job ends at draft_corrections.md.`;
 
 export const CORRECTIONS_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
 Use available skills to research codes, analyze plans, and generate professional output.

@@ -180,52 +180,9 @@ Each correction item includes:
 
 See `references/output-schemas.md` for full JSON schema.
 
-Phase 4 also outputs **`draft_corrections.md`** — a formatted markdown version of the corrections letter. This markdown is the handoff to Phase 5 (PDF generation) and also serves as the frontend-renderable version.
+Phase 4 also outputs **`draft_corrections.md`** — a formatted markdown version of the corrections letter. This is the primary output — it serves as both the frontend-renderable version and the source for PDF conversion.
 
-### Phase 5: PDF Generation + QA Loop (sub-agent)
-
-Launch the `adu-corrections-pdf` skill as a sub-agent. This skill uses the `document-skills/pdf` primitive (reportlab, pdf-lib, pypdfium2) for the actual PDF generation. It only handles formatting — no research, no content changes.
-
-**Sub-agent skills loaded:**
-- `adu-corrections-pdf` — domain formatting (letterhead, badges, sections)
-- `document-skills/pdf` — PDF generation primitives (reportlab, pypdfium2, etc.)
-
-**Sub-agent input:**
-- `draft_corrections.md` from Phase 4
-- City name, project address, project info (from Phase 1 cover sheet extraction)
-- Output path for the PDF
-
-**Sub-agent output:**
-- `corrections_letter.pdf` — Professional formatted PDF with city header, confidence badges, proper pagination
-- `qa_screenshot.png` — Screenshot of page 1
-
-#### QA Loop
-
-After the sub-agent returns the screenshot, the **main agent** (not the sub-agent) reviews it:
-
-```
-LOOP (max 2 retries):
-  1. View qa_screenshot.png
-  2. Check:
-     - Header correct? (city name, project info, "DRAFT" visible)
-     - Sections formatted? (numbered items, horizontal rules)
-     - Tables readable? (no overflow, columns aligned)
-     - No layout breaks? (text not cut off, pages not blank)
-     - Footer present? (page numbers, draft disclaimer)
-  3. IF everything looks good → Phase 5 COMPLETE
-  4. IF issues found → re-invoke sub-agent with fix_instructions:
-     - Describe what's wrong: "Table on page 2 overflows right margin"
-     - Sub-agent applies fix and regenerates PDF + new screenshot
-     - Return to step 1
-```
-
-**Max 2 retries.** If the PDF still has issues after 2 fix attempts, deliver it as-is with a note to the user. A slightly imperfect PDF is better than an infinite loop.
-
-**The `draft_corrections.md` serves double duty:**
-1. Input to the PDF sub-agent (Phase 5) → downloadable PDF
-2. Input to the frontend UI (rendered in Next.js) → interactive viewer
-
-Both consumers get the same content. The markdown is the source of truth.
+**PDF generation is handled externally** — after this agent completes, the server converts `draft_corrections.md` to PDF outside the sandbox. Do NOT attempt PDF generation. Do NOT use `adu-corrections-pdf`. Do NOT install reportlab, puppeteer, or any PDF tools. Your job ends at `draft_corrections.md`.
 
 ## Timing
 
@@ -237,8 +194,7 @@ Both consumers get the same content. The markdown is the source of truth.
 | Phase 3B (Tier 3) | ~30 sec | Onboarded city — offline |
 | Phase 3B (Tier 2) | ~90 sec–3 min | Web research — depends on city |
 | Phase 4 | ~2 min | Merge + filter + format markdown |
-| Phase 5 | ~30-60 sec | PDF generation sub-agent + QA screenshot |
-| **Total (Tier 3 city)** | **~6-8 min** | |
+| **Total (Tier 3 city)** | **~5-7 min** | |
 | **Total (Tier 2 city)** | **~7-10 min** | |
 | **Administrative scope only** | **~3-4 min** | Cover sheet checks only |
 
@@ -269,8 +225,6 @@ Both consumers get the same content. The markdown is the source of truth.
 | `california-adu` | State law (Phase 3A) | `california-adu/AGENTS.md` — 28 reference files |
 | `adu-city-research` | City rules via web (Phase 3B Tier 2) | Modes 1/2/3 in its SKILL.md |
 | `adu-targeted-page-viewer` | Plan extraction (Phase 1) | Sheet manifest workflow in its SKILL.md |
-| `adu-corrections-pdf` | PDF generation (Phase 5) | Letter format + CSS in its SKILL.md |
-| `document-skills/pdf` | PDF primitives (loaded by Phase 5 sub-agent) | reportlab, pypdfium2, pdf-lib, pypdf |
 
 ## Important Notes
 
