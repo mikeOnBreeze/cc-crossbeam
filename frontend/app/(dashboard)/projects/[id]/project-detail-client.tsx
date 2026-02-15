@@ -78,25 +78,32 @@ export function ProjectDetailClient({
     return () => window.removeEventListener('devtools-phase', handler)
   }, [])
 
-  // Status polling every 3 seconds
+  // Realtime: project status changes (replaces polling)
   useEffect(() => {
     if (TERMINAL_STATUSES.includes(project.status)) return
-    if (project.status === 'ready' && !starting) return // Don't poll when idle, but poll after clicking Start
+    if (project.status === 'ready' && !starting) return
 
-    const interval = setInterval(async () => {
-      const { data } = await supabase
-        .schema('crossbeam')
-        .from('projects')
-        .select('status, error_message')
-        .eq('id', project.id)
-        .single()
+    const channel = supabase
+      .channel(`project-status-${project.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'crossbeam',
+          table: 'projects',
+          filter: `id=eq.${project.id}`,
+        },
+        (payload) => {
+          const newStatus = payload.new.status as ProjectStatus
+          const newError = payload.new.error_message as string | null
+          setProject(prev => ({ ...prev, status: newStatus, error_message: newError }))
+        }
+      )
+      .subscribe()
 
-      if (data && data.status !== project.status) {
-        setProject(prev => ({ ...prev, ...data }))
-      }
-    }, 3000)
-
-    return () => clearInterval(interval)
+    return () => {
+      supabase.removeChannel(channel)
+    }
   }, [project.id, project.status, starting, supabase])
 
   const getPhases = useCallback(() => {

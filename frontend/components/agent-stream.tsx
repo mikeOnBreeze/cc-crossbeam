@@ -53,7 +53,6 @@ export function AgentStream({ projectId }: AgentStreamProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [staleSeconds, setStaleSeconds] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const lastSeenIdRef = useRef<number>(0)
   const lastMessageTimeRef = useRef<number>(Date.now())
   const completionTriggeredRef = useRef(false)
   const supabase = useMemo(() => createClient(), [])
@@ -70,43 +69,47 @@ export function AgentStream({ projectId }: AgentStreamProps) {
       .then(({ data }) => {
         if (data && data.length > 0) {
           setMessages(data as Message[])
-          lastSeenIdRef.current = data[data.length - 1].id
           lastMessageTimeRef.current = Date.now()
         }
       })
   }, [projectId, supabase])
 
-  // Polling every 2 seconds
+  // Realtime: new messages (replaces polling)
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const { data } = await supabase
-        .schema('crossbeam')
-        .from('messages')
-        .select('*')
-        .eq('project_id', projectId)
-        .gt('id', lastSeenIdRef.current)
-        .order('id', { ascending: true })
+    const channel = supabase
+      .channel(`messages-${projectId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'crossbeam',
+          table: 'messages',
+          filter: `project_id=eq.${projectId}`,
+        },
+        (payload) => {
+          const newMessage = payload.new as Message
+          setMessages(prev => [...prev, newMessage])
+          lastMessageTimeRef.current = Date.now()
+          setStaleSeconds(0)
 
-      if (data && data.length > 0) {
-        setMessages(prev => [...prev, ...(data as Message[])])
-        lastSeenIdRef.current = data[data.length - 1].id
-        lastMessageTimeRef.current = Date.now()
-        setStaleSeconds(0)
-
-        // Completion detection
-        const completionMsg = data.find(
-          (m: Message) => m.role === 'system' && m.content.startsWith('Completed in ')
-        )
-        if (completionMsg && !completionTriggeredRef.current) {
-          completionTriggeredRef.current = true
-          setTimeout(() => {
-            router.refresh()
-          }, 5000)
+          // Backup completion detection
+          if (
+            newMessage.role === 'system' &&
+            newMessage.content.startsWith('Completed in ') &&
+            !completionTriggeredRef.current
+          ) {
+            completionTriggeredRef.current = true
+            setTimeout(() => {
+              router.refresh()
+            }, 5000)
+          }
         }
-      }
-    }, 2000)
+      )
+      .subscribe()
 
-    return () => clearInterval(interval)
+    return () => {
+      supabase.removeChannel(channel)
+    }
   }, [projectId, supabase, router])
 
   // Stale timer — count seconds since last message
