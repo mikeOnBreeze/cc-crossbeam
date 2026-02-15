@@ -99,6 +99,7 @@ export interface ContractorAnswer {
   correction_item_id: string | null
   answer_text: string | null
   is_answered: boolean
+  output_id: string | null
   created_at: string
   updated_at: string
 }

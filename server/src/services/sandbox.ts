@@ -486,7 +486,7 @@ async function createOutputRecord(data) {
     .limit(1);
   const nextVersion = (existing?.[0]?.version || 0) + 1;
 
-  const { error } = await supabase
+  const { data: inserted, error } = await supabase
     .schema('crossbeam')
     .from('outputs')
     .insert({
@@ -494,29 +494,45 @@ async function createOutputRecord(data) {
       flow_phase: '${flowPhase}',
       version: nextVersion,
       ...data,
-    });
+    })
+    .select('id')
+    .single();
   if (error) {
     console.error('Failed to create output record:', error.message);
     throw error;
   }
-  console.log('Output record created (version ' + nextVersion + ')');
+  console.log('Output record created (version ' + nextVersion + ', id: ' + inserted.id + ')');
+  return inserted.id;
 }
 
 // Insert contractor questions into contractor_answers table
-async function insertContractorQuestions(questions) {
+async function insertContractorQuestions(questions, outputId = null) {
   if (!questions || !Array.isArray(questions)) {
     console.log('No contractor questions to insert');
     return;
   }
+
+  // Clear old unanswered questions before inserting new ones
+  const { error: deleteError } = await supabase
+    .schema('crossbeam')
+    .from('contractor_answers')
+    .delete()
+    .eq('project_id', projectId)
+    .eq('is_answered', false);
+  if (deleteError) {
+    console.error('Failed to delete old unanswered questions:', deleteError.message);
+  }
+
   const rows = questions.map(q => ({
     project_id: projectId,
-    question_key: q.key || q.question_key || q.id || 'q_' + Math.random().toString(36).slice(2),
-    question_text: q.question || q.question_text || q.text || '',
-    question_type: q.type || 'text',
-    options: q.options ? JSON.stringify(q.options) : null,
+    question_key: q.question_id || q.key || q.question_key || q.id || 'q_' + Math.random().toString(36).slice(2),
+    question_text: q.context || q.question || q.question_text || q.text || '',
+    question_type: q.options ? 'select' : (q.type || 'text'),
+    options: q.options ? (typeof q.options === 'string' ? q.options : JSON.stringify(q.options)) : null,
     context: q.context || q.why || null,
     correction_item_id: q.correction_item_id || q.item_id || null,
     is_answered: false,
+    output_id: outputId,
   }));
 
   const { error } = await supabase
@@ -625,13 +641,6 @@ async function runAgent() {
     } else if (flowPhase === 'analysis') {
       outputData.corrections_analysis_json = allFiles['corrections_categorized.json'] || null;
       outputData.contractor_questions_json = allFiles['contractor_questions.json'] || null;
-
-      // Insert contractor questions into contractor_answers table
-      const questions = allFiles['contractor_questions.json'];
-      if (questions) {
-        const questionsList = Array.isArray(questions) ? questions : questions.questions || [];
-        await insertContractorQuestions(questionsList);
-      }
     } else if (flowPhase === 'response') {
       outputData.response_letter_md = allFiles['response_letter.md'] || null;
       outputData.professional_scope_md = allFiles['professional_scope.md'] || null;
@@ -643,7 +652,29 @@ async function runAgent() {
     }
 
     // Create output record
-    await createOutputRecord(outputData);
+    const outputRecordId = await createOutputRecord(outputData);
+
+    // Insert contractor questions linked to this output version
+    if (flowPhase === 'analysis' && allFiles['contractor_questions.json']) {
+      const questions = allFiles['contractor_questions.json'];
+      let questionsList = [];
+      if (Array.isArray(questions)) {
+        questionsList = questions;
+      } else if (questions.question_groups && Array.isArray(questions.question_groups)) {
+        for (const group of questions.question_groups) {
+          if (group.questions && Array.isArray(group.questions)) {
+            questionsList.push(...group.questions);
+          }
+        }
+      } else if (questions.questions && Array.isArray(questions.questions)) {
+        questionsList = questions.questions;
+      }
+      if (questionsList.length > 0) {
+        await insertContractorQuestions(questionsList, outputRecordId);
+      } else {
+        console.log('No contractor questions found in any known format');
+      }
+    }
 
     // Update project status
     await updateProjectStatus('${completedStatus}');
