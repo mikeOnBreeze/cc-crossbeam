@@ -16,6 +16,7 @@ RUN npm ci --only=production
 # Copy compiled code and skills
 COPY dist/ ./dist/
 COPY skills/ ./skills/
+COPY fixtures/ ./fixtures/
 
 # Set environment
 ENV NODE_ENV=production

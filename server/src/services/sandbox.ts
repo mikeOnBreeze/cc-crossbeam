@@ -768,7 +768,7 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
     // 5.5 For city-review: pre-inject sheet manifest (demo shortcut)
     if (options.flowType === 'city-review') {
       await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', SANDBOX_OUTPUT_PATH] });
-      const manifestPath = path.join(__dirname, '../../../fixtures/b1-placentia-manifest.json');
+      const manifestPath = path.join(__dirname, '../../fixtures/b1-placentia-manifest.json');
       const manifestContent = fs.readFileSync(manifestPath);
       await sandbox.writeFiles([{
         path: `${SANDBOX_OUTPUT_PATH}/sheet-manifest.json`,
