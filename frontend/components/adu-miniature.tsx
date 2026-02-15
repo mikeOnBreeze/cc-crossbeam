@@ -3,8 +3,27 @@
 import Image from 'next/image'
 import { useRandomAdu } from '@/hooks/use-random-adu'
 
-// All available ADU exterior images (from public/images/adu/)
+// All available ADU exterior images — 16 keyed transparents + 7 originals = 23 total
 const ADU_EXTERIORS = [
+  // Keyed ADU series (Nano Banana generated)
+  '/images/adu/adu-01-2story-garage-transparent.png',
+  '/images/adu/adu-02-studio-greenroof-transparent.png',
+  '/images/adu/adu-03-garage-conversion-transparent.png',
+  '/images/adu/adu-04-jadu-attached-transparent.png',
+  '/images/adu/adu-05-modern-box-transparent.png',
+  '/images/adu/adu-06-spanish-style-transparent.png',
+  '/images/adu/adu-07-aframe-transparent.png',
+  '/images/adu/adu-08-prefab-modular-transparent.png',
+  // Cameron real-project series
+  '/images/adu/cameron-01-longbeach-transparent.png',
+  '/images/adu/cameron-03-lakewood-transparent.png',
+  '/images/adu/cameron-04-whittier-2story-transparent.png',
+  '/images/adu/cameron-05-lakewood-porch-transparent.png',
+  '/images/adu/cameron-06-sandimas-butterfly-transparent.png',
+  '/images/adu/cameron-09-signalhill-cottage-transparent.png',
+  '/images/adu/cameron-09-signalhill-cottage-v2-transparent.png',
+  '/images/adu/cameron-10-downey-lshape-transparent.png',
+  // Original exterior series
   '/images/adu/exterior-longbeach-modern.png',
   '/images/adu/exterior-whittier-2story.png',
   '/images/adu/exterior-lakewood-porch.png',

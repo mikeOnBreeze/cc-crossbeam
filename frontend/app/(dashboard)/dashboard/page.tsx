@@ -2,6 +2,7 @@
 
 import { PersonaCard } from '@/components/persona-card'
 import { useAppMode } from '@/hooks/use-app-mode'
+import { useRandomAdu } from '@/hooks/use-random-adu'
 import {
   DEMO_CITY_PROJECT_ID,
   DEMO_CONTRACTOR_PROJECT_ID,
@@ -12,11 +13,31 @@ import {
 } from '@/lib/app-mode'
 import { RocketIcon } from 'lucide-react'
 
+// Exterior pool for persona card randomization (subset — best-looking ones)
+const PERSONA_POOL = [
+  '/images/adu/adu-01-2story-garage-transparent.png',
+  '/images/adu/adu-02-studio-greenroof-transparent.png',
+  '/images/adu/adu-03-garage-conversion-transparent.png',
+  '/images/adu/adu-06-spanish-style-transparent.png',
+  '/images/adu/adu-07-aframe-transparent.png',
+  '/images/adu/adu-08-prefab-modular-transparent.png',
+  '/images/adu/cameron-01-longbeach-transparent.png',
+  '/images/adu/cameron-04-whittier-2story-transparent.png',
+  '/images/adu/cameron-05-lakewood-porch-transparent.png',
+  '/images/adu/cameron-06-sandimas-butterfly-transparent.png',
+  '/images/adu/cameron-09-signalhill-cottage-transparent.png',
+  '/images/adu/cameron-10-downey-lshape-transparent.png',
+]
+
 export default function DashboardPage() {
   const mode = useAppMode()
 
   const cityId = mode === 'dev-test' ? DEMO_CITY_PROJECT_ID : JUDGE_CITY_PROJECT_ID
   const contractorId = mode === 'dev-test' ? DEMO_CONTRACTOR_PROJECT_ID : JUDGE_CONTRACTOR_PROJECT_ID
+
+  // Random ADU images for persona cards — each hook call gets a different image via useId()
+  const cityAdu = useRandomAdu(PERSONA_POOL)
+  const contractorAdu = useRandomAdu(PERSONA_POOL)
 
   // Real mode — coming soon
   if (mode === 'real') {
@@ -55,7 +76,7 @@ export default function DashboardPage() {
       {/* Persona Cards */}
       <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
         <PersonaCard
-          aduImage="/images/adu/exterior-garage-2story.png"
+          aduImage={cityAdu}
           title="City Reviewer"
           description="I'm reviewing a permit submission. Help me pre-screen it against state + city code."
           projectName="1232 N Jefferson ADU"
@@ -64,7 +85,7 @@ export default function DashboardPage() {
           ctaText="Run AI Review"
         />
         <PersonaCard
-          aduImage="/images/adu/exterior-whittier-2story.png"
+          aduImage={contractorAdu}
           title="Contractor"
           description="I got a corrections letter back. Help me understand what to fix and build a response."
           projectName="1232 N Jefferson ADU"

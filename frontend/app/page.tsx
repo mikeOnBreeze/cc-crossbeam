@@ -26,18 +26,18 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative z-10 max-w-4xl mx-auto px-4 pt-8 pb-2 text-center space-y-5 animate-fade-up">
+      <section className="relative z-10 max-w-4xl mx-auto px-4 pt-2 pb-1 text-center space-y-3 animate-fade-up">
         <h1 className="heading-display text-foreground">
           Your ADU Permit, Simplified
         </h1>
-        <p className="text-xl text-muted-foreground font-body max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground font-body max-w-2xl mx-auto">
           California issues 30,000+ ADU permits a year — and 90% get sent back
           for corrections. CrossBeam uses AI to interpret correction letters,
           verify code citations, and draft professional responses in minutes.
         </p>
         <Link href="/login">
           <Button className="rounded-full px-10 py-6 text-lg font-bold font-body
-                             hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110 mt-4"
+                             hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110"
                   size="lg">
             Get Started
           </Button>
