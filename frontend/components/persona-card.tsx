@@ -54,7 +54,7 @@ export function PersonaCard({
           </div>
 
           {/* CTA */}
-          <Button className="w-full rounded-full font-bold font-body hover:shadow-[0_0_20px_rgba(45,106,79,0.15)]">
+          <Button className="w-full rounded-full font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110">
             {ctaText}
             <ArrowRightIcon className="w-4 h-4 ml-2" />
           </Button>

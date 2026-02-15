@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function useRandomAdu(pool: string[]): string {
-  const [selected] = useState(() => {
-    const index = Math.floor(Math.random() * pool.length)
-    return pool[index]
-  })
+  // Deterministic initial value for SSR (avoids hydration mismatch)
+  const [selected, setSelected] = useState(pool[0])
+
+  useEffect(() => {
+    // Randomize on client mount — true per-visit variety
+    setSelected(pool[Math.floor(Math.random() * pool.length)])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return selected
 }

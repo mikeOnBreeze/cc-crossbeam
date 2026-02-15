@@ -48,8 +48,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-md shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 animate-fade-up">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-topo-lines">
+      <Card className="relative z-10 w-full max-w-md shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 animate-fade-up">
         <CardContent className="pt-10 pb-8 px-8 text-center space-y-8">
           {/* ADU Miniature — small, accent size */}
           <div className="flex justify-center">
@@ -69,7 +69,7 @@ export default function LoginPage() {
             onClick={handleJudgeLogin}
             disabled={loading}
             className="w-full rounded-full px-8 py-6 text-base font-bold font-body
-                       hover:shadow-[0_0_20px_rgba(45,106,79,0.15)]"
+                       hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110"
             size="lg"
           >
             {loading ? (

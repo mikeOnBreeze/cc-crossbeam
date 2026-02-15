@@ -65,7 +65,6 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
   const tabs = flowType === 'city-review'
     ? [
         { key: 'corrections_letter_md', label: 'Corrections Letter' },
-        { key: 'review_checklist_json', label: 'Review Checklist' },
       ]
     : [
         { key: 'response_letter_md', label: 'Response Letter' },
@@ -89,12 +88,12 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="text-center space-y-4 animate-fade-up">
+      {/* Header — ADU overlaps into heading via negative margin */}
+      <div className="text-center animate-fade-up">
         <div className="flex justify-center">
           <AduMiniature variant="accent" />
         </div>
-        <h1 className="heading-display text-foreground">
+        <h1 className="heading-display text-foreground -mt-3">
           {flowType === 'city-review'
             ? 'Review complete'
             : 'Your response package is ready'}
@@ -104,23 +103,25 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
       <div className="grid gap-6 lg:grid-cols-[1fr,280px]">
         {/* Main Content */}
         <div className="space-y-4">
-          {/* Tabs */}
-          <div className="flex gap-1 border-b border-border/50">
-            {tabs.map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={cn(
-                  'px-4 py-2.5 text-sm font-body font-semibold transition-colors',
-                  activeTab === tab.key
-                    ? 'text-foreground border-b-2 border-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          {/* Tabs — hide bar when single tab */}
+          {tabs.length > 1 && (
+            <div className="flex gap-1 border-b border-border/50">
+              {tabs.map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={cn(
+                    'px-4 py-2.5 text-sm font-body font-semibold transition-colors',
+                    activeTab === tab.key
+                      ? 'text-foreground border-b-2 border-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Content */}
           <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">

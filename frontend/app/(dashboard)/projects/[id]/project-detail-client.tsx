@@ -205,7 +205,7 @@ export function ProjectDetailClient({
             onClick={handleStartAnalysis}
             disabled={starting}
             className="rounded-full px-10 py-6 text-lg font-bold font-body
-                       hover:shadow-[0_0_20px_rgba(45,106,79,0.15)]"
+                       hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110"
             size="lg"
           >
             {starting ? (

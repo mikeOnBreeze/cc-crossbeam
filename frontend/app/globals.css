@@ -277,8 +277,18 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid hsl(var(--border));
+  padding-left: 0.875rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-left: 3px solid hsl(var(--primary));
+}
+
+.prose-crossbeam h1 + h2,
+.prose-crossbeam h1 + h2 + h3 {
+  margin-top: 0.5rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .prose-crossbeam h2 {
@@ -320,6 +330,20 @@
 .prose-crossbeam strong {
   font-weight: 600;
   color: hsl(var(--foreground));
+}
+
+.prose-crossbeam code {
+  background: hsl(var(--primary) / 8%);
+  color: hsl(var(--primary));
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose-crossbeam hr {
+  border: none;
+  border-top: 1px solid hsl(var(--border) / 60%);
+  margin: 1.25rem 0;
 }
 
 .prose-crossbeam blockquote {
