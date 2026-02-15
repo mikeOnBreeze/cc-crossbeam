@@ -47,12 +47,13 @@ curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
   -d '{"project_id":"b0000000-0000-0000-0000-000000000002"}'
 ```
 
-This clears: messages, outputs, contractor_answers. Resets status to `ready`.
+This clears: messages, contractor_answers. Resets status to `ready`.
+**Outputs are preserved** — each run gets an auto-incrementing version number so you can compare runs.
 
 ## Running a Full Test
 
 ```bash
-# 1. Reset
+# 1. Reset (clears messages + contractor answers, preserves run history)
 curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
   -H "Content-Type: application/json" \
@@ -72,6 +73,28 @@ curl -X POST https://cc-crossbeam.vercel.app/api/generate \
 curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002 \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq '.project.status, .latest_output.agent_cost_usd'
 ```
+
+## Comparing Runs
+
+After running multiple tests, use the `/runs` endpoint to compare:
+
+```bash
+# List all runs with version, cost, and timestamp
+curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002/runs \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  | jq '.runs[] | {version, flow_phase, agent_cost_usd, agent_turns, agent_duration_ms, created_at}'
+
+# Filter to just analysis runs
+curl -s "https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002/runs?flow_phase=analysis" \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY"
+
+# Compare raw_artifacts between two runs (e.g. v1 vs v3)
+curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002/runs \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  | jq '[.runs[] | select(.flow_phase=="analysis")] | sort_by(.version) | .[0], .[-1] | {version, agent_cost_usd, keys: (.raw_artifacts | keys)}'
+```
+
+Each run is versioned per flow_phase (analysis v1, analysis v2, etc.). The version auto-increments — reset does not affect it.
 
 ## Supabase Storage Paths
 

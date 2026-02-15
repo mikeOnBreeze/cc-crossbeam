@@ -4,9 +4,11 @@ import { useEffect, useState, useMemo } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { AduMiniature } from '@/components/adu-miniature'
-import { Loader2Icon, ClockIcon, CpuIcon, DollarSignIcon } from 'lucide-react'
+import { Loader2Icon, ClockIcon, CpuIcon, DollarSignIcon, LayoutDashboardIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Output, FlowType } from '@/types/database'
 
@@ -100,7 +102,7 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
         </h1>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr,280px]">
+      <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
         {/* Main Content */}
         <div className="space-y-4">
           {/* Tabs — hide bar when single tab */}
@@ -136,34 +138,44 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
         </div>
 
         {/* Summary Stats Sidebar */}
-        <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 h-fit">
-          <CardContent className="p-6 space-y-4">
-            <h3 className="heading-card text-foreground">Summary</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm font-body">
-                <ClockIcon className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">Duration</span>
-                <span className="ml-auto text-foreground font-semibold">
-                  {formatDuration(output.agent_duration_ms)}
-                </span>
+        <div className="space-y-4">
+          <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 h-fit">
+            <CardContent className="p-6 space-y-4">
+              <h3 className="heading-card text-foreground">Summary</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-sm font-body">
+                  <ClockIcon className="w-4 h-4 text-primary" />
+                  <span className="text-muted-foreground">Duration</span>
+                  <span className="ml-auto text-foreground font-semibold">
+                    {formatDuration(output.agent_duration_ms)}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-sm font-body">
+                  <CpuIcon className="w-4 h-4 text-primary" />
+                  <span className="text-muted-foreground">Agent turns</span>
+                  <span className="ml-auto text-foreground font-semibold">
+                    {output.agent_turns ?? '—'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-sm font-body">
+                  <DollarSignIcon className="w-4 h-4 text-primary" />
+                  <span className="text-muted-foreground">Cost</span>
+                  <span className="ml-auto text-foreground font-semibold">
+                    {output.agent_cost_usd ? `$${output.agent_cost_usd.toFixed(2)}` : '—'}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-3 text-sm font-body">
-                <CpuIcon className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">Agent turns</span>
-                <span className="ml-auto text-foreground font-semibold">
-                  {output.agent_turns ?? '—'}
-                </span>
-              </div>
-              <div className="flex items-center gap-3 text-sm font-body">
-                <DollarSignIcon className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">Cost</span>
-                <span className="ml-auto text-foreground font-semibold">
-                  {output.agent_cost_usd ? `$${output.agent_cost_usd.toFixed(2)}` : '—'}
-                </span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Dashboard Link */}
+          <Link href="/my-projects">
+            <Button variant="outline" className="w-full rounded-full font-body font-semibold gap-2">
+              <LayoutDashboardIcon className="w-4 h-4" />
+              View your dashboard
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   )

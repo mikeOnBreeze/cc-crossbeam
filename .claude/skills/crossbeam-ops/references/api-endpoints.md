@@ -111,12 +111,67 @@ done
 
 ---
 
+## GET /api/projects/:id/runs
+
+Returns all output records (run history) for a project, newest first. Each run has a unique version number per flow_phase. Use this to compare quality across test runs.
+
+**Auth:** Bearer token or Supabase session
+
+**Query params:**
+- `flow_phase` (optional): Filter by phase — `analysis`, `response`, or `review`
+
+**Response (200):**
+```json
+{
+  "project_id": "UUID",
+  "total_runs": 3,
+  "runs": [
+    {
+      "id": "UUID",
+      "flow_phase": "analysis",
+      "version": 3,
+      "agent_cost_usd": 2.34,
+      "agent_turns": 15,
+      "agent_duration_ms": 180000,
+      "raw_artifacts": { ... },
+      "created_at": "2026-02-14T..."
+    },
+    {
+      "id": "UUID",
+      "flow_phase": "analysis",
+      "version": 2,
+      "agent_cost_usd": 3.10,
+      "agent_turns": 18,
+      "agent_duration_ms": 220000,
+      "raw_artifacts": { ... },
+      "created_at": "2026-02-14T..."
+    }
+  ]
+}
+```
+
+**Examples:**
+```bash
+# All runs
+curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002/runs \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq '.runs[] | {version, flow_phase, agent_cost_usd, created_at}'
+
+# Only analysis runs
+curl -s "https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002/runs?flow_phase=analysis" \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY"
+```
+
+---
+
 ## POST /api/reset-project
 
-Resets a demo project to "ready" state. Clears messages, outputs, and contractor answers.
+Resets a demo project to "ready" state. Clears messages and contractor answers so the agent can run again. **Outputs are preserved** — they accumulate as run history with incrementing version numbers.
 
 **Auth:** Bearer token or Supabase session
 **Constraint:** Only works on projects where `is_demo = true`
+
+**What gets cleared:** messages, contractor_answers, project status → `ready`
+**What is preserved:** outputs (run history)
 
 **Body:**
 ```json

@@ -7,8 +7,8 @@ Local Agent SDK tests pass for both flows (contractor: $6.54/20min, city: $6.75/
 **Critical difference from local testing:** Cloud tests go through the deployed API (curl + Supabase queries), not `query()` directly. Claude Code can run these autonomously using the crossbeam-ops skill + API key.
 
 **Reference docs:**
-- `testing-agents-sdk.md` — Local contractor flow testing
-- `testing-agents-sdk-city.md` — Local city flow testing
+- `testing-agents-sdk.md` — Local contractor flow testing ladder
+- `testing-agents-sdk-city.md` — Local city flow testing ladder
 - `learnings-agents-sdk.md` — What worked and what broke locally
 
 ---
@@ -17,75 +17,121 @@ Local Agent SDK tests pass for both flows (contractor: $6.54/20min, city: $6.75/
 
 ### Diagnosed from Supabase message forensics:
 
-**City Review (b0000000-0000-0000-0000-000000000001) — Last run 07:59 UTC:**
-- `pages-png.tar.gz` and `title-blocks.tar.gz` file records were created at 20:35 UTC — **12 hours AFTER the run**
-- At runtime, only the PDF existed in the `files` table → sandbox downloaded 1 file instead of 3
-- Agent tried to extract pages from PDF using `sips` (macOS-only tool) → failed in Linux sandbox
-- **Root cause: Missing file records in DB at time of run**
+**City Review (b1) — Last run 07:59 UTC:**
+- `pages-png.tar.gz` and `title-blocks.tar.gz` file records created 12 hours AFTER the run
+- At runtime, only the PDF existed → sandbox downloaded 1 file instead of 3
+- Agent tried `sips` (macOS-only) → failed in Linux sandbox
 - **Status: Fixed** — tar.gz records now exist in the files table
 
-**Corrections Analysis (b0000000-0000-0000-0000-000000000002) — Last run 08:35 UTC:**
-- Same archive issue, but agent had 3 files (PDF + 2 corrections PNGs)
-- Agent successfully parsed corrections, launched 3 parallel subagents
-- City discovery completed, but agent terminated at 08:40:58 — **hit 80-turn limit**
-- **Root cause: Turn limit too low for multi-subagent flows**
-- **Status: Needs code change** — raise maxTurns from 80 to 500
-
-### Key Cloud vs Local Differences
-
-| Factor | Local | Cloud Sandbox |
-|--------|-------|---------------|
-| PDF→PNG | Pre-populated fixtures | Must download + unpack tar.gz archives |
-| Skills | Symlinked from host | Copied to sandbox filesystem |
-| Turn limit | 80-100 | Same — but sandbox burns more turns on setup |
-| `allowedTools` | Restricted for offline tests | Not set — agent wastes turns on WebSearch |
-| macOS tools | Available (sips) | NOT available — Linux only |
+**Corrections Analysis (b2) — Last run 08:35 UTC:**
+- Agent had 3 files (PDF + 2 corrections PNGs), successfully parsed corrections
+- Launched 3 parallel subagents, city discovery completed
+- Terminated at 08:40:58 — **hit 80-turn limit**
+- **Status: Fixed** — maxTurns raised to 500
 
 ---
 
 ## Pre-requisite Code Changes
 
-Apply these before running any cloud tests.
-
-### Change 1: Raise turn limits and budgets
-**File:** `server/src/utils/config.ts` (lines 27-31)
-
-```typescript
-// BEFORE:
-'city-review':          { maxTurns: 100, maxBudgetUsd: 20.00 },
-'corrections-analysis': { maxTurns: 80,  maxBudgetUsd: 15.00 },
-'corrections-response': { maxTurns: 40,  maxBudgetUsd: 8.00  },
-
-// AFTER:
-'city-review':          { maxTurns: 500, maxBudgetUsd: 50.00 },
-'corrections-analysis': { maxTurns: 500, maxBudgetUsd: 50.00 },
-'corrections-response': { maxTurns: 150, maxBudgetUsd: 20.00 },
+### Change 1: Raise turn limits and budgets ✅ DONE
+**File:** `server/src/utils/config.ts`
+```
+city-review:          maxTurns: 500, maxBudgetUsd: 50.00
+corrections-analysis: maxTurns: 500, maxBudgetUsd: 50.00
+corrections-response: maxTurns: 150, maxBudgetUsd: 20.00
 ```
 
-**Why:** Local L4c used ~100 turns at $6.75. Sandbox burns more turns on setup. Set high (500) now — we'll tune down once we know the actual average. Better to waste a few bucks than waste a test run.
+### Change 2: Add [SANDBOX N/7] phase logging ✅ DONE
+**File:** `server/src/services/sandbox.ts`
+Numbered messages after each lifecycle phase for easy forensics.
 
-### Change 2: Add sandbox phase logging
-**File:** `server/src/services/sandbox.ts` (inside `runCrossBeamFlow`, lines 770-833)
+### Change 3: Use detached runCommand mode ✅ DONE
+**File:** `server/src/services/sandbox.ts`
+The `runCommand` for `agent.mjs` was using default (non-detached) mode, which keeps an HTTP streaming connection open. GCP's load balancer kills idle HTTP connections at ~5 minutes, terminating the command. Fix: `detached: true` + resilient wait loop with automatic reconnection.
 
-Replace the existing system messages with numbered `[SANDBOX N/7]` messages for each lifecycle phase:
-
-```typescript
-await insertMessage(projectId, 'system', '[SANDBOX 1/7] Sandbox created');
-await insertMessage(projectId, 'system', '[SANDBOX 2/7] Dependencies installed');
-await insertMessage(projectId, 'system', `[SANDBOX 3/7] Downloaded ${files.length} files`);
-await insertMessage(projectId, 'system', '[SANDBOX 4/7] Archives unpacked');
-await insertMessage(projectId, 'system', `[SANDBOX 5/7] Skills copied (${FLOW_SKILLS[flowType].length} skills)`);
-await insertMessage(projectId, 'system', '[SANDBOX 6/7] Pre-extraction complete');
-await insertMessage(projectId, 'system', '[SANDBOX 7/7] Launching agent...');
-```
-
-**Why:** When monitoring messages, numbered phases make it trivial to see exactly where things stall.
-
-### Change 3: Rebuild + Redeploy
+### Change 4: Cloud Run resource upgrades ✅ DONE
 ```bash
-cd server
-npm run build
-# Then rebuild Docker + push to Cloud Run
+gcloud run deploy crossbeam-server --timeout=3600 --no-cpu-throttling \
+  --min-instances=1 --memory=4Gi --cpu=4
+```
+
+### Change 5: Rebuild + Redeploy ✅ DONE
+Revision: `crossbeam-server-00009-66v`
+
+---
+
+## Test Projects
+
+### Existing Demo Projects
+
+| Name | ID | Flow | Files |
+|------|----|------|-------|
+| City Review Demo | `b0000000-0000-0000-0000-000000000001` (b1) | city-review | PDF + pages-png.tar.gz + title-blocks.tar.gz |
+| Contractor Demo | `b0000000-0000-0000-0000-000000000002` (b2) | corrections-analysis | PDF + 2 correction PNGs + pages-png.tar.gz + title-blocks.tar.gz |
+
+### Small Test Projects (for CV2/CV3)
+
+These need to be created. They use smaller tar.gz archives for faster, cheaper unit tests.
+
+| Name | ID | Flow | Files | Source |
+|------|----|------|-------|--------|
+| City 1-Page Test | `c0000000-0000-0000-0000-000000000001` (c1) | city-review | pages-png-1page.tar.gz | `test-assets/cloud-tests/` |
+| City 3-Page Test | `c0000000-0000-0000-0000-000000000002` (c2) | city-review | pages-png-3page.tar.gz | `test-assets/cloud-tests/` |
+
+**Setup SQL (run once via Supabase MCP):**
+```sql
+-- Create 1-page test project
+INSERT INTO crossbeam.projects (id, user_id, flow_type, project_name, city, project_address, status, is_demo)
+VALUES (
+  'c0000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000000',
+  'city-review',
+  'Cloud Test: 1-Page City Review',
+  'Placentia',
+  '1232 N Jefferson St',
+  'ready',
+  true
+);
+
+-- Create 3-page test project
+INSERT INTO crossbeam.projects (id, user_id, flow_type, project_name, city, project_address, status, is_demo)
+VALUES (
+  'c0000000-0000-0000-0000-000000000002',
+  '00000000-0000-0000-0000-000000000000',
+  'city-review',
+  'Cloud Test: 3-Page City Review',
+  'Placentia',
+  '1232 N Jefferson St',
+  'ready',
+  true
+);
+```
+
+**Upload archives to Supabase storage bucket `crossbeam-demo-assets`:**
+```
+cloud-tests/pages-png-1page.tar.gz  (3.1 MB — just page-01.png cover sheet)
+cloud-tests/pages-png-3page.tar.gz  (11 MB — page-01, page-02, page-03)
+```
+
+**File records (after upload):**
+```sql
+-- 1-page test file record
+INSERT INTO crossbeam.files (project_id, filename, file_type, storage_path)
+VALUES (
+  'c0000000-0000-0000-0000-000000000001',
+  'pages-png-1page.tar.gz',
+  'archive',
+  'crossbeam-demo-assets/cloud-tests/pages-png-1page.tar.gz'
+);
+
+-- 3-page test file records
+INSERT INTO crossbeam.files (project_id, filename, file_type, storage_path)
+VALUES (
+  'c0000000-0000-0000-0000-000000000002',
+  'pages-png-3page.tar.gz',
+  'archive',
+  'crossbeam-demo-assets/cloud-tests/pages-png-3page.tar.gz'
+);
 ```
 
 ---
@@ -101,135 +147,190 @@ npm run build
 # 1. Cloud Run health
 curl -s https://crossbeam-server-v7eqq3533a-uc.a.run.app/health
 
-# 2. Vercel API auth + city project
+# 2. City demo project
 curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000001 \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq '{status: .project.status, files: (.files | length)}'
 
-# 3. Vercel API auth + contractor project
+# 3. Contractor demo project
 curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000002 \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq '{status: .project.status, files: (.files | length)}'
 ```
 
-**Supabase checks (via MCP `execute_sql`):**
+**Supabase checks:**
 ```sql
--- City demo file records (expect 3: PDF + pages-png.tar.gz + title-blocks.tar.gz)
+-- City demo files (expect 3)
 SELECT filename, file_type FROM crossbeam.files
 WHERE project_id = 'b0000000-0000-0000-0000-000000000001';
 
--- Contractor demo file records (expect 5: PDF + 2 correction PNGs + 2 tar.gz)
+-- Contractor demo files (expect 5)
 SELECT filename, file_type FROM crossbeam.files
 WHERE project_id = 'b0000000-0000-0000-0000-000000000002';
 ```
 
 **Pass criteria:**
 - [ ] Cloud Run returns `{"status":"ok"}`
-- [ ] City project API returns files count = 3
-- [ ] Contractor project API returns files count = 5
-- [ ] All storage_path values valid
+- [ ] City project files = 3
+- [ ] Contractor project files = 5
 
 ---
 
-### CV1: Reset + Trigger + Boot Verification ($0-1, ~3 min)
+### CV1: Boot Verification ($0-1, ~3 min)
 
-**What it tests:** Full sandbox lifecycle: creation → deps → download → unpack → skills → agent start.
+**What it tests:** Full sandbox lifecycle up to agent start. Does NOT let the agent run to completion — just confirms boot.
 
 **Commands:**
 ```bash
-# 1. Reset city demo project
+# 1. Reset
 curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"project_id":"b0000000-0000-0000-0000-000000000001"}'
 
-# 2. Trigger city-review
+# 2. Trigger
 curl -X POST https://cc-crossbeam.vercel.app/api/generate \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"project_id":"b0000000-0000-0000-0000-000000000001","flow_type":"city-review"}'
 
-# 3. Poll every 15 sec for boot confirmation
-```
-
-**Monitoring (poll Supabase every 15 sec for ~3 min):**
-```sql
-SELECT id, role, content, created_at
-FROM crossbeam.messages
-WHERE project_id = 'b0000000-0000-0000-0000-000000000001'
-ORDER BY created_at DESC LIMIT 5;
+# 3. Poll Supabase messages every 15 sec
 ```
 
 **Expected message sequence:**
-
-| # | Message | Expected Timing |
-|---|---------|----------------|
-| 1 | `[SANDBOX 1/7] Sandbox created` | ~30 sec |
-| 2 | `[SANDBOX 2/7] Dependencies installed` | ~90 sec |
-| 3 | `[SANDBOX 3/7] Downloaded 3 files` | ~120 sec |
-| 4 | `[SANDBOX 4/7] Archives unpacked` | ~130 sec |
-| 5 | `[SANDBOX 5/7] Skills copied (7 skills)` | ~140 sec |
-| 6 | `[SANDBOX 6/7] Pre-extraction complete` | ~145 sec |
-| 7 | `[SANDBOX 7/7] Launching agent...` | ~150 sec |
-| 8 | `Agent starting...` | ~155 sec |
+| # | Message | ~Time |
+|---|---------|-------|
+| 1 | `[SANDBOX 1/7] Sandbox created` | 30s |
+| 2 | `[SANDBOX 2/7] Dependencies installed` | 90s |
+| 3 | `[SANDBOX 3/7] Downloaded 3 files` | 120s |
+| 4 | `[SANDBOX 4/7] Archives unpacked` | 130s |
+| 5 | `[SANDBOX 5/7] Skills copied (7 skills)` | 140s |
+| 6 | `[SANDBOX 6/7] Setup complete` | 145s |
+| 7 | `[SANDBOX 7/7] Launching plan review agent...` | 150s |
+| 8 | `Agent starting...` | 155s |
 
 **Pass criteria:**
 - [ ] All 7 SANDBOX messages appear
-- [ ] File download count = 3 (not 1!)
-- [ ] Agent starting message appears
-- [ ] No error messages between phases
+- [ ] Downloaded file count = 3 (not 1!)
+- [ ] `Agent starting...` message appears
+- [ ] No errors between phases
 
-**If it stalls after a specific phase, see Failure Mode Catalog below.**
+**Key failure modes:**
+- Stalls after 1/7 → npm install failed (check Cloud Run logs)
+- `Downloaded 1 files` → missing file records in DB
+- No messages at all → Cloud Run didn't receive request (check env vars)
 
 ---
 
-### CV2: Full City Review Run ($6-15, ~15-25 min)
+### CV2: 1-Page City Review (~5-8 min, ~$1-3)
 
-**What it tests:** Agent completes the full city-review flow end-to-end.
+**What it tests:** Agent receives 1 page (cover sheet only), discovers skills, attempts to review it, writes output. Tests the full agent loop with minimal data — catches skill discovery, file access, tool usage, and output writing issues.
 
-**Prerequisite:** CV1 passes (agent boots and starts).
+**Prerequisite:** CV1 passes. Test project `c1` exists with 1-page archive.
 
-After CV1, let the flow continue. Monitor messages every 30 seconds:
+```bash
+# 1. Reset
+curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"c0000000-0000-0000-0000-000000000001"}'
 
+# 2. Trigger
+curl -X POST https://cc-crossbeam.vercel.app/api/generate \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"c0000000-0000-0000-0000-000000000001","flow_type":"city-review"}'
+```
+
+**Monitoring (every 30 sec):**
 ```sql
-SELECT id, role,
-  CASE WHEN length(content) > 150 THEN left(content, 150) || '...' ELSE content END as content,
-  created_at
+SELECT role, left(content, 150) as content, created_at
+FROM crossbeam.messages
+WHERE project_id = 'c0000000-0000-0000-0000-000000000001'
+ORDER BY created_at DESC LIMIT 10;
+```
+
+**What we're looking for:**
+- Agent finds skills (look for `Skill` tool usage in messages)
+- Agent reads the cover sheet PNG
+- Agent writes output files to output dir
+- Agent completes without hitting turn/budget limit
+
+**Pass criteria:**
+- [ ] Status = `completed`
+- [ ] Agent used < 100 turns
+- [ ] Agent cost < $5
+- [ ] Output record has `raw_artifacts` with at least `sheet-manifest.json`
+- [ ] No `sips` or macOS-specific errors in messages
+
+**What this catches that CV1 doesn't:**
+- Skills not actually working (CV1 only checks they're copied)
+- Agent can't read PNGs (file access in sandbox)
+- Agent writing to wrong output directory
+- Agent stuck in loops (cheaper to debug with 1 page)
+
+---
+
+### CV3: 3-Page City Review (~8-12 min, ~$3-5)
+
+**What it tests:** Agent with 3 pages (cover + 2 plan sheets). Tests multi-page review, sheet manifest building, and subagent coordination — still small enough for fast iteration.
+
+**Prerequisite:** CV2 passes.
+
+```bash
+# 1. Reset
+curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"c0000000-0000-0000-0000-000000000002"}'
+
+# 2. Trigger
+curl -X POST https://cc-crossbeam.vercel.app/api/generate \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"c0000000-0000-0000-0000-000000000002","flow_type":"city-review"}'
+```
+
+**Pass criteria:**
+- [ ] Status = `completed`
+- [ ] Agent used < 150 turns
+- [ ] Agent cost < $8
+- [ ] sheet-manifest.json has 3 entries
+- [ ] draft_corrections.md exists with at least some findings
+
+**What this catches that CV2 doesn't:**
+- Multi-page sheet manifest building
+- Subagent spawning for review (may spawn review subagents for sheets)
+- Agent handling multiple PNGs
+
+---
+
+### CV4: Full City Review (~15-25 min, ~$6-15)
+
+**What it tests:** Full 15-page city review — the actual demo flow.
+
+**Prerequisite:** CV3 passes.
+
+```bash
+# Use the demo project (b1)
+curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000001"}'
+
+curl -X POST https://cc-crossbeam.vercel.app/api/generate \
+  -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"project_id":"b0000000-0000-0000-0000-000000000001","flow_type":"city-review"}'
+```
+
+**Monitoring (every 60 sec):**
+```sql
+SELECT role, left(content, 150) as content, created_at
 FROM crossbeam.messages
 WHERE project_id = 'b0000000-0000-0000-0000-000000000001'
 ORDER BY created_at DESC LIMIT 10;
 ```
 
-**Key milestone messages:**
-
-| Message Pattern | Meaning | Expected Time |
-|----------------|---------|---------------|
-| tool: `Skill` | Agent loaded adu-plan-review skill | ~3 min |
-| tool: `Glob` / `Read` | Agent exploring files, reading skill refs | ~3-5 min |
-| tool: `Task` | Agent spawning review subagents | ~5-8 min |
-| tool: `TaskOutput` | Agent checking on subagents | ~8-15 min |
-| tool: `Write` | Agent writing output files | ~15-20 min |
-| `Completed in N turns, cost: $X` | Agent finished | ~15-25 min |
-
-**Final checks:**
-```sql
--- Project status
-SELECT status, error_message, updated_at
-FROM crossbeam.projects
-WHERE id = 'b0000000-0000-0000-0000-000000000001';
-
--- Output details
-SELECT flow_phase, agent_cost_usd, agent_turns, agent_duration_ms
-FROM crossbeam.outputs
-WHERE project_id = 'b0000000-0000-0000-0000-000000000001'
-ORDER BY created_at DESC LIMIT 1;
-```
-
-```bash
-# Output artifacts via API
-curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000000000001 \
-  -H "Authorization: Bearer $CROSSBEAM_API_KEY" | jq '.latest_output | {cost: .agent_cost_usd, turns: .agent_turns, duration_ms: .agent_duration_ms, artifacts: (.raw_artifacts | keys)}'
-```
-
-**Expected output artifacts (in raw_artifacts):**
+**Expected output artifacts:**
 - `sheet-manifest.json`
 - `sheet_findings.json`
 - `state_compliance.json`
@@ -239,43 +340,39 @@ curl -s https://cc-crossbeam.vercel.app/api/projects/b0000000-0000-0000-0000-000
 
 **Pass criteria:**
 - [ ] Status = `completed`
-- [ ] Output record exists
-- [ ] raw_artifacts contains all 6 expected files
-- [ ] draft_corrections.md has numbered corrections with code citations
 - [ ] Cost < $40, turns < 400
+- [ ] All 6 output artifacts present
+- [ ] draft_corrections.md has numbered corrections with code citations
 
 ---
 
-### CV3: Contractor Flow End-to-End ($10-25, ~25-35 min)
+### CV5: Contractor Flow End-to-End (~25-35 min, ~$10-25)
 
-**What it tests:** Full 2-phase contractor flow: analysis → answers → response.
+**What it tests:** Full 2-phase contractor flow. Phase 1 (corrections-analysis) → auto-fill answers → Phase 2 (corrections-response).
 
-**Prerequisite:** CV2 passes (city-review works).
+**Prerequisite:** CV4 passes.
 
 ```bash
-# 1. Reset contractor project
+# 1. Reset
 curl -X POST https://cc-crossbeam.vercel.app/api/reset-project \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"project_id":"b0000000-0000-0000-0000-000000000002"}'
 
-# 2. Trigger Phase 1 (corrections-analysis)
+# 2. Trigger Phase 1
 curl -X POST https://cc-crossbeam.vercel.app/api/generate \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"project_id":"b0000000-0000-0000-0000-000000000002","flow_type":"corrections-analysis"}'
 
-# 3. Monitor + poll until status = awaiting-answers
+# 3. Poll until status = awaiting-answers
+# 4. Auto-fill answers (SQL below)
+# 5. Trigger Phase 2
+# 6. Poll until status = completed
 ```
 
-**After Phase 1 completes (status = awaiting-answers):**
+**Auto-fill answers (after Phase 1 completes):**
 ```sql
--- Check contractor questions
-SELECT question_key, left(question_text, 100), is_answered
-FROM crossbeam.contractor_answers
-WHERE project_id = 'b0000000-0000-0000-0000-000000000002';
-
--- Auto-fill answers for testing
 UPDATE crossbeam.contractor_answers
 SET answer_text = 'Acknowledged — will comply with this correction.',
     is_answered = true,
@@ -284,7 +381,7 @@ WHERE project_id = 'b0000000-0000-0000-0000-000000000002'
   AND is_answered = false;
 ```
 
-**Trigger Phase 2:**
+**Phase 2 trigger:**
 ```bash
 curl -X POST https://cc-crossbeam.vercel.app/api/generate \
   -H "Authorization: Bearer $CROSSBEAM_API_KEY" \
@@ -293,185 +390,145 @@ curl -X POST https://cc-crossbeam.vercel.app/api/generate \
 ```
 
 **Pass criteria:**
-- [ ] Phase 1: status = `awaiting-answers`, contractor questions populated
+- [ ] Phase 1: status = `awaiting-answers`
+- [ ] Contractor questions populated in DB
 - [ ] Phase 2: status = `completed`
-- [ ] Output: response_letter_md, professional_scope_md, corrections_report_md populated
+- [ ] Output has response_letter.md, professional_scope.md, corrections_report.md
 
 ---
 
 ## Failure Mode Catalog
 
-### Boot Failures (CV1)
-
-| # | Symptom | Message Pattern | Root Cause | Fix |
-|---|---------|----------------|------------|-----|
-| 1 | No messages at all | (none) | Cloud Run didn't receive request | Check CLOUD_RUN_URL env, Cloud Run logs |
-| 2 | Only `[SANDBOX 1/7]` | Stall after creation | npm install failed | Check Cloud Run logs for npm errors |
-| 3 | `Downloaded 1 files` | Wrong file count | Missing file records in DB | Add tar.gz records to files table |
-| 4 | No `[SANDBOX 4/7]` | Archive unpack failed | tar.gz format or missing file | Check storage bucket, re-upload |
-| 5 | Skills copied but agent fails | `[SANDBOX 5/7]` then error | settingSources or cwd mismatch | Verify `.claude/skills/` in sandbox |
-
-### Agent Failures (CV2/CV3)
-
-| # | Symptom | Message Pattern | Root Cause | Fix |
-|---|---------|----------------|------------|-----|
-| 6 | Agent tries `sips` | `sips which is macOS-only` | Pre-extracted PNGs missing | Verify archive unpack, check pages-png/ |
-| 7 | Agent stops mid-flow | Last msg `TaskOutput` | Turn or budget limit hit | Raise maxTurns / maxBudgetUsd |
-| 8 | Agent does excessive WebSearch | Multiple `WebSearch` calls | Agent using web instead of offline skills | Strengthen prompt to prefer offline skills |
-| 9 | Agent says "no skills" | `I don't have any skills` | Skills not copied / cwd wrong | Check [SANDBOX 5/7], verify paths |
-| 10 | Status stuck `processing` | No status change | Agent crashed silently | Check Cloud Run logs |
-| 11 | Completed but no output | `Completed in N turns` | Output dir mismatch | Check SANDBOX_OUTPUT_PATH |
-| 12 | `error_max_turns` | Result subtype | Turn limit exhausted | Raise maxTurns |
-| 13 | `error_max_budget_usd` | Result subtype | Budget exhausted | Raise maxBudgetUsd |
+| # | Symptom | Where | Root Cause | Fix |
+|---|---------|-------|------------|-----|
+| 1 | No messages at all | CV1 | Cloud Run didn't receive request | Check CLOUD_RUN_URL env, Cloud Run logs |
+| 2 | Only `[SANDBOX 1/7]` | CV1 | npm install failed | Check Cloud Run logs for npm errors |
+| 3 | `Downloaded 1 files` | CV1 | Missing file records in DB | Add tar.gz records to files table |
+| 4 | No `[SANDBOX 4/7]` | CV1 | Archive unpack failed | Check tar.gz format, storage bucket |
+| 5 | Agent says "no skills" | CV2 | Skills not copied / settingSources wrong | Check [SANDBOX 5/7], verify paths |
+| 6 | Agent tries `sips` | CV2 | PNGs not in expected dir | Verify archive unpack → pages-png/ |
+| 7 | Agent stops mid-flow | CV3+ | Turn or budget limit hit | Check result subtype |
+| 8 | Excessive WebSearch | CV2+ | Agent using web instead of offline skills | Strengthen prompt wording |
+| 9 | Status stuck `processing` | Any | Agent crashed silently | Check Cloud Run logs |
+| 10 | Completed but no output | CV2+ | Output dir mismatch | Check SANDBOX_OUTPUT_PATH |
+| 11 | `TypeError: terminated` at ~5 min | CV2+ | HTTP streaming conn killed by GCP LB | Use `detached: true` mode (FIXED) |
+| 12 | `SocketError: other side closed` | CV2+ | Same as #11 | Same fix — detached mode |
 
 ---
 
-## Diagnostic Queries (Quick Reference)
+## Diagnostic Queries
 
 ```sql
--- Latest messages (reverse chronological)
+-- Latest messages (reverse chron)
 SELECT id, role, left(content, 200), created_at
 FROM crossbeam.messages
-WHERE project_id = '<PROJECT_ID>'
+WHERE project_id = '<PID>'
 ORDER BY created_at DESC LIMIT 20;
 
 -- Project status + error
 SELECT status, error_message, updated_at
-FROM crossbeam.projects WHERE id = '<PROJECT_ID>';
+FROM crossbeam.projects WHERE id = '<PID>';
 
 -- Output details
 SELECT flow_phase, agent_cost_usd, agent_turns, agent_duration_ms
 FROM crossbeam.outputs
-WHERE project_id = '<PROJECT_ID>'
+WHERE project_id = '<PID>'
 ORDER BY created_at DESC LIMIT 1;
 
 -- Message count by role
 SELECT role, count(*)
-FROM crossbeam.messages
-WHERE project_id = '<PROJECT_ID>'
+FROM crossbeam.messages WHERE project_id = '<PID>'
 GROUP BY role;
-
--- Contractor questions
-SELECT question_key, left(question_text, 100), is_answered
-FROM crossbeam.contractor_answers
-WHERE project_id = '<PROJECT_ID>';
-
--- Clear stale data for fresh run
-DELETE FROM crossbeam.messages WHERE project_id = '<PROJECT_ID>';
-DELETE FROM crossbeam.outputs WHERE project_id = '<PROJECT_ID>';
 ```
 
 ---
 
 ## Test Results Log
 
-### Code Changes Applied
+### Code Changes
 
 | Change | Status | Notes |
 |--------|--------|-------|
-| Raise turn limits (500) + budgets ($50) | TODO | `server/src/utils/config.ts` |
-| Add [SANDBOX N/7] phase logging | TODO | `server/src/services/sandbox.ts` |
-| Rebuild + redeploy to Cloud Run | TODO | After code changes |
+| Raise turns to 500 + budgets to $50 | ✅ DONE | `server/src/utils/config.ts` |
+| Add [SANDBOX N/7] phase logging | ✅ DONE | `server/src/services/sandbox.ts` |
+| Detached runCommand mode | ✅ DONE | `server/src/services/sandbox.ts` — THE key fix |
+| Cloud Run resource upgrades | ✅ DONE | timeout=3600, no-cpu-throttling, 4 CPU, 4Gi RAM |
+| Rebuild + redeploy to Cloud Run | ✅ DONE | Revision `crossbeam-server-00009-66v` |
 
-### CV0: Pre-flight Results
-
-| Check | Status | Result |
-|-------|--------|--------|
-| Cloud Run health | TODO | |
-| City project API (files=3) | TODO | |
-| Contractor project API (files=5) | TODO | |
-| City file records (3 rows) | TODO | |
-| Contractor file records (5 rows) | TODO | |
-
-### CV1: Boot Verification Results
+### CV0: Pre-flight ✅ PASSED
 
 | Check | Status | Result |
 |-------|--------|--------|
-| Reset project | TODO | |
-| Trigger city-review | TODO | |
-| [SANDBOX 1/7] Sandbox created | TODO | |
-| [SANDBOX 2/7] Dependencies installed | TODO | |
-| [SANDBOX 3/7] Downloaded N files | TODO | N = ? |
-| [SANDBOX 4/7] Archives unpacked | TODO | |
-| [SANDBOX 5/7] Skills copied | TODO | |
-| [SANDBOX 6/7] Pre-extraction | TODO | |
-| [SANDBOX 7/7] Agent launching | TODO | |
-| Agent starting | TODO | |
+| Cloud Run health | ✅ | `{"status":"ok"}` |
+| City project API (files=3) | ✅ | 3 files (PDF + 2 tar.gz) |
+| Contractor project API (files=5) | ✅ | 5 files |
 
-### CV2: Full City Review Results
+### CV1: Boot Verification ✅ PASSED
 
 | Check | Status | Result |
 |-------|--------|--------|
-| Agent invoked skill | TODO | |
-| Subagents spawned | TODO | How many? |
-| Final status | TODO | completed / failed / error_max_turns |
-| Agent cost | TODO | $? |
-| Agent turns | TODO | ? |
-| Agent duration | TODO | ? min |
-| Output artifacts | TODO | Which files present? |
-| draft_corrections.md quality | TODO | Corrections count? Code citations? |
+| [SANDBOX 1/7] created | ✅ | ~30s |
+| [SANDBOX 2/7] deps installed | ✅ | ~8s |
+| [SANDBOX 3/7] downloaded N files | ✅ | N=3 for b1, N=1 for c1 |
+| [SANDBOX 4/7] archives unpacked | ✅ | |
+| [SANDBOX 5/7] skills copied | ✅ | 7 skills |
+| [SANDBOX 6/7] setup complete | ✅ | |
+| [SANDBOX 7/7] launching agent | ✅ | |
+| Agent starting | ✅ | |
 
-### CV3: Contractor Flow Results
+### CV2: 1-Page Review ✅ PASSED (Feb 14, 22:00 UTC)
 
 | Check | Status | Result |
 |-------|--------|--------|
-| Phase 1 final status | TODO | awaiting-answers / failed |
-| Phase 1 cost/turns | TODO | |
-| Contractor questions generated | TODO | How many? |
-| Phase 2 triggered | TODO | |
-| Phase 2 final status | TODO | completed / failed |
-| Phase 2 cost/turns | TODO | |
-| Response letter quality | TODO | |
+| Test project c1 created | ✅ | `c0000000-...-000000000001` |
+| Archive uploaded to storage | ✅ | 3.1MB pages-png-1page.tar.gz |
+| File record created | ✅ | |
+| Agent completed | ✅ | **FIRST SUCCESSFUL CLOUD RUN!** |
+| Turns used | ✅ | 37 turns (well under 500 limit) |
+| Cost | ✅ | $3.14 |
+| Duration | ✅ | 10.2 min (612s) |
+| Output artifacts | ✅ | All 7: sheet-manifest, sheet_findings, state_compliance, city_compliance, draft_corrections.json, draft_corrections.md, review_summary |
+
+### CV3: 3-Page Review
+
+| Check | Status | Result |
+|-------|--------|--------|
+| Test project c2 created | ✅ | `c0000000-...-000000000002` |
+| Archive uploaded to storage | ✅ | 11MB pages-png-3page.tar.gz |
+| File record created | ✅ | |
+| Agent completed | | PENDING |
+| Turns / cost | | |
+| sheet-manifest entries | | |
+
+### CV4: Full City Review — PARTIAL (Feb 14, 22:27 UTC)
+
+| Check | Status | Result |
+|-------|--------|--------|
+| Status = completed | ✅ | Sandbox infra worked perfectly |
+| Boot + all 7 phases | ✅ | Downloaded 3 files, unpacked 2 archives, 15 pages |
+| Cost / turns | ⚠️ | $0.72 / 45 turns — WAY too fast, agent stopped early |
+| All 6+ artifacts present | ❌ | Only `sheet-manifest.json` — no review artifacts |
+| draft_corrections.md quality | ❌ | Not generated |
+| **Root cause** | | Agent read all 15 PNGs + 15 title blocks (30 images) in main context → hit context window → completed before review work. Need subagent architecture for multi-page review. **Not a sandbox issue — skill/prompt architecture issue.** |
+
+### CV5: Contractor E2E
+
+| Check | Status | Result |
+|-------|--------|--------|
+| Phase 1 → awaiting-answers | | PENDING |
+| Phase 1 cost/turns | | |
+| Questions generated | | |
+| Phase 2 → completed | | |
+| Phase 2 cost/turns | | |
+| Response letter quality | | |
 
 ### Issues Found & Fixed
 
-| # | Issue | Found In | Fix Applied | Verified |
-|---|-------|----------|-------------|----------|
-| 1 | tar.gz file records missing at runtime | Root cause analysis | Records now exist in DB | TODO — verify in CV1 |
-| 2 | 80-turn limit too low | Root cause analysis | TODO — raise to 500 | TODO — verify in CV3 |
-| | | | | |
-
----
-
-## Demo Project Quick Reference
-
-| Project | ID | Flow | Files |
-|---------|----|----|-------|
-| City Review | `b0000000-0000-0000-0000-000000000001` | city-review | PDF + pages-png.tar.gz + title-blocks.tar.gz |
-| Contractor | `b0000000-0000-0000-0000-000000000002` | corrections-analysis | PDF + 2 corrections PNGs + pages-png.tar.gz + title-blocks.tar.gz |
-| Dev City | `a0000000-0000-0000-0000-000000000001` | city-review | Same files |
-| Dev Contractor | `a0000000-0000-0000-0000-000000000002` | corrections-analysis | Same files |
-
-**API URLs:**
-- Vercel: `https://cc-crossbeam.vercel.app`
-- Cloud Run: `https://crossbeam-server-v7eqq3533a-uc.a.run.app`
-- Auth: `Authorization: Bearer $CROSSBEAM_API_KEY`
-
----
-
-## Execution Order
-
-| # | Step | Est. Time | Depends On |
-|---|------|-----------|-----------|
-| 1 | Apply code changes (config + sandbox) | 15 min | Nothing |
-| 2 | Rebuild + redeploy server | 5-10 min | Step 1 |
-| 3 | CV0 (pre-flight) | 1 min | Step 2 |
-| 4 | CV1 (boot verification) | 3 min | CV0 passes |
-| 5 | CV2 (full city review) | 15-25 min | CV1 passes |
-| 6 | Fix issues from CV2 if needed | varies | CV2 failure |
-| 7 | CV3 (contractor end-to-end) | 25-35 min | CV2 passes |
-
-**Total estimated time:** ~60-90 min
-**Total estimated API cost:** ~$15-40
-
----
-
-## Notes
-
-- **Always check messages before re-running** — stale messages from previous runs confuse diagnosis
-- **Delete messages + outputs before re-testing** (or use reset-project endpoint)
-- **Cloud Run cold starts** add ~10-30 sec on first request after idle
-- **Vercel Sandbox timeout** is 30 min — sufficient for all flows
-- **The agent script (`agent.mjs`)** handles all output writing + Supabase updates — Cloud Run just orchestrates sandbox lifecycle
-- **If context compacts:** Read this doc + crossbeam-ops skill references to get back up to speed
-- **Turn limit set to 500** — intentionally high. We'll tune down after learning the actual average turns needed. Rather waste money than waste test runs.
+| # | Issue | Found In | Fix | Verified |
+|---|-------|----------|-----|----------|
+| 1 | tar.gz file records missing at runtime | Root cause analysis | Records added to DB | ✅ CV1 — Downloaded 3 files |
+| 2 | 80-turn limit too low | Root cause analysis | Raised to 500 | ✅ CV2 — used 37 turns |
+| 3 | Cloud Run CPU throttling | CV2 fail #1 | `--no-cpu-throttling` | ✅ |
+| 4 | Cloud Run request timeout 900s | CV2 fail #1 | `--timeout=3600` | ✅ |
+| 5 | **runCommand HTTP connection killed at ~5min** | CV2 fails #1-3 | **`detached: true` mode** | ✅ CV2 — ran 10.2 min |
+| 6 | `sips` (macOS-only) in sandbox | Root cause analysis | Pre-extracted PNGs + archive | ✅ CV2 — no sips errors |

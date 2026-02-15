@@ -47,3 +47,4 @@ test-assets/demo-archives/*.tar.gz
 *.swo
 *~
 .vercel
+.env*.local

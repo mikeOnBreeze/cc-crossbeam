@@ -429,9 +429,12 @@ function logMessage(role, content) {
 // Upload file to Supabase Storage
 async function uploadFile(filename, content) {
   const storagePath = userId + '/' + projectId + '/' + filename;
+  const ext = filename.split('.').pop().toLowerCase();
+  const mimeTypes = { pdf: 'application/pdf', png: 'image/png', jpg: 'image/jpeg', json: 'application/json' };
+  const contentType = mimeTypes[ext] || 'application/octet-stream';
   const { error } = await supabase.storage
     .from('crossbeam-outputs')
-    .upload(storagePath, content, { upsert: true });
+    .upload(storagePath, content, { upsert: true, contentType });
   if (error) {
     console.error('Upload error for', filename, ':', error.message);
     throw error;
@@ -440,12 +443,18 @@ async function uploadFile(filename, content) {
   return storagePath;
 }
 
-// Read all output files from the output directory
+// Read all output files from the output directory (text only — skip binary)
 function readOutputFiles() {
   if (!fs.existsSync(OUTPUT_PATH)) return {};
+  const binaryExts = new Set(['pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip', 'tar', 'gz']);
   const result = {};
   const files = fs.readdirSync(OUTPUT_PATH);
   for (const file of files) {
+    const ext = file.split('.').pop().toLowerCase();
+    if (binaryExts.has(ext)) {
+      console.log('Skipping binary file:', file);
+      continue;
+    }
     const filePath = path.join(OUTPUT_PATH, file);
     const stat = fs.statSync(filePath);
     if (stat.isFile()) {
@@ -457,29 +466,40 @@ function readOutputFiles() {
           result[file] = content;
         }
       } catch {
-        console.log('Skipping binary file:', file);
+        console.log('Skipping unreadable file:', file);
       }
     }
   }
   return result;
 }
 
-// Create output record
+// Create output record with auto-incrementing version
 async function createOutputRecord(data) {
+  // Get max version for this project+flow_phase
+  const { data: existing } = await supabase
+    .schema('crossbeam')
+    .from('outputs')
+    .select('version')
+    .eq('project_id', projectId)
+    .eq('flow_phase', '${flowPhase}')
+    .order('version', { ascending: false })
+    .limit(1);
+  const nextVersion = (existing?.[0]?.version || 0) + 1;
+
   const { error } = await supabase
     .schema('crossbeam')
     .from('outputs')
     .insert({
       project_id: projectId,
       flow_phase: '${flowPhase}',
-      version: 1,
+      version: nextVersion,
       ...data,
     });
   if (error) {
     console.error('Failed to create output record:', error.message);
     throw error;
   }
-  console.log('Output record created');
+  console.log('Output record created (version ' + nextVersion + ')');
 }
 
 // Insert contractor questions into contractor_answers table
@@ -575,6 +595,7 @@ async function runAgent() {
         console.log('Turns:', message.num_turns);
         console.log('Cost: $' + (message.total_cost_usd || 0).toFixed(4));
         logMessage('system', 'Completed in ' + message.num_turns + ' turns, cost: $' + (message.total_cost_usd || 0).toFixed(4));
+        break; // Stop iterating — result means done. Without this, the SDK re-invokes the agent in 1-turn follow-up loops.
       }
     }
 

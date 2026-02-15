@@ -31,6 +31,7 @@ export interface Project {
   city: string | null
   status: ProjectStatus
   error_message: string | null
+  applicant_name: string | null
   is_demo: boolean
   created_at: string
   updated_at: string

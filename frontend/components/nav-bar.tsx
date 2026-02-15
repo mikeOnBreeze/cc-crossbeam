@@ -54,9 +54,17 @@ export function NavBar({ userEmail }: NavBarProps) {
   return (
     <nav className="border-b border-border/50 bg-card/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <span className="heading-card text-primary">CrossBeam</span>
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <span className="heading-card text-primary">CrossBeam</span>
+          </Link>
+          <Link
+            href="/my-projects"
+            className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors hidden sm:inline"
+          >
+            Projects
+          </Link>
+        </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
