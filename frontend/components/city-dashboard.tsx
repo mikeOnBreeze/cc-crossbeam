@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -13,8 +14,9 @@ import {
   ClockIcon,
   AlertCircleIcon,
   CircleDotIcon,
+  ChevronRightIcon,
 } from 'lucide-react'
-import { getStatusConfig, relativeTime } from '@/lib/status-utils'
+import { getStatusConfig, relativeTime, getAduImage } from '@/lib/status-utils'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/types/database'
 
@@ -98,61 +100,62 @@ export function CityDashboard() {
         ))}
       </div>
 
-      {/* Table */}
-      <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 overflow-hidden">
-        <CardContent className="p-0">
-          {/* Table Header */}
-          <div className="grid grid-cols-[1fr_1fr_auto_auto] gap-4 px-6 py-3 border-b border-border/50 bg-muted/30">
-            <span className="text-xs font-semibold font-body text-muted-foreground uppercase tracking-wider">Project</span>
-            <span className="text-xs font-semibold font-body text-muted-foreground uppercase tracking-wider">Applicant</span>
-            <span className="text-xs font-semibold font-body text-muted-foreground uppercase tracking-wider">Status</span>
-            <span className="text-xs font-semibold font-body text-muted-foreground uppercase tracking-wider text-right">Submitted</span>
-          </div>
+      {/* Project Cards */}
+      <div className="space-y-3">
+        {projects.map(project => {
+          const status = getStatusConfig(project.status)
+          return (
+            <Link key={project.id} href={`/projects/${project.id}`}>
+              <Card className="hover-lift shadow-[0_4px_16px_rgba(28,25,23,0.06)] border-border/50 cursor-pointer transition-all">
+                <CardContent className="p-0">
+                  <div className="flex items-center gap-4 px-5 py-4">
+                    {/* ADU Thumbnail */}
+                    <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center">
+                      <Image
+                        src={getAduImage(project.id)}
+                        alt={project.project_name}
+                        width={64}
+                        height={64}
+                        className="object-contain drop-shadow-sm"
+                        quality={75}
+                      />
+                    </div>
 
-          {/* Table Rows */}
-          {projects.map((project, i) => {
-            const status = getStatusConfig(project.status)
-            return (
-              <Link
-                key={project.id}
-                href={`/projects/${project.id}`}
-                className={cn(
-                  'grid grid-cols-[1fr_1fr_auto_auto] gap-4 px-6 py-4 items-center transition-colors hover:bg-muted/30',
-                  i < projects.length - 1 && 'border-b border-border/30'
-                )}
-              >
-                {/* Project */}
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-foreground font-body truncate">
-                    {project.project_name}
-                  </p>
-                  <p className="text-xs text-muted-foreground font-body truncate">
-                    {project.project_address}
-                  </p>
-                </div>
+                    {/* Project Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <p className="text-sm font-semibold text-foreground font-body truncate">
+                          {project.project_name}
+                        </p>
+                      </div>
+                      <p className="text-xs text-muted-foreground font-body">
+                        {project.project_address}{project.city ? `, ${project.city}` : ''}
+                      </p>
+                      <p className="text-xs text-muted-foreground/70 font-body mt-0.5">
+                        {project.applicant_name ? `Applicant: ${project.applicant_name}` : ''}
+                      </p>
+                    </div>
 
-                {/* Applicant */}
-                <p className="text-sm text-foreground font-body truncate">
-                  {project.applicant_name || '—'}
-                </p>
-
-                {/* Status */}
-                <Badge
-                  variant={status.variant}
-                  className={cn('rounded-sm text-[10px] whitespace-nowrap', status.className)}
-                >
-                  {status.label}
-                </Badge>
-
-                {/* Submitted */}
-                <span className="text-xs text-muted-foreground font-body whitespace-nowrap text-right">
-                  {relativeTime(project.created_at)}
-                </span>
-              </Link>
-            )
-          })}
-        </CardContent>
-      </Card>
+                    {/* Status + Meta */}
+                    <div className="flex items-center gap-4 flex-shrink-0">
+                      <Badge
+                        variant={status.variant}
+                        className={cn('rounded-sm text-[10px] whitespace-nowrap', status.className)}
+                      >
+                        {status.label}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground font-body whitespace-nowrap w-16 text-right">
+                        {relativeTime(project.created_at)}
+                      </span>
+                      <ChevronRightIcon className="w-4 h-4 text-muted-foreground/40" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }

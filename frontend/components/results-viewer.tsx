@@ -6,9 +6,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { AduMiniature } from '@/components/adu-miniature'
-import { Loader2Icon, ClockIcon, CpuIcon, DollarSignIcon, LayoutDashboardIcon } from 'lucide-react'
+import { Loader2Icon, ClockIcon, CpuIcon, DollarSignIcon, ArrowLeftIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Output, FlowType } from '@/types/database'
 
@@ -89,94 +88,82 @@ export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      {/* Header — ADU overlaps into heading via negative margin */}
-      <div className="text-center animate-fade-up">
-        <div className="flex justify-center">
-          <AduMiniature variant="accent" />
-        </div>
-        <h1 className="heading-display text-foreground -mt-3">
-          {flowType === 'city-review'
-            ? 'Review complete'
-            : 'Your response package is ready'}
-        </h1>
-      </div>
+    <div className="max-w-5xl mx-auto space-y-6">
+      {/* Back arrow + Header */}
+      <div className="animate-fade-up">
+        <Link
+          href="/my-projects"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground font-body transition-colors mb-4"
+        >
+          <ArrowLeftIcon className="w-4 h-4" />
+          Back to projects
+        </Link>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
-        {/* Main Content */}
-        <div className="space-y-4">
-          {/* Tabs — hide bar when single tab */}
-          {tabs.length > 1 && (
-            <div className="flex gap-1 border-b border-border/50">
-              {tabs.map(tab => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={cn(
-                    'px-4 py-2.5 text-sm font-body font-semibold transition-colors',
-                    activeTab === tab.key
-                      ? 'text-foreground border-b-2 border-primary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  )}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Content */}
-          <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
-            <CardContent className="p-6">
-              <div className="prose-crossbeam">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {getContent(activeTab) || 'No content available for this tab.'}
-                </ReactMarkdown>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Summary Stats Sidebar */}
-        <div className="space-y-4">
-          <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50 h-fit">
-            <CardContent className="p-6 space-y-4">
-              <h3 className="heading-card text-foreground">Summary</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-sm font-body">
-                  <ClockIcon className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground">Duration</span>
-                  <span className="ml-auto text-foreground font-semibold">
-                    {formatDuration(output.agent_duration_ms)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-sm font-body">
-                  <CpuIcon className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground">Agent turns</span>
-                  <span className="ml-auto text-foreground font-semibold">
-                    {output.agent_turns ?? '—'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-sm font-body">
-                  <DollarSignIcon className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground">Cost</span>
-                  <span className="ml-auto text-foreground font-semibold">
-                    {output.agent_cost_usd ? `$${output.agent_cost_usd.toFixed(2)}` : '—'}
-                  </span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Dashboard Link */}
-          <Link href="/my-projects">
-            <Button variant="outline" className="w-full rounded-full font-body font-semibold gap-2">
-              <LayoutDashboardIcon className="w-4 h-4" />
-              View your dashboard
-            </Button>
-          </Link>
+        <div className="text-center">
+          <div className="flex justify-center">
+            <AduMiniature variant="accent" />
+          </div>
+          <h1 className="heading-display text-foreground -mt-3">
+            {flowType === 'city-review'
+              ? 'Review complete'
+              : 'Your response package is ready'}
+          </h1>
         </div>
       </div>
+
+      {/* Summary Stats — compact horizontal bar */}
+      <div className="flex items-center justify-center gap-6 py-3 px-6 rounded-full bg-muted/40 border border-border/50 max-w-lg mx-auto">
+        <div className="flex items-center gap-2 text-sm font-body">
+          <ClockIcon className="w-4 h-4 text-primary" />
+          <span className="text-muted-foreground">Duration</span>
+          <span className="text-foreground font-semibold">{formatDuration(output.agent_duration_ms)}</span>
+        </div>
+        <div className="w-px h-4 bg-border/50" />
+        <div className="flex items-center gap-2 text-sm font-body">
+          <CpuIcon className="w-4 h-4 text-primary" />
+          <span className="text-muted-foreground">Turns</span>
+          <span className="text-foreground font-semibold">{output.agent_turns ?? '—'}</span>
+        </div>
+        <div className="w-px h-4 bg-border/50" />
+        <div className="flex items-center gap-2 text-sm font-body">
+          <DollarSignIcon className="w-4 h-4 text-primary" />
+          <span className="text-muted-foreground">Cost</span>
+          <span className="text-foreground font-semibold">
+            {output.agent_cost_usd ? `$${output.agent_cost_usd.toFixed(2)}` : '—'}
+          </span>
+        </div>
+      </div>
+
+      {/* Tabs — hide bar when single tab */}
+      {tabs.length > 1 && (
+        <div className="flex gap-1 border-b border-border/50">
+          {tabs.map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={cn(
+                'px-4 py-2.5 text-sm font-body font-semibold transition-colors',
+                activeTab === tab.key
+                  ? 'text-foreground border-b-2 border-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Content — full width */}
+      <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.08)] border-border/50">
+        <CardContent className="p-8">
+          <div className="prose-crossbeam">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {getContent(activeTab) || 'No content available for this tab.'}
+            </ReactMarkdown>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
