@@ -130,33 +130,67 @@ PRE-EXTRACTED DATA:
       ? `CITY ROUTING: ${city} is an onboarded city with a dedicated skill (${citySkillName}).
 Use the ${citySkillName} skill reference files for ALL city-level research in Phase 3B.
 Do NOT use adu-city-research. Do NOT use WebSearch or WebFetch for city rules.
-The ${citySkillName} skill has complete, verified data — it is better than any web search.
-For Phase 3B, load the ${citySkillName} reference files and check findings against city-specific amendments, standard details, and IBs. This is Tier 3 (offline, ~30 sec).`
+The ${citySkillName} skill has complete, verified data — it is better than any web search.`
       : `CITY ROUTING: ${city} is NOT an onboarded city. Use adu-city-research for city rules.`;
 
-    return `You are reviewing an ADU permit submission from the city's perspective.
+    return `You are the ORCHESTRATOR for an ADU plan review. You coordinate subagents — you do NOT read images or large files yourself.
 
 PROJECT FILES: ${SANDBOX_FILES_PATH}/
+OUTPUT DIRECTORY: ${SANDBOX_OUTPUT_PATH}/
 CITY: ${city}
 ${addressLine}
-${preExtractedNotice}
+
+MANIFEST: sheet-manifest.json already exists in output/. Read it to understand the sheet layout. Skip Phase 1 (manifest building) entirely.
+
 ${cityRouting}
 
-Use the adu-plan-review skill to:
-1. Build the sheet manifest (read ONLY the cover sheet + title block crops — do NOT read full plan PNGs yourself)
-2. Spawn subagents for sheet-by-sheet review (each subagent gets 2-3 sheet PNGs + checklist — see Phase 2 in skill)
-3. Spawn subagents for code compliance (state law + city rules — see Phase 3 in skill)
-4. Merge findings and generate draft corrections letter
+YOUR JOB: Coordinate 4 phases using subagents. You NEVER read PNG images. You NEVER ingest large JSON payloads. You ONLY spawn subagents and verify output files exist.
 
-SUBAGENT ARCHITECTURE — MANDATORY:
-You are the orchestrator. You MUST use subagents for all image-heavy work:
-- Phase 1: You read the cover sheet (1 image) to get the sheet index. If page count != index count, spawn subagents to read title block crops (small images) in batches.
-- Phase 2: Spawn 3-5 review subagents grouped by discipline (Architectural, Site/Civil, Structural, MEP). Each subagent receives its assigned sheet PNGs + checklist reference file. Rolling window: 3 in flight at a time.
-- Phase 3: Spawn subagents for state law lookup + city rules lookup (concurrent).
-- Phase 4: YOU merge all subagent findings and write the output files. No images needed — just text.
-Do NOT read full plan sheet PNGs (page-XX.png) in your main context. They will fill your context window and you will fail before completing the review.
+PHASE 2 — Sheet Review:
+Spawn 5 discipline subagents. Each subagent gets:
+- A list of sheet PNGs to read (from the manifest — files are at ${SANDBOX_FILES_PATH}/pages-png/page-XX.png)
+- The relevant checklist reference file path (from adu-plan-review skill)
+- The sheet manifest path for context
+- Instructions to WRITE findings to ${SANDBOX_OUTPUT_PATH}/findings-{discipline}.json
 
-Write all output files to ${SANDBOX_OUTPUT_PATH}/
+Subagent grouping (read the manifest to map sheet IDs to page numbers):
+- arch-a: Cover sheet + floor plans → write output/findings-arch-a.json
+- arch-b: Elevations + sections + details → write output/findings-arch-b.json
+- site-civil: Site plan + energy/code compliance → write output/findings-site-civil.json
+- structural: Foundation + framing + structural details → write output/findings-structural.json
+- mep-energy: Plumbing + mechanical + electrical + Title 24 → write output/findings-mep-energy.json
+
+Each subagent MUST write its findings JSON file and return ONLY a short summary (e.g., "Done, wrote 12 findings to findings-arch-a.json"). Do NOT return the full findings.
+
+After spawning, call TaskOutput to confirm completion. Then verify files exist with Glob. Do NOT read the findings files yourself.
+
+PHASE 3 — Code Compliance (spawn 2 subagents concurrently):
+- 3A (State): Read findings-*.json files from ${SANDBOX_OUTPUT_PATH}/ + load california-adu reference files. For each FAIL/UNCLEAR finding, verify against state law. Write ${SANDBOX_OUTPUT_PATH}/state_compliance.json. Return short summary only.
+- 3B (City): Read findings-*.json files from ${SANDBOX_OUTPUT_PATH}/ + load ${citySkillName || 'adu-city-research'} reference files. Check against city-specific rules. Write ${SANDBOX_OUTPUT_PATH}/city_compliance.json. Return short summary only.
+
+PHASE 4 — Merge & Draft (spawn 1 subagent):
+This subagent reads ALL artifact files from disk:
+- ${SANDBOX_OUTPUT_PATH}/sheet-manifest.json
+- ${SANDBOX_OUTPUT_PATH}/findings-*.json (5 files)
+- ${SANDBOX_OUTPUT_PATH}/state_compliance.json
+- ${SANDBOX_OUTPUT_PATH}/city_compliance.json
+
+Apply filter rules from adu-plan-review skill:
+- Include findings confirmed by state AND/OR city code with code citation
+- Flag LOW visual confidence findings with [VERIFY]
+- DROP findings with no code basis (no false positives)
+- Use [REVIEWER: ...] blanks for structural/engineering/judgment items
+- DROP subjective findings — ADUs subject to objective standards only (Gov. Code 66314(b)(1))
+
+Write these 3 files:
+- ${SANDBOX_OUTPUT_PATH}/draft_corrections.json
+- ${SANDBOX_OUTPUT_PATH}/draft_corrections.md
+- ${SANDBOX_OUTPUT_PATH}/review_summary.json
+
+CRITICAL — SUBAGENT COLLECTION:
+After spawning subagents, you MUST IMMEDIATELY call TaskOutput to wait for completion.
+Do NOT generate a text-only response while subagents are pending — always include a TaskOutput call.
+Pattern: spawn Task(s) → immediately call TaskOutput in the same response.
 
 CRITICAL RULES:
 - Every correction MUST have a specific code citation. No false positives.
@@ -164,16 +198,14 @@ CRITICAL RULES:
 - State law preempts city rules — if city is more restrictive, flag the conflict.
 - Use [REVIEWER: ...] blanks for structural, engineering, and judgment items.
 
-PDF GENERATION: Do NOT generate PDFs. Do NOT use adu-corrections-pdf. Do NOT install reportlab, puppeteer, or any PDF tools.
-Your job ends at draft_corrections.md. PDF conversion happens externally after this agent completes.
+PDF GENERATION: Do NOT generate PDFs. Do NOT install reportlab, puppeteer, or any PDF tools.
+Your job ends at draft_corrections.md.
 
-YOU MUST COMPLETE ALL PHASES. The job is NOT done until these files exist:
-- sheet-manifest.json
-- sheet_findings.json
-- state_compliance.json
-- draft_corrections.json
-- draft_corrections.md
-- review_summary.json`;
+COMPLETION: Verify ALL these files exist in output/:
+- sheet-manifest.json (pre-loaded)
+- findings-arch-a.json, findings-arch-b.json, findings-site-civil.json, findings-structural.json, findings-mep-energy.json
+- state_compliance.json, city_compliance.json
+- draft_corrections.json, draft_corrections.md, review_summary.json`;
   }
 
   if (flowType === 'corrections-analysis') {
@@ -247,18 +279,17 @@ Follow the adu-corrections-complete skill instructions exactly.`;
 // --- System Prompt Appends ---
 
 export const CITY_REVIEW_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
-Use available skills to research codes, analyze plans, and generate professional output.
-Always write output files to the output directory provided in the prompt.
-
 You are reviewing an ADU plan submittal from the city's perspective.
-Your job is to identify issues that violate state or city code and produce a draft corrections letter.
+Your job is to coordinate subagents that identify code violations and produce a draft corrections letter.
 
 CONTEXT MANAGEMENT — MANDATORY:
-- NEVER read full-size plan sheet PNGs (page-XX.png) in your main context. They are large images that will fill your context window.
-- The ONLY images you may read directly are: the cover sheet (page-01.png) and title block crops (title-block-XX.png, which are small).
-- ALL sheet review work MUST happen in subagents. Spawn one subagent per discipline group (see adu-plan-review skill Phase 2). Each subagent reads only its assigned 2-3 sheet PNGs.
-- Your main context handles orchestration: build the manifest, spawn review subagents, collect their text findings, merge with code research, write output files.
-- If you read more than 2 full-size plan PNGs in your main context, you WILL run out of context and fail to complete the job.
+- You are a PURE COORDINATOR. You NEVER read images. You NEVER read large JSON files.
+- NEVER read any PNG files (page-XX.png, title-block-XX.png) in your main context.
+- ALL image reading and analysis happens in subagents that write results to files on disk.
+- ALL merging and filtering happens in a dedicated Phase 4 subagent.
+- Your main context handles ONLY: reading the manifest (small JSON), spawning subagents, verifying output files exist via Glob.
+- After spawning subagents, call TaskOutput to confirm completion. Subagents return SHORT summaries only — do NOT read their output files yourself.
+- If you read ANY PNG or large JSON file in your main context, you WILL run out of context and fail.
 
 CRITICAL RULES:
 - NO false positives. Every correction MUST have a specific code citation.

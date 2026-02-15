@@ -63,11 +63,16 @@ All written to the session directory.
 
 | Output | Format | Phase |
 |--------|--------|-------|
-| `sheet-manifest.json` | Sheet ID ↔ page mapping | Phase 1 |
-| `sheet_findings.json` | Per-sheet review findings with confidence flags | Phase 2 |
+| `sheet-manifest.json` | Sheet ID ↔ page mapping | Phase 1 (pre-loaded) |
+| `findings-arch-a.json` | Architectural A findings (cover + floor plans) | Phase 2 |
+| `findings-arch-b.json` | Architectural B findings (elevations + sections) | Phase 2 |
+| `findings-site-civil.json` | Site/Civil findings (site plan + energy/code) | Phase 2 |
+| `findings-structural.json` | Structural findings (foundation + framing + details) | Phase 2 |
+| `findings-mep-energy.json` | MEP/Energy findings (plumbing + mechanical + electrical + T24) | Phase 2 |
 | `state_compliance.json` | State law findings relevant to plan issues | Phase 3A |
 | `city_compliance.json` | City-specific findings (from city skill or web research) | Phase 3B |
 | **`draft_corrections.json`** | **Draft corrections letter — the main output** | Phase 4 |
+| `draft_corrections.md` | Formatted markdown corrections letter | Phase 4 |
 | `review_summary.json` | Stats: items found by confidence tier, review coverage, reviewer action items | Phase 4 |
 
 ## Workflow
@@ -84,28 +89,29 @@ Run `adu-targeted-page-viewer`:
 
 ~90 seconds (or ~30 seconds if PNGs are pre-extracted). Identical to Phase 2 of `adu-corrections-flow`.
 
-### Phase 2: Sheet-by-Sheet Review
+### Phase 2: Sheet-by-Sheet Review (FILE-BASED)
 
-Review each sheet against the relevant checklist reference file. Group sheets by discipline to limit subagent count.
+Review each sheet against the relevant checklist reference file. Group sheets by discipline to limit subagent count. **Subagents write findings to files — they do NOT return findings to the orchestrator.**
 
 **Subagent grouping:**
 
-| Subagent | Sheets | Checklist Reference | Priority |
-|----------|--------|---------------------|----------|
-| **Architectural A** | Cover sheet, floor plan(s) | `checklist-cover.md`, `checklist-floor-plan.md` | HIGH — run first |
-| **Architectural B** | Elevations, roof plan, building sections | `checklist-elevations.md` | HIGH |
-| **Site / Civil** | Site plan, grading plan, utility plan | `checklist-site-plan.md` | HIGH |
-| **Structural** | Foundation, framing, structural details | `checklist-structural.md` | LOW — flag for reviewer |
-| **MEP / Energy** | Plumbing, mechanical, electrical, Title 24 | `checklist-mep-energy.md` | MEDIUM |
+| Subagent | Sheets | Checklist Reference | Output File |
+|----------|--------|---------------------|-------------|
+| **arch-a** | Cover sheet, floor plan(s) | `checklist-cover.md`, `checklist-floor-plan.md` | `output/findings-arch-a.json` |
+| **arch-b** | Elevations, roof plan, building sections | `checklist-elevations.md` | `output/findings-arch-b.json` |
+| **site-civil** | Site plan, grading plan, utility plan | `checklist-site-plan.md` | `output/findings-site-civil.json` |
+| **structural** | Foundation, framing, structural details | `checklist-structural.md` | `output/findings-structural.json` |
+| **mep-energy** | Plumbing, mechanical, electrical, Title 24 | `checklist-mep-energy.md` | `output/findings-mep-energy.json` |
 
-**Rolling window:** 3 subagents in flight. Architectural A + Architectural B + Site/Civil start first. As each completes, launch the next.
+**Rolling window:** 3 subagents in flight. arch-a + arch-b + site-civil start first. As each completes, launch the next.
 
 **Each subagent receives:**
-- The sheet PNG(s) for its assigned sheets
+- The sheet PNG(s) for its assigned sheets (read from pages-png/)
 - The relevant checklist reference file(s)
 - The sheet manifest (for cross-reference context)
+- **Instructions to WRITE findings to its output file**
 
-**Each subagent produces:** A findings array for its sheets — one entry per check, with:
+**Each subagent WRITES a findings JSON file** containing an array — one entry per check:
 - `check_id` — Which checklist item (e.g., "1A" = architect stamp)
 - `sheet_id` — Which sheet (e.g., "A1")
 - `status` — `PASS` | `FAIL` | `UNCLEAR` | `NOT_APPLICABLE`
@@ -113,20 +119,23 @@ Review each sheet against the relevant checklist reference file. Group sheets by
 - `observation` — What the subagent actually saw (evidence)
 - `code_ref` — Code section this check is grounded in
 
-**For `administrative` review scope:** Only launch the Architectural A subagent (cover sheet + floor plan). Skip all others.
+**Each subagent RETURNS only a short summary** (e.g., "Done, wrote 12 findings to findings-arch-a.json"). The orchestrator collects this summary via TaskOutput but does NOT read the findings file.
+
+**Orchestrator verification:** After all 5 subagents complete, use Glob to verify all 5 `findings-*.json` files exist. Do NOT read their contents.
 
 ~2-3 minutes for full review (5 subagents, 3-at-a-time rolling window).
 
-### Phase 3: Code Compliance (concurrent 3A + 3B)
+### Phase 3: Code Compliance (FILE-BASED, concurrent 3A + 3B)
 
-After Phase 2 completes, launch two concurrent subagents to verify findings against code.
+After Phase 2 completes, launch two concurrent subagents to verify findings against code. **Both subagents read findings from disk and write results to disk.**
 
 #### 3A: State Law Verification
 
 - **Skill:** `california-adu`
-- **Input:** All `FAIL` and `UNCLEAR` findings from Phase 2
+- **Input:** Read all `findings-*.json` files from the output directory. Focus on `FAIL` and `UNCLEAR` findings.
 - **Task:** For each finding, look up the cited code section in the california-adu reference files. Verify: Is this actually required by state law? What are the exact thresholds? Are there ADU-specific exceptions?
-- **Output:** `state_compliance.json` — per-finding code verification with exact citations
+- **Output:** Write `output/state_compliance.json` — per-finding code verification with exact citations
+- **Return:** Short summary only (e.g., "Done, verified 18 findings against state law, wrote state_compliance.json")
 
 Why this matters: The checklist reference files cite code sections, but the `california-adu` skill has the detailed rules with exceptions and thresholds. Phase 3A catches false positives — e.g., the checklist flags a 3-foot setback, but the ADU is a conversion and conversions have no setback requirement.
 
@@ -135,26 +144,31 @@ Why this matters: The checklist reference files cite code sections, but the `cal
 Route based on City Routing decision (see above).
 
 **If onboarded city (Tier 3):**
+- Read all `findings-*.json` files from the output directory
 - Load city skill reference files
 - Check findings against city-specific amendments, standard details, and IBs
 - Fast — ~30 sec, all offline
 
 **If web research (Tier 2):**
+- Read all `findings-*.json` files from the output directory
 - Run `adu-city-research` Mode 1 → Mode 2 → optional Mode 3
 - Check findings against discovered city requirements
 - Slower — ~90 sec to 3 min
 
-**Output:** `city_compliance.json` — city-specific requirements, local amendments, standard details that apply to the findings
+**Output:** Write `output/city_compliance.json` — city-specific requirements, local amendments, standard details that apply to the findings
+**Return:** Short summary only
 
-### Phase 4: Generate Draft Corrections Letter
+**Orchestrator verification:** After both subagents complete, use Glob to verify `state_compliance.json` and `city_compliance.json` exist. Do NOT read their contents.
 
-Single agent merges all inputs and produces the corrections letter.
+### Phase 4: Merge & Draft Corrections (FILE-BASED, dedicated subagent)
 
-**Inputs to this phase:**
-1. `sheet_findings.json` (Phase 2) — what the AI found on the plans
-2. `state_compliance.json` (Phase 3A) — state law verification
-3. `city_compliance.json` (Phase 3B) — city-specific rules
-4. `sheet-manifest.json` (Phase 1) — for sheet references
+**This is a dedicated subagent** — the orchestrator does NOT merge findings itself. The Phase 4 subagent reads all artifact files from disk and produces the corrections letter.
+
+**Subagent reads from disk:**
+1. `output/findings-*.json` (5 files from Phase 2) — what the AI found on the plans
+2. `output/state_compliance.json` (Phase 3A) — state law verification
+3. `output/city_compliance.json` (Phase 3B) — city-specific rules
+4. `output/sheet-manifest.json` (Phase 1) — for sheet references
 
 **For each finding, apply this filter:**
 
@@ -180,9 +194,16 @@ Each correction item includes:
 
 See `references/output-schemas.md` for full JSON schema.
 
-Phase 4 also outputs **`draft_corrections.md`** — a formatted markdown version of the corrections letter. This is the primary output — it serves as both the frontend-renderable version and the source for PDF conversion.
+**Subagent writes 3 files:**
+- `output/draft_corrections.json` — structured corrections data
+- `output/draft_corrections.md` — formatted markdown corrections letter (primary output for frontend + PDF conversion)
+- `output/review_summary.json` — stats: items by confidence tier, review coverage, reviewer action items
+
+**Return:** Short summary only (e.g., "Done, generated 14 corrections, wrote draft_corrections.json/md + review_summary.json")
 
 **PDF generation is handled externally** — after this agent completes, the server converts `draft_corrections.md` to PDF outside the sandbox. Do NOT attempt PDF generation. Do NOT use `adu-corrections-pdf`. Do NOT install reportlab, puppeteer, or any PDF tools. Your job ends at `draft_corrections.md`.
+
+**Orchestrator verification:** After Phase 4 subagent completes, verify `draft_corrections.json`, `draft_corrections.md`, and `review_summary.json` exist. Do NOT read their contents.
 
 ## Timing
 

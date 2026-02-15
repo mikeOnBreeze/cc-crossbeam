@@ -1,0 +1,41 @@
+{
+  "notes": {
+    "no_mep_sheets": "No separate mechanical, electrical, or plumbing plan sheets identified in the set.",
+    "missing_sheets": "No dedicated elevations sheet, roof plan, mechanical sheet, electrical sheet, or plumbing plan identified. A2 contains plumbing fixture notes but may not be a full plumbing plan. No dedicated site/civil/grading sheet - site plan appears to be on A1.",
+    "no_elevation_sheet": "No dedicated elevation sheet identified. Elevations may be included on A3 (Building Sections) or elsewhere."
+  },
+  "sheets": [
+    { "page": 1, "sheet_id": "CS", "discipline": "Cover", "sheet_title": "Cover Sheet / Project Data" },
+    { "page": 2, "sheet_id": "AIA.1", "discipline": "Energy/Code", "sheet_title": "CALGreen Compliance Notes (Part 1)" },
+    { "page": 3, "sheet_id": "AIA.2", "discipline": "Energy/Code", "sheet_title": "CALGreen Compliance Notes (Part 2)" },
+    { "page": 4, "sheet_id": "A1", "discipline": "Architectural", "sheet_title": "Site Plan / General Notes" },
+    { "page": 5, "sheet_id": "A1.1", "discipline": "Architectural", "sheet_title": "Floor Plan" },
+    { "page": 6, "sheet_id": "A2", "discipline": "Architectural", "sheet_title": "Plumbing Fixture Notes / Details" },
+    { "page": 7, "sheet_id": "A3", "discipline": "Architectural", "sheet_title": "Building Sections / Details" },
+    { "page": 8, "sheet_id": "SN1", "discipline": "Structural", "sheet_title": "Structural Notes (1)" },
+    { "page": 9, "sheet_id": "SN2", "discipline": "Structural", "sheet_title": "Structural Notes (2)" },
+    { "page": 10, "sheet_id": "S1", "discipline": "Structural", "sheet_title": "Structural Plan / Details (1)" },
+    { "page": 11, "sheet_id": "S2", "discipline": "Structural", "sheet_title": "Structural Details (2)" },
+    { "page": 12, "sheet_id": "S3", "discipline": "Structural", "sheet_title": "Structural Details (3)" },
+    { "page": 13, "sheet_id": "T-1", "discipline": "Energy", "sheet_title": "Title 24 Energy Compliance (CF1R Part 1)" },
+    { "page": 14, "sheet_id": "T-2", "discipline": "Energy", "sheet_title": "Title 24 Energy Compliance (CF1R Part 2)" },
+    { "page": 15, "sheet_id": "T-3", "discipline": "Energy", "sheet_title": "Title 24 Energy Compliance (CF1R Part 3)" }
+  ],
+  "project": {
+    "date": "06/18/2025",
+    "owner": "Kiet Le",
+    "address": "1232 N. Jefferson St, Placentia, CA 92870",
+    "designer": "Ideal ADU / OSCA Design",
+    "job_number": "25-1232N.JEFFERSON",
+    "adu_address": "1232 N. Jefferson St, Unit 'A', Placentia, CA 92870",
+    "description": "New Detached ADU",
+    "structural_engineer": "Jorge Gonzalez"
+  },
+  "total_pages": 15,
+  "discipline_groups": {
+    "cover": ["CS"],
+    "energy": ["AIA.1", "AIA.2", "T-1", "T-2", "T-3"],
+    "structural": ["SN1", "SN2", "S1", "S2", "S3"],
+    "architectural": ["A1", "A1.1", "A2", "A3"]
+  }
+}

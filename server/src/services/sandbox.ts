@@ -595,7 +595,6 @@ async function runAgent() {
         console.log('Turns:', message.num_turns);
         console.log('Cost: $' + (message.total_cost_usd || 0).toFixed(4));
         logMessage('system', 'Completed in ' + message.num_turns + ' turns, cost: $' + (message.total_cost_usd || 0).toFixed(4));
-        break; // Stop iterating — result means done. Without this, the SDK re-invokes the agent in 1-turn follow-up loops.
       }
     }
 
@@ -765,6 +764,18 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
     const skillNames = getFlowSkills(options.flowType, options.city);
     await copySkillsToSandbox(sandbox, skillNames);
     await insertMessage(options.projectId, 'system', `[SANDBOX 5/7] Skills copied (${skillNames.length} skills: ${skillNames.join(', ')})`);
+
+    // 5.5 For city-review: pre-inject sheet manifest (demo shortcut)
+    if (options.flowType === 'city-review') {
+      await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', SANDBOX_OUTPUT_PATH] });
+      const manifestPath = path.join(__dirname, '../../../fixtures/b1-placentia-manifest.json');
+      const manifestContent = fs.readFileSync(manifestPath);
+      await sandbox.writeFiles([{
+        path: `${SANDBOX_OUTPUT_PATH}/sheet-manifest.json`,
+        content: manifestContent,
+      }]);
+      await insertMessage(options.projectId, 'system', '[SANDBOX 5.5/7] Sheet manifest pre-loaded');
+    }
 
     // 6. For corrections-response: write Phase 1 artifacts + answers into sandbox
     if (options.flowType === 'corrections-response' && options.phase1Artifacts && options.contractorAnswersJson) {
