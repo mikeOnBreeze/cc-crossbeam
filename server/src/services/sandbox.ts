@@ -765,8 +765,8 @@ export async function runCrossBeamFlow(options: RunFlowOptions): Promise<void> {
     await copySkillsToSandbox(sandbox, skillNames);
     await insertMessage(options.projectId, 'system', `[SANDBOX 5/7] Skills copied (${skillNames.length} skills: ${skillNames.join(', ')})`);
 
-    // 5.5 For city-review: pre-inject sheet manifest (demo shortcut)
-    if (options.flowType === 'city-review') {
+    // 5.5 Pre-inject sheet manifest for demo projects (same Placentia plan set)
+    if (options.flowType === 'city-review' || options.flowType === 'corrections-analysis') {
       await sandbox.runCommand({ cmd: 'mkdir', args: ['-p', SANDBOX_OUTPUT_PATH] });
       const manifestPath = path.join(__dirname, '../../fixtures/b1-placentia-manifest.json');
       const manifestContent = fs.readFileSync(manifestPath);

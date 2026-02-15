@@ -229,9 +229,11 @@ The project-files directory contains:
 - A plan binder PDF (the original submittal)
 - Corrections letter PNG files (the city's correction items — may be multiple pages)
 
+MANIFEST: sheet-manifest.json already exists at ${SANDBOX_OUTPUT_PATH}/sheet-manifest.json. Skip Phase 2 (manifest building) entirely — do NOT read the cover sheet or title blocks for indexing.
+
 Use the adu-corrections-flow skill to:
 1. Read the corrections letter (PNG files)
-2. Build a sheet manifest from the plan binder PDF
+2. Skip — manifest is pre-built
 3. Research state + city codes for each correction item
 4. Categorize each correction (contractor fix vs needs engineer vs already compliant)
 5. Generate contractor questions where items need clarification
@@ -240,8 +242,9 @@ Write all output files to ${SANDBOX_OUTPUT_PATH}/
 
 IMPORTANT:
 - Follow the adu-corrections-flow skill instructions exactly
-- Write all 8 output files
+- Write all 8 output files (sheet-manifest.json is already done)
 - Do NOT generate Phase 5 deliverables (response letter, scope, etc.)
+- Do NOT read plan sheet PNGs in your main context — use subagents for sheet viewing
 - Stop after writing contractor_questions.json`;
   }
 
