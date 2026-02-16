@@ -39,8 +39,24 @@ firebase-debug.log
 visuals/
 *.mp4
 
-# Demo archives (stored in Supabase Storage, not git)
-test-assets/demo-archives/*.tar.gz
+# Test asset iterations (development artifacts, not needed in repo)
+test-assets/01-extract-test/
+test-assets/02-extract-test/
+test-assets/03-extract-test/
+test-assets/04-extract-test/
+test-assets/05-extract-test/
+test-assets/06-extract-test/
+test-assets/cloud-tests/
+test-assets/demo-archives/
+test-assets/mock-session/
+test-assets/city-flow/
+test-assets/mini/
+test-assets/buena-park/
+test-assets/HCD-ADU-Handbook-2025.pdf
+
+# Archives
+*.zip
+*.tar.gz
 
 # Misc
 *.swp
