@@ -265,3 +265,186 @@ Working late tonight (targeting ~11 PM). This is THE night to push hard:
 - Monday morning = last-minute polish, submit
 
 Feeling good. The planning is done. The skills are done. The Agents SDK flows work locally. Now it's execution. Let's go.
+
+---
+
+## Friday, February 13 — Saturday, February 14 ~1 AM PST
+
+**The all-nighter. Frontend from zero to deployed. Server from zero to deployed.**
+
+This was the night. Went from "plans are written" to "both flows running in the cloud."
+
+### Frontend — Built in One Session
+
+Kicked off a long-running agent with the full frontend brief and the Design Bible. Phases 1 through 6 all landed:
+
+1. **Foundation** — image pipeline, infra, Design Bible styling baked in from the start
+2. **AduMiniature component + landing page + login** — the isometric ADU buildings are the visual identity of the whole thing
+3. **Dashboard** — nav bar, persona cards (city reviewer vs contractor), flow selection
+4. **Project detail** — status-driven rendering. The page morphs based on where the agent is: processing, awaiting answers, completed, failed
+5. **Completion screens + API route** — results viewer, output rendering
+6. **Integration polish** — design compliance pass, verified the build passes clean
+
+Also built:
+- **Three-tier mode system** — Dev Test (scripted data, step through states), Judge Demo (pre-seeded projects, runs against real sandbox), Real (coming soon). This turned out to be critical for the demo because you need different behaviors for different audiences.
+- **DevTools panel** — a scrubber that lets you walk through agent states with scripted data. Inject messages at each phase, see the UI update in real time. Built this for development but it ended up being a great way to show judges the full state machine without waiting 15 minutes.
+
+### Server — Express on Cloud Run
+
+Built the CrossBeam server: Express 5, three flows (corrections-analysis, corrections-response, city-review), nine skills loaded into each sandbox, full sandbox lifecycle management. Dockerized, deployed to Cloud Run via GitHub Actions CI/CD.
+
+### Bug Parade (Friday Night)
+
+The classic "it works locally but..." session:
+- React hooks ordering in DevTools — moved the guard below all hooks
+- DevTools ↔ page state sync — replaced polling with instant event-based updates
+- Polling after clicking Start — had to detect the `ready → processing` transition, not just check if status was `processing`
+- 403 on judge demo — permissions issue on the pre-seeded project
+- Project reset for reusability — judges need to be able to run the demo more than once
+- `sips` (macOS screenshot tool) in the sandbox — replaced with cross-platform ImageMagick. Sandbox runs Linux.
+- TypeScript type mismatch between Supabase SSR client and JS client types
+- API key auth — added dual auth: Bearer tokens for the agent API, Supabase sessions for browser users
+
+Built the **crossbeam-ops skill** — teaches Claude Code agents how to operate the deployed site (trigger flows, check status, read results, navigate the UI, query the database). Meta but useful.
+
+### Where Things Stand at 1 AM
+
+Frontend deployed on Vercel. Server deployed on Cloud Run. Both flows running through the Agents SDK in Vercel Sandbox. Supabase wired up. Three-tier mode system working. The app looks good — the Design Bible paid off. Going to bed.
+
+---
+
+## Saturday, February 14 — All Day PST
+
+**Infrastructure hardening. Making the cloud runs actually reliable.**
+
+### The Big Architectural Moves
+
+**PDF extraction moved to Cloud Run.** The Vercel Sandbox is 4GB — not enough for `pdftoppm` + ImageMagick on 26-page construction plan PDFs (7,400px wide pages). Moved the heavy extraction to Cloud Run and made the sandbox purely AI: it receives pre-extracted PNGs and just does the smart stuff. For the demo, PDFs are pre-extracted and the PNGs are bundled as fixtures. For real users, the Cloud Run server runs extraction scripts before launching the sandbox.
+
+**Switched from polling to Supabase Realtime.** Huge quality-of-life improvement. The frontend subscribes to status changes and agent messages via Supabase Realtime — instant updates, no polling interval. When the agent writes a status update or streams a message, the UI updates within a second.
+
+**Redesigned city-review orchestrator for file-based coordination.** The subagents were stepping on each other. Moved to a pattern where each subagent writes to its own output files and the lead agent reads them to coordinate. Way more reliable than trying to pass state between subagents in memory.
+
+### Agent Reliability
+
+- **Mandatory subagent rules** to prevent context window blowout. The agents were trying to be too thorough — reading every page, researching every code section. Added hard rules: each subagent gets a specific scope, stays in its lane, writes structured output, done.
+- **Removed web search for onboarded cities.** Placentia has pre-baked research (from Wednesday's deep dive). No point burning 5 minutes on web search when we already have the city's ADU rules documented. For non-onboarded cities, the web search skill still fires.
+- **Bumped Cloud Run timeout to 60 minutes.** Agent runs can hit 15-17 minutes. Default timeout was killing them.
+- **Removed PDF generation from sandbox.** Agent ends at markdown. PDF generation was unreliable in the sandbox environment and not worth the debugging time. The markdown output is what matters — it renders beautifully in the results viewer.
+
+### Frontend Polish
+
+Two rounds of critique-driven polish:
+- Copy cleanup across the whole app
+- Topo lines background pattern (subtle topographic map lines — fits the land/building theme)
+- 16 keyed ADU images (each persona card gets a random isometric ADU building)
+- Randomizer fix (was showing the same image every time — React's `useId()` hook fixed it)
+- Results viewer polish — full-width rendering, better typography for the markdown output
+- Dual dashboard with contractor/city toggle
+- Richer city persona cards
+- Navbar layout fixes
+
+### Manifest Pre-Loading
+
+Pre-loaded the `binder-manifest.json` for both flows. The manifest maps construction plan page numbers to sheet labels (A1, S1, E2, etc.) — critical because corrections letters reference sheets by label, not page number. Pre-loading means the agent can start cross-referencing immediately instead of building the manifest first.
+
+### End of Saturday
+
+Both flows passing in the cloud. City review: 16 minutes, $8.69. Contractor analysis: 11 minutes, $4.46. Contractor response: 6 minutes, $1.46. Full contractor E2E: 17 minutes, $5.92. Not cheap, but the output quality is legit.
+
+---
+
+## Sunday, February 15 — All Day Into Monday 5 AM PST
+
+**Video production day. Bug fixes. Landing page rewrite. The final push.**
+
+### The Video
+
+This ate the whole day and then some. Separate repo (`cc-crossbeam-video`) because the assets are massive.
+
+**Interviews:**
+- Recorded Connor Trout — Mayor of Buena Park, population 80,000, 4-5 building staff trying to hit state housing targets. Real human talking about the real problem. This is the "impact" angle for the judges (25% of the score).
+- Already had Cameron's interview from Thursday (the contractor who got the corrections letter that inspired the whole project)
+
+**Screen Recordings:**
+- Cameron walking through the corrections letter and the app output
+- Scrolling through the live deployed app — all the screens, both flows
+- Law code scrolling (California Government Code sections for the "skills architecture" angle)
+- Blueprint spreads — the actual construction plans at full resolution
+- Mike (me) doing the voiceover/presentation walkthrough
+
+**Remotion Pipeline:**
+Built animated shot compositions in Remotion (React-based video framework):
+- Hero landing animation
+- Architecture diagram shot
+- Contractor flow walkthrough
+- Processing/agent working animation
+- Corrections analysis visualization
+- Blueprint spread pan
+- Accuracy + logo bumper
+
+**Music:**
+Sourced 7 tracks from CassetteAI and Beatoven — beach reggae, tropical dub, island bounce vibes. SoCal energy. Picked a couple that fit the pace.
+
+**Premiere Pro:**
+Cut the whole thing in Premiere. Multiple exports. First rough cut at 4:41 PM, Connor tag clip, then kept iterating. Final export at 2:51 AM Monday — 286MB, uploaded to YouTube.
+
+### Bug Fix — Contractor Questions
+
+The one commit in the main repo on Sunday. The agent writes `contractor_questions.json` with a nested `question_groups[].questions[]` structure, but the insert code was looking for a flat `questions[]` array. Result: questions never made it into the database, never showed up in the UI. Fixed the parsing to handle the nested structure. Also added answer versioning — `contractor_answers` now links to a specific output version via `output_id`, so re-runs don't mix old answers with new questions.
+
+### Landing Page Rewrite (Monday ~3-4 AM)
+
+Realized the landing page was wrong for the audience. It was a product marketing page — "AI-Powered ADU Permit Review for California." Judges don't care about that. They want to see the architecture. Rewrote the entire thing as a **technical deep-dive**:
+- Anatomy of a corrections flow (4-step pipeline diagram)
+- "28 Files, Not One Prompt" — the skills architecture with the decision tree
+- "One Page Per Subagent" — the PDF processing constraint and solution
+- "480 Cities, 3 Research Modes" — city code research architecture
+- "Why Three Layers" — infrastructure diagram (Next.js → Cloud Run → Vercel Sandbox → Supabase)
+- Embedded the YouTube demo video
+- Stats strip (429K ADU permits, 90%+ correction rate, $250M+ VC in permit tech, $30K cost of delays)
+- Status board (working / in progress / roadmap)
+
+### Repo Cleanup
+
+Deleted a ton of test extraction data (6 rounds of PDF extraction tests — hundreds of files from the Wednesday rabbit hole). Organized docs into subdirectories. Wrote a real README with architecture, tech stack, project structure, how to run locally, and test data attribution.
+
+### Went to Bed at 5 AM
+
+Seven days. Blank page to a deployed, working AI agent platform. Skills architecture, multi-agent orchestration, cloud deployment, video produced, submitted. Done.
+
+---
+
+## Monday, February 16 — 11:15 AM to 11:40 AM PST
+
+**Woke up. Found the problem. Fixed it. Submitted.**
+
+Woke up at 11:15 after 6 hours of sleep. 45 minutes until submission. Pulled up the deployed app, clicked through it like a judge would. And there it is: the Judge Demo persona cards link straight to `/projects/{id}` — but those projects are already in `completed` state with all the results loaded. The judge sees the finished output with "Reset" at the bottom. That's it.
+
+We built the entire Agents SDK pipeline — Cloud Run orchestrator, Vercel Sandbox, Supabase Realtime, the whole thing — and the demo skips all of it. It looks like I faked the output. The agent never runs. The judge never sees status updates streaming in, never sees the subagents launching, never sees the messages coming through Realtime. All the engineering work is invisible.
+
+Panicked. Had Claude Code and Cursor both going. 8 commits in 12 minutes:
+
+1. **Showcase + Run Live dual-button mode** — judge demo now shows two paths: "Showcase" (see the pre-loaded results instantly) and "Run Live" (kick off a real agent run and watch it work). Both buttons on the persona cards.
+2. **"How It Works" nav link** — added a link from inside the app back to the technical overview on the landing page, so judges can read the architecture while the agent runs.
+3. **Run Live resets project before navigating** — hitting Run Live resets the project to `ready` state so the agent starts fresh. Judge gets the full experience: status updates streaming, messages coming in via Realtime, subagents launching.
+4. **Fix Try It Live buttons** — the landing page CTAs weren't working for authenticated users. Fixed the routing.
+5. **Back link points to dashboard** — so judges return to the persona cards and can try the other flow.
+
+Pushed. Deployed. Everything green. 11:40 AM.
+
+---
+
+## Final Thoughts
+
+Seven days. Solo builder. Huntington Beach, California.
+
+Started with a blank repo on Monday night. Ended with a deployed AI agent platform that reads construction plans via vision, interprets city corrections letters, cross-references California state law and city municipal code, asks the contractor smart questions, and generates a professional response package. Two flows working end-to-end in the cloud. 28 reference files of California ADU law structured as skills. Multi-agent orchestration with rolling subagent windows. Cloud Run + Vercel Sandbox + Supabase Realtime architecture. A 3-minute video with interviews from a real contractor and the Mayor of Buena Park.
+
+The video's sick. Cameron and Connor both came through. A lot of people gave support along the way — friends hopping in, testing things, giving feedback, keeping energy up at 3 AM. Grateful for all of it.
+
+Regardless of what happens with the judging — genuinely proud of what got built. The skills architecture is real. The agent output is real. The problem is real. 429,000 ADU permits in California since 2018, 90%+ get corrections on first submission, and nobody's building tools for this specific workflow.
+
+Built with Claude Code the entire way. Every line of code, every skill, every plan, every debug session. Opus 4.6 was the backbone. The hackathon speakers said "build for future models" — the extraction pipeline and skills architecture will only get better as models get faster and cheaper. The bones are solid.
+
+Thanks, Opus. Good hackathon. Let's see what happens.
