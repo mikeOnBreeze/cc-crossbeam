@@ -11,6 +11,7 @@ import { ProgressPhases } from '@/components/progress-phases'
 import { ContractorQuestionsForm } from '@/components/contractor-questions-form'
 import { ResultsViewer } from '@/components/results-viewer'
 import type { Project, ProjectFile, ProjectStatus } from '@/types/database'
+import Link from 'next/link'
 import {
   FileTextIcon,
   PlayIcon,
@@ -167,6 +168,14 @@ export function ProjectDetailClient({
     return (
       <div className="animate-fade-up space-y-6">
         <ResultsViewer projectId={project.id} flowType={project.flow_type} pinnedOutputId={showcaseOutputId} />
+        <div className="flex justify-center pb-8">
+          <Button asChild className="rounded-full px-8 font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110">
+            <Link href={`/projects/${project.id}`}>
+              <PlayIcon className="w-4 h-4 mr-2" />
+              Run Live
+            </Link>
+          </Button>
+        </div>
       </div>
     )
   }
