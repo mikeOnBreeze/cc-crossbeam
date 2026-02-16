@@ -11,7 +11,6 @@ import { ProgressPhases } from '@/components/progress-phases'
 import { ContractorQuestionsForm } from '@/components/contractor-questions-form'
 import { ResultsViewer } from '@/components/results-viewer'
 import type { Project, ProjectFile, ProjectStatus } from '@/types/database'
-import Link from 'next/link'
 import {
   FileTextIcon,
   PlayIcon,
@@ -164,16 +163,33 @@ export function ProjectDetailClient({
   }
 
   // SHOWCASE MODE — pinned output, no controls, no reset
+  const [preparingLive, setPreparingLive] = useState(false)
+  const handleGoLive = async () => {
+    setPreparingLive(true)
+    try {
+      await fetch('/api/reset-project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: project.id }),
+      })
+    } catch {
+      // proceed anyway
+    }
+    window.location.href = `/projects/${project.id}`
+  }
+
   if (showcaseOutputId) {
     return (
       <div className="animate-fade-up space-y-6">
         <ResultsViewer projectId={project.id} flowType={project.flow_type} pinnedOutputId={showcaseOutputId} />
         <div className="flex justify-center pb-8">
-          <Button asChild className="rounded-full px-8 font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110">
-            <Link href={`/projects/${project.id}`}>
-              <PlayIcon className="w-4 h-4 mr-2" />
-              Run Live
-            </Link>
+          <Button
+            onClick={handleGoLive}
+            disabled={preparingLive}
+            className="rounded-full px-8 font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110"
+          >
+            {preparingLive ? <Loader2Icon className="w-4 h-4 mr-2 animate-spin" /> : <PlayIcon className="w-4 h-4 mr-2" />}
+            {preparingLive ? 'Preparing...' : 'Run Live'}
           </Button>
         </div>
       </div>

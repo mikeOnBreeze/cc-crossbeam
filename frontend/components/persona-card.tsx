@@ -1,8 +1,12 @@
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRightIcon, PlayIcon, EyeIcon } from 'lucide-react'
+import { ArrowRightIcon, PlayIcon, EyeIcon, Loader2Icon } from 'lucide-react'
 
 interface PersonaCardProps {
   aduImage: string
@@ -25,6 +29,23 @@ export function PersonaCard({
   ctaText,
   showcaseOutputId,
 }: PersonaCardProps) {
+  const router = useRouter()
+  const [resetting, setResetting] = useState(false)
+
+  const handleRunLive = async () => {
+    setResetting(true)
+    try {
+      await fetch('/api/reset-project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: projectId }),
+      })
+    } catch {
+      // proceed anyway
+    }
+    router.push(`/projects/${projectId}`)
+  }
+
   // Single-link mode (dev-test) vs dual-button mode (judge-demo)
   const hasDualMode = !!showcaseOutputId
 
@@ -65,11 +86,13 @@ export function PersonaCard({
               Showcase
             </Link>
           </Button>
-          <Button asChild className="flex-1 rounded-full font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110">
-            <Link href={`/projects/${projectId}`}>
-              <PlayIcon className="w-4 h-4 mr-2" />
-              Run Live
-            </Link>
+          <Button
+            onClick={handleRunLive}
+            disabled={resetting}
+            className="flex-1 rounded-full font-bold font-body hover:shadow-[0_0_24px_rgba(45,106,79,0.3)] hover:brightness-110"
+          >
+            {resetting ? <Loader2Icon className="w-4 h-4 mr-2 animate-spin" /> : <PlayIcon className="w-4 h-4 mr-2" />}
+            {resetting ? 'Preparing...' : 'Run Live'}
           </Button>
         </div>
       ) : (
