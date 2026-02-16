@@ -41,7 +41,7 @@ export default function LandingPage() {
               Watch Demo
             </Button>
           </a>
-          <Link href="/login">
+          <Link href="/dashboard">
             <Button className="font-body font-semibold">
               Try It Live
             </Button>
@@ -79,7 +79,7 @@ export default function LandingPage() {
               Watch Demo
             </Button>
           </a>
-          <Link href="/login">
+          <Link href="/dashboard">
             <Button variant="outline" className="rounded-full px-8 py-5 text-base font-bold font-body" size="lg">
               Try It Live
             </Button>
