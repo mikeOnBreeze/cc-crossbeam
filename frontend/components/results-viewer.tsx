@@ -89,11 +89,11 @@ export function ResultsViewer({ projectId, flowType, pinnedOutputId }: ResultsVi
       {/* Back arrow + Header */}
       <div className="animate-fade-up">
         <Link
-          href="/my-projects"
+          href="/dashboard"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground font-body transition-colors mb-4"
         >
           <ArrowLeftIcon className="w-4 h-4" />
-          Back to projects
+          Back to demo
         </Link>
 
         <div className="text-center">
