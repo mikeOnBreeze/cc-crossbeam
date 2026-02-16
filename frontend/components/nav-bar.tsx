@@ -20,6 +20,7 @@ import {
   EyeIcon,
   RocketIcon,
   LayoutGridIcon,
+  BookOpenIcon,
 } from 'lucide-react'
 import { useAppMode } from '@/hooks/use-app-mode'
 import { setAppMode, type AppMode } from '@/lib/app-mode'
@@ -64,6 +65,12 @@ export function NavBar({ userEmail }: NavBarProps) {
             <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground">
               <LayoutGridIcon className="w-4 h-4" />
               <span className="text-sm font-body hidden sm:inline">Projects</span>
+            </Button>
+          </Link>
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground">
+              <BookOpenIcon className="w-4 h-4" />
+              <span className="text-sm font-body hidden sm:inline">How It Works</span>
             </Button>
           </Link>
 
