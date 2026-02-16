@@ -23,6 +23,7 @@ interface ProjectDetailClientProps {
   initialProject: Project
   initialFiles: ProjectFile[]
   userId: string
+  showcaseOutputId?: string  // When set, skip straight to results pinned to this output
 }
 
 const CITY_PHASES = ['Extract', 'Research', 'Review', 'Generate']
@@ -36,6 +37,7 @@ export function ProjectDetailClient({
   initialProject,
   initialFiles,
   userId,
+  showcaseOutputId,
 }: ProjectDetailClientProps) {
   const [project, setProject] = useState<Project>(initialProject)
   const [starting, setStarting] = useState(false)
@@ -158,6 +160,15 @@ export function ProjectDetailClient({
     } finally {
       setResetting(false)
     }
+  }
+
+  // SHOWCASE MODE — pinned output, no controls, no reset
+  if (showcaseOutputId) {
+    return (
+      <div className="animate-fade-up space-y-6">
+        <ResultsViewer projectId={project.id} flowType={project.flow_type} pinnedOutputId={showcaseOutputId} />
+      </div>
+    )
   }
 
   // READY STATE

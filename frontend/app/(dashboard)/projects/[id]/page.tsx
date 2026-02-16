@@ -6,10 +6,12 @@ export const dynamic = 'force-dynamic'
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>
+  searchParams: Promise<{ showcase?: string }>
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
   const { id } = await params
+  const { showcase } = await searchParams
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
@@ -38,6 +40,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       initialProject={project}
       initialFiles={files || []}
       userId={user.id}
+      showcaseOutputId={showcase}
     />
   )
 }

@@ -14,26 +14,23 @@ import type { Output, FlowType } from '@/types/database'
 interface ResultsViewerProps {
   projectId: string
   flowType: FlowType
+  pinnedOutputId?: string  // If set, fetch this specific output instead of latest (showcase mode)
 }
 
 type TabKey = string
 
-export function ResultsViewer({ projectId, flowType }: ResultsViewerProps) {
+export function ResultsViewer({ projectId, flowType, pinnedOutputId }: ResultsViewerProps) {
   const [output, setOutput] = useState<Output | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<TabKey>('')
   const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
-    supabase
-      .schema('crossbeam')
-      .from('outputs')
-      .select('*')
-      .eq('project_id', projectId)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .single()
-      .then(({ data }) => {
+    const query = pinnedOutputId
+      ? supabase.schema('crossbeam').from('outputs').select('*').eq('id', pinnedOutputId).single()
+      : supabase.schema('crossbeam').from('outputs').select('*').eq('project_id', projectId).order('created_at', { ascending: false }).limit(1).single()
+
+    query.then(({ data }) => {
         if (data) {
           setOutput(data as Output)
           // Set initial tab

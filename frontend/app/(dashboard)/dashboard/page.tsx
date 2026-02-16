@@ -10,6 +10,8 @@ import {
 import {
   JUDGE_CITY_PROJECT_ID,
   JUDGE_CONTRACTOR_PROJECT_ID,
+  SHOWCASE_CITY_OUTPUT_ID,
+  SHOWCASE_CONTRACTOR_OUTPUT_ID,
 } from '@/lib/app-mode'
 import { RocketIcon } from 'lucide-react'
 
@@ -83,6 +85,7 @@ export default function DashboardPage() {
           projectCity="Placentia, CA"
           projectId={cityId}
           ctaText="Run AI Review"
+          showcaseOutputId={mode === 'judge-demo' ? SHOWCASE_CITY_OUTPUT_ID : undefined}
         />
         <PersonaCard
           aduImage={contractorAdu}
@@ -92,6 +95,7 @@ export default function DashboardPage() {
           projectCity="Placentia, CA"
           projectId={contractorId}
           ctaText="Analyze Corrections"
+          showcaseOutputId={mode === 'judge-demo' ? SHOWCASE_CONTRACTOR_OUTPUT_ID : undefined}
         />
       </div>
     </div>
