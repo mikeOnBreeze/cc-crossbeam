@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { useRealtimeAuth } from '@/lib/supabase/use-realtime-auth'
 import { BrainIcon, WrenchIcon, SettingsIcon, ClockIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -56,6 +57,7 @@ export function AgentStream({ projectId }: AgentStreamProps) {
   const lastMessageTimeRef = useRef<number>(Date.now())
   const completionTriggeredRef = useRef(false)
   const supabase = useMemo(() => createClient(), [])
+  const realtimeReady = useRealtimeAuth(supabase)
   const router = useRouter()
 
   // Initial fetch
@@ -76,6 +78,8 @@ export function AgentStream({ projectId }: AgentStreamProps) {
 
   // Realtime: new messages (replaces polling)
   useEffect(() => {
+    if (!realtimeReady) return
+
     const channel = supabase
       .channel(`messages-${projectId}`)
       .on(
@@ -112,7 +116,7 @@ export function AgentStream({ projectId }: AgentStreamProps) {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [projectId, supabase, router])
+  }, [projectId, supabase, router, realtimeReady])
 
   // Stale timer — count seconds since last message
   useEffect(() => {

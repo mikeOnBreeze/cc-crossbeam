@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { useRealtimeAuth } from '@/lib/supabase/use-realtime-auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -43,6 +44,7 @@ export function ProjectDetailClient({
   const [starting, setStarting] = useState(false)
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0)
   const supabase = useMemo(() => createClient(), [])
+  const realtimeReady = useRealtimeAuth(supabase)
 
   // Sync with server re-renders (e.g., after router.refresh())
   useEffect(() => {
@@ -89,6 +91,8 @@ export function ProjectDetailClient({
 
   // Realtime: project status changes — subscribe ONCE per project, stay alive
   useEffect(() => {
+    if (!realtimeReady) return
+
     const channel = supabase
       .channel(`project-status-${project.id}`)
       .on(
@@ -128,7 +132,7 @@ export function ProjectDetailClient({
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [project.id, supabase])
+  }, [project.id, supabase, realtimeReady])
 
   const getPhases = useCallback(() => {
     if (project.flow_type === 'city-review') return CITY_PHASES
