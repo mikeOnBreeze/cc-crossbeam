@@ -18,16 +18,19 @@ import { RocketIcon } from 'lucide-react'
 // Exterior pool for persona card randomization (subset — best-looking ones)
 const PERSONA_POOL = [
   '/images/adu/adu-01-2story-garage-transparent.png',
-  '/images/adu/adu-02-studio-greenroof-transparent.png',
   '/images/adu/adu-03-garage-conversion-transparent.png',
+  '/images/adu/adu-04-jadu-attached-transparent.png',
+  '/images/adu/adu-05-modern-box-transparent.png',
   '/images/adu/adu-06-spanish-style-transparent.png',
   '/images/adu/adu-07-aframe-transparent.png',
   '/images/adu/adu-08-prefab-modular-transparent.png',
   '/images/adu/cameron-01-longbeach-transparent.png',
+  '/images/adu/cameron-03-lakewood-transparent.png',
   '/images/adu/cameron-04-whittier-2story-transparent.png',
   '/images/adu/cameron-05-lakewood-porch-transparent.png',
   '/images/adu/cameron-06-sandimas-butterfly-transparent.png',
   '/images/adu/cameron-09-signalhill-cottage-transparent.png',
+  '/images/adu/cameron-09-signalhill-cottage-v2-transparent.png',
   '/images/adu/cameron-10-downey-lshape-transparent.png',
 ]
 
