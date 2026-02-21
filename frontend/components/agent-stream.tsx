@@ -105,7 +105,9 @@ export function AgentStream({ projectId }: AgentStreamProps) {
           }
         }
       )
-      .subscribe()
+      .subscribe((status) => {
+        console.log('[Realtime] Messages subscription:', status)
+      })
 
     return () => {
       supabase.removeChannel(channel)

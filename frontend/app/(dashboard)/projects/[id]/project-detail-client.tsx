@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -80,11 +80,15 @@ export function ProjectDetailClient({
     return () => window.removeEventListener('devtools-phase', handler)
   }, [])
 
-  // Realtime: project status changes (replaces polling)
+  // Track whether we should act on realtime events (avoids putting status/starting in deps)
+  const shouldListenRef = useRef(false)
   useEffect(() => {
-    if (TERMINAL_STATUSES.includes(project.status)) return
-    if (project.status === 'ready' && !starting) return
+    shouldListenRef.current =
+      starting || (!TERMINAL_STATUSES.includes(project.status) && project.status !== 'ready')
+  }, [project.status, starting])
 
+  // Realtime: project status changes — subscribe ONCE per project, stay alive
+  useEffect(() => {
     const channel = supabase
       .channel(`project-status-${project.id}`)
       .on(
@@ -96,17 +100,35 @@ export function ProjectDetailClient({
           filter: `id=eq.${project.id}`,
         },
         (payload) => {
+          if (!shouldListenRef.current) return
           const newStatus = payload.new.status as ProjectStatus
           const newError = payload.new.error_message as string | null
+          console.log('[Realtime] Project status:', newStatus)
           setProject(prev => ({ ...prev, status: newStatus, error_message: newError }))
         }
       )
-      .subscribe()
+      .subscribe((status) => {
+        console.log('[Realtime] Subscription:', status)
+        // Catch-up fetch: grab current status in case we missed the event during handshake
+        if (status === 'SUBSCRIBED' && shouldListenRef.current) {
+          supabase
+            .schema('crossbeam')
+            .from('projects')
+            .select('status, error_message')
+            .eq('id', project.id)
+            .single()
+            .then(({ data }) => {
+              if (data) {
+                setProject(prev => ({ ...prev, status: data.status as ProjectStatus, error_message: data.error_message }))
+              }
+            })
+        }
+      })
 
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [project.id, project.status, starting, supabase])
+  }, [project.id, supabase])
 
   const getPhases = useCallback(() => {
     if (project.flow_type === 'city-review') return CITY_PHASES
