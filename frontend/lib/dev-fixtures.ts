@@ -66,7 +66,7 @@ export const CONTRACTOR_MESSAGES: ScriptedMessage[] = [
 // ============================================
 export const CITY_MESSAGES: ScriptedMessage[] = [
   // Phase 0: Extract (0-25%)
-  { percent: 1, phase: 0, role: 'system', content: 'Starting plan review for 1232 N. Jefferson St., Placentia...' },
+  { percent: 1, phase: 0, role: 'system', content: 'Starting plan review for 2424 Kalākaua Ave, Honolulu, HI 96815...' },
   { percent: 4, phase: 0, role: 'tool', content: 'Extracting sheet manifest from plan binder...' },
   { percent: 7, phase: 0, role: 'assistant', content: 'Found 15 sheets across 5 disciplines' },
   { percent: 10, phase: 0, role: 'tool', content: 'Parsing sheet CS — Cover Sheet: governing codes, project data, vicinity map...' },
@@ -77,12 +77,12 @@ export const CITY_MESSAGES: ScriptedMessage[] = [
   { percent: 25, phase: 0, role: 'system', content: 'Extraction complete — plan binder fully parsed' },
 
   // Phase 1: Research (25-45%)
-  { percent: 27, phase: 1, role: 'system', content: 'Researching applicable codes for Placentia ADU...' },
-  { percent: 30, phase: 1, role: 'tool', content: 'Checking Gov. Code § 66314 — California ADU standards...' },
+  { percent: 27, phase: 1, role: 'system', content: 'Researching applicable codes for Honolulu ADU/ʻohana unit...' },
+  { percent: 30, phase: 1, role: 'tool', content: 'Checking ROH Chapter 21 and Hawaii SB3202 — Honolulu ADU standards...' },
   { percent: 33, phase: 1, role: 'assistant', content: 'ADU setbacks: 4 ft side/rear meets state minimum (§ 66314(d)(7))' },
   { percent: 35, phase: 1, role: 'tool', content: 'Reviewing CRC R302.1 — fire separation distance requirements...' },
-  { percent: 38, phase: 1, role: 'tool', content: 'Searching Placentia municipal code for ADU-specific standards...' },
-  { percent: 40, phase: 1, role: 'assistant', content: 'Found PMC § 23.73.060 — ADU development standards (10ft separation, materials match)' },
+  { percent: 38, phase: 1, role: 'tool', content: 'Reviewing Honolulu DPP guidance for ADU and ʻohana standards...' },
+  { percent: 40, phase: 1, role: 'assistant', content: 'Found ROH ADU development standards plus DPP ʻohana policy memos' },
   { percent: 42, phase: 1, role: 'tool', content: 'Checking state preemption flags against city requirements...' },
   { percent: 45, phase: 1, role: 'assistant', content: '2 potential preemption issues identified — "entrance visibility" and "match architectural style" are potentially subjective' },
 

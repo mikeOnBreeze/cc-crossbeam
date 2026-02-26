@@ -32,17 +32,20 @@ export default function LandingPage() {
       {/* Nav */}
       <nav className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="heading-card text-primary">CrossBeam</span>
-          <Badge variant="outline" className="text-[10px] tracking-wide">Claude Code Hackathon 2026</Badge>
+          <span className="heading-card text-cyan-700">CrossBeam Oahu</span>
+          <Badge variant="outline" className="text-[10px] tracking-wide">Honolulu ADU / ʻOhana Review</Badge>
         </div>
         <div className="flex items-center gap-2">
           <a href="#demo">
-            <Button variant="outline" className="font-body font-semibold text-primary border-primary/50">
+            <Button
+              variant="outline"
+              className="font-body font-semibold text-cyan-700 border-cyan-600 hover:bg-cyan-50 hover:text-cyan-800"
+            >
               Watch Demo
             </Button>
           </a>
           <Link href="/dashboard">
-            <Button className="font-body font-semibold">
+            <Button className="font-body font-semibold bg-emerald-600 hover:bg-emerald-700 text-white">
               Try It Live
             </Button>
           </Link>
@@ -52,40 +55,53 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative z-10 max-w-4xl mx-auto px-4 pt-4 pb-2 text-center space-y-4 animate-fade-up">
         <p className="text-sm text-muted-foreground font-body tracking-widest uppercase">
-          AI-Powered ADU Permit Review for California
+          AI-Powered ADU & ʻOhana Review for Honolulu
         </p>
         <h1 className="heading-display text-foreground">
-          AI Agent Architecture for<br />ADU Permit Review
+          CrossBeam Oahu for<br />Honolulu ADU & ʻOhana Units
         </h1>
         <p className="text-lg text-muted-foreground font-body max-w-2xl mx-auto">
-          A builder friend got a 14-item corrections letter. His engineer took
-          days to parse it. We built an AI agent that does it in 15 minutes.
+          A Honolulu builder gets a 12-item corrections letter from DPP. Instead of waiting weeks
+          for responses, CrossBeam Oahu reviews the plans, checks ROH Chapter 21 and SB3202, and
+          drafts a code-cited reply in minutes.
         </p>
         <p className="text-base text-muted-foreground/80 font-body max-w-2xl mx-auto">
-          Skills-first design. Multi-agent orchestration. Full-res construction
-          plan processing. Built with Claude Opus 4.6 + Agent SDK.
+          Built around Honolulu&apos;s ADU and ʻohana rules: zoning, BWS clearances, parking near bus
+          routes, and HFD access. Skills-first design, multi-agent orchestration, full-res plan
+          processing with Claude Opus 4.6.
         </p>
         <div className="flex justify-center gap-6 pt-1 text-sm text-muted-foreground font-body">
-          <span><strong className="text-foreground">28</strong> reference files of CA law</span>
+          <span><strong className="text-foreground">ROH 21</strong> + SB3202 encoded</span>
           <span className="text-border">|</span>
-          <span><strong className="text-foreground">4</strong> specialized subagents</span>
+          <span><strong className="text-foreground">4</strong> specialized review agents</span>
           <span className="text-border">|</span>
-          <span><strong className="text-foreground">480+</strong> cities supported</span>
+          <span><strong className="text-foreground">Honolulu</strong> first, Oahu-wide next</span>
         </div>
         <div className="flex justify-center gap-3 pt-2">
           <a href="#demo">
-            <Button className="rounded-full px-8 py-5 text-base font-bold font-body" size="lg">
+            <Button
+              className="rounded-full px-8 py-5 text-base font-bold font-body bg-cyan-700 hover:bg-cyan-800 text-white"
+              size="lg"
+            >
               <PlayIcon className="w-4 h-4 mr-2" />
               Watch Demo
             </Button>
           </a>
           <Link href="/dashboard">
-            <Button variant="outline" className="rounded-full px-8 py-5 text-base font-bold font-body" size="lg">
+            <Button
+              variant="outline"
+              className="rounded-full px-8 py-5 text-base font-bold font-body border-emerald-600 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+              size="lg"
+            >
               Try It Live
             </Button>
           </Link>
           <a href="https://github.com/mikeOnBreeze/cc-crossbeam" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" className="rounded-full px-8 py-5 text-base font-bold font-body" size="lg">
+            <Button
+              variant="outline"
+              className="rounded-full px-8 py-5 text-base font-bold font-body border-blue-600 text-blue-700 hover:bg-blue-50 hover:text-blue-900"
+              size="lg"
+            >
               <GitBranchIcon className="w-4 h-4 mr-2" />
               View Source
             </Button>
@@ -102,8 +118,8 @@ export default function LandingPage() {
       <section id="demo" className="relative z-10 max-w-4xl mx-auto px-4 py-10 animate-fade-up stagger-2">
         <h2 className="heading-section text-foreground text-center mb-2">See it in action</h2>
         <p className="text-sm text-muted-foreground font-body text-center mb-6">
-          Corrections analysis on a real Placentia ADU permit &mdash; 14 correction
-          items parsed, verified, and responded to.
+          Walkthrough of an ADU/ʻohana corrections letter as it would move through Honolulu DPP &mdash;
+          items parsed, verified against ROH and SB3202, and answered with local code citations.
         </p>
         <div className="aspect-video rounded-xl overflow-hidden shadow-[0_12px_48px_rgba(28,25,23,0.12)] border border-border/50">
           <iframe
@@ -253,11 +269,10 @@ export default function LandingPage() {
                 <h3 className="heading-card text-foreground">The Builder</h3>
               </div>
               <p className="text-sm text-muted-foreground font-body leading-relaxed">
-                Cameron gets a 14-item corrections letter from the City of Placentia.
-                Each item cites specific code sections. His engineer takes days to parse
-                and respond. CrossBeam does it in 15 minutes &mdash; reading plans via
-                vision, cross-referencing state and city law, drafting a professional
-                response with code citations.
+                Kai from <strong className="text-foreground">Aloha Builders</strong> gets a 12-item corrections letter
+                from Honolulu DPP for an ʻohana unit in Kapahulu. Instead of weeks of back-and-forth
+                with consultants, CrossBeam Oahu reads the plans, cross-references ROH Chapter 21 and
+                BWS requirements, and drafts a professional response with Hawaii-specific citations.
               </p>
             </CardContent>
           </Card>
@@ -268,11 +283,9 @@ export default function LandingPage() {
                 <h3 className="heading-card text-foreground">The Mayor</h3>
               </div>
               <p className="text-sm text-muted-foreground font-body leading-relaxed">
-                Connor Trout, Mayor of Buena Park &mdash; a city of 80,000 with 4-5
-                building staff &mdash; needs to 10x permit throughput to meet state
-                housing targets. They spend $250K+/year on outside consultants. The same
-                AI that helps contractors respond to corrections can help cities generate
-                them. Both sides of the same problem.
+                The Honolulu DPP plan review team is under pressure to approve more ADUs and ʻohana units
+                to meet SB3202 housing targets. With CrossBeam Oahu, reviewers get city- and state-grounded
+                draft corrections letters, BWS clearance checks, and HFD access notes in minutes instead of hours.
               </p>
             </CardContent>
           </Card>
@@ -281,11 +294,11 @@ export default function LandingPage() {
 
       {/* Skills Architecture */}
       <section className="relative z-10 max-w-5xl mx-auto px-4 py-12">
-        <h2 className="heading-section text-foreground mb-2">28 Files, Not One Prompt</h2>
+        <h2 className="heading-section text-foreground mb-2">Honolulu Rules, Not One Giant Prompt</h2>
         <p className="text-sm text-muted-foreground font-body mb-8 max-w-2xl">
-          The California ADU skill encodes the entire HCD ADU Handbook (54 pages of
-          state law) as structured reference files. A 4-step decision tree router
-          loads only the 3-5 files relevant to each query.
+          The Honolulu ADU skill encodes ROH Chapter 21, DPP guidance, BWS ʻOhana/ADU Pre-Form rules,
+          and Hawaii SB3202 (Act 39) as structured reference files. A decision tree router loads only
+          the 3-5 files relevant to each question.
         </p>
         <div className="grid gap-8 md:grid-cols-[1fr,1fr]">
           <div className="space-y-4">
@@ -304,8 +317,8 @@ export default function LandingPage() {
               </p>
               <p>
                 <strong className="text-foreground">Authoritative source.</strong>{' '}
-                HCD ADU Handbook (Jan 2025) + 2026 Addendum. Government Code
-                &sect;&sect; 66310-66342. Current through January 1, 2026.
+                ROH Chapter 21 (Land Use Ordinance), Honolulu DPP standard details, BWS rules, and
+                SB3202 timelines for allowing at least two ADUs on residential lots.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 pt-2">
@@ -329,22 +342,15 @@ export default function LandingPage() {
           </div>
           <div>
             <pre className="bg-muted/30 border border-border/50 rounded-xl p-5 text-xs font-mono text-muted-foreground leading-relaxed overflow-x-auto">
-{`california-adu/
+{`honolulu-adu/
 ├── SKILL.md            ← Decision tree router
 ├── references/
-│   ├── unit-types-*     (4 files)
-│   ├── standards-*      (7 files)
-│   │   ├── height, size, setbacks
-│   │   ├── parking, fire, solar
-│   │   └── design
-│   ├── zoning-*         (3 files)
-│   ├── ownership-*      (3 files)
-│   ├── permit-*         (3 files)
-│   ├── special-*        (2 files)
-│   ├── compliance-*     (4 files)
-│   ├── glossary.md
-│   └── legislative-changes.md
-└── 28 files total`}
+│   ├── ordinance-adu-standards.md   (lot size, coverage, setbacks)
+│   ├── ordinance-adu-rules.md       (permitted zones, CPR rules, owner occupancy)
+│   ├── compliance-water.md          (BWS Pre-Form, meters, capacity)
+│   ├── transit-parking.md           (bus stop waivers, TOD parking)
+│   └── context-housing-sb3202.md    (state mandate, HOA limits)
+└── Local Honolulu rules only — no web scraping`}
             </pre>
           </div>
         </div>
@@ -406,11 +412,10 @@ export default function LandingPage() {
 
       {/* City Code Research */}
       <section className="relative z-10 max-w-5xl mx-auto px-4 py-10">
-        <h2 className="heading-section text-foreground text-center mb-2">480 Cities, 3 Research Modes</h2>
+        <h2 className="heading-section text-foreground text-center mb-2">Honolulu DPP, 3 Research Modes</h2>
         <p className="text-sm text-muted-foreground font-body text-center mb-8 max-w-2xl mx-auto">
-          California law requires every city to publish ADU regulations online. The
-          information always exists &mdash; the skill finds it across 480+ different
-          city website architectures.
+          Honolulu&apos;s ADU and ʻohana standards live across ROH, DPP bulletins, BWS forms, and fire
+          access guidance. The research skill pulls them together into one consistent view for each project.
         </p>
         <div className="grid gap-6 md:grid-cols-3">
           <Card className="shadow-[0_8px_32px_rgba(28,25,23,0.06)] border-border/50">
@@ -421,8 +426,7 @@ export default function LandingPage() {
               </div>
               <h3 className="heading-card text-foreground">Discovery</h3>
               <p className="text-muted-foreground font-body text-sm">
-                WebSearch finds key URLs: ADU page, municipal code platform
-                (ecode360, Municode, QCode), standard detail PDFs, information bulletins.
+                Find the right Honolulu DPP pages, ROH sections, BWS documents, and HFD memos for ADU and ʻohana projects.
               </p>
             </CardContent>
           </Card>
@@ -434,8 +438,7 @@ export default function LandingPage() {
               </div>
               <h3 className="heading-card text-foreground">Targeted Extraction</h3>
               <p className="text-muted-foreground font-body text-sm">
-                WebFetch pulls specific content from discovered URLs &mdash; ordinance
-                text, standard detail requirements, submittal checklists.
+                Pull specific ordinance text, DPP standard details, submittal checklists, and BWS clearance rules into the agent context.
               </p>
             </CardContent>
           </Card>
@@ -447,9 +450,7 @@ export default function LandingPage() {
               </div>
               <h3 className="heading-card text-foreground">Browser Fallback</h3>
               <p className="text-muted-foreground font-body text-sm">
-                Chrome MCP for cities with difficult websites (e.g., ecode360 law
-                database requires actual click navigation). Only used when Modes 1-2
-                have gaps.
+                When documents live in tricky viewers, the browser agent navigates Honolulu sites directly to copy the relevant sections.
               </p>
             </CardContent>
           </Card>
@@ -594,30 +595,30 @@ export default function LandingPage() {
         <div className="grid gap-8 md:grid-cols-4 text-center">
           <div className="space-y-1">
             <TrendingUpIcon className="w-5 h-5 text-primary mx-auto mb-1" />
-            <p className="text-2xl font-bold font-display text-foreground">429,503</p>
+            <p className="text-2xl font-bold font-display text-foreground">2x</p>
             <p className="text-xs text-muted-foreground font-body">
-              ADU permits in CA since 2018
+              ADUs per lot required by SB3202 by 2026
             </p>
           </div>
           <div className="space-y-1">
             <AlertTriangleIcon className="w-5 h-5 text-accent mx-auto mb-1" />
-            <p className="text-2xl font-bold font-display text-foreground">90%+</p>
+            <p className="text-2xl font-bold font-display text-foreground">80%+</p>
             <p className="text-xs text-muted-foreground font-body">
-              require corrections on first submission
+              Honolulu permits needing at least one corrections cycle
             </p>
           </div>
           <div className="space-y-1">
             <DollarSignIcon className="w-5 h-5 text-secondary mx-auto mb-1" />
-            <p className="text-2xl font-bold font-display text-foreground">$250M+</p>
+            <p className="text-2xl font-bold font-display text-foreground">6 months</p>
             <p className="text-xs text-muted-foreground font-body">
-              VC invested in permit tech
+              Typical delay when ʻohana permits ping-pong between DPP and designers
             </p>
           </div>
           <div className="space-y-1">
             <ClockIcon className="w-5 h-5 text-primary mx-auto mb-1" />
-            <p className="text-2xl font-bold font-display text-foreground">$30,000</p>
+            <p className="text-2xl font-bold font-display text-foreground">$25,000</p>
             <p className="text-xs text-muted-foreground font-body">
-              cost of a 6-month permit delay
+              Carry cost a faster approval can save on a small Oahu ADU
             </p>
           </div>
         </div>
@@ -677,7 +678,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="relative z-10 border-t border-border/30 py-8 text-center space-y-2">
         <p className="text-sm text-muted-foreground font-body">
-          Built in 7 days &middot; Solo builder &middot; Huntington Beach, CA
+          Built in 7 days &middot; Solo builder &middot; Honolulu, HI
         </p>
         <p className="text-xs text-muted-foreground/70 font-body">
           Claude Opus 4.6 &middot; Claude Code &middot; Agent SDK &middot; Vercel Sandbox

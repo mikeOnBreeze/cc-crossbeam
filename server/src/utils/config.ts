@@ -35,8 +35,7 @@ export const FLOW_BUDGET: Record<InternalFlowType, { maxTurns: number; maxBudget
 // instead of web search — faster, more reliable, higher quality.
 // Key: city slug (lowercase, hyphenated). Value: skill directory name.
 export const ONBOARDED_CITIES: Record<string, string> = {
-  'placentia': 'placentia-adu',
-  'buena-park': 'buena-park-adu',
+  'honolulu': 'honolulu-adu',
 };
 
 /** Normalize city name to slug for lookup */
@@ -67,18 +66,18 @@ export function getFlowSkills(flowType: InternalFlowType, city: string): string[
     // NO adu-city-research — city review only works with onboarded cities
     // NO adu-corrections-pdf — PDF generation happens post-sandbox on Cloud Run
     const skills = [
-      'california-adu',
+      'honolulu-adu',
       'adu-plan-review',
       'adu-targeted-page-viewer',
     ];
     if (citySkill) skills.push(citySkill);
-    return skills;
+    return Array.from(new Set(skills));
   }
 
   if (flowType === 'corrections-analysis') {
     // NO adu-corrections-pdf — PDF generation happens post-sandbox on Cloud Run
     const skills = [
-      'california-adu',
+      'honolulu-adu',
       'adu-corrections-flow',
       'adu-targeted-page-viewer',
     ];
@@ -89,16 +88,16 @@ export function getFlowSkills(flowType: InternalFlowType, city: string): string[
       // Non-onboarded city — need web search
       skills.push('adu-city-research');
     }
-    return skills;
+    return Array.from(new Set(skills));
   }
 
   // corrections-response — no research, just deliverables
   const skills = [
-    'california-adu',
+    'honolulu-adu',
     'adu-corrections-complete',
   ];
   if (citySkill) skills.push(citySkill);
-  return skills;
+  return Array.from(new Set(skills));
 }
 
 // --- Prompt Builders ---
@@ -165,7 +164,7 @@ Each subagent MUST write its findings JSON file and return ONLY a short summary 
 After spawning, call TaskOutput to confirm completion. Then verify files exist with Glob. Do NOT read the findings files yourself.
 
 PHASE 3 — Code Compliance (spawn 2 subagents concurrently):
-- 3A (State): Read findings-*.json files from ${SANDBOX_OUTPUT_PATH}/ + load california-adu reference files. For each FAIL/UNCLEAR finding, verify against state law. Write ${SANDBOX_OUTPUT_PATH}/state_compliance.json. Return short summary only.
+- 3A (State): Read findings-*.json files from ${SANDBOX_OUTPUT_PATH}/ + load honolulu-adu reference files. For each FAIL/UNCLEAR finding, verify against state law. Write ${SANDBOX_OUTPUT_PATH}/state_compliance.json. Return short summary only.
 - 3B (City): Read findings-*.json files from ${SANDBOX_OUTPUT_PATH}/ + load ${citySkillName || 'adu-city-research'} reference files. Check against city-specific rules. Write ${SANDBOX_OUTPUT_PATH}/city_compliance.json. Return short summary only.
 
 PHASE 4 — Merge & Draft (spawn 1 subagent):
@@ -281,7 +280,7 @@ Follow the adu-corrections-complete skill instructions exactly.`;
 
 // --- System Prompt Appends ---
 
-export const CITY_REVIEW_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
+export const CITY_REVIEW_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for Hawaii.
 You are reviewing an ADU plan submittal from the city's perspective.
 Your job is to coordinate subagents that identify code violations and produce a draft corrections letter.
 
@@ -301,7 +300,7 @@ CRITICAL RULES:
 - State law preempts city rules.
 - Do NOT generate PDFs. Do NOT install Python, reportlab, or any PDF tools. Your job ends at draft_corrections.md.`;
 
-export const CORRECTIONS_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
+export const CORRECTIONS_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for Hawaii.
 Use available skills to research codes, analyze plans, and generate professional output.
 Always write output files to the output directory provided in the prompt.
 
@@ -316,7 +315,7 @@ CONTEXT MANAGEMENT — MANDATORY:
 - ALL plan sheet viewing MUST happen in subagents. Spawn subagents that each read only their assigned 2-3 sheet PNGs.
 - Your main context handles orchestration: read corrections, build manifest, spawn research subagents, merge results, write output files.`;
 
-export const RESPONSE_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for California.
+export const RESPONSE_SYSTEM_APPEND = `You are working on CrossBeam, an ADU permit assistant for Hawaii.
 Use available skills to generate professional deliverables.
 Always write output files to the output directory provided in the prompt.
 
