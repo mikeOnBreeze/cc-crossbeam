@@ -1,8 +1,22 @@
 # CrossBeam
 
+### Winner — Anthropic's Global Claude Code Hackathon "Built with Opus 4.6"
+
+[Official announcement](https://x.com/claudeai/status/2024986294820958647?s=20)
+
 AI-powered ADU permit assistant for California. Upload your architectural plans and corrections letter — get back a professional response package ready for resubmission.
 
-**Built for the [Built with Opus 4.6: Claude Code Hackathon](https://docs.google.com/document/d/1NbivuiJxCfaVPSKaPoe-5LR7W7bBjEEFMjqVH2nZiYo/edit) (Feb 10-16, 2026)**
+**Built for the Built with Opus 4.6: Claude Code Hackathon (Feb 10-16, 2026)**
+
+### For Other Builders
+
+If you're curious about the build process, check out `progress.md` — I kept voice logs of my thinking throughout the hackathon while Claude was building. It's a raw, unfiltered look at the decision-making and problem-solving that went into this project.
+
+### Contact
+
+Questions? Reach out:
+- X/Twitter: [@breezwoods](https://x.com/breezwoods)
+- LinkedIn: [Michael Brown](https://www.linkedin.com/in/michael-t-brown-034aaa22/)
 
 ## The Problem
 
