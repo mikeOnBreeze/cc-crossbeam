@@ -172,6 +172,24 @@ Measured from real test runs (plan-0215.md: CV5 E2E = $5.92 / 17 min). Broken in
 | **Total** | **$7.30** | **$3.55** | **51%** | |
 | **Time** | **~17 min** | **~8-10 min** | **~45%** | Research phases collapse to lookups |
 
+### 4.1b Full Permit Lifecycle COGS
+
+The per-run costs above cover the AI analysis portion. The full product lifecycle includes additional infrastructure costs for submission handling (Vercel compute, PDF generation, file storage, external API calls, retries).
+
+| Component | Cost | Notes |
+|-----------|------|-------|
+| Precheck — corrections analysis (hardened) | $3.55 | Phases 1-5 above |
+| First submission infrastructure | $5.00 | Vercel, PDF gen, storage, external APIs |
+| Submission management | $0.50 | Tracking, status updates |
+| Post-rejection corrections analysis | $3.55 | Same cascade flow on resubmittal |
+| Response generation | $0.80 | Letter, scope, annotations |
+| Resubmission tracking | $0.25 | Status management |
+| **Total COGS per permit lifecycle** | **$13.65** | |
+
+**Revenue per permit: $120** ($45 base submission + $75 corrections analysis line item)
+
+**Gross margin per permit: 88.6%**
+
 ### 4.2 City-Side Plan Review Flow — Current vs. Hardened
 
 From real test run (CV4 = $8.69 / 16 min):
@@ -183,26 +201,26 @@ From real test run (CV4 = $8.69 / 16 min):
 | Corrections letter generation | $1.20 | $1.00 | 17% |
 | **Total** | **$8.69** | **$4.20** | **52%** |
 
-### 4.3 Per-Run Cost Under Volume
+### 4.3 Per-Permit Cost Under Volume
 
-With Anthropic's API pricing and potential batch/volume considerations:
+Full lifecycle COGS at $13.65/permit vs. live research equivalent (~$18.30 with infrastructure):
 
-| Monthly Volume | Per-Run (Live) | Per-Run (Hardened) | Monthly Spend (Live) | Monthly Spend (Hardened) | Monthly Savings |
-|---------------|---------------|-------------------|---------------------|------------------------|----------------|
-| 50 runs | $7.30 | $3.55 | $365 | $178 | $188 |
-| 200 runs | $7.30 | $3.55 | $1,460 | $710 | $750 |
-| 1,000 runs | $7.30 | $3.55 | $7,300 | $3,550 | $3,750 |
-| 5,000 runs | $7.30 | $3.55 | $36,500 | $17,750 | $18,750 |
+| Monthly Volume | COGS/Permit (Live) | COGS/Permit (Hardened) | Revenue/Permit | Monthly COGS (Hardened) | Monthly Gross |
+|---------------|-------------------|----------------------|---------------|------------------------|--------------|
+| 50 permits | $18.30 | $13.65 | $120 | $683 | $5,318 |
+| 200 permits | $18.30 | $13.65 | $120 | $2,730 | $21,270 |
+| 1,000 permits | $18.30 | $13.65 | $120 | $13,650 | $106,350 |
+| 5,000 permits | $18.30 | $13.65 | $120 | $68,250 | $531,750 |
 
 ### 4.4 Break-Even Per City
 
 | Metric | Value |
 |--------|-------|
-| Savings per hardened run | $3.75 |
+| COGS savings per hardened permit | $4.65 |
 | Average onboarding cost per city | $35 |
-| **Break-even** | **~10 runs per city** |
-| At 2 runs/month per city | **5 months to payback** |
-| At 5 runs/month per city | **2 months to payback** |
+| **Break-even on onboarding** | **~8 permits per city** |
+| At 2 permits/month per city | **4 months to payback** |
+| At 5 permits/month per city | **~6 weeks to payback** |
 
 For high-volume cities (LA, SF, San Jose), break-even could happen in the first week.
 
@@ -305,53 +323,72 @@ Adding solar PV, residential remodel, and commercial TI to the California covera
 
 ### 7.1 Scenario A: Stay With Live Research (No Cascade)
 
-Every run pays the full live research cost. No onboarding investment, but no savings either.
+Every permit pays the full live research cost ($18.30 COGS). No onboarding investment, but no savings either.
 
-| Volume (monthly) | Per-Run | Monthly API | Annual API | 3-Year API |
-|-----------------|---------|------------|-----------|-----------|
-| 50 | $7.30 | $365 | $4,380 | $13,140 |
-| 200 | $7.30 | $1,460 | $17,520 | $52,560 |
-| 1,000 | $7.30 | $7,300 | $87,600 | $262,800 |
-| 5,000 | $7.30 | $36,500 | $438,000 | $1,314,000 |
+| Volume (monthly) | COGS/Permit | Monthly COGS | Annual COGS | 3-Year COGS |
+|-----------------|------------|-------------|------------|------------|
+| 50 | $18.30 | $915 | $10,980 | $32,940 |
+| 200 | $18.30 | $3,660 | $43,920 | $131,760 |
+| 1,000 | $18.30 | $18,300 | $219,600 | $658,800 |
+| 5,000 | $18.30 | $91,500 | $1,098,000 | $3,294,000 |
 
 ### 7.2 Scenario B: Build Cascade (Hardened)
 
-Pay onboarding cost upfront, then run cheaper forever.
+Pay onboarding cost upfront, then run at $13.65/permit forever.
 
-| Volume (monthly) | Per-Run | Monthly API | Annual API | 3-Year API | 3-Year + Build/Onboard |
-|-----------------|---------|------------|-----------|-----------|----------------------|
-| 50 | $3.55 | $178 | $2,130 | $6,390 | $34,157 |
-| 200 | $3.55 | $710 | $8,520 | $25,560 | $53,327 |
-| 1,000 | $3.55 | $3,550 | $42,600 | $127,800 | $155,567 |
-| 5,000 | $3.55 | $17,750 | $213,000 | $639,000 | $666,767 |
+| Volume (monthly) | COGS/Permit | Monthly COGS | Annual COGS | 3-Year COGS | 3-Year + Build/Onboard |
+|-----------------|------------|-------------|------------|------------|----------------------|
+| 50 | $13.65 | $683 | $8,190 | $24,570 | $52,337 |
+| 200 | $13.65 | $2,730 | $32,760 | $98,280 | $126,047 |
+| 1,000 | $13.65 | $13,650 | $163,800 | $491,400 | $519,167 |
+| 5,000 | $13.65 | $68,250 | $819,000 | $2,457,000 | $2,484,767 |
 
-### 7.3 Break-Even by Volume
+### 7.3 P&L by Volume (at $120/permit)
 
-| Monthly Volume | 3-Year Live | 3-Year Hardened (incl. build) | Savings | When It Pays Off |
-|---------------|------------|------------------------------|---------|-----------------|
-| 50 | $13,140 | $34,157 | **-$21,017** | Never at this volume |
-| 200 | $52,560 | $53,327 | **-$767** | ~37 months (barely) |
-| 500 | $131,400 | $81,517 | **$49,883** | ~8 months |
-| 1,000 | $262,800 | $155,567 | **$107,233** | ~4 months |
-| 5,000 | $1,314,000 | $666,767 | **$647,233** | ~2 months |
+This is the full picture — revenue minus all costs, including build and onboarding amortized over 3 years.
 
-**The cascade architecture pays for itself at ~200+ runs/month.** Below that, live research is cheaper because the onboarding investment isn't recovered.
+| Monthly Volume | Annual Revenue | Annual COGS (Hardened) | Annual Build/Onboard (amortized) | **Annual Gross Profit** | **Margin** |
+|---------------|---------------|----------------------|--------------------------------|------------------------|-----------|
+| 50 | $72,000 | $8,190 | $9,256 | **$54,554** | **75.8%** |
+| 200 | $288,000 | $32,760 | $9,256 | **$245,984** | **85.4%** |
+| 500 | $720,000 | $81,900 | $9,256 | **$628,844** | **87.3%** |
+| 1,000 | $1,440,000 | $163,800 | $9,256 | **$1,266,944** | **88.0%** |
+| 5,000 | $7,200,000 | $819,000 | $9,256 | **$6,371,744** | **88.5%** |
 
-### 7.4 Where the Real Value Is
+At just 50 permits/month — a single mid-size city's ADU volume — the business generates $54K/year in gross profit. The build and onboarding investment (~$27,767 over 3 years) pays for itself in 6 months at this volume.
 
-The cost comparison above only measures API spend. The bigger economic picture:
+### 7.4 Break-Even by Volume (COGS Only)
+
+| Monthly Volume | 3-Year Live COGS | 3-Year Hardened (incl. build) | Savings | When It Pays Off |
+|---------------|-----------------|------------------------------|---------|-----------------|
+| 50 | $32,940 | $52,337 | **-$19,397** | Never (build cost exceeds COGS savings) |
+| 200 | $131,760 | $126,047 | **$5,713** | ~30 months |
+| 500 | $329,400 | $272,817 | **$56,583** | ~7 months |
+| 1,000 | $658,800 | $519,167 | **$139,633** | ~4 months |
+| 5,000 | $3,294,000 | $2,484,767 | **$809,233** | ~2 months |
+
+**Pure COGS break-even requires ~200+ permits/month.** But at $120 revenue, the business is profitable from day one at any volume — the cascade just makes it *more* profitable above 200/month.
+
+### 7.5 Where the Real Value Is
+
+The cost comparison above only measures COGS. The bigger economic picture:
 
 | Factor | Live Research | Hardened Cascade |
 |--------|--------------|-----------------|
-| API cost per run | $7.30 | $3.55 |
-| Wall-clock time per run | 17 min | 8-10 min |
+| Full lifecycle COGS | $18.30/permit | $13.65/permit |
+| Gross margin at $120 | 84.8% | 88.6% |
+| Wall-clock time per permit | ~25-30 min total | ~12-15 min total |
 | Consistency of answers | Variable (WebSearch results differ) | Deterministic (same map → same answer) |
 | Quality floor | Depends on search results | Guaranteed (human-verified maps) |
-| New city onboarding | $0 (but first run is slow) | $35 (but every run is fast) |
+| New city onboarding | $0 (but first run is slow and unreliable) | $35 (but every run is fast and verified) |
 | Defensibility | None (anyone can WebSearch) | High (verified maps are IP) |
 | Regulatory liability | Risky (unverified research) | Lower (human-verified code refs) |
+| Accuracy rate (trackable) | No (can't measure what you can't control) | Yes (hit rate, first-resubmittal acceptance) |
+| Sellable accuracy metric | No | Yes — "94% first-resubmittal acceptance rate" |
 
 The code link maps — once verified — become a proprietary dataset. They're the accumulated knowledge of "what every California city actually requires for an ADU" in structured, machine-readable form. This is the moat.
+
+The accuracy metrics become a **sales tool**: contractors buy on "94% of our correction responses are accepted on first resubmittal" because no human expediter can make — or prove — that claim.
 
 ---
 
@@ -368,37 +405,50 @@ From the city marketing analysis (marketing-city.md):
 | City (annual consultant spend) | $80K-$3.5M/yr | Outsourced plan review (varies by city size) |
 | City (lost to corrections) | ~$340K/yr | Re-review cycles on corrections (Huntington Beach model) |
 
-### 8.2 FluentGov Pricing Potential
+### 8.2 FluentGov Pricing — Actual Product Structure
 
-| Service | Price Point | COGS (Hardened) | Gross Margin |
-|---------|-----------|----------------|-------------|
-| Contractor corrections analysis | $50-100/report | $3.55 | 93-96% |
-| City plan review assist | $75-150/review | $4.20 | 94-97% |
-| Monthly city subscription (unlimited) | $2,000-5,000/mo | ~$500/mo (est. 150 runs) | 75-90% |
-| Annual city contract | $25,000-50,000/yr | ~$6,000/yr | 76-88% |
+| Service | Price | COGS (Hardened) | Gross Margin |
+|---------|-------|----------------|-------------|
+| **Base submission** (submission, management, resubmission) | $45 | $6.30 | 86.0% |
+| **Corrections analysis add-on** (precheck + post-rejection) | $75 | $7.35 | 90.2% |
+| **Full permit lifecycle** (base + corrections) | **$120** | **$13.65** | **88.6%** |
+| City plan review assist (B2G) | $75-150/review | $4.20 | 94-97% |
+| Monthly city subscription (unlimited) | $2,000-5,000/mo | ~$750/mo (est. 100 permits) | 63-85% |
+| Annual city contract | $25,000-50,000/yr | ~$9,000/yr | 64-82% |
 
-### 8.3 Unit Economics at Scale
+### 8.3 Market Comparison
 
-If FluentGov processes 1,000 corrections/month at $75 average revenue per report:
+| Provider | What You Get | Price | FluentGov Equivalent |
+|----------|-------------|-------|---------------------|
+| **FluentGov** | Full cycle: precheck + submission + corrections + resubmission | **$120** | — |
+| Permit expediter (flat fee) | Same scope, human | $1,500-6,000 | 12-50x more expensive |
+| Permit expediter (hourly) | 1 hour of their time | $75-150 | Same price, 1/4 the scope |
+| CivCheck | Prescreening only | ~$50-200 | No corrections, no response |
+| UpCodes | Self-service code lookup | ~$250/mo subscription | You do the work yourself |
+| CodeComply.AI | AI compliance flagging | ~$250/mo/seat | No response generation |
 
-| Metric | Monthly | Annual |
-|--------|---------|--------|
-| Revenue | $75,000 | $900,000 |
-| API costs (hardened) | $3,550 | $42,600 |
-| Maintenance | $160 | $1,950 |
-| **Gross profit** | **$71,290** | **$855,450** |
-| **Gross margin** | **95%** | **95%** |
+### 8.4 Unit Economics at Scale
 
-Compare to live research at 1,000 runs/month:
+At $120/permit with full lifecycle COGS of $13.65:
 
-| Metric | Monthly | Annual |
-|--------|---------|--------|
-| Revenue | $75,000 | $900,000 |
-| API costs (live) | $7,300 | $87,600 |
-| **Gross profit** | **$67,700** | **$812,400** |
-| **Gross margin** | **90%** | **90%** |
+| Monthly Volume | Monthly Revenue | Monthly COGS | Monthly Maintenance | **Monthly Gross** | **Margin** |
+|---------------|----------------|-------------|--------------------|--------------------|-----------|
+| 50 | $6,000 | $683 | $160 | **$5,158** | **85.9%** |
+| 200 | $24,000 | $2,730 | $160 | **$21,110** | **88.0%** |
+| 500 | $60,000 | $6,825 | $160 | **$53,015** | **88.4%** |
+| 1,000 | $120,000 | $13,650 | $160 | **$106,190** | **88.5%** |
+| 5,000 | $600,000 | $68,250 | $160 | **$531,590** | **88.6%** |
 
-Both margins are excellent. The cascade matters more for **speed and consistency** than for raw cost savings at this price point. But at lower price points ($20-30/report for high-volume contractor subscriptions), the margin difference becomes critical.
+Compare to live research COGS ($18.30/permit) at 1,000 permits/month:
+
+| Metric | Hardened Cascade | Live Research | Difference |
+|--------|-----------------|--------------|-----------|
+| Monthly revenue | $120,000 | $120,000 | — |
+| Monthly COGS | $13,650 | $18,300 | $4,650 saved |
+| Monthly gross | $106,190 | $101,540 | **+$4,650/mo** |
+| Annual gross | $1,274,280 | $1,218,480 | **+$55,800/yr** |
+
+The per-unit margin difference is modest at $120 pricing ($4.65/permit). The cascade's real value at this price point is **speed** (12 min vs 28 min), **accuracy** (verified vs unverified), and **defensibility** (proprietary dataset vs commodity search).
 
 ---
 
@@ -428,13 +478,21 @@ Both margins are excellent. The cascade matters more for **speed and consistency
 
 ## 10. Summary: The Decision Table
 
-| Scenario | Build Cost | Annual Opex | 3-Year TCO | When It Wins |
-|----------|-----------|-------------|-----------|-------------|
-| **Don't build** (live research only) | $0 | $87,600 (at 1K/mo) | $262,800 | <200 runs/month |
-| **Build for CA only** (ADU) | $21,530 | $44,550 | $155,567 | >200 runs/month |
-| **Build for 5 states** (ADU) | $53,917 | $46,950 | $197,517 | >250 runs/month |
-| **Build for CA** (4 permit types) | $43,467 | $46,200 | $182,067 | >200 runs/month, multiple permit types |
+| Scenario | Build + Onboard | Annual COGS (1K/mo) | Annual Revenue (1K/mo) | Annual Gross (1K/mo) | 3-Year Gross |
+|----------|----------------|--------------------|-----------------------|---------------------|-------------|
+| **Don't build** (live research) | $0 | $219,600 | $1,440,000 | $1,218,480 | $3,655,440 |
+| **Build for CA** (ADU) | $27,767 | $163,800 | $1,440,000 | $1,274,280 | $3,795,073 |
+| **Build for 5 states** (ADU) | $52,167 | $163,800 | $1,440,000 | $1,274,280 | $3,770,673 |
+| **Build for CA** (4 permit types) | $43,467 | $163,800 | $1,440,000 | $1,274,280 | $3,779,373 |
 
-The cascade architecture is an investment that pays off at moderate volume. Below ~200 runs/month, live research is simpler and cheaper. Above that threshold, every additional run widens the gap.
+**At $120/permit, the business is profitable in all scenarios.** The cascade doesn't make-or-break profitability — margins are 85-89% either way.
 
-The real argument for building it isn't the 51% per-run savings — it's the **consistency, speed, defensibility, and regulatory reliability** that comes from human-verified, deterministic lookups versus hoping WebSearch returns the right municipal code section every time.
+What the cascade does:
+
+1. **Adds ~$55K/year in gross profit** at 1,000 permits/month from COGS reduction
+2. **Cuts delivery time in half** (12 min vs 28 min) — enabling higher throughput per dollar of infrastructure
+3. **Creates a trackable accuracy rate** that becomes the primary sales tool
+4. **Builds a proprietary dataset** (verified code link maps) that compounds in value over time
+5. **Reduces regulatory risk** — human-verified code references vs. unverified web search results
+
+The build investment ($27,767 for full California coverage over 3 years) pays for itself in **6 months** from COGS savings alone at 1,000 permits/month. But the real ROI is in the accuracy metrics and speed that justify the $120 price point against $1,500-6,000 human expediters.
