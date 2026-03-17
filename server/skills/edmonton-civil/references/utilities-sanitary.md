@@ -1,7 +1,7 @@
 ---
 title: "Sanitary Sewer Standards"
 category: "Utilities"
-relevance: "Sanitary sewer pipe design, sizing, grade, depth, materials"
+relevance: "Sanitary sewer pipe design, sizing, grade, depth, materials, separation distances"
 authority: "City of Edmonton / EPCOR"
 ---
 
@@ -9,35 +9,70 @@ authority: "City of Edmonton / EPCOR"
 
 ## Minimum Pipe Size
 
-<!-- TODO: Fill in minimum pipe diameters -->
-
 | Application | Minimum Diameter | Notes |
 |-------------|-----------------|-------|
-| Service connection | TBD | |
+| Service connection | 150 mm | Vol 3-03, Section 3.3.2, Table 3.1 |
 | Local main | TBD | |
 | Trunk sewer | TBD | |
 
-## Minimum Cover / Frost Depth
-
-Edmonton frost depth consideration is critical.
+## Minimum Cover (Section 1.10.4)
 
 | Parameter | Value | Notes |
 |-----------|-------|-------|
-| Minimum cover | TBD | Must be below frost depth |
-| Frost depth (Edmonton) | TBD | Approximately 2.3m — verify |
+| Minimum cover (crown to finished grade) | **2.6 m** | From pipe crown to finished grade |
+| Minimum depth (invert to finished grade) | **2.75 m** | From pipe invert to finished grade |
 
-## Pipe Grade (Slope)
+## Minimum Service Pipe Slope
 
-<!-- TODO: Fill in minimum/maximum slopes by pipe size -->
+**Minimum sanitary service pipe slope: 2.00%**
 
-| Pipe Size | Minimum Slope | Notes |
-|-----------|--------------|-------|
-| TBD | TBD | Self-cleansing velocity |
+## Minimum Slopes by Sewer Size (Section 1.9.3, Table 1.2)
+
+| Sewer Size (mm) | Min Slope — Straight Run (%) | Min Slope — Curved Sewer (%) |
+|:---------------:|:----------------------------:|:----------------------------:|
+| 100 | 2.00 | 2.00 |
+| 150 | 1.00 | 1.00 |
+| 200 | 0.40 | 0.40 |
+| 250 | 0.28 | 0.31 |
+| 300 | 0.22 | 0.25 |
+| 375 | 0.15 | 0.18 |
+| 450 | 0.12 | 0.15 |
+| 525 | 0.10 | 0.13 |
+| 600+ | 0.10 | 0.10 |
+
+## Sanitary Sewer — Separation Chart
+
+| Domain Infrastructure | Subdomain Infrastructure | Horizontal (m) | Vertical (m) | Notes |
+|----------------------|-------------------------|----------------|---------------|-------|
+| Sanitary service to lot | Sanitary mains | 3.66 | - | Main 중심 ~ PL 기준 |
+| Sanitary service to lot | Storm mains | 3.0 | 0.5 | Sanitary service to storm main |
+| Property Line | Sanitary services | 2.44 | - | Main 중심 ~ PL, centre to centre |
+| Bus stop pad | Sanitary services | 1.5 | - | Bus pad edge 기준. Bus pad 아래 매설 지양 |
+| Shallow utilities (power, gas, telecom) | Sanitary services to lot | 0.3 | 0.15 | Vol.3 Fig 3-1, Table 3-2 |
+| Overhead telecommunications | Sanitary services to lot | 0.3 | 0.3 | Vol.3 Fig 3-1, Table 3-2 |
+| Trees (centre of tree) | Drainage services | 1.5 | - | |
+| Light Standard Base / Foundation | Drainage services | 1.0 | - | |
+| Streetlight pole and foundation | Drainage services | 1.0 | - | |
+| Drainage crossing (top of casing) | Sanitary services running parallel | 3.0 | 0.3 | Casing 외면 기준 |
+| Power crossing (duct bank) | Drainage services parallel | 0.5 | 0.5 | Crossing/main 외면 기준 |
+| Sanitary MH | Tree | 1.8 | - | Centre of tree |
+
+## Standard Invert Drop Requirements
+
+### Pipe Size Change
+- **Matching Crowns** method (default)
+- If downstream pipe is larger: may reduce drop per hydraulic calculations
+
+### Drop by Deflection Angle
+
+| Deflection Angle | Minimum Drop |
+|:-----------------|:-------------|
+| Straight (180°) or ≤45° | **0.03 m (30 mm)** |
+| >45° to 90° | **0.05 m (50 mm)** |
 
 ## Pipe Materials
 
 <!-- TODO: Accepted pipe materials -->
-<!-- PVC, concrete, HDPE, etc. -->
 
 ## Manhole Spacing
 
@@ -48,7 +83,3 @@ Edmonton frost depth consideration is critical.
 - EPCOR manages water and drainage services in Edmonton
 - Design must comply with EPCOR Design and Construction Standards
 - Service connections require EPCOR approval
-
----
-
-> **Note**: Items marked TBD need to be filled in with specific standards.
