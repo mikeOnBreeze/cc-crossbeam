@@ -35,13 +35,32 @@ Where:
 - A = |2.0 - (-1.0)| = 3.0%
 - Minimum L = K × A = 5 × 3.0 = 15 metres
 
-## Maximum and Minimum Grades
+## Vertical Curves — Minimum Required Slope
 
-| Road Classification | Minimum Grade (%) | Maximum Grade (%) |
-|--------------------|-------------------|-------------------|
-| Residential Lane | TBD | TBD |
-| Collector | TBD | TBD |
-| Arterial | TBD | TBD |
+Vertical curves require the following minimum slopes by road classification:
+
+| Road Classification | Minimum Slope (%) |
+|--------------------|-------------------|
+| Arterial | 1.0 |
+| Collector | 1.5 |
+| Local | 1.5 |
+| Alleys | 2.0 |
+
+## Minimum Longitudinal Grade
+
+| Facility Type | Minimum Grade (%) |
+|---------------|-------------------|
+| Walkway | 0.6 |
+| New Alley | 0.7 |
+
+## Maximum Grades
+
+| Road Classification | Maximum Grade (%) |
+|--------------------|-------------------|
+| Arterial | TBD |
+| Collector | TBD |
+| Local | TBD |
+| Alleys | TBD |
 
 ## Sight Distance
 
