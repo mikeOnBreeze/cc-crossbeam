@@ -95,6 +95,25 @@ What stage is the project at?
 | **EPCOR coordination** | `utilities-water.md`, `utilities-sanitary.md` |
 | **Terminology / abbreviations** | `glossary.md` |
 
+### STEP 5: Corrections Response Workflow (반려 대응)
+
+When a consultant has received a corrections letter from the City of Edmonton or EPCOR:
+
+| Task | Skill to Use | Reference Files |
+|------|-------------|-----------------|
+| **Analyze corrections letter** | `edmonton-civil-corrections-flow` | Auto-routes to relevant references via `infrastructure_type` |
+| **On-site corrections (servicing + grading)** | `edmonton-civil-corrections-flow` | `checklist-onsite.md` + `grading-drainage.md` + `utilities-*.md` |
+| **Off-site corrections (lane design)** | `edmonton-civil-corrections-flow` | `checklist-offsite.md` + `lane-design.md` + `vertical-alignment.md` |
+| **Infill grading corrections** | `edmonton-civil-corrections-flow` | `checklist-infill-grading.md` + `grading-drainage.md` |
+| **EPCOR corrections (water/sanitary)** | `edmonton-civil-corrections-flow` | `utilities-water.md` + `utilities-sanitary.md` |
+| **Generate response package** | `edmonton-civil-corrections-complete` | Uses Phase 1 artifacts + consultant answers |
+
+**Workflow:**
+1. Consultant provides corrections letter (PDF/PNG) + plan binder (PDF)
+2. `edmonton-civil-corrections-flow` analyzes and generates questions → **STOP**
+3. Consultant answers questions
+4. `edmonton-civil-corrections-complete` generates response letter, scope, report, annotations
+
 ---
 
 ## Quick-Reference Thresholds
