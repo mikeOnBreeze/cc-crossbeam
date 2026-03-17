@@ -15,6 +15,29 @@ This skill contains City of Edmonton civil engineering standards for subdivision
 
 **What this does NOT cover**: Structural engineering, building permits, architectural design, or federal/provincial requirements beyond what Edmonton references.
 
+## Edmonton Civil Permit Structure
+
+Edmonton civil engineering permits are split into two categories:
+
+### On-Site (항상 있음)
+- **Sewer & Water Service** — service connections from main to property
+- **On-site Grading** — lot grading, surface water drainage, slopes
+
+On-site에는 **체크리스트 2개** 가 있음 (sewer/water 1개, grading 1개).
+
+### MIA / Off-Site (항상 있는 것은 아님)
+- **Lane Design** — lane reconstruction, vertical/horizontal alignment, cross-sections
+
+Off-site에는 **체크리스트 1개** 가 있음.
+
+### Review Workflow
+
+사용자가 도면을 완성하면:
+1. 해당 **체크리스트** 항목을 하나씩 확인
+2. 이 스킬의 **reference 파일** 기준값과 대조
+3. 둘 다 만족하는지 판단
+4. 부족하거나 애매한 항목에 대해 **코멘트** 제공
+
 ## How to Use This Skill
 
 When answering an Edmonton civil engineering question, follow the 3-step decision tree below. Each step tells you which reference files to load. Load only what you need — most questions require 2-4 reference files, not all of them.
@@ -74,7 +97,8 @@ These are the key numbers that come up frequently in Edmonton civil reviews:
 | Surface water to private property | Not permitted | `grading-drainage.md` |
 | Minimum lane width (residential) | TBD | `lane-design.md` |
 | Minimum pipe cover (frost) | TBD | `utilities-sanitary.md` |
-| Minimum lot grade (away from building) | TBD | `grading-drainage.md` |
+| Minimum slope — pavement | 0.6% | `grading-drainage.md` |
+| Minimum slope — sod/landscape | 1.5% | `grading-drainage.md` |
 | Maximum lane grade | TBD | `vertical-alignment.md` |
 
 > **TBD** = To be filled in with specific City of Edmonton standards. Items marked TBD need your input or web research to complete.

@@ -19,9 +19,16 @@ This is the fundamental rule that governs all grading design in Edmonton.
 - Lot surface water → directed away from buildings, toward lane or rear drainage
 - No ponding allowed on private property caused by public infrastructure
 
+## Minimum Slopes
+
+| Surface Type | Minimum Slope | Notes |
+|--------------|---------------|-------|
+| Pavement areas | 0.6% | Driveways, sidewalks, paved surfaces |
+| Sod / landscape areas | 1.5% | Grassed yards, landscaped areas |
+
 ## Lot Grading Standards
 
-<!-- TODO: Fill in minimum grades -->
+<!-- TODO: Fill in additional grading standards as available -->
 
 | Parameter | Minimum | Maximum | Notes |
 |-----------|---------|---------|-------|
