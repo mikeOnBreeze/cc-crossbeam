@@ -95,11 +95,31 @@ authority: "City of Edmonton / EPCOR"
 | Pavement (P) | 0.95 |
 | Landscaping (L) | 0.10 |
 
+## Sampling Manhole
+
+- Sampling MH 최소 경사: **1%**
+
+## Stormwater Management — On-Site Calculations (C005)
+
+도면에 포함해야 하는 SWM 계산 항목:
+
+| Calculation | Unit |
+|-------------|------|
+| 전체 개발 면적 (Total development area) | ha |
+| 평균 유출 계수 (Average runoff coefficient) | — |
+| 필요 현장 저류 용량 (Required onsite ponding volume) | m³ |
+| 달성 저류 용량 (Ponding volume achieved) + 계산 근거 | m³ |
+| 최대 허용 부지 유출속도 (Maximum allowable site outflow rate) | m³/s |
+| 유량 제한/Orifice 크기 + 데이터 시트 | mm |
+
+### Orifice 요구사항
+
+- **최소 크기: 50mm** (round, sharp-edged orifice)
+- Orifice 크기 Calculation 별도 포함
+
 ## Stormwater Management Facilities (SWMFs)
 
 <!-- TODO: Fill in SWMF requirements -->
-<!-- Wet ponds, dry ponds, constructed wetlands -->
-<!-- Release rates, storage requirements -->
 
 ## Low Impact Development (LID)
 

@@ -52,6 +52,16 @@ authority: "EPCOR Water Services / City of Edmonton Design and Construction Stan
 
 <!-- TODO: Looping requirements, dead-end restrictions -->
 
+## Tapping Valve Sleeve (TVS) Detail Rules
+
+건물과 Property Line 사이 거리에 따라 적용 디테일이 다름:
+
+| 건물 ↔ PL 거리 | 적용 디테일 | 비고 |
+|:---------------|:-----------|:-----|
+| < 3m | WA-005-010 | |
+| = 0m (완전 접함) | WA-005-009 | |
+| > 3m | 디테일 불필요 | |
+
 ## EPCOR Design Requirements
 
 - All water distribution design must comply with EPCOR standards

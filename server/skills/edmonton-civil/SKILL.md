@@ -72,7 +72,18 @@ Does the question involve any of these specific design elements?
 | **Pipe sizing / minimum cover / frost depth** | `utilities-sanitary.md` or `utilities-storm.md` or `utilities-water.md` |
 | **Easements / right-of-way** | `lane-design.md`, `permit-process.md` |
 
-### STEP 3: Check Process and Submission
+### STEP 3: Drawing Review (체크리스트)
+
+도면 리뷰 또는 제출 전 확인 시 해당 체크리스트를 로드:
+
+| 리뷰 범위 | Load These Checklists |
+|-----------|----------------------|
+| **Infill lot grading plan** | `checklist-infill-grading.md` |
+| **On-site 전체 (servicing + grading + SWM)** | `checklist-onsite.md` |
+| **Off-site / MIA (lane design)** | `checklist-offsite.md` |
+| **On-site + Off-site 전체 리뷰** | `checklist-onsite.md` + `checklist-offsite.md` + 관련 technical reference |
+
+### STEP 4: Check Process and Submission
 
 What stage is the project at?
 
@@ -97,8 +108,14 @@ These are the key numbers that come up frequently in Edmonton civil reviews:
 | Surface water to private property | Not permitted | `grading-drainage.md` |
 | Minimum lane width (residential) | TBD | `lane-design.md` |
 | Minimum pipe cover (frost) | TBD | `utilities-sanitary.md` |
-| Minimum slope — pavement | 0.6% | `grading-drainage.md` |
-| Minimum slope — sod/landscape | 1.5% | `grading-drainage.md` |
+| Minimum slope — pavement (일반) | 0.6% | `grading-drainage.md` |
+| Minimum slope — sod/landscape (일반) | 1.5% | `grading-drainage.md` |
+| Building zone 2.0m — sod | 10% | `grading-drainage.md` |
+| Building zone 2.0m — hard surface | 0.75% | `grading-drainage.md` |
+| Lowest building opening ≥ overflow + | 150mm | `grading-drainage.md` |
+| Orifice minimum size | 50mm | `utilities-storm.md` |
+| Sampling MH — Sanitary | 2% | `utilities-sanitary.md` |
+| Sampling MH — Storm | 1% | `utilities-storm.md` |
 | Maximum lane grade | TBD | `vertical-alignment.md` |
 
 > **TBD** = To be filled in with specific City of Edmonton standards. Items marked TBD need your input or web research to complete.

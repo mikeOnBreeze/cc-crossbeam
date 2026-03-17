@@ -26,31 +26,34 @@ This is the fundamental rule that governs all grading design in Edmonton.
 | Pavement areas | 0.6% | Driveways, sidewalks, paved surfaces |
 | Sod / landscape areas | 1.5% | Grassed yards, landscaped areas |
 
-## Lot Grading Standards
+## Building Protection Zone (첫 2.0m)
 
-<!-- TODO: Fill in additional grading standards as available -->
+건물에서 멀어지는 방향으로 충분한 경사 확보 (Grading Plan C004 요구사항):
+
+| Surface Type | Minimum Slope | Zone |
+|--------------|---------------|------|
+| 잔디 (Sod/Grass) | **10%** | 건물 인접 첫 2.0m |
+| 단단한 표면 (Hard surface) | **0.75%** | 건물 인접 첫 2.0m |
+
+## Overflow and Building Opening Protection
+
+- **Overflow point**: 도면에 위치 및 높이 표시 필수
+- **최저 건물 개구부(Lowest building opening) ≥ Overflow point + 150mm**
+
+## Lot Grading Standards
 
 | Parameter | Minimum | Maximum | Notes |
 |-----------|---------|---------|-------|
-| Grade away from building | TBD | TBD | Within first X metres |
+| Grade away from building (sod) | 10% | — | 첫 2.0m 구간 |
+| Grade away from building (hard surface) | 0.75% | — | 첫 2.0m 구간 |
 | Side yard slope | TBD | TBD | |
 | Rear yard slope | TBD | TBD | |
 | Swale minimum grade | TBD | TBD | Longitudinal |
 
-## Drainage Patterns
-
-<!-- TODO: Fill in standard drainage patterns -->
-<!-- Front-to-back, back-to-front, split drainage, etc. -->
-
-## Swale Design
-
-<!-- TODO: Fill in swale design criteria -->
-<!-- Minimum depth, side slopes, capacity requirements -->
-
 ## Retaining Walls and Grade Transitions
 
-<!-- TODO: When are retaining walls required? -->
-<!-- Maximum grade difference without a wall -->
+- 옹벽 상단 ≥ 계획 내부 swale + **15cm**
+- 옹벽 상단 ≥ 인접 지표 + **5cm**
 
 ## Coordination with Storm Sewer
 

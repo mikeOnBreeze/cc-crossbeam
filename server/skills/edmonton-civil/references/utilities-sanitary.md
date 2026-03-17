@@ -70,6 +70,10 @@ authority: "City of Edmonton / EPCOR"
 | Straight (180°) or ≤45° | **0.03 m (30 mm)** |
 | >45° to 90° | **0.05 m (50 mm)** |
 
+## Sampling Manhole
+
+- Sampling MH 최소 경사: **2%**
+
 ## Pipe Materials
 
 <!-- TODO: Accepted pipe materials -->
