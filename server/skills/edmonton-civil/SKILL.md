@@ -125,8 +125,9 @@ These are the key numbers that come up frequently in Edmonton civil reviews:
 | Minimum vertical curve K value | 5 | `vertical-alignment.md` |
 | Edge of lane elevation | Must match existing | `lane-design.md` |
 | Surface water to private property | Not permitted | `grading-drainage.md` |
-| Minimum lane width (residential) | TBD | `lane-design.md` |
-| Minimum pipe cover (frost) | TBD | `utilities-sanitary.md` |
+| Minimum lane width (residential) | **8.5 m** (back-of-curb) | `lane-design.md` |
+| Minimum pipe cover — sanitary (frost) | **2.6 m** crown to FG | `utilities-sanitary.md` |
+| Minimum pipe cover — water (200mm) | **2.62 m** invert to curb top | `utilities-water.md` |
 | Minimum slope — pavement (일반) | 0.6% | `grading-drainage.md` |
 | Minimum slope — sod/landscape (일반) | 1.5% | `grading-drainage.md` |
 | Building zone 2.0m — sod | 10% | `grading-drainage.md` |
@@ -135,6 +136,8 @@ These are the key numbers that come up frequently in Edmonton civil reviews:
 | Orifice minimum size | 50mm | `utilities-storm.md` |
 | Sampling MH — Sanitary | 2% | `utilities-sanitary.md` |
 | Sampling MH — Storm | 1% | `utilities-storm.md` |
-| Maximum lane grade | TBD | `vertical-alignment.md` |
+| Maximum lane grade (local/alley) | **10%** | `vertical-alignment.md` |
+| Maximum lane grade (collector) | **8%** | `vertical-alignment.md` |
+| Maximum lane grade (arterial) | **6%** | `vertical-alignment.md` |
 
-> **TBD** = To be filled in with specific City of Edmonton standards. Items marked TBD need your input or web research to complete.
+> **Source**: City of Edmonton Design and Construction Standards, EPCOR Volumes 3 & 4, Complete Streets Guidelines.

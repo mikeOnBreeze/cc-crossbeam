@@ -11,8 +11,8 @@ authority: "City of Edmonton / EPCOR"
 
 | System | Return Period | Notes |
 |--------|--------------|-------|
-| Minor system (pipes) | TBD | e.g., 1:5 year |
-| Major system (overland) | TBD | e.g., 1:100 year |
+| Minor system (pipes) | **1:5 year** | Vol 3-03: sufficient inlet capacity for 1:5 year rainfall event |
+| Major system (overland) | **1:100 year** | Vol 3-02: SWMF and flood profiling for 5yr, 10yr, 25yr, 100yr events |
 
 ## Minimum Pipe Size
 
@@ -119,14 +119,40 @@ authority: "City of Edmonton / EPCOR"
 
 ## Stormwater Management Facilities (SWMFs)
 
-<!-- TODO: Fill in SWMF requirements -->
+Edmonton requires SWMFs as the final treatment process for stormwater (Vol 3-02, EPCOR April 2025):
+
+| SWMF Type | Key Requirements |
+|-----------|-----------------|
+| **Naturalized Wet Ponds** | Relatively oval shaped; no grates on submerged inlets/outlets |
+| **Constructed Wetlands** | Final treatment process; design per Vol 3-02 |
+| **Dry Ponds** | Min bottom slope **1.5%**; max live storage depth **1.5 m** |
+
+- Control structure must be above the **1:100 year design event** water level
+- Shared-use paths within SWMF must be at or above the **1:25 year design event** water level
+- Areas with stormwater discharge < **20 L/s/ha** may trigger downstream sewer upgrades
+- Pre-development vs. post-development release rate matching required
 
 ## Low Impact Development (LID)
 
-<!-- TODO: Fill in LID requirements if applicable -->
+Edmonton/EPCOR actively supports LID through SIRP ($1.6B, 20-year plan). EPCOR published **LID Best Management Practices Design Guide** (August 2025):
+
+| LID Type | Description |
+|----------|-------------|
+| Bioretention / Rain Gardens | Vegetated depressions for infiltration and filtration |
+| Bioswales | Vegetated channels for conveyance and treatment |
+| Permeable Pavement | Porous asphalt, porous concrete, open grid pavers |
+| Green Roofs | Vegetated roof systems for retention |
+| Rainwater Harvesting | Collection and reuse of roof runoff |
+
+- All LID features must **drain within 48–72 hours**
+- Source: EPCOR LID BMP Design Guide (Aug 2025)
 
 ## Overland Drainage Routes
 
 - Major system must have defined overland flow routes
 - Routes must not direct water onto private property
-- Minimum freeboard requirements: TBD
+- Minimum freeboard: **300 mm** between major system water surface and lowest adjacent building opening
+
+---
+
+> **Source**: EPCOR Design and Construction Standards Vol 3-02 (April 2025), Vol 3-03 Design Guidelines, LID BMP Design Guide (August 2025).

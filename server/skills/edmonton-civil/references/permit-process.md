@@ -11,33 +11,32 @@ authority: "City of Edmonton"
 
 ### Required Drawings
 
-<!-- TODO: Fill in required drawing list -->
-<!-- Typical civil submission package: -->
-
-1. **Cover sheet** — project info, drawing index, general notes
-2. **Grading plan** — existing and proposed grades, drainage arrows
-3. **Servicing plan** — water, sanitary, storm layout
-4. **Road plan and profile** — horizontal and vertical alignment
-5. **Cross-sections** — typical and specific
-6. **Erosion and sediment control plan**
-7. **Stormwater management report** (if applicable)
+1. **Cover sheet** — project info, drawing index, general notes, P.Eng. stamp
+2. **Grading plan** — existing and proposed grades, drainage arrows, spot elevations
+3. **Servicing plan** — water, sanitary, storm layout with sizes and inverts
+4. **Road plan and profile** — horizontal and vertical alignment, K values
+5. **Cross-sections** — typical and specific at critical locations
+6. **Erosion and sediment control plan** — ESC measures and phasing
+7. **Stormwater management plan** — SWM calculations, orifice sizing, ponding volumes
+8. **Lot grading plan** — building elevations, overflow points, swale grades
+9. **Detail sheets** — standard details for manholes, catch basins, connections
 
 ### Supporting Documents
 
-<!-- TODO: Fill in required reports/documents -->
-- Geotechnical report
-- Stormwater management report
-- Traffic impact assessment (if required)
+- Geotechnical report (required for all developments)
+- Stormwater management report with pre/post development analysis
+- Traffic impact assessment (if required by Transportation)
+- Servicing agreement (executed with City)
+- EPCOR service connection applications (water and drainage)
+- Survey certificate / legal plan
 
 ## Review Process
 
-<!-- TODO: Fill in review timeline -->
-
-| Stage | Timeline | Notes |
-|-------|----------|-------|
-| Initial review | TBD | |
-| Corrections response review | TBD | |
-| Final approval | TBD | |
+| Stage | Typical Timeline | Notes |
+|-------|-----------------|-------|
+| Initial review | **4–6 weeks** | City and EPCOR review in parallel |
+| Corrections response review | **2–4 weeks** | Faster if corrections are minor |
+| Final approval | **1–2 weeks** | After all corrections addressed |
 
 ## Corrections / Review Comments
 
@@ -57,9 +56,19 @@ When the City issues corrections:
 
 ## Inspections
 
-<!-- TODO: Fill in inspection stages -->
-<!-- Pre-construction, during construction, final acceptance -->
+| Stage | When | What |
+|-------|------|------|
+| **Pre-construction meeting** | Before any work begins | Review approved plans, ESC, traffic management, EPCOR coordination |
+| **Subgrade inspection** | After excavation, before granular | Verify subgrade elevation, compaction, geotechnical compliance |
+| **Utility installation** | During pipe laying | Bedding, alignment, grade, joint inspection; EPCOR for water/drainage |
+| **Backfill inspection** | After pipe installation | Compaction testing, lift thickness |
+| **Base course inspection** | After granular placement | Elevation, compaction, thickness verification |
+| **Pre-paving inspection** | Before asphalt placement | Final grade check, curb and gutter alignment |
+| **Final acceptance** | After all work complete | As-built drawings, final grading certificate, EPCOR sign-off |
+
+- EPCOR conducts separate inspections for water and drainage infrastructure
+- Compaction tests required at each stage per geotechnical specifications
 
 ---
 
-> **Note**: Items marked TBD need to be filled in with specific City of Edmonton procedures.
+> **Source**: City of Edmonton Development Services, EPCOR Design and Construction Standards.

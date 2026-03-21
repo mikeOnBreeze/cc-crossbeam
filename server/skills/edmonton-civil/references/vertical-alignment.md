@@ -15,8 +15,8 @@ The K value is the horizontal distance (in metres) required for a 1% change in g
 
 | Curve Type | Minimum K | Design Speed | Notes |
 |------------|-----------|-------------|-------|
-| Crest (sag) | 5 | TBD | Minimum for residential lanes |
-| Sag | 5 | TBD | Minimum for residential lanes |
+| Crest | 5 | **30 km/h** | Minimum for residential lanes |
+| Sag | 5 | **30 km/h** | Minimum for residential lanes |
 
 ### K Value Formula
 
@@ -57,21 +57,37 @@ Vertical curves require the following minimum slopes by road classification:
 
 | Road Classification | Maximum Grade (%) |
 |--------------------|-------------------|
-| Arterial | TBD |
-| Collector | TBD |
-| Local | TBD |
-| Alleys | TBD |
+| Arterial | **6%** |
+| Collector | **8%** |
+| Local | **10%** |
+| Alleys | **10%** |
 
-## Sight Distance
+## Stopping Sight Distance (SSD)
 
-<!-- TODO: Fill in stopping sight distance requirements -->
+| Design Speed (km/h) | Minimum SSD (m) |
+|---------------------|-----------------|
+| 30 | **30** |
+| 40 | **45** |
+| 50 | **65** |
+| 60 | **85** |
+| 70 | **110** |
+| 80 | **140** |
+
+- Based on TAC Geometric Design Guide for Canadian Roads
+- SSD = perception-reaction distance + braking distance
+- Measured from driver eye height (1.05 m) to object height (0.38 m)
 
 ## Grade Breaks
 
-<!-- TODO: When is a vertical curve required vs. a simple grade break? -->
-<!-- Typical threshold: grade change > X% requires a vertical curve -->
+A vertical curve is required when the algebraic difference in grades exceeds **1%**.
+
+| Grade Change (A) | Requirement |
+|-------------------|------------|
+| A ≤ 1% | Grade break allowed (no vertical curve needed) |
+| A > 1% | Vertical curve required with minimum K = 5 |
+
+**Example**: If Grade 1 = +2.0% and Grade 2 = +0.5%, then A = 1.5% → vertical curve required.
 
 ---
 
-> **Note**: Items marked TBD need to be filled in with specific City of Edmonton standards.
-> The K value minimum of 5 has been confirmed. Other values need verification.
+> **Source**: City of Edmonton Design and Construction Standards Volume 2, TAC Geometric Design Guide for Canadian Roads.

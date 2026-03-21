@@ -46,9 +46,10 @@ This is the fundamental rule that governs all grading design in Edmonton.
 |-----------|---------|---------|-------|
 | Grade away from building (sod) | 10% | — | 첫 2.0m 구간 |
 | Grade away from building (hard surface) | 0.75% | — | 첫 2.0m 구간 |
-| Side yard slope | TBD | TBD | |
-| Rear yard slope | TBD | TBD | |
-| Swale minimum grade | TBD | TBD | Longitudinal |
+| Side yard slope | **2%** | **33% (3:1)** | Must drain away from building toward swale or lane |
+| Rear yard slope | **2%** | **33% (3:1)** | Must drain toward rear swale or lane; no ponding |
+| Swale minimum grade (sod) | **1.5%** | — | Longitudinal; matches sod minimum slope |
+| Swale minimum grade (paved) | **0.75%** | — | Longitudinal; matches pavement minimum slope |
 
 ## Retaining Walls and Grade Transitions
 
@@ -63,5 +64,4 @@ This is the fundamental rule that governs all grading design in Edmonton.
 
 ---
 
-> **Note**: Items marked TBD need to be filled in with specific City of Edmonton standards.
-> The core principle (no surface water to private property) has been confirmed.
+> **Source**: City of Edmonton Lot Grading Guidelines, Complete Streets Design and Construction Standards.

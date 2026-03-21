@@ -12,8 +12,8 @@ authority: "City of Edmonton / EPCOR"
 | Application | Minimum Diameter | Notes |
 |-------------|-----------------|-------|
 | Service connection | 150 mm | Vol 3-03, Section 3.3.2, Table 3.1 |
-| Local main | TBD | |
-| Trunk sewer | TBD | |
+| Local main | **200 mm** | Vol 3-03: only 200 mm when peak DWF < 5.0 L/s; upsize based on flow calc |
+| Trunk sewer | **Per flow calculation** | Sized by hydraulic design; max 80% of full depth at design peak flow |
 
 ## Minimum Cover (Section 1.10.4)
 
@@ -74,13 +74,27 @@ authority: "City of Edmonton / EPCOR"
 
 - Sampling MH 최소 경사: **2%**
 
-## Pipe Materials
+## Pipe Materials (Vol 3-03)
 
-<!-- TODO: Accepted pipe materials -->
+| Material | Application | Notes |
+|----------|-------------|-------|
+| **PVC** | Residential sanitary and storm sewers and services | Must not be blue; per Appendix E (flexible thermoplastic) |
+| **Concrete pipe** | Mains and trunks | With corrosion-resistant coating/liner where needed; per Appendix D (rigid gravity sewer pipe) |
+| **Corrosion-resistant materials** | Where corrosion conditions exist | Plastic or coated concrete |
 
-## Manhole Spacing
+## Manhole Spacing (Vol 3-03)
 
-<!-- TODO: Maximum manhole spacing by pipe size -->
+| Pipe Diameter | Maximum Manhole Spacing |
+|---------------|------------------------|
+| < 1200 mm | **150 m** |
+| 1200 mm – 1650 mm | **500 m** |
+| ≥ 1800 mm | Greater spacing permitted (subject to EPCOR approval) |
+
+- Standard manhole diameter: **1200 mm**; use **1500 mm** when pipe sizes warrant
+- Manholes required at all changes in: size, grade, alignment, and at junctions
+- Parallel sewer separation: min **2.5 m** centre-to-centre (or 250 mm in common trench)
+- Min vertical clearance at crossings: **300 mm**
+- Sewer obvert: at least **1.0–1.5 m** below proposed basement elevation
 
 ## EPCOR Coordination
 

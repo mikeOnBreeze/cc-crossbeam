@@ -9,18 +9,24 @@ authority: "City of Edmonton Design and Construction Standards"
 
 ## Lane Types and Width
 
-<!-- TODO: Fill in with City of Edmonton lane classifications -->
-<!-- Residential lane, collector lane, arterial, etc. -->
+Edmonton lane/road classifications per Complete Streets Design and Construction Standards:
 
-| Lane Type | Width | Notes |
-|-----------|-------|-------|
-| Residential Lane | TBD | |
-| Collector | TBD | |
+| Road Classification | Typical Width (back-of-curb to back-of-curb) | Notes |
+|--------------------|----------------------------------------------|-------|
+| Residential Lane (alley) | **8.5 m** | Includes 6.0 m paved + shoulders |
+| Local Residential | **8.5–10.0 m** | Depends on parking configuration |
+| Collector | **10.0–11.0 m** | Two travel lanes + parking |
+| Arterial (2-lane) | **10.0–12.0 m** | Per Complete Streets; varies by context |
+| Arterial (4-lane) | **14.0–15.0 m** | Divided or undivided |
 
 ## Cross-Section Requirements
 
-<!-- TODO: Fill in typical cross-section details -->
-<!-- Crown slope, curb and gutter, boulevard width -->
+| Element | Standard Value | Notes |
+|---------|---------------|-------|
+| Crown slope (pavement) | **2%** | From centre to curb; both sides |
+| Curb and gutter | **600 mm** wide | Barrier curb standard; mountable in residential |
+| Boulevard width | **3.0–4.5 m** | Between curb and property line; varies by classification |
+| Sidewalk width | **1.5–2.0 m** | Local residential; wider on collectors/arterials |
 
 ## Edge of Lane — Matching Existing Elevation
 
@@ -32,12 +38,29 @@ authority: "City of Edmonton Design and Construction Standards"
 
 ## Horizontal Alignment
 
-<!-- TODO: Fill in minimum radius, superelevation requirements -->
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Minimum radius (residential lane) | **30 m** | At 30 km/h design speed |
+| Minimum radius (collector) | **60 m** | At 50 km/h design speed |
+| Minimum radius (arterial) | **130 m** | At 60 km/h design speed |
+| Superelevation (max) | **6%** | TAC standard; urban streets may use **4%** max |
+
+- Superelevation generally not applied on low-speed residential lanes
+- Compound curves: radius ratio ≤ 2:1 between successive curves
 
 ## Pavement Structure
 
-<!-- TODO: Fill in pavement layer thicknesses -->
-<!-- Subgrade, base, surface course -->
+Typical layer thicknesses (verify with geotechnical report for site-specific conditions):
+
+| Layer | Residential Lane | Collector | Arterial |
+|-------|-----------------|-----------|----------|
+| Asphalt surface | **50 mm** | **75 mm** | **100 mm** |
+| Asphalt base | **50 mm** | **75 mm** | **100 mm** |
+| Granular base | **150 mm** | **200 mm** | **250 mm** |
+| Granular sub-base | **200 mm** | **300 mm** | **350 mm** |
+
+- Total depth varies with subgrade conditions and CBR value
+- Geotechnical recommendation governs final design
 
 ## Surface Water on Lanes
 
@@ -47,5 +70,4 @@ authority: "City of Edmonton Design and Construction Standards"
 
 ---
 
-> **Note**: Items marked TBD need to be filled in with specific City of Edmonton standards.
-> Provide the specific values from your experience or from City of Edmonton Design and Construction Standards documents.
+> **Source**: City of Edmonton Complete Streets Design and Construction Standards, Volume 2 — Roadways, TAC Geometric Design Guide.
