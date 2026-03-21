@@ -1,0 +1,143 @@
+---
+name: edmonton-civil
+description: "City of Edmonton civil engineering permit standards for subdivision and development. Covers lane design, lot grading, surface water drainage, vertical alignment, utilities (water, sanitary, storm), and permit submission/review process. Use this skill for any Edmonton civil engineering permit question."
+version: "0.1"
+source: "City of Edmonton Design and Construction Standards, Complete Streets Guidelines, Lot Grading Guidelines, EPCOR Standards"
+authority: "City of Edmonton"
+standards_as_of: "2025"
+---
+
+# Edmonton Civil Engineering Permit Decision Engine
+
+This skill contains City of Edmonton civil engineering standards for subdivision and development permits. It covers lane design, lot grading, surface water management, vertical/horizontal alignment, and utility infrastructure.
+
+**What this covers**: City of Edmonton standards for civil engineering design and construction — the rules that must be met for permit approval.
+
+**What this does NOT cover**: Structural engineering, building permits, architectural design, or federal/provincial requirements beyond what Edmonton references.
+
+## Edmonton Civil Permit Structure
+
+Edmonton civil engineering permits are split into two categories:
+
+### On-Site (항상 있음)
+- **Sewer & Water Service** — service connections from main to property
+- **On-site Grading** — lot grading, surface water drainage, slopes
+
+On-site에는 **체크리스트 2개** 가 있음 (sewer/water 1개, grading 1개).
+
+### MIA / Off-Site (항상 있는 것은 아님)
+- **Lane Design** — lane reconstruction, vertical/horizontal alignment, cross-sections
+
+Off-site에는 **체크리스트 1개** 가 있음.
+
+### Review Workflow
+
+사용자가 도면을 완성하면:
+1. 해당 **체크리스트** 항목을 하나씩 확인
+2. 이 스킬의 **reference 파일** 기준값과 대조
+3. 둘 다 만족하는지 판단
+4. 부족하거나 애매한 항목에 대해 **코멘트** 제공
+
+## How to Use This Skill
+
+When answering an Edmonton civil engineering question, follow the 3-step decision tree below. Each step tells you which reference files to load. Load only what you need — most questions require 2-4 reference files, not all of them.
+
+---
+
+## Decision Tree Router
+
+### STEP 1: Classify the Infrastructure Type
+
+What kind of civil work is being designed or reviewed?
+
+| Infrastructure Type | Load These References |
+|---------------------|----------------------|
+| **Lane / roadway design** (alignment, cross-section, pavement) | `lane-design.md`, `vertical-alignment.md` |
+| **Lot grading / surface water drainage** | `grading-drainage.md` |
+| **Sanitary sewer** | `utilities-sanitary.md` |
+| **Storm sewer / stormwater management** | `utilities-storm.md` |
+| **Water distribution** | `utilities-water.md` |
+| **Combined / full subdivision** | `lane-design.md`, `grading-drainage.md`, `utilities-sanitary.md`, `utilities-storm.md`, `utilities-water.md` |
+
+### STEP 2: Check Design Parameters
+
+Does the question involve any of these specific design elements?
+
+| Design Element | Load These References |
+|----------------|----------------------|
+| **Vertical curves / K values** | `vertical-alignment.md` |
+| **Horizontal curves / superelevation** | `lane-design.md` |
+| **Surface water flow direction** | `grading-drainage.md` |
+| **Edge of lane / match existing elevation** | `lane-design.md`, `grading-drainage.md` |
+| **Pipe sizing / minimum cover / frost depth** | `utilities-sanitary.md` or `utilities-storm.md` or `utilities-water.md` |
+| **Easements / right-of-way** | `lane-design.md`, `permit-process.md` |
+
+### STEP 3: Drawing Review (체크리스트)
+
+도면 리뷰 또는 제출 전 확인 시 해당 체크리스트를 로드:
+
+| 리뷰 범위 | Load These Checklists |
+|-----------|----------------------|
+| **Infill lot grading plan** | `checklist-infill-grading.md` |
+| **On-site 전체 (servicing + grading + SWM)** | `checklist-onsite.md` |
+| **Off-site / MIA (lane design)** | `checklist-offsite.md` |
+| **On-site + Off-site 전체 리뷰** | `checklist-onsite.md` + `checklist-offsite.md` + 관련 technical reference |
+
+### STEP 4: Check Process and Submission
+
+What stage is the project at?
+
+| Topic | Load These References |
+|-------|----------------------|
+| **Permit application / required drawings** | `permit-process.md` |
+| **Corrections letter / review comments** | `permit-process.md`, plus relevant technical reference |
+| **Inspection requirements** | `permit-process.md` |
+| **EPCOR coordination** | `utilities-water.md`, `utilities-sanitary.md` |
+| **Terminology / abbreviations** | `glossary.md` |
+
+### STEP 5: Corrections Response Workflow (반려 대응)
+
+When a consultant has received a corrections letter from the City of Edmonton or EPCOR:
+
+| Task | Skill to Use | Reference Files |
+|------|-------------|-----------------|
+| **Analyze corrections letter** | `edmonton-civil-corrections-flow` | Auto-routes to relevant references via `infrastructure_type` |
+| **On-site corrections (servicing + grading)** | `edmonton-civil-corrections-flow` | `checklist-onsite.md` + `grading-drainage.md` + `utilities-*.md` |
+| **Off-site corrections (lane design)** | `edmonton-civil-corrections-flow` | `checklist-offsite.md` + `lane-design.md` + `vertical-alignment.md` |
+| **Infill grading corrections** | `edmonton-civil-corrections-flow` | `checklist-infill-grading.md` + `grading-drainage.md` |
+| **EPCOR corrections (water/sanitary)** | `edmonton-civil-corrections-flow` | `utilities-water.md` + `utilities-sanitary.md` |
+| **Generate response package** | `edmonton-civil-corrections-complete` | Uses Phase 1 artifacts + consultant answers |
+
+**Workflow:**
+1. Consultant provides corrections letter (PDF/PNG) + plan binder (PDF)
+2. `edmonton-civil-corrections-flow` analyzes and generates questions → **STOP**
+3. Consultant answers questions
+4. `edmonton-civil-corrections-complete` generates response letter, scope, report, annotations
+
+---
+
+## Quick-Reference Thresholds
+
+These are the key numbers that come up frequently in Edmonton civil reviews:
+
+| Parameter | Value | Reference |
+|-----------|-------|-----------|
+| Minimum vertical curve K value | 5 | `vertical-alignment.md` |
+| Edge of lane elevation | Must match existing | `lane-design.md` |
+| Surface water to private property | Not permitted | `grading-drainage.md` |
+| Minimum lane width (residential) | **8.5 m** (back-of-curb) | `lane-design.md` |
+| Minimum pipe cover — sanitary (frost) | **2.6 m** crown to FG | `utilities-sanitary.md` |
+| Minimum pipe cover — water (200mm) | **2.62 m** invert to curb top | `utilities-water.md` |
+| Minimum slope — pavement (일반) | 0.6% | `grading-drainage.md` |
+| Minimum slope — sod/landscape (일반) | 1.5% | `grading-drainage.md` |
+| Building zone 2.0m — sod | 10% | `grading-drainage.md` |
+| Building zone 2.0m — hard surface | 0.75% | `grading-drainage.md` |
+| Lowest building opening ≥ overflow + | 150mm | `grading-drainage.md` |
+| Orifice minimum size | 50mm | `utilities-storm.md` |
+| Sampling MH — Sanitary | 2% | `utilities-sanitary.md` |
+| Sampling MH — Storm | 1% | `utilities-storm.md` |
+| Maximum lane grade (local/alley) | **10%** | `vertical-alignment.md` |
+| Maximum lane grade (collector) | **8%** | `vertical-alignment.md` |
+| Maximum lane grade (arterial) | **6%** | `vertical-alignment.md` |
+
+> **Source**: City of Edmonton Design and Construction Standards, EPCOR Volumes 3 & 4, Complete Streets Guidelines.
