@@ -60,7 +60,7 @@ Vertical curves require the following minimum slopes by road classification:
 | Arterial | **6%** |
 | Collector | **8%** |
 | Local | **10%** |
-| Alleys | **10%** |
+| Alleys | **8%** |
 
 ## Stopping Sight Distance (SSD)
 

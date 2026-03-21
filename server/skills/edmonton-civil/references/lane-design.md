@@ -15,7 +15,7 @@ Edmonton lane/road classifications per Complete Streets Design and Construction 
 |--------------------|----------------------------------------------|-------|
 | Residential Lane (alley) | **8.5 m** | Includes 6.0 m paved + shoulders |
 | Local Residential | **8.5–10.0 m** | Depends on parking configuration |
-| Collector | **10.0–11.0 m** | Two travel lanes + parking |
+| Collector | **11.0–11.5 m** | Two travel lanes + parking; 11.5 m typical |
 | Arterial (2-lane) | **10.0–12.0 m** | Per Complete Streets; varies by context |
 | Arterial (4-lane) | **14.0–15.0 m** | Divided or undivided |
 
