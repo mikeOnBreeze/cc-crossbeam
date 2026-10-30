@@ -2,7 +2,7 @@
 
 CrossBeam Permits builds AI plan check for cities, counties and government agencies, around each agency's own team, rules and workflow. It covers both sides of the counter. Applicant-facing tools check plans before they are submitted. Internal tools handle intake screening, building and planning plan review, corrections letters on the agency's letterhead, backchecks and staff questions.
 
-CrossBeam Permits works with cities, counties and agencies anywhere in the country. Every California city and county is already loaded and ready to start. Beyond California, CrossBeam Permits already runs reviews on local code in the Greater Seattle, Las Vegas, Denver and Kansas City areas.
+CrossBeam Permits works with cities, counties and agencies anywhere in the country. CrossBeam Permits is available to every California city and county, and most California jurisdictions already have their local rules loaded. Beyond California, CrossBeam Permits already runs reviews on local code in the Greater Seattle, Las Vegas, Denver and Kansas City areas.
 
 Agencies using it today:
 
